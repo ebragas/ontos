@@ -1,0 +1,1815 @@
+{
+  "ontology": {
+    "objectTypes": {
+      "com.example.twin.Account": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Account",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Accounts",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["accountId"],
+          "propertyTypes": {
+            "accountId": {
+              "apiName": "accountId",
+              "displayMetadata": {
+                "displayName": "AccountId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "name": {
+              "apiName": "name",
+              "displayMetadata": {
+                "displayName": "Name",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "entity": {
+              "apiName": "entity",
+              "displayMetadata": {
+                "displayName": "Entity",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "balance": {
+              "apiName": "balance",
+              "displayMetadata": {
+                "displayName": "Balance",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "decimal",
+                "decimal": {
+                  "precision": 14,
+                  "scale": 2
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "name",
+          "apiName": "com.example.twin.Account",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Account.derived.0",
+            "datasource": {
+              "type": "derived",
+              "derived": {
+                "definition": {
+                  "type": "aggregatedProperties",
+                  "aggregatedProperties": {
+                    "linkDefinition": {
+                      "type": "multiHopLink",
+                      "multiHopLink": {
+                        "steps": [
+                          {
+                            "type": "searchAround",
+                            "searchAround": {
+                              "linkTypeIdentifier": {
+                                "type": "linkType",
+                                "linkType": "account-transactions"
+                              },
+                              "linkTypeSide": "SOURCE"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "propertyTypeMapping": {
+                      "balance": {
+                        "type": "sum",
+                        "sum": {
+                          "type": "propertyType",
+                          "propertyType": "amount"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          },
+          {
+            "datasourceName": "com.example.twin.Account",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Account",
+                "propertyMapping": {
+                  "accountId": {
+                    "type": "column",
+                    "column": "accountId"
+                  },
+                  "name": {
+                    "type": "column",
+                    "column": "name"
+                  },
+                  "entity": {
+                    "type": "column",
+                    "column": "entity"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Category": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Category",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Categories",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["categoryId"],
+          "propertyTypes": {
+            "categoryId": {
+              "apiName": "categoryId",
+              "displayMetadata": {
+                "displayName": "CategoryId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "name": {
+              "apiName": "name",
+              "displayMetadata": {
+                "displayName": "Name",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "entity": {
+              "apiName": "entity",
+              "displayMetadata": {
+                "displayName": "Entity",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "name",
+          "apiName": "com.example.twin.Category",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Category",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Category",
+                "propertyMapping": {
+                  "categoryId": {
+                    "type": "column",
+                    "column": "categoryId"
+                  },
+                  "name": {
+                    "type": "column",
+                    "column": "name"
+                  },
+                  "entity": {
+                    "type": "column",
+                    "column": "entity"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Transaction": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Transaction",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Transactions",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["transactionId"],
+          "propertyTypes": {
+            "transactionId": {
+              "apiName": "transactionId",
+              "displayMetadata": {
+                "displayName": "TransactionId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "accountId": {
+              "apiName": "accountId",
+              "displayMetadata": {
+                "displayName": "AccountId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "categoryId": {
+              "apiName": "categoryId",
+              "displayMetadata": {
+                "displayName": "CategoryId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "amount": {
+              "apiName": "amount",
+              "displayMetadata": {
+                "displayName": "Amount",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "decimal",
+                "decimal": {
+                  "precision": 14,
+                  "scale": 2
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "categoryEntity": {
+              "apiName": "categoryEntity",
+              "displayMetadata": {
+                "displayName": "CategoryEntity",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "accountEntity": {
+              "apiName": "accountEntity",
+              "displayMetadata": {
+                "displayName": "AccountEntity",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "transactionId",
+          "apiName": "com.example.twin.Transaction",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Transaction.derived.0",
+            "datasource": {
+              "type": "derived",
+              "derived": {
+                "definition": {
+                  "type": "linkedProperties",
+                  "linkedProperties": {
+                    "linkDefinition": {
+                      "type": "multiHopLink",
+                      "multiHopLink": {
+                        "steps": [
+                          {
+                            "type": "searchAround",
+                            "searchAround": {
+                              "linkTypeIdentifier": {
+                                "type": "linkType",
+                                "linkType": "category-transactions"
+                              },
+                              "linkTypeSide": "TARGET"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "propertyTypeMapping": {
+                      "categoryEntity": {
+                        "type": "propertyType",
+                        "propertyType": "entity"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          },
+          {
+            "datasourceName": "com.example.twin.Transaction.derived.1",
+            "datasource": {
+              "type": "derived",
+              "derived": {
+                "definition": {
+                  "type": "linkedProperties",
+                  "linkedProperties": {
+                    "linkDefinition": {
+                      "type": "multiHopLink",
+                      "multiHopLink": {
+                        "steps": [
+                          {
+                            "type": "searchAround",
+                            "searchAround": {
+                              "linkTypeIdentifier": {
+                                "type": "linkType",
+                                "linkType": "account-transactions"
+                              },
+                              "linkTypeSide": "TARGET"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "propertyTypeMapping": {
+                      "accountEntity": {
+                        "type": "propertyType",
+                        "propertyType": "entity"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          },
+          {
+            "datasourceName": "com.example.twin.Transaction",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Transaction",
+                "propertyMapping": {
+                  "transactionId": {
+                    "type": "column",
+                    "column": "transactionId"
+                  },
+                  "accountId": {
+                    "type": "column",
+                    "column": "accountId"
+                  },
+                  "categoryId": {
+                    "type": "column",
+                    "column": "categoryId"
+                  },
+                  "amount": {
+                    "type": "column",
+                    "column": "amount"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Engagement": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Engagement",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Engagements",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["engagementId"],
+          "propertyTypes": {
+            "engagementId": {
+              "apiName": "engagementId",
+              "displayMetadata": {
+                "displayName": "EngagementId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "accountId": {
+              "apiName": "accountId",
+              "displayMetadata": {
+                "displayName": "AccountId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "title": {
+              "apiName": "title",
+              "displayMetadata": {
+                "displayName": "Title",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "invoiceCount": {
+              "apiName": "invoiceCount",
+              "displayMetadata": {
+                "displayName": "InvoiceCount",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "integer",
+                "integer": {}
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "title",
+          "apiName": "com.example.twin.Engagement",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Engagement.derived.0",
+            "datasource": {
+              "type": "derived",
+              "derived": {
+                "definition": {
+                  "type": "aggregatedProperties",
+                  "aggregatedProperties": {
+                    "linkDefinition": {
+                      "type": "multiHopLink",
+                      "multiHopLink": {
+                        "steps": [
+                          {
+                            "type": "searchAround",
+                            "searchAround": {
+                              "linkTypeIdentifier": {
+                                "type": "linkType",
+                                "linkType": "engagement-invoices"
+                              },
+                              "linkTypeSide": "SOURCE"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "propertyTypeMapping": {
+                      "invoiceCount": {
+                        "type": "count",
+                        "count": {}
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          },
+          {
+            "datasourceName": "com.example.twin.Engagement",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Engagement",
+                "propertyMapping": {
+                  "engagementId": {
+                    "type": "column",
+                    "column": "engagementId"
+                  },
+                  "accountId": {
+                    "type": "column",
+                    "column": "accountId"
+                  },
+                  "title": {
+                    "type": "column",
+                    "column": "title"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Invoice": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Invoice",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Invoices",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["invoiceId"],
+          "propertyTypes": {
+            "invoiceId": {
+              "apiName": "invoiceId",
+              "displayMetadata": {
+                "displayName": "InvoiceId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "engagementId": {
+              "apiName": "engagementId",
+              "displayMetadata": {
+                "displayName": "EngagementId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "total": {
+              "apiName": "total",
+              "displayMetadata": {
+                "displayName": "Amount",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "decimal",
+                "decimal": {
+                  "precision": 14,
+                  "scale": 2
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "invoiceAccount": {
+              "apiName": "invoiceAccount",
+              "displayMetadata": {
+                "displayName": "InvoiceAccount",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "invoiceId",
+          "apiName": "com.example.twin.Invoice",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Invoice.derived.0",
+            "datasource": {
+              "type": "derived",
+              "derived": {
+                "definition": {
+                  "type": "linkedProperties",
+                  "linkedProperties": {
+                    "linkDefinition": {
+                      "type": "multiHopLink",
+                      "multiHopLink": {
+                        "steps": [
+                          {
+                            "type": "searchAround",
+                            "searchAround": {
+                              "linkTypeIdentifier": {
+                                "type": "linkType",
+                                "linkType": "engagement-invoices"
+                              },
+                              "linkTypeSide": "TARGET"
+                            }
+                          },
+                          {
+                            "type": "searchAround",
+                            "searchAround": {
+                              "linkTypeIdentifier": {
+                                "type": "linkType",
+                                "linkType": "account-engagements"
+                              },
+                              "linkTypeSide": "TARGET"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "propertyTypeMapping": {
+                      "invoiceAccount": {
+                        "type": "propertyType",
+                        "propertyType": "name"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          },
+          {
+            "datasourceName": "com.example.twin.Invoice",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Invoice",
+                "propertyMapping": {
+                  "invoiceId": {
+                    "type": "column",
+                    "column": "invoiceId"
+                  },
+                  "engagementId": {
+                    "type": "column",
+                    "column": "engagementId"
+                  },
+                  "total": {
+                    "type": "column",
+                    "column": "total"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Role": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Role",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Roles",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["roleId"],
+          "propertyTypes": {
+            "roleId": {
+              "apiName": "roleId",
+              "displayMetadata": {
+                "displayName": "RoleId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "name": {
+              "apiName": "name",
+              "displayMetadata": {
+                "displayName": "Name",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "assignmentCount": {
+              "apiName": "assignmentCount",
+              "displayMetadata": {
+                "displayName": "AssignmentCount",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "integer",
+                "integer": {}
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "name",
+          "apiName": "com.example.twin.Role",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Role.derived.0",
+            "datasource": {
+              "type": "derived",
+              "derived": {
+                "definition": {
+                  "type": "aggregatedProperties",
+                  "aggregatedProperties": {
+                    "linkDefinition": {
+                      "type": "multiHopLink",
+                      "multiHopLink": {
+                        "steps": [
+                          {
+                            "type": "searchAround",
+                            "searchAround": {
+                              "linkTypeIdentifier": {
+                                "type": "linkType",
+                                "linkType": "role-assignments"
+                              },
+                              "linkTypeSide": "SOURCE"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "propertyTypeMapping": {
+                      "assignmentCount": {
+                        "type": "count",
+                        "count": {}
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          },
+          {
+            "datasourceName": "com.example.twin.Role",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Role",
+                "propertyMapping": {
+                  "roleId": {
+                    "type": "column",
+                    "column": "roleId"
+                  },
+                  "name": {
+                    "type": "column",
+                    "column": "name"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.RoleAssignment": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Role assignment",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Role assignments",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["assignmentId"],
+          "propertyTypes": {
+            "assignmentId": {
+              "apiName": "assignmentId",
+              "displayMetadata": {
+                "displayName": "AssignmentId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "roleId": {
+              "apiName": "roleId",
+              "displayMetadata": {
+                "displayName": "RoleId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "person": {
+              "apiName": "person",
+              "displayMetadata": {
+                "displayName": "Person",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "assignmentId",
+          "apiName": "com.example.twin.RoleAssignment",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.RoleAssignment",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.RoleAssignment",
+                "propertyMapping": {
+                  "assignmentId": {
+                    "type": "column",
+                    "column": "assignmentId"
+                  },
+                  "roleId": {
+                    "type": "column",
+                    "column": "roleId"
+                  },
+                  "person": {
+                    "type": "column",
+                    "column": "person"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      }
+    },
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {
+      "account-transactions": {
+        "linkType": {
+          "definition": {
+            "type": "oneToMany",
+            "oneToMany": {
+              "cardinalityHint": "ONE_TO_MANY",
+              "manyToOneLinkMetadata": {
+                "apiName": "account",
+                "displayMetadata": {
+                  "displayName": "account",
+                  "pluralDisplayName": "account",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidManySide": "com.example.twin.Transaction",
+              "objectTypeRidOneSide": "com.example.twin.Account",
+              "oneToManyLinkMetadata": {
+                "apiName": "transactions",
+                "displayMetadata": {
+                  "displayName": "transactions",
+                  "pluralDisplayName": "transactions",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "oneSidePrimaryKeyToManySidePropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "accountId",
+                    "object": "com.example.twin.Account"
+                  },
+                  "to": {
+                    "apiName": "accountId",
+                    "object": "com.example.twin.Transaction"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "account-transactions",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [],
+        "entityMetadata": {
+          "arePatchesEnabled": true
+        }
+      },
+      "category-transactions": {
+        "linkType": {
+          "definition": {
+            "type": "oneToMany",
+            "oneToMany": {
+              "cardinalityHint": "ONE_TO_MANY",
+              "manyToOneLinkMetadata": {
+                "apiName": "category",
+                "displayMetadata": {
+                  "displayName": "category",
+                  "pluralDisplayName": "category",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidManySide": "com.example.twin.Transaction",
+              "objectTypeRidOneSide": "com.example.twin.Category",
+              "oneToManyLinkMetadata": {
+                "apiName": "transactions",
+                "displayMetadata": {
+                  "displayName": "transactions",
+                  "pluralDisplayName": "transactions",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "oneSidePrimaryKeyToManySidePropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "categoryId",
+                    "object": "com.example.twin.Category"
+                  },
+                  "to": {
+                    "apiName": "categoryId",
+                    "object": "com.example.twin.Transaction"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "category-transactions",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [],
+        "entityMetadata": {
+          "arePatchesEnabled": true
+        }
+      },
+      "account-engagements": {
+        "linkType": {
+          "definition": {
+            "type": "oneToMany",
+            "oneToMany": {
+              "cardinalityHint": "ONE_TO_MANY",
+              "manyToOneLinkMetadata": {
+                "apiName": "account",
+                "displayMetadata": {
+                  "displayName": "account",
+                  "pluralDisplayName": "account",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidManySide": "com.example.twin.Engagement",
+              "objectTypeRidOneSide": "com.example.twin.Account",
+              "oneToManyLinkMetadata": {
+                "apiName": "engagements",
+                "displayMetadata": {
+                  "displayName": "engagements",
+                  "pluralDisplayName": "engagements",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "oneSidePrimaryKeyToManySidePropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "accountId",
+                    "object": "com.example.twin.Account"
+                  },
+                  "to": {
+                    "apiName": "accountId",
+                    "object": "com.example.twin.Engagement"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "account-engagements",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [],
+        "entityMetadata": {
+          "arePatchesEnabled": true
+        }
+      },
+      "engagement-invoices": {
+        "linkType": {
+          "definition": {
+            "type": "oneToMany",
+            "oneToMany": {
+              "cardinalityHint": "ONE_TO_MANY",
+              "manyToOneLinkMetadata": {
+                "apiName": "engagement",
+                "displayMetadata": {
+                  "displayName": "engagement",
+                  "pluralDisplayName": "engagement",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidManySide": "com.example.twin.Invoice",
+              "objectTypeRidOneSide": "com.example.twin.Engagement",
+              "oneToManyLinkMetadata": {
+                "apiName": "invoices",
+                "displayMetadata": {
+                  "displayName": "invoices",
+                  "pluralDisplayName": "invoices",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "oneSidePrimaryKeyToManySidePropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "engagementId",
+                    "object": "com.example.twin.Engagement"
+                  },
+                  "to": {
+                    "apiName": "engagementId",
+                    "object": "com.example.twin.Invoice"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "engagement-invoices",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [],
+        "entityMetadata": {
+          "arePatchesEnabled": true
+        }
+      },
+      "role-assignments": {
+        "linkType": {
+          "definition": {
+            "type": "oneToMany",
+            "oneToMany": {
+              "cardinalityHint": "ONE_TO_MANY",
+              "manyToOneLinkMetadata": {
+                "apiName": "role",
+                "displayMetadata": {
+                  "displayName": "role",
+                  "pluralDisplayName": "role",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidManySide": "com.example.twin.RoleAssignment",
+              "objectTypeRidOneSide": "com.example.twin.Role",
+              "oneToManyLinkMetadata": {
+                "apiName": "assignments",
+                "displayMetadata": {
+                  "displayName": "assignments",
+                  "pluralDisplayName": "assignments",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "oneSidePrimaryKeyToManySidePropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "roleId",
+                    "object": "com.example.twin.Role"
+                  },
+                  "to": {
+                    "apiName": "roleId",
+                    "object": "com.example.twin.RoleAssignment"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "role-assignments",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [],
+        "entityMetadata": {
+          "arePatchesEnabled": true
+        }
+      }
+    },
+    "actionTypes": {},
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "importedOntology": {
+    "objectTypes": {},
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {},
+    "actionTypes": {},
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "valueTypes": {
+    "valueTypes": []
+  },
+  "importedValueTypes": {
+    "valueTypes": []
+  }
+}

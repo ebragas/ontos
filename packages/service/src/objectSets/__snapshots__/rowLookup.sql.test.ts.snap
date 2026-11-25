@@ -1,0 +1,154 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`the read statement of each member and each read compiler > ontology/ontology-sdk/object-sets#members: a filter after a searchAround has the same statement text 1`] = `
+[
+  {
+    "text": "SELECT * FROM (SELECT count(*)::text AS __total FROM (SELECT o.* FROM (SELECT o.* FROM "ontology_1_objects"."engagement" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."phase" = $1::text) AS s)) AS o WHERE o."amount" < $2::double precision) AS o) AS total LEFT JOIN (SELECT o."title" AS "p0", o."amount" AS "p1", o."status" AS "p2", o."account_id" AS "p3", rtrim(rtrim(to_char(o."created_at" AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.US'), '0'), '.') || 'Z' AS "p4", o."engagement_id" AS "p5", o."engagement_id" AS "__sort0", o."engagement_id" COLLATE "C" AS "__order0", TRUE AS __object FROM (SELECT o.* FROM (SELECT o.* FROM "ontology_1_objects"."engagement" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."phase" = $3::text) AS s)) AS o WHERE o."amount" < $4::double precision) AS o ORDER BY o."engagement_id" COLLATE "C" ASC NULLS FIRST LIMIT $5) AS page ON TRUE ORDER BY page."__order0" ASC NULLS FIRST",
+    "values": [
+      "customer",
+      40000,
+      "customer",
+      40000,
+      1001,
+    ],
+  },
+]
+`;
+
+exports[`the read statement of each member and each read compiler > ontology/ontology-sdk/object-sets#members: a where of each query kind has the same statement text 1`] = `
+[
+  {
+    "text": "SELECT * FROM (SELECT count(*)::text AS __total FROM (SELECT o.* FROM "ontology_1_objects"."engagement" AS o WHERE (o."amount" > $1::double precision AND ((o."status" = $2::text) IS NOT TRUE) AND o."status" = ANY($3::text[]) AND o."title" IS NOT NULL AND ((o."title" ~ $4 AND regexp_like(o."title", $5))))) AS o) AS total LEFT JOIN (SELECT o."title" AS "p0", o."amount" AS "p1", o."status" AS "p2", o."account_id" AS "p3", rtrim(rtrim(to_char(o."created_at" AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.US'), '0'), '.') || 'Z' AS "p4", o."engagement_id" AS "p5", o."engagement_id" AS "__sort0", o."engagement_id" COLLATE "C" AS "__order0", TRUE AS __object FROM (SELECT o.* FROM "ontology_1_objects"."engagement" AS o WHERE (o."amount" > $6::double precision AND ((o."status" = $7::text) IS NOT TRUE) AND o."status" = ANY($8::text[]) AND o."title" IS NOT NULL AND ((o."title" ~ $9 AND regexp_like(o."title", $10))))) AS o ORDER BY o."engagement_id" COLLATE "C" ASC NULLS FIRST LIMIT $11) AS page ON TRUE ORDER BY page."__order0" ASC NULLS FIRST",
+    "values": [
+      5000,
+      "lost",
+      [
+        "open",
+        "won",
+      ],
+      "[bB][uU][iIİ][lL][dD]",
+      "(?:^|[-&(-\\-/:-@\\[-\\^\`{-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵;΄-΅·϶҂՚-՟։-֊֍-֏־׀׃׆׳-״؀-؏؛-؟٪-٭۔۝-۞۩۽-۾܀-܍܏߶-߹߾-߿࠰-࠾࡞࢈࢐-࢑࣢।-॥॰৲-৻৽੶૰-૱୰୲-୷௰-௺౷-౿಄൏൘-൞൰-൹෴฿๏๚-๛༁-༗༚-༟༪-༴༶༸༺-༽྅྾-࿅࿇-࿌࿎-࿚၊-၏႞-႟჻፠-፼᎐-᎙᐀᙭-᙮ ᚛-᚜᛫-ᛰ᜵-᜶។-៖៘-៛៰-៹᠀-᠊᠎᥀᥄-᥅᧚᧞-᧿᨞-᨟᪠-᪦᪨-᪭᭎-᭏᭚-᭪᭴-᭿᯼-᯿᰻-᰿᱾-᱿᳀-᳇᳓᾽᾿-῁῍-῏῝-῟῭-`´-῾ -‘‚-⁤⁦-⁰⁴-⁾₀-₎₠-⃁℀-℁℃-℆℈-℉℔№-℘℞-℣℥℧℩℮℺-℻⅀-⅄⅊-⅍⅏-ↂↅ-↋←-␩⑀-⑊①-⭳⭶-⯿⳥-⳪⳹-⳿⵰⸀-⸮⸰-⹝⺀-⺙⺛-⻳⼀-⿕⿰-〄〇-〩〰〶-〺〽-〿゛-゜・㆐-㆟㇀-㇥㇯㈀-㈞㈠-㏿䷀-䷿꒐-꓆꓾-꓿꘍-꘏꙳꙾ꛦ-ꛯ꛲-꛷꜀-꜖꜠-꜡꞉-꞊꠨-꠫꠰-꠹꡴-꡷꣎-꣏꣸-꣺꣼꤮-꤯꥟꧁-꧍꧞-꧟꩜-꩟꩷-꩹꫞-꫟꫰-꫱꭛꭪-꭫꯫-﬩﮲-﯒﴾-﵏﶐-﶑﷈-﷏﷼-﷿︐-︙︰-﹒﹔-﹦﹨-﹫﻿！-／：-＠［-｀｛-･￠-￦￨-￮￹-�𐄀-𐄂𐄇-𐄳𐄷-𐆎𐆐-𐆜𐆠𐇐-𐇼𐋡-𐋻𐌠-𐌣𐍁𐍊𐎟𐏐-𐏕𐕯𐡗-𐡟𐡷-𐡿𐢧-𐢯𐣻-𐣿𐤖-𐤛𐤟𐤿𐦼-𐦽𐧀-𐧏𐧒-𐧿𐩀-𐩈𐩐-𐩘𐩽-𐩿𐪝-𐪟𐫈𐫫-𐫶𐬹-𐬿𐭘-𐭟𐭸-𐭿𐮙-𐮜𐮩-𐮯𐳺-𐳿𐵮𐶎-𐶏𐹠-𐹾𐺭𐻐-𐻘𐼝-𐼦𐽑-𐽙𐾆-𐾉𐿅-𐿋𑁇-𑁍𑁒-𑁥𑂻-𑃁𑃍𑅀-𑅃𑅴-𑅵𑇅-𑇈𑇍𑇛𑇝-𑇟𑇡-𑇴𑈸-𑈽𑊩𑏔-𑏕𑏗-𑏘𑑋-𑑏𑑚-𑑛𑑝𑓆𑗁-𑗗𑙁-𑙃𑙠-𑙬𑚹𑜺-𑜿𑠻𑣪-𑣲𑥄-𑥆𑧢𑨿-𑩆𑪚-𑪜𑪞-𑪢𑬀-𑬉𑯡𑱁-𑱅𑱚-𑱬𑱰-𑱱𑻷-𑻸𑽃-𑽏𑿀-𑿱𑿿𒐀-𒑮𒑰-𒑴𒿱-𒿲𓐰-𓐿𖩮-𖩯𖫵𖬷-𖬿𖭄-𖭅𖭛-𖭡𖵭-𖵯𖺀-𖺚𖿢𖿴-𖿶𛲜𛲟-𛲣𜰀-𜳯𜳺-𜳼𜴀-𜺳𜺺-𜻐𜻠-𜻰𜽐-𜿃𝀀-𝃵𝄀-𝄦𝄩-𝅘𝅥𝅲𝅪-𝅬𝅳-𝅺𝆃-𝆄𝆌-𝆩𝆮-𝇪𝈀-𝉁𝉅𝋀-𝋓𝋠-𝋳𝌀-𝍖𝍠-𝍸𝛁𝛛𝛻𝜕𝜵𝝏𝝯𝞉𝞩𝟃𝠀-𝧿𝨷-𝨺𝩭-𝩴𝩶-𝪃𝪅-𝪋𞅏𞋿𞗿𞣇-𞣏𞥞-𞥟𞱱-𞲴𞴁-𞴽𞻰-𞻱🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🄀-🆭🇦-🈂🈐-🈻🉀-🉈🉐-🉑🉠-🉥🌀-🛘🛜-🛬🛰-🛼🜀-🟙🟠-🟫🟰🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭🢰-🢻🣀-🣁🣐-🣘🤀-🩗🩠-🩭🩰-🩼🪀-🪊🪎-🫆🫈🫍-🫜🫟-🫪🫯-🫸🬀-🮒🮔-🯯🯺󠀁󠀠-󠁿󰀀-󿿽􀀀-􏿽㐀-䶿一-鿿豈-﫿𠀀-𿿿゠-ヺー-ヿㇰ-ㇿｦ-ﾟ]|(?:^|[-@\\[-\`{-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵;΄-΅·϶҂՚-՟։-֊֍-֏־׀׃׆׳-״؀-؏؛-؟٠-٭۔۝-۞۩۰-۹۽-۾܀-܍܏߀-߉߶-߹߾-߿࠰-࠾࡞࢈࢐-࢑࣢।-॰০-৯৲-৻৽੦-੯੶૦-૱୦-୰୲-୷௦-௺౦-౯౷-౿಄೦-೯൏൘-൞൦-൹෦-෯෴฿๏-๛໐-໙༁-༗༚-༴༶༸༺-༽྅྾-࿅࿇-࿌࿎-࿚၀-၏႐-႙႞-႟჻፠-፼᎐-᎙᐀᙭-᙮ ᚛-᚜᛫-ᛰ᜵-᜶។-៖៘-៛០-៩៰-៹᠀-᠊᠎᠐-᠙᥀᥄-᥏᧐-᧚᧞-᧿᨞-᨟᪀-᪉᪐-᪙᪠-᪦᪨-᪭᭎-᭪᭴-᭿᮰-᮹᯼-᯿᰻-᱉᱐-᱙᱾-᱿᳀-᳇᳓᾽᾿-῁῍-῏῝-῟῭-`´-῾ -⁤⁦-⁰⁴-⁾₀-₎₠-⃁℀-℁℃-℆℈-℉℔№-℘℞-℣℥℧℩℮℺-℻⅀-⅄⅊-⅍⅏-ↂↅ-↋←-␩⑀-⑊①-⭳⭶-⯿⳥-⳪⳹-⳿⵰⸀-⸮⸰-⹝⺀-⺙⺛-⻳⼀-⿕⿰-〄〇-〩〰〶-〺〽-〿゛-゜゠-ヿ㆐-㆟㇀-㇥㇯-㈞㈠-鿿꒐-꓆꓾-꓿꘍-꘏꘠-꘩꙳꙾ꛦ-ꛯ꛲-꛷꜀-꜖꜠-꜡꞉-꞊꠨-꠫꠰-꠹꡴-꡷꣎-꣙꣸-꣺꣼꤀-꤉꤮-꤯꥟꧁-꧍꧐-꧙꧞-꧟꧰-꧹꩐-꩙꩜-꩟꩷-꩹꫞-꫟꫰-꫱꭛꭪-꭫꯫꯰-꯹-﫿﬩﮲-﯒﴾-﵏﶐-﶑﷈-﷏﷼-﷿︐-︙︰-﹒﹔-﹦﹨-﹫﻿！-＠［-｀｛-ﾟ￠-￦￨-￮￹-�𐄀-𐄂𐄇-𐄳𐄷-𐆎𐆐-𐆜𐆠𐇐-𐇼𐋡-𐋻𐌠-𐌣𐍁𐍊𐎟𐏐-𐏕𐒠-𐒩𐕯𐡗-𐡟𐡷-𐡿𐢧-𐢯𐣻-𐣿𐤖-𐤛𐤟𐤿𐦼-𐦽𐧀-𐧏𐧒-𐧿𐩀-𐩈𐩐-𐩘𐩽-𐩿𐪝-𐪟𐫈𐫫-𐫶𐬹-𐬿𐭘-𐭟𐭸-𐭿𐮙-𐮜𐮩-𐮯𐳺-𐳿𐴰-𐴹𐵀-𐵉𐵮𐶎-𐶏𐹠-𐹾𐺭𐻐-𐻘𐼝-𐼦𐽑-𐽙𐾆-𐾉𐿅-𐿋𑁇-𑁍𑁒-𑁯𑂻-𑃁𑃍𑃰-𑃹𑄶-𑅃𑅴-𑅵𑇅-𑇈𑇍𑇐-𑇙𑇛𑇝-𑇟𑇡-𑇴𑈸-𑈽𑊩𑋰-𑋹𑏔-𑏕𑏗-𑏘𑑋-𑑛𑑝𑓆𑓐-𑓙𑗁-𑗗𑙁-𑙃𑙐-𑙙𑙠-𑙬𑚹𑛀-𑛉𑛐-𑛣𑜰-𑜿𑠻𑣠-𑣲𑥄-𑥆𑥐-𑥙𑧢𑨿-𑩆𑪚-𑪜𑪞-𑪢𑬀-𑬉𑯡𑯰-𑯹𑱁-𑱅𑱐-𑱬𑱰-𑱱𑵐-𑵙𑶠-𑶩𑷠-𑷩𑻷-𑻸𑽃-𑽙𑿀-𑿱𑿿𒐀-𒑮𒑰-𒑴𒿱-𒿲𓐰-𓐿𖄰-𖄹𖩠-𖩩𖩮-𖩯𖫀-𖫉𖫵𖬷-𖬿𖭄-𖭅𖭐-𖭙𖭛-𖭡𖵭-𖵹𖺀-𖺚𖿢𖿴-𖿶𛲜𛲟-𛲣𜰀-𜳼𜴀-𜺳𜺺-𜻐𜻠-𜻰𜽐-𜿃𝀀-𝃵𝄀-𝄦𝄩-𝅘𝅥𝅲𝅪-𝅬𝅳-𝅺𝆃-𝆄𝆌-𝆩𝆮-𝇪𝈀-𝉁𝉅𝋀-𝋓𝋠-𝋳𝌀-𝍖𝍠-𝍸𝛁𝛛𝛻𝜕𝜵𝝏𝝯𝞉𝞩𝟃𝟎-𝧿𝨷-𝨺𝩭-𝩴𝩶-𝪃𝪅-𝪋𞅀-𞅉𞅏𞋰-𞋹𞋿𞓰-𞓹𞗱-𞗺𞗿𞣇-𞣏𞥐-𞥙𞥞-𞥟𞱱-𞲴𞴁-𞴽𞻰-𞻱🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🄀-🆭🇦-🈂🈐-🈻🉀-🉈🉐-🉑🉠-🉥🌀-🛘🛜-🛬🛰-🛼🜀-🟙🟠-🟫🟰🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭🢰-🢻🣀-🣁🣐-🣘🤀-🩗🩠-🩭🩰-🩼🪀-🪊🪎-🫆🫈🫍-🫜🫟-🫪🫯-🫸🬀-🮒🮔-🯺𠀀-𿿿󠀁󠀠-󠁿󰀀-󿿽􀀀-􏿽])[.'’])[bB][uU][iIİ][lL][dD](?:$|[-&(-\\-/:-@\\[-\\^\`{-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵;΄-΅·϶҂՚-՟։-֊֍-֏־׀׃׆׳-״؀-؏؛-؟٪-٭۔۝-۞۩۽-۾܀-܍܏߶-߹߾-߿࠰-࠾࡞࢈࢐-࢑࣢।-॥॰৲-৻৽੶૰-૱୰୲-୷௰-௺౷-౿಄൏൘-൞൰-൹෴฿๏๚-๛༁-༗༚-༟༪-༴༶༸༺-༽྅྾-࿅࿇-࿌࿎-࿚၊-၏႞-႟჻፠-፼᎐-᎙᐀᙭-᙮ ᚛-᚜᛫-ᛰ᜵-᜶។-៖៘-៛៰-៹᠀-᠊᠎᥀᥄-᥅᧚᧞-᧿᨞-᨟᪠-᪦᪨-᪭᭎-᭏᭚-᭪᭴-᭿᯼-᯿᰻-᰿᱾-᱿᳀-᳇᳓᾽᾿-῁῍-῏῝-῟῭-`´-῾ -‘‚-⁤⁦-⁰⁴-⁾₀-₎₠-⃁℀-℁℃-℆℈-℉℔№-℘℞-℣℥℧℩℮℺-℻⅀-⅄⅊-⅍⅏-ↂↅ-↋←-␩⑀-⑊①-⭳⭶-⯿⳥-⳪⳹-⳿⵰⸀-⸮⸰-⹝⺀-⺙⺛-⻳⼀-⿕⿰-〄〇-〩〰〶-〺〽-〿゛-゜・㆐-㆟㇀-㇥㇯㈀-㈞㈠-㏿䷀-䷿꒐-꓆꓾-꓿꘍-꘏꙳꙾ꛦ-ꛯ꛲-꛷꜀-꜖꜠-꜡꞉-꞊꠨-꠫꠰-꠹꡴-꡷꣎-꣏꣸-꣺꣼꤮-꤯꥟꧁-꧍꧞-꧟꩜-꩟꩷-꩹꫞-꫟꫰-꫱꭛꭪-꭫꯫-﬩﮲-﯒﴾-﵏﶐-﶑﷈-﷏﷼-﷿︐-︙︰-﹒﹔-﹦﹨-﹫﻿！-／：-＠［-｀｛-･￠-￦￨-￮￹-�𐄀-𐄂𐄇-𐄳𐄷-𐆎𐆐-𐆜𐆠𐇐-𐇼𐋡-𐋻𐌠-𐌣𐍁𐍊𐎟𐏐-𐏕𐕯𐡗-𐡟𐡷-𐡿𐢧-𐢯𐣻-𐣿𐤖-𐤛𐤟𐤿𐦼-𐦽𐧀-𐧏𐧒-𐧿𐩀-𐩈𐩐-𐩘𐩽-𐩿𐪝-𐪟𐫈𐫫-𐫶𐬹-𐬿𐭘-𐭟𐭸-𐭿𐮙-𐮜𐮩-𐮯𐳺-𐳿𐵮𐶎-𐶏𐹠-𐹾𐺭𐻐-𐻘𐼝-𐼦𐽑-𐽙𐾆-𐾉𐿅-𐿋𑁇-𑁍𑁒-𑁥𑂻-𑃁𑃍𑅀-𑅃𑅴-𑅵𑇅-𑇈𑇍𑇛𑇝-𑇟𑇡-𑇴𑈸-𑈽𑊩𑏔-𑏕𑏗-𑏘𑑋-𑑏𑑚-𑑛𑑝𑓆𑗁-𑗗𑙁-𑙃𑙠-𑙬𑚹𑜺-𑜿𑠻𑣪-𑣲𑥄-𑥆𑧢𑨿-𑩆𑪚-𑪜𑪞-𑪢𑬀-𑬉𑯡𑱁-𑱅𑱚-𑱬𑱰-𑱱𑻷-𑻸𑽃-𑽏𑿀-𑿱𑿿𒐀-𒑮𒑰-𒑴𒿱-𒿲𓐰-𓐿𖩮-𖩯𖫵𖬷-𖬿𖭄-𖭅𖭛-𖭡𖵭-𖵯𖺀-𖺚𖿢𖿴-𖿶𛲜𛲟-𛲣𜰀-𜳯𜳺-𜳼𜴀-𜺳𜺺-𜻐𜻠-𜻰𜽐-𜿃𝀀-𝃵𝄀-𝄦𝄩-𝅘𝅥𝅲𝅪-𝅬𝅳-𝅺𝆃-𝆄𝆌-𝆩𝆮-𝇪𝈀-𝉁𝉅𝋀-𝋓𝋠-𝋳𝌀-𝍖𝍠-𝍸𝛁𝛛𝛻𝜕𝜵𝝏𝝯𝞉𝞩𝟃𝠀-𝧿𝨷-𝨺𝩭-𝩴𝩶-𝪃𝪅-𝪋𞅏𞋿𞗿𞣇-𞣏𞥞-𞥟𞱱-𞲴𞴁-𞴽𞻰-𞻱🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🄀-🆭🇦-🈂🈐-🈻🉀-🉈🉐-🉑🉠-🉥🌀-🛘🛜-🛬🛰-🛼🜀-🟙🟠-🟫🟰🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭🢰-🢻🣀-🣁🣐-🣘🤀-🩗🩠-🩭🩰-🩼🪀-🪊🪎-🫆🫈🫍-🫜🫟-🫪🫯-🫸🬀-🮒🮔-🯯🯺󠀁󠀠-󠁿󰀀-󿿽􀀀-􏿽㐀-䶿一-鿿豈-﫿𠀀-𿿿゠-ヺー-ヿㇰ-ㇿｦ-ﾟ]|[.'’](?:$|[-@\\[-\`{-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵;΄-΅·϶҂՚-՟։-֊֍-֏־׀׃׆׳-״؀-؏؛-؟٠-٭۔۝-۞۩۰-۹۽-۾܀-܍܏߀-߉߶-߹߾-߿࠰-࠾࡞࢈࢐-࢑࣢।-॰০-৯৲-৻৽੦-੯੶૦-૱୦-୰୲-୷௦-௺౦-౯౷-౿಄೦-೯൏൘-൞൦-൹෦-෯෴฿๏-๛໐-໙༁-༗༚-༴༶༸༺-༽྅྾-࿅࿇-࿌࿎-࿚၀-၏႐-႙႞-႟჻፠-፼᎐-᎙᐀᙭-᙮ ᚛-᚜᛫-ᛰ᜵-᜶។-៖៘-៛០-៩៰-៹᠀-᠊᠎᠐-᠙᥀᥄-᥏᧐-᧚᧞-᧿᨞-᨟᪀-᪉᪐-᪙᪠-᪦᪨-᪭᭎-᭪᭴-᭿᮰-᮹᯼-᯿᰻-᱉᱐-᱙᱾-᱿᳀-᳇᳓᾽᾿-῁῍-῏῝-῟῭-`´-῾ -⁤⁦-⁰⁴-⁾₀-₎₠-⃁℀-℁℃-℆℈-℉℔№-℘℞-℣℥℧℩℮℺-℻⅀-⅄⅊-⅍⅏-ↂↅ-↋←-␩⑀-⑊①-⭳⭶-⯿⳥-⳪⳹-⳿⵰⸀-⸮⸰-⹝⺀-⺙⺛-⻳⼀-⿕⿰-〄〇-〩〰〶-〺〽-〿゛-゜゠-ヿ㆐-㆟㇀-㇥㇯-㈞㈠-鿿꒐-꓆꓾-꓿꘍-꘏꘠-꘩꙳꙾ꛦ-ꛯ꛲-꛷꜀-꜖꜠-꜡꞉-꞊꠨-꠫꠰-꠹꡴-꡷꣎-꣙꣸-꣺꣼꤀-꤉꤮-꤯꥟꧁-꧍꧐-꧙꧞-꧟꧰-꧹꩐-꩙꩜-꩟꩷-꩹꫞-꫟꫰-꫱꭛꭪-꭫꯫꯰-꯹-﫿﬩﮲-﯒﴾-﵏﶐-﶑﷈-﷏﷼-﷿︐-︙︰-﹒﹔-﹦﹨-﹫﻿！-＠［-｀｛-ﾟ￠-￦￨-￮￹-�𐄀-𐄂𐄇-𐄳𐄷-𐆎𐆐-𐆜𐆠𐇐-𐇼𐋡-𐋻𐌠-𐌣𐍁𐍊𐎟𐏐-𐏕𐒠-𐒩𐕯𐡗-𐡟𐡷-𐡿𐢧-𐢯𐣻-𐣿𐤖-𐤛𐤟𐤿𐦼-𐦽𐧀-𐧏𐧒-𐧿𐩀-𐩈𐩐-𐩘𐩽-𐩿𐪝-𐪟𐫈𐫫-𐫶𐬹-𐬿𐭘-𐭟𐭸-𐭿𐮙-𐮜𐮩-𐮯𐳺-𐳿𐴰-𐴹𐵀-𐵉𐵮𐶎-𐶏𐹠-𐹾𐺭𐻐-𐻘𐼝-𐼦𐽑-𐽙𐾆-𐾉𐿅-𐿋𑁇-𑁍𑁒-𑁯𑂻-𑃁𑃍𑃰-𑃹𑄶-𑅃𑅴-𑅵𑇅-𑇈𑇍𑇐-𑇙𑇛𑇝-𑇟𑇡-𑇴𑈸-𑈽𑊩𑋰-𑋹𑏔-𑏕𑏗-𑏘𑑋-𑑛𑑝𑓆𑓐-𑓙𑗁-𑗗𑙁-𑙃𑙐-𑙙𑙠-𑙬𑚹𑛀-𑛉𑛐-𑛣𑜰-𑜿𑠻𑣠-𑣲𑥄-𑥆𑥐-𑥙𑧢𑨿-𑩆𑪚-𑪜𑪞-𑪢𑬀-𑬉𑯡𑯰-𑯹𑱁-𑱅𑱐-𑱬𑱰-𑱱𑵐-𑵙𑶠-𑶩𑷠-𑷩𑻷-𑻸𑽃-𑽙𑿀-𑿱𑿿𒐀-𒑮𒑰-𒑴𒿱-𒿲𓐰-𓐿𖄰-𖄹𖩠-𖩩𖩮-𖩯𖫀-𖫉𖫵𖬷-𖬿𖭄-𖭅𖭐-𖭙𖭛-𖭡𖵭-𖵹𖺀-𖺚𖿢𖿴-𖿶𛲜𛲟-𛲣𜰀-𜳼𜴀-𜺳𜺺-𜻐𜻠-𜻰𜽐-𜿃𝀀-𝃵𝄀-𝄦𝄩-𝅘𝅥𝅲𝅪-𝅬𝅳-𝅺𝆃-𝆄𝆌-𝆩𝆮-𝇪𝈀-𝉁𝉅𝋀-𝋓𝋠-𝋳𝌀-𝍖𝍠-𝍸𝛁𝛛𝛻𝜕𝜵𝝏𝝯𝞉𝞩𝟃𝟎-𝧿𝨷-𝨺𝩭-𝩴𝩶-𝪃𝪅-𝪋𞅀-𞅉𞅏𞋰-𞋹𞋿𞓰-𞓹𞗱-𞗺𞗿𞣇-𞣏𞥐-𞥙𞥞-𞥟𞱱-𞲴𞴁-𞴽𞻰-𞻱🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🄀-🆭🇦-🈂🈐-🈻🉀-🉈🉐-🉑🉠-🉥🌀-🛘🛜-🛬🛰-🛼🜀-🟙🟠-🟫🟰🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭🢰-🢻🣀-🣁🣐-🣘🤀-🩗🩠-🩭🩰-🩼🪀-🪊🪎-🫆🫈🫍-🫜🫟-🫪🫯-🫸🬀-🮒🮔-🯺𠀀-𿿿󠀁󠀠-󠁿󰀀-󿿽􀀀-􏿽]))",
+      5000,
+      "lost",
+      [
+        "open",
+        "won",
+      ],
+      "[bB][uU][iIİ][lL][dD]",
+      "(?:^|[-&(-\\-/:-@\\[-\\^\`{-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵;΄-΅·϶҂՚-՟։-֊֍-֏־׀׃׆׳-״؀-؏؛-؟٪-٭۔۝-۞۩۽-۾܀-܍܏߶-߹߾-߿࠰-࠾࡞࢈࢐-࢑࣢।-॥॰৲-৻৽੶૰-૱୰୲-୷௰-௺౷-౿಄൏൘-൞൰-൹෴฿๏๚-๛༁-༗༚-༟༪-༴༶༸༺-༽྅྾-࿅࿇-࿌࿎-࿚၊-၏႞-႟჻፠-፼᎐-᎙᐀᙭-᙮ ᚛-᚜᛫-ᛰ᜵-᜶។-៖៘-៛៰-៹᠀-᠊᠎᥀᥄-᥅᧚᧞-᧿᨞-᨟᪠-᪦᪨-᪭᭎-᭏᭚-᭪᭴-᭿᯼-᯿᰻-᰿᱾-᱿᳀-᳇᳓᾽᾿-῁῍-῏῝-῟῭-`´-῾ -‘‚-⁤⁦-⁰⁴-⁾₀-₎₠-⃁℀-℁℃-℆℈-℉℔№-℘℞-℣℥℧℩℮℺-℻⅀-⅄⅊-⅍⅏-ↂↅ-↋←-␩⑀-⑊①-⭳⭶-⯿⳥-⳪⳹-⳿⵰⸀-⸮⸰-⹝⺀-⺙⺛-⻳⼀-⿕⿰-〄〇-〩〰〶-〺〽-〿゛-゜・㆐-㆟㇀-㇥㇯㈀-㈞㈠-㏿䷀-䷿꒐-꓆꓾-꓿꘍-꘏꙳꙾ꛦ-ꛯ꛲-꛷꜀-꜖꜠-꜡꞉-꞊꠨-꠫꠰-꠹꡴-꡷꣎-꣏꣸-꣺꣼꤮-꤯꥟꧁-꧍꧞-꧟꩜-꩟꩷-꩹꫞-꫟꫰-꫱꭛꭪-꭫꯫-﬩﮲-﯒﴾-﵏﶐-﶑﷈-﷏﷼-﷿︐-︙︰-﹒﹔-﹦﹨-﹫﻿！-／：-＠［-｀｛-･￠-￦￨-￮￹-�𐄀-𐄂𐄇-𐄳𐄷-𐆎𐆐-𐆜𐆠𐇐-𐇼𐋡-𐋻𐌠-𐌣𐍁𐍊𐎟𐏐-𐏕𐕯𐡗-𐡟𐡷-𐡿𐢧-𐢯𐣻-𐣿𐤖-𐤛𐤟𐤿𐦼-𐦽𐧀-𐧏𐧒-𐧿𐩀-𐩈𐩐-𐩘𐩽-𐩿𐪝-𐪟𐫈𐫫-𐫶𐬹-𐬿𐭘-𐭟𐭸-𐭿𐮙-𐮜𐮩-𐮯𐳺-𐳿𐵮𐶎-𐶏𐹠-𐹾𐺭𐻐-𐻘𐼝-𐼦𐽑-𐽙𐾆-𐾉𐿅-𐿋𑁇-𑁍𑁒-𑁥𑂻-𑃁𑃍𑅀-𑅃𑅴-𑅵𑇅-𑇈𑇍𑇛𑇝-𑇟𑇡-𑇴𑈸-𑈽𑊩𑏔-𑏕𑏗-𑏘𑑋-𑑏𑑚-𑑛𑑝𑓆𑗁-𑗗𑙁-𑙃𑙠-𑙬𑚹𑜺-𑜿𑠻𑣪-𑣲𑥄-𑥆𑧢𑨿-𑩆𑪚-𑪜𑪞-𑪢𑬀-𑬉𑯡𑱁-𑱅𑱚-𑱬𑱰-𑱱𑻷-𑻸𑽃-𑽏𑿀-𑿱𑿿𒐀-𒑮𒑰-𒑴𒿱-𒿲𓐰-𓐿𖩮-𖩯𖫵𖬷-𖬿𖭄-𖭅𖭛-𖭡𖵭-𖵯𖺀-𖺚𖿢𖿴-𖿶𛲜𛲟-𛲣𜰀-𜳯𜳺-𜳼𜴀-𜺳𜺺-𜻐𜻠-𜻰𜽐-𜿃𝀀-𝃵𝄀-𝄦𝄩-𝅘𝅥𝅲𝅪-𝅬𝅳-𝅺𝆃-𝆄𝆌-𝆩𝆮-𝇪𝈀-𝉁𝉅𝋀-𝋓𝋠-𝋳𝌀-𝍖𝍠-𝍸𝛁𝛛𝛻𝜕𝜵𝝏𝝯𝞉𝞩𝟃𝠀-𝧿𝨷-𝨺𝩭-𝩴𝩶-𝪃𝪅-𝪋𞅏𞋿𞗿𞣇-𞣏𞥞-𞥟𞱱-𞲴𞴁-𞴽𞻰-𞻱🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🄀-🆭🇦-🈂🈐-🈻🉀-🉈🉐-🉑🉠-🉥🌀-🛘🛜-🛬🛰-🛼🜀-🟙🟠-🟫🟰🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭🢰-🢻🣀-🣁🣐-🣘🤀-🩗🩠-🩭🩰-🩼🪀-🪊🪎-🫆🫈🫍-🫜🫟-🫪🫯-🫸🬀-🮒🮔-🯯🯺󠀁󠀠-󠁿󰀀-󿿽􀀀-􏿽㐀-䶿一-鿿豈-﫿𠀀-𿿿゠-ヺー-ヿㇰ-ㇿｦ-ﾟ]|(?:^|[-@\\[-\`{-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵;΄-΅·϶҂՚-՟։-֊֍-֏־׀׃׆׳-״؀-؏؛-؟٠-٭۔۝-۞۩۰-۹۽-۾܀-܍܏߀-߉߶-߹߾-߿࠰-࠾࡞࢈࢐-࢑࣢।-॰০-৯৲-৻৽੦-੯੶૦-૱୦-୰୲-୷௦-௺౦-౯౷-౿಄೦-೯൏൘-൞൦-൹෦-෯෴฿๏-๛໐-໙༁-༗༚-༴༶༸༺-༽྅྾-࿅࿇-࿌࿎-࿚၀-၏႐-႙႞-႟჻፠-፼᎐-᎙᐀᙭-᙮ ᚛-᚜᛫-ᛰ᜵-᜶។-៖៘-៛០-៩៰-៹᠀-᠊᠎᠐-᠙᥀᥄-᥏᧐-᧚᧞-᧿᨞-᨟᪀-᪉᪐-᪙᪠-᪦᪨-᪭᭎-᭪᭴-᭿᮰-᮹᯼-᯿᰻-᱉᱐-᱙᱾-᱿᳀-᳇᳓᾽᾿-῁῍-῏῝-῟῭-`´-῾ -⁤⁦-⁰⁴-⁾₀-₎₠-⃁℀-℁℃-℆℈-℉℔№-℘℞-℣℥℧℩℮℺-℻⅀-⅄⅊-⅍⅏-ↂↅ-↋←-␩⑀-⑊①-⭳⭶-⯿⳥-⳪⳹-⳿⵰⸀-⸮⸰-⹝⺀-⺙⺛-⻳⼀-⿕⿰-〄〇-〩〰〶-〺〽-〿゛-゜゠-ヿ㆐-㆟㇀-㇥㇯-㈞㈠-鿿꒐-꓆꓾-꓿꘍-꘏꘠-꘩꙳꙾ꛦ-ꛯ꛲-꛷꜀-꜖꜠-꜡꞉-꞊꠨-꠫꠰-꠹꡴-꡷꣎-꣙꣸-꣺꣼꤀-꤉꤮-꤯꥟꧁-꧍꧐-꧙꧞-꧟꧰-꧹꩐-꩙꩜-꩟꩷-꩹꫞-꫟꫰-꫱꭛꭪-꭫꯫꯰-꯹-﫿﬩﮲-﯒﴾-﵏﶐-﶑﷈-﷏﷼-﷿︐-︙︰-﹒﹔-﹦﹨-﹫﻿！-＠［-｀｛-ﾟ￠-￦￨-￮￹-�𐄀-𐄂𐄇-𐄳𐄷-𐆎𐆐-𐆜𐆠𐇐-𐇼𐋡-𐋻𐌠-𐌣𐍁𐍊𐎟𐏐-𐏕𐒠-𐒩𐕯𐡗-𐡟𐡷-𐡿𐢧-𐢯𐣻-𐣿𐤖-𐤛𐤟𐤿𐦼-𐦽𐧀-𐧏𐧒-𐧿𐩀-𐩈𐩐-𐩘𐩽-𐩿𐪝-𐪟𐫈𐫫-𐫶𐬹-𐬿𐭘-𐭟𐭸-𐭿𐮙-𐮜𐮩-𐮯𐳺-𐳿𐴰-𐴹𐵀-𐵉𐵮𐶎-𐶏𐹠-𐹾𐺭𐻐-𐻘𐼝-𐼦𐽑-𐽙𐾆-𐾉𐿅-𐿋𑁇-𑁍𑁒-𑁯𑂻-𑃁𑃍𑃰-𑃹𑄶-𑅃𑅴-𑅵𑇅-𑇈𑇍𑇐-𑇙𑇛𑇝-𑇟𑇡-𑇴𑈸-𑈽𑊩𑋰-𑋹𑏔-𑏕𑏗-𑏘𑑋-𑑛𑑝𑓆𑓐-𑓙𑗁-𑗗𑙁-𑙃𑙐-𑙙𑙠-𑙬𑚹𑛀-𑛉𑛐-𑛣𑜰-𑜿𑠻𑣠-𑣲𑥄-𑥆𑥐-𑥙𑧢𑨿-𑩆𑪚-𑪜𑪞-𑪢𑬀-𑬉𑯡𑯰-𑯹𑱁-𑱅𑱐-𑱬𑱰-𑱱𑵐-𑵙𑶠-𑶩𑷠-𑷩𑻷-𑻸𑽃-𑽙𑿀-𑿱𑿿𒐀-𒑮𒑰-𒑴𒿱-𒿲𓐰-𓐿𖄰-𖄹𖩠-𖩩𖩮-𖩯𖫀-𖫉𖫵𖬷-𖬿𖭄-𖭅𖭐-𖭙𖭛-𖭡𖵭-𖵹𖺀-𖺚𖿢𖿴-𖿶𛲜𛲟-𛲣𜰀-𜳼𜴀-𜺳𜺺-𜻐𜻠-𜻰𜽐-𜿃𝀀-𝃵𝄀-𝄦𝄩-𝅘𝅥𝅲𝅪-𝅬𝅳-𝅺𝆃-𝆄𝆌-𝆩𝆮-𝇪𝈀-𝉁𝉅𝋀-𝋓𝋠-𝋳𝌀-𝍖𝍠-𝍸𝛁𝛛𝛻𝜕𝜵𝝏𝝯𝞉𝞩𝟃𝟎-𝧿𝨷-𝨺𝩭-𝩴𝩶-𝪃𝪅-𝪋𞅀-𞅉𞅏𞋰-𞋹𞋿𞓰-𞓹𞗱-𞗺𞗿𞣇-𞣏𞥐-𞥙𞥞-𞥟𞱱-𞲴𞴁-𞴽𞻰-𞻱🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🄀-🆭🇦-🈂🈐-🈻🉀-🉈🉐-🉑🉠-🉥🌀-🛘🛜-🛬🛰-🛼🜀-🟙🟠-🟫🟰🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭🢰-🢻🣀-🣁🣐-🣘🤀-🩗🩠-🩭🩰-🩼🪀-🪊🪎-🫆🫈🫍-🫜🫟-🫪🫯-🫸🬀-🮒🮔-🯺𠀀-𿿿󠀁󠀠-󠁿󰀀-󿿽􀀀-􏿽])[.'’])[bB][uU][iIİ][lL][dD](?:$|[-&(-\\-/:-@\\[-\\^\`{-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵;΄-΅·϶҂՚-՟։-֊֍-֏־׀׃׆׳-״؀-؏؛-؟٪-٭۔۝-۞۩۽-۾܀-܍܏߶-߹߾-߿࠰-࠾࡞࢈࢐-࢑࣢।-॥॰৲-৻৽੶૰-૱୰୲-୷௰-௺౷-౿಄൏൘-൞൰-൹෴฿๏๚-๛༁-༗༚-༟༪-༴༶༸༺-༽྅྾-࿅࿇-࿌࿎-࿚၊-၏႞-႟჻፠-፼᎐-᎙᐀᙭-᙮ ᚛-᚜᛫-ᛰ᜵-᜶។-៖៘-៛៰-៹᠀-᠊᠎᥀᥄-᥅᧚᧞-᧿᨞-᨟᪠-᪦᪨-᪭᭎-᭏᭚-᭪᭴-᭿᯼-᯿᰻-᰿᱾-᱿᳀-᳇᳓᾽᾿-῁῍-῏῝-῟῭-`´-῾ -‘‚-⁤⁦-⁰⁴-⁾₀-₎₠-⃁℀-℁℃-℆℈-℉℔№-℘℞-℣℥℧℩℮℺-℻⅀-⅄⅊-⅍⅏-ↂↅ-↋←-␩⑀-⑊①-⭳⭶-⯿⳥-⳪⳹-⳿⵰⸀-⸮⸰-⹝⺀-⺙⺛-⻳⼀-⿕⿰-〄〇-〩〰〶-〺〽-〿゛-゜・㆐-㆟㇀-㇥㇯㈀-㈞㈠-㏿䷀-䷿꒐-꓆꓾-꓿꘍-꘏꙳꙾ꛦ-ꛯ꛲-꛷꜀-꜖꜠-꜡꞉-꞊꠨-꠫꠰-꠹꡴-꡷꣎-꣏꣸-꣺꣼꤮-꤯꥟꧁-꧍꧞-꧟꩜-꩟꩷-꩹꫞-꫟꫰-꫱꭛꭪-꭫꯫-﬩﮲-﯒﴾-﵏﶐-﶑﷈-﷏﷼-﷿︐-︙︰-﹒﹔-﹦﹨-﹫﻿！-／：-＠［-｀｛-･￠-￦￨-￮￹-�𐄀-𐄂𐄇-𐄳𐄷-𐆎𐆐-𐆜𐆠𐇐-𐇼𐋡-𐋻𐌠-𐌣𐍁𐍊𐎟𐏐-𐏕𐕯𐡗-𐡟𐡷-𐡿𐢧-𐢯𐣻-𐣿𐤖-𐤛𐤟𐤿𐦼-𐦽𐧀-𐧏𐧒-𐧿𐩀-𐩈𐩐-𐩘𐩽-𐩿𐪝-𐪟𐫈𐫫-𐫶𐬹-𐬿𐭘-𐭟𐭸-𐭿𐮙-𐮜𐮩-𐮯𐳺-𐳿𐵮𐶎-𐶏𐹠-𐹾𐺭𐻐-𐻘𐼝-𐼦𐽑-𐽙𐾆-𐾉𐿅-𐿋𑁇-𑁍𑁒-𑁥𑂻-𑃁𑃍𑅀-𑅃𑅴-𑅵𑇅-𑇈𑇍𑇛𑇝-𑇟𑇡-𑇴𑈸-𑈽𑊩𑏔-𑏕𑏗-𑏘𑑋-𑑏𑑚-𑑛𑑝𑓆𑗁-𑗗𑙁-𑙃𑙠-𑙬𑚹𑜺-𑜿𑠻𑣪-𑣲𑥄-𑥆𑧢𑨿-𑩆𑪚-𑪜𑪞-𑪢𑬀-𑬉𑯡𑱁-𑱅𑱚-𑱬𑱰-𑱱𑻷-𑻸𑽃-𑽏𑿀-𑿱𑿿𒐀-𒑮𒑰-𒑴𒿱-𒿲𓐰-𓐿𖩮-𖩯𖫵𖬷-𖬿𖭄-𖭅𖭛-𖭡𖵭-𖵯𖺀-𖺚𖿢𖿴-𖿶𛲜𛲟-𛲣𜰀-𜳯𜳺-𜳼𜴀-𜺳𜺺-𜻐𜻠-𜻰𜽐-𜿃𝀀-𝃵𝄀-𝄦𝄩-𝅘𝅥𝅲𝅪-𝅬𝅳-𝅺𝆃-𝆄𝆌-𝆩𝆮-𝇪𝈀-𝉁𝉅𝋀-𝋓𝋠-𝋳𝌀-𝍖𝍠-𝍸𝛁𝛛𝛻𝜕𝜵𝝏𝝯𝞉𝞩𝟃𝠀-𝧿𝨷-𝨺𝩭-𝩴𝩶-𝪃𝪅-𝪋𞅏𞋿𞗿𞣇-𞣏𞥞-𞥟𞱱-𞲴𞴁-𞴽𞻰-𞻱🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🄀-🆭🇦-🈂🈐-🈻🉀-🉈🉐-🉑🉠-🉥🌀-🛘🛜-🛬🛰-🛼🜀-🟙🟠-🟫🟰🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭🢰-🢻🣀-🣁🣐-🣘🤀-🩗🩠-🩭🩰-🩼🪀-🪊🪎-🫆🫈🫍-🫜🫟-🫪🫯-🫸🬀-🮒🮔-🯯🯺󠀁󠀠-󠁿󰀀-󿿽􀀀-􏿽㐀-䶿一-鿿豈-﫿𠀀-𿿿゠-ヺー-ヿㇰ-ㇿｦ-ﾟ]|[.'’](?:$|[-@\\[-\`{-©«-´¶-¹»-¿×÷˂-˅˒-˟˥-˫˭˯-˿͵;΄-΅·϶҂՚-՟։-֊֍-֏־׀׃׆׳-״؀-؏؛-؟٠-٭۔۝-۞۩۰-۹۽-۾܀-܍܏߀-߉߶-߹߾-߿࠰-࠾࡞࢈࢐-࢑࣢।-॰০-৯৲-৻৽੦-੯੶૦-૱୦-୰୲-୷௦-௺౦-౯౷-౿಄೦-೯൏൘-൞൦-൹෦-෯෴฿๏-๛໐-໙༁-༗༚-༴༶༸༺-༽྅྾-࿅࿇-࿌࿎-࿚၀-၏႐-႙႞-႟჻፠-፼᎐-᎙᐀᙭-᙮ ᚛-᚜᛫-ᛰ᜵-᜶។-៖៘-៛០-៩៰-៹᠀-᠊᠎᠐-᠙᥀᥄-᥏᧐-᧚᧞-᧿᨞-᨟᪀-᪉᪐-᪙᪠-᪦᪨-᪭᭎-᭪᭴-᭿᮰-᮹᯼-᯿᰻-᱉᱐-᱙᱾-᱿᳀-᳇᳓᾽᾿-῁῍-῏῝-῟῭-`´-῾ -⁤⁦-⁰⁴-⁾₀-₎₠-⃁℀-℁℃-℆℈-℉℔№-℘℞-℣℥℧℩℮℺-℻⅀-⅄⅊-⅍⅏-ↂↅ-↋←-␩⑀-⑊①-⭳⭶-⯿⳥-⳪⳹-⳿⵰⸀-⸮⸰-⹝⺀-⺙⺛-⻳⼀-⿕⿰-〄〇-〩〰〶-〺〽-〿゛-゜゠-ヿ㆐-㆟㇀-㇥㇯-㈞㈠-鿿꒐-꓆꓾-꓿꘍-꘏꘠-꘩꙳꙾ꛦ-ꛯ꛲-꛷꜀-꜖꜠-꜡꞉-꞊꠨-꠫꠰-꠹꡴-꡷꣎-꣙꣸-꣺꣼꤀-꤉꤮-꤯꥟꧁-꧍꧐-꧙꧞-꧟꧰-꧹꩐-꩙꩜-꩟꩷-꩹꫞-꫟꫰-꫱꭛꭪-꭫꯫꯰-꯹-﫿﬩﮲-﯒﴾-﵏﶐-﶑﷈-﷏﷼-﷿︐-︙︰-﹒﹔-﹦﹨-﹫﻿！-＠［-｀｛-ﾟ￠-￦￨-￮￹-�𐄀-𐄂𐄇-𐄳𐄷-𐆎𐆐-𐆜𐆠𐇐-𐇼𐋡-𐋻𐌠-𐌣𐍁𐍊𐎟𐏐-𐏕𐒠-𐒩𐕯𐡗-𐡟𐡷-𐡿𐢧-𐢯𐣻-𐣿𐤖-𐤛𐤟𐤿𐦼-𐦽𐧀-𐧏𐧒-𐧿𐩀-𐩈𐩐-𐩘𐩽-𐩿𐪝-𐪟𐫈𐫫-𐫶𐬹-𐬿𐭘-𐭟𐭸-𐭿𐮙-𐮜𐮩-𐮯𐳺-𐳿𐴰-𐴹𐵀-𐵉𐵮𐶎-𐶏𐹠-𐹾𐺭𐻐-𐻘𐼝-𐼦𐽑-𐽙𐾆-𐾉𐿅-𐿋𑁇-𑁍𑁒-𑁯𑂻-𑃁𑃍𑃰-𑃹𑄶-𑅃𑅴-𑅵𑇅-𑇈𑇍𑇐-𑇙𑇛𑇝-𑇟𑇡-𑇴𑈸-𑈽𑊩𑋰-𑋹𑏔-𑏕𑏗-𑏘𑑋-𑑛𑑝𑓆𑓐-𑓙𑗁-𑗗𑙁-𑙃𑙐-𑙙𑙠-𑙬𑚹𑛀-𑛉𑛐-𑛣𑜰-𑜿𑠻𑣠-𑣲𑥄-𑥆𑥐-𑥙𑧢𑨿-𑩆𑪚-𑪜𑪞-𑪢𑬀-𑬉𑯡𑯰-𑯹𑱁-𑱅𑱐-𑱬𑱰-𑱱𑵐-𑵙𑶠-𑶩𑷠-𑷩𑻷-𑻸𑽃-𑽙𑿀-𑿱𑿿𒐀-𒑮𒑰-𒑴𒿱-𒿲𓐰-𓐿𖄰-𖄹𖩠-𖩩𖩮-𖩯𖫀-𖫉𖫵𖬷-𖬿𖭄-𖭅𖭐-𖭙𖭛-𖭡𖵭-𖵹𖺀-𖺚𖿢𖿴-𖿶𛲜𛲟-𛲣𜰀-𜳼𜴀-𜺳𜺺-𜻐𜻠-𜻰𜽐-𜿃𝀀-𝃵𝄀-𝄦𝄩-𝅘𝅥𝅲𝅪-𝅬𝅳-𝅺𝆃-𝆄𝆌-𝆩𝆮-𝇪𝈀-𝉁𝉅𝋀-𝋓𝋠-𝋳𝌀-𝍖𝍠-𝍸𝛁𝛛𝛻𝜕𝜵𝝏𝝯𝞉𝞩𝟃𝟎-𝧿𝨷-𝨺𝩭-𝩴𝩶-𝪃𝪅-𝪋𞅀-𞅉𞅏𞋰-𞋹𞋿𞓰-𞓹𞗱-𞗺𞗿𞣇-𞣏𞥐-𞥙𞥞-𞥟𞱱-𞲴𞴁-𞴽𞻰-𞻱🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🄀-🆭🇦-🈂🈐-🈻🉀-🉈🉐-🉑🉠-🉥🌀-🛘🛜-🛬🛰-🛼🜀-🟙🟠-🟫🟰🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭🢰-🢻🣀-🣁🣐-🣘🤀-🩗🩠-🩭🩰-🩼🪀-🪊🪎-🫆🫈🫍-🫜🫟-🫪🫯-🫸🬀-🮒🮔-🯺𠀀-𿿿󠀁󠀠-󠁿󰀀-󿿽􀀀-􏿽]))",
+      1001,
+    ],
+  },
+]
+`;
+
+exports[`the read statement of each member and each read compiler > ontology/ontology-sdk/object-sets#members: an orderBy and the page token of the next page have the same statement text 1`] = `
+[
+  {
+    "text": "SELECT * FROM (SELECT count(*)::text AS __total FROM "ontology_1_objects"."engagement" AS o) AS total LEFT JOIN (SELECT o."title" AS "p0", o."engagement_id" AS "p1", o."status" AS "__sort0", o."amount" AS "__sort1", o."engagement_id" AS "__sort2", o."status" COLLATE "C" AS "__order0", o."amount" AS "__order1", o."engagement_id" COLLATE "C" AS "__order2", TRUE AS __object FROM "ontology_1_objects"."engagement" AS o ORDER BY o."status" COLLATE "C" DESC NULLS LAST, o."amount" ASC NULLS FIRST, o."engagement_id" COLLATE "C" ASC NULLS FIRST LIMIT $1) AS page ON TRUE ORDER BY page."__order0" DESC NULLS LAST, page."__order1" ASC NULLS FIRST, page."__order2" ASC NULLS FIRST",
+    "values": [
+      3,
+    ],
+  },
+  {
+    "text": "SELECT * FROM (SELECT count(*)::text AS __total FROM "ontology_1_objects"."engagement" AS o) AS total LEFT JOIN (SELECT o."title" AS "p0", o."engagement_id" AS "p1", o."status" AS "__sort0", o."amount" AS "__sort1", o."engagement_id" AS "__sort2", o."status" COLLATE "C" AS "__order0", o."amount" AS "__order1", o."engagement_id" COLLATE "C" AS "__order2", TRUE AS __object FROM "ontology_1_objects"."engagement" AS o WHERE (((o."status" COLLATE "C" < $1 OR o."status" COLLATE "C" IS NULL)) OR (o."status" COLLATE "C" = $1 AND o."amount" > $2) OR (o."status" COLLATE "C" = $1 AND o."amount" = $2 AND o."engagement_id" COLLATE "C" > $3)) ORDER BY o."status" COLLATE "C" DESC NULLS LAST, o."amount" ASC NULLS FIRST, o."engagement_id" COLLATE "C" ASC NULLS FIRST LIMIT $4) AS page ON TRUE ORDER BY page."__order0" DESC NULLS LAST, page."__order1" ASC NULLS FIRST, page."__order2" ASC NULLS FIRST",
+    "values": [
+      "won",
+      12000,
+      "eng-1",
+      3,
+    ],
+  },
+]
+`;
+
+exports[`the read statement of each member and each read compiler > ontology/ontology-sdk/object-sets#members: each group-by kind has the same statement text 1`] = `
+[
+  {
+    "text": "SELECT COALESCE(o."status", $1::text) AS "__group0", count(*)::double precision AS "__metric0", max(o."amount")::double precision AS "__metric1", count(*) OVER () AS "__groups" FROM "ontology_1_objects"."engagement" AS o GROUP BY COALESCE(o."status", $1::text) ORDER BY max(o."amount") DESC NULLS LAST, COALESCE(o."status", $1::text) COLLATE "C" ASC NULLS FIRST LIMIT $2",
+    "values": [
+      "none",
+      10000,
+    ],
+  },
+  {
+    "text": "SELECT (floor(o."amount"::numeric / $1::numeric) * $1::numeric)::double precision AS "__group0", count(*)::double precision AS "__metric0", max(o."amount")::double precision AS "__metric1", count(*) OVER () AS "__groups" FROM "ontology_1_objects"."engagement" AS o WHERE (floor(o."amount"::numeric / $1::numeric) * $1::numeric) IS NOT NULL GROUP BY (floor(o."amount"::numeric / $1::numeric) * $1::numeric) ORDER BY max(o."amount") DESC NULLS LAST, (floor(o."amount"::numeric / $1::numeric) * $1::numeric) ASC NULLS FIRST LIMIT $2",
+    "values": [
+      10000,
+      10000,
+    ],
+  },
+  {
+    "text": "SELECT ($3::jsonb -> ("__range0".n::integer - 1)) AS "__group0", count(*)::double precision AS "__metric0", max(o."amount")::double precision AS "__metric1", count(*) OVER () AS "__groups" FROM "ontology_1_objects"."engagement" AS o JOIN unnest($1::numeric[], $2::numeric[]) WITH ORDINALITY AS "__range0"(start_value, end_value, n) ON o."amount"::numeric >= "__range0".start_value AND o."amount"::numeric < "__range0".end_value WHERE "__range0".n IS NOT NULL GROUP BY "__range0".n ORDER BY max(o."amount") DESC NULLS LAST, "__range0".n ASC NULLS FIRST LIMIT $4",
+    "values": [
+      [
+        "0",
+      ],
+      [
+        "10000",
+      ],
+      "[{"startValue":0,"endValue":10000}]",
+      10000,
+    ],
+  },
+  {
+    "text": "SELECT rtrim(rtrim(to_char(date_bin($1::integer * INTERVAL '1 day', o."created_at", TIMESTAMPTZ '1970-01-01 00:00:00+00') AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.US'), '0'), '.') || 'Z' AS "__group0", count(*)::double precision AS "__metric0", max(o."amount")::double precision AS "__metric1", count(*) OVER () AS "__groups" FROM "ontology_1_objects"."engagement" AS o WHERE date_bin($1::integer * INTERVAL '1 day', o."created_at", TIMESTAMPTZ '1970-01-01 00:00:00+00') IS NOT NULL GROUP BY date_bin($1::integer * INTERVAL '1 day', o."created_at", TIMESTAMPTZ '1970-01-01 00:00:00+00') ORDER BY max(o."amount") DESC NULLS LAST, date_bin($1::integer * INTERVAL '1 day', o."created_at", TIMESTAMPTZ '1970-01-01 00:00:00+00') ASC NULLS FIRST LIMIT $2",
+    "values": [
+      1,
+      10000,
+    ],
+  },
+]
+`;
+
+exports[`the read statement of each member and each read compiler > ontology/ontology-sdk/object-sets#members: the load of each Property has the same statement text 1`] = `
+[
+  {
+    "text": "SELECT * FROM (SELECT count(*)::text AS __total FROM "ontology_1_objects"."account" AS o) AS total LEFT JOIN (SELECT o."name" AS "p0", o."phase" AS "p1", o."account_id" AS "p2", o."account_id" AS "__sort0", o."account_id" COLLATE "C" AS "__order0", TRUE AS __object FROM "ontology_1_objects"."account" AS o ORDER BY o."account_id" COLLATE "C" ASC NULLS FIRST LIMIT $1) AS page ON TRUE ORDER BY page."__order0" ASC NULLS FIRST",
+    "values": [
+      1001,
+    ],
+  },
+]
+`;
+
+exports[`the read statement of each member and each read compiler > ontology/ontology-sdk/object-sets#members: the load of named Properties has the same statement text 1`] = `
+[
+  {
+    "text": "SELECT * FROM (SELECT count(*)::text AS __total FROM "ontology_1_objects"."account" AS o) AS total LEFT JOIN (SELECT o."name" AS "p0", o."account_id" AS "p1", o."account_id" AS "__sort0", o."account_id" COLLATE "C" AS "__order0", TRUE AS __object FROM "ontology_1_objects"."account" AS o ORDER BY o."account_id" COLLATE "C" ASC NULLS FIRST LIMIT $1) AS page ON TRUE ORDER BY page."__order0" ASC NULLS FIRST",
+    "values": [
+      1001,
+    ],
+  },
+]
+`;
+
+exports[`the read statement of each member and each read compiler > ontology/ontology-sdk/object-sets#members: the metrics with no group-by have the same statement text 1`] = `
+[
+  {
+    "text": "SELECT count(*)::double precision AS "__metric0", sum(o."amount")::double precision AS "__metric1", avg(o."amount")::double precision AS "__metric2", rtrim(rtrim(to_char(min(o."created_at") AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.US'), '0'), '.') || 'Z' AS "__metric3", max(o."amount")::double precision AS "__metric4", count(DISTINCT o."status")::double precision AS "__metric5" FROM (SELECT o.* FROM "ontology_1_objects"."engagement" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."phase" = $1::text) AS s)) AS o GROUP BY ()",
+    "values": [
+      "customer",
+    ],
+  },
+]
+`;
+
+exports[`the read statement of each member and each read compiler > ontology/ontology-sdk/object-sets#members: union, intersect, and subtract has the same statement text 1`] = `
+[
+  {
+    "text": "SELECT * FROM (SELECT count(*)::text AS __total FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."phase" = $1::text) AS s UNION SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" = $2::text) AS s)) AS s EXCEPT SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."phase" = $3::text) AS s INTERSECT SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" = $4::text) AS s)) AS s)) AS o) AS total LEFT JOIN (SELECT o."name" AS "p0", o."phase" AS "p1", o."account_id" AS "p2", o."account_id" AS "__sort0", o."account_id" COLLATE "C" AS "__order0", TRUE AS __object FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."phase" = $5::text) AS s UNION SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" = $6::text) AS s)) AS s EXCEPT SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" IN (SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."phase" = $7::text) AS s INTERSECT SELECT s."account_id" FROM (SELECT o.* FROM "ontology_1_objects"."account" AS o WHERE o."account_id" = $8::text) AS s)) AS s)) AS o ORDER BY o."account_id" COLLATE "C" ASC NULLS FIRST LIMIT $9) AS page ON TRUE ORDER BY page."__order0" ASC NULLS FIRST",
+    "values": [
+      "customer",
+      "acc-1",
+      "customer",
+      "acc-1",
+      "customer",
+      "acc-1",
+      "customer",
+      "acc-1",
+      1001,
+    ],
+  },
+]
+`;

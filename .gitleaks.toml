@@ -1,0 +1,13 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Ignore gitignored build/scanner output and verified synthetic test fixtures"
+paths = ['''(^|/)dist/''', '''(^|/)\.deepsec/''']
+regexTarget = "secret"
+regexes = [
+  '''^oidc-ci-publish-secret-123$''',
+  '''^eyJ2YWx1ZXMiOlsiYWNjLTEiXSwiY2hlY2tzdW0iOiJhbm90aGVyIGJvZHkiLCJleHBpcmVzIjo0MTAyNDQ0ODAwMDAwfQ$''',
+  '''^sk_test_remap0entry0key0never0printed$''',
+  '''^CANARY-secret-7f3a$''',
+]

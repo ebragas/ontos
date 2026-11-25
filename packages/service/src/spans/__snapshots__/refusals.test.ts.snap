@@ -1,0 +1,480 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`service/code-layout#http-entry: the Node adapter > a body that fails after the status is sent 1`] = `
+{
+  "body": {
+    "message": "terminated",
+    "name": "TypeError",
+    "rejected": true,
+  },
+  "status": 200,
+}
+`;
+
+exports[`service/code-layout#http-entry: the Node adapter > a handle that rejects gives 500 and 1 line of error 1`] = `
+{
+  "answer": {
+    "body": "",
+    "headers": {
+      "connection": "keep-alive",
+      "keep-alive": "timeout=5",
+      "transfer-encoding": "chunked",
+    },
+    "status": 500,
+  },
+  "logged": [
+    "TypeError",
+  ],
+}
+`;
+
+exports[`service/code-layout#http-entry: the Node adapter > a request with no token 1`] = `
+{
+  "body": "{"errorCode":"UNAUTHORIZED","errorName":"MissingCredentials","errorInstanceId":"?","parameters":{}}",
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "status": 401,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a body that fails after its first chunk 1`] = `
+{
+  "end": {
+    "failed": "CANARY-body",
+  },
+  "first": 1,
+  "second": {
+    "message": "CANARY-body",
+    "name": "TypeError",
+    "rejected": true,
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "response.body",
+      "status": 2,
+    },
+    {
+      "errorType": undefined,
+      "name": "GET /api/ontology-service/v1/client-config",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a body that the client cancels 1`] = `
+{
+  "end": "cancelled",
+  "spans": [
+    {
+      "errorType": undefined,
+      "name": "response.body",
+      "status": 0,
+    },
+    {
+      "errorType": undefined,
+      "name": "GET /api/ontology-service/v1/client-config",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a body whose source fails to close at a cancel 1`] = `
+{
+  "cancelled": {
+    "message": "CANARY-close",
+    "name": "TypeError",
+    "rejected": true,
+  },
+  "end": "cancelled",
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "response.body",
+      "status": 2,
+    },
+    {
+      "errorType": undefined,
+      "name": "GET /api/ontology-service/v1/client-config",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a root span whose answer has no body 1`] = `
+{
+  "end": "closed",
+  "hasIds": true,
+  "spans": [
+    {
+      "httpStatus": 204,
+      "name": "GET /api/ontology-service/v1/client-config",
+      "status": 0,
+    },
+  ],
+  "status": 204,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a root span whose run rejects 1`] = `
+{
+  "same": true,
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "GET /api/ontology-service/v1/client-config",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a root span whose run throws before it returns 1`] = `
+{
+  "open": 0,
+  "same": true,
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "GET /api/ontology-service/v1/client-config",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a run that throws before it returns 1`] = `
+{
+  "open": 0,
+  "same": true,
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "message": undefined,
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "threw": true,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a run whose promise rejects with a value that is not an Error 1`] = `
+{
+  "open": 0,
+  "same": true,
+  "spans": [
+    {
+      "errorType": "NonError",
+      "message": undefined,
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "threw": true,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a run whose promise rejects with an ApiError 1`] = `
+{
+  "open": 0,
+  "same": true,
+  "spans": [
+    {
+      "errorType": "ObjectNotFound",
+      "message": undefined,
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "threw": true,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a run whose promise rejects with an Error 1`] = `
+{
+  "open": 0,
+  "same": true,
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "message": undefined,
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "threw": true,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a spanOf errorOf that throws 1`] = `
+{
+  "open": 0,
+  "settled": undefined,
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "thrown": {
+    "same": true,
+  },
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a spanOf run that returns a value 1`] = `
+{
+  "open": 0,
+  "settled": {
+    "value": "CANARY-value",
+  },
+  "spans": [
+    {
+      "errorType": undefined,
+      "name": "publish store",
+      "status": 0,
+    },
+  ],
+  "thrown": undefined,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a spanOf run that throws after its first step 1`] = `
+{
+  "open": 0,
+  "settled": undefined,
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "thrown": {
+    "same": true,
+  },
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a spanOf run that throws before it returns a generator 1`] = `
+{
+  "open": 0,
+  "settled": undefined,
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "thrown": {
+    "same": true,
+  },
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a spanOf run that yields a failure with no Error 1`] = `
+{
+  "open": 0,
+  "settled": {
+    "failure": "same",
+  },
+  "spans": [
+    {
+      "errorType": "NonError",
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "thrown": undefined,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > a spanOf run that yields an ApiError 1`] = `
+{
+  "open": 0,
+  "settled": {
+    "failure": "same",
+  },
+  "spans": [
+    {
+      "errorType": "ObjectNotFound",
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "thrown": undefined,
+}
+`;
+
+exports[`service/observability#traces: the spans of a failed run > an iterable that throws after its first item 1`] = `
+{
+  "open": 0,
+  "same": true,
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "message": undefined,
+      "name": "publish store",
+      "status": 2,
+    },
+  ],
+  "threw": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a Postgres URL that does not parse 1`] = `
+{
+  "answer": {
+    "message": "Invalid URL",
+    "name": "TypeError",
+    "rejected": true,
+  },
+  "fetchRestored": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a Postgres container whose port is not a number 1`] = `
+{
+  "cause": {
+    "message": "Invalid URL",
+    "name": "TypeError",
+  },
+  "message": "The Postgres container ontology-local-<id> took no connection in 30 seconds.",
+  "name": "Error",
+  "rejected": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a Postgres on this computer that takes no connection 1`] = `
+{
+  "answer": {
+    "message": "connect ECONNREFUSED 127.0.0.1:1",
+    "name": "Error",
+    "rejected": true,
+  },
+  "fetchRestored": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a Postgres that is not on this computer 1`] = `
+{
+  "message": "The local service takes only a Postgres on this computer, not db.example.com.",
+  "name": "Error",
+  "rejected": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a WorkOS stub write that loses its answer, and one that gets no network 1`] = `
+{
+  "lost": {
+    "message": "fetch failed",
+    "name": "TypeError",
+    "rejected": true,
+  },
+  "offline": {
+    "message": "fetch failed",
+    "name": "TypeError",
+    "rejected": true,
+  },
+  "wrote": {
+    "probe:read": null,
+  },
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a deployment file that is not JSON 1`] = `
+{
+  "answer": {
+    "message": "Unexpected token 'o', "not json" is not valid JSON",
+    "name": "SyntaxError",
+    "rejected": true,
+  },
+  "fetchRestored": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a deployment file with no staging environment 1`] = `
+{
+  "answer": {
+    "message": "<folder>/.ontology/deployment.json has no productRid or no staging environment. The local service runs the staging settings.",
+    "name": "Error",
+    "rejected": true,
+  },
+  "fetchRestored": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a folder with no deployment file 1`] = `
+{
+  "answer": {
+    "message": "ENOENT: no such file or directory, open '<folder>/.ontology/deployment.json'",
+    "name": "Error",
+    "rejected": true,
+  },
+  "fetchRestored": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a stub read that fails with a network error 1`] = `
+{
+  "message": "fetch failed",
+  "name": "TypeError",
+  "rejected": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a stub read that times out, until the caller aborts it 1`] = `
+{
+  "early": {
+    "message": "CANARY-aborted-before",
+    "name": "RangeError",
+    "rejected": true,
+  },
+  "later": {
+    "message": "CANARY-abort",
+    "name": "RangeError",
+    "rejected": true,
+  },
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a stub request that is not a URL 1`] = `
+{
+  "cause": {
+    "message": "Invalid URL",
+    "name": "TypeError",
+  },
+  "message": "Failed to parse URL from not a url",
+  "name": "TypeError",
+  "rejected": true,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a stub write whose body is not JSON 1`] = `
+{
+  "answer": {
+    "message": "Unexpected token 'o', "not json" is not valid JSON",
+    "name": "SyntaxError",
+    "rejected": true,
+  },
+  "writes": 0,
+}
+`;
+
+exports[`service/testing#local-service: the functions of the test entry > a token that cannot be signed 1`] = `
+{
+  "message": "Do not know how to serialize a BigInt",
+  "name": "TypeError",
+  "rejected": true,
+}
+`;

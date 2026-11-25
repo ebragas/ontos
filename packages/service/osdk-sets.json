@@ -1,0 +1,16 @@
+[
+  {
+    "name": "client-2.92.0",
+    "packages": {
+      "@osdk/maker": "0.91.0",
+      "@osdk/maker-experimental": "0.87.0",
+      "@osdk/client": "2.92.0",
+      "@osdk/cli": "0.120.0",
+      "@osdk/functions": "1.30.0"
+    },
+    "platformPackages": {
+      "@osdk/foundry.admin": "2.87.0",
+      "@osdk/foundry.ontologies": "2.87.0"
+    }
+  }
+]

@@ -1,0 +1,1559 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`service/cli#output > generate-osdk > generate-osdk: an app that installs no @osdk/cli 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The app does not install @osdk/cli."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > generate-osdk > generate-osdk: no foundry.yml 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No ontos.yml or foundry.yml in <cwd> or a parent folder. The app needs an ontos.yml (or foundry.yml) at its root."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > generate-osdk > generate-osdk: no osdkOutput 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"foundry.yml has no osdkOutput. generate-osdk writes the Ontology SDK to <osdkOutput>/ontology/."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: a bundle that cannot resolve a module 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The Function bundle failed: Build failed with 1 error:\\n<cwd>/functions/typescript-functions/src/functions/missing.ts:2:22: ERROR: Could not resolve \\"no-such-package\\""}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: a bundle that imports a module of Node.js 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The Function bundle imports fs. A Function bundle holds each package that it uses, and no native module."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: a config apiName that is not the file name 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"functions/withConfig.ts: the apiName of the config export, other, must be the file name, withConfig, as Functions \\"Code\\" specifies. Change the apiName or the file name."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: a named default export that is not the file name 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"functions/fileName.ts: the default export function otherName must have the name of its file, fileName, as Functions \\"Discovery\\" specifies. Rename the function or the file."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: a string enum input 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Function enumInput, input stage: \\"Stage\\" is not a supported type."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: a tsconfig.json that is not valid 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The tsconfig.json of the Functions, src/tsconfig.json, is not valid: Expression expected."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: a type that no Function can take 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Function inlineRows, input rows: \\"{ rowId: string; }\\" is not a supported type."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: an Edits type that names a Link that the Ontology does not define 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Function probeEditFkLink: the Edits type names the Link nope of com.example.twin.Account, which the Ontology-as-code does not define."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: an Object Type with no literal apiName 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Function noLiteral, input set: { name: string; } has no literal apiName. Import the type from the Ontology SDK."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: an empty tsconfig.json 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The tsconfig.json of the Functions, src/tsconfig.json, is empty."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: an interface that refers to itself 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Function recursive, input item, field parent: the interface Item of functions/recursive.ts refers to itself. A Function input or output cannot hold a recursive type."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Function discovery > functions: no tsconfig.json 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No tsconfig.json in <cwd>/functions/typescript-functions/src/functions or its parent folder. Function discovery needs one."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Ontologies > an Ontology that the Organization does not have 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The Organization has no Ontology with the API name nope. It has these: twin.","ontologies":["twin"]}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Ontologies > an Organization with no Ontology 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The Organization has no Ontology. An admin of the Organization must install one: ontos install <product> --api-name <name> --display-name <name>"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Ontologies > install: no --api-name 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos install <product> --api-name <name> --display-name <name>"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Ontologies > install: the service refuses 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorName":"OntologyService:Forbidden","message":"no"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the Ontologies > more than 1 Ontology and no --ontology 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The Organization has more than 1 Ontology, so pass --ontology <apiName> with 1 of these: alpha, beta.","ontologies":["alpha","beta"]}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > a foundry.yml with PYTHON_FUNCTIONS 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"foundry.yml has a PYTHON_FUNCTIONS component. V1 Functions are TypeScript v2 Functions."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > a foundry.yml with no ONTOLOGY component 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"foundry.yml has no ONTOLOGY component with a path."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > a foundry.yml with no apiNamespace 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"foundry.yml has no apiNamespace."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > a foundry.yml with products 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"foundry.yml has a products: list. The Ontology service serves 1 Ontology for each app, so use components."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > a grants file of the wrong shape 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"ontology/src/grants.json is not a grants file of v3: The grants file is not a JSON object."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > a grants file that is not JSON 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"ontology/src/grants.json is not JSON: Expected property name or '}' in JSON at position 1 (line 1 column 2)"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > a publish request above the limit 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The publish request is 5004938 bytes, above the limit of 4500000 bytes.","bytes":{"ir":4438,"schemaMigrations":5000026,"functionBundle":0,"discoveredFunctions":0,"total":5004938}}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > a schema-migrations.json that is not JSON 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":".ontology/schema-migrations.json is not JSON: Expected property name or '}' in JSON at position 1 (line 1 column 2)"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > an @osdk/maker with no bin 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"@osdk/maker has no bin maker."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > an app that installs no @osdk/maker 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The app does not install @osdk/maker."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > an empty foundry.yml 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"foundry.yml has no apiNamespace."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > no Ontology-as-code 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No Ontology-as-code: <cwd>/ontology/src/ontology.mts does not exist."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > no foundry.yml 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No ontos.yml or foundry.yml in <cwd> or a parent folder. The app needs an ontos.yml (or foundry.yml) at its root."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > no grants file 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No ontology/src/grants.json in <cwd>. The app writes its permissions and its default roles in this file."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > no schema-migrations.json 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No .ontology/schema-migrations.json in <cwd>. An app with no migration holds {\\"migrations\\": []}."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the app folder > the publish route gives 409 PublishLockTimeout 3 times 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorName":"PublishLockTimeout"}
+{"errorName":"PublishLockTimeout"}
+{"errorName":"PublishLockTimeout"}
+",
+  "stdout": "",
+  "waits": [
+    30000,
+    30000,
+  ],
+}
+`;
+
+exports[`service/cli#output > the app folder > the publish route refuses 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorCode":"INVALID_ARGUMENT","errorName":"InvalidOntology","errorInstanceId":"e-400","parameters":{}}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > --test-user with a token variable 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--test-user calls as the stored test user, so it does not take ONTOLOGY_TOKEN: unset ONTOLOGY_TOKEN, or remove --test-user."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > a flag that the command does not take 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"ontos logout does not take --where."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > a token with no Organization 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorCode":"PERMISSION_DENIED","errorName":"OntologyService:NoOrganization","errorInstanceId":"e-2","parameters":{},"message":"This token has no Organization. Run ontos login --app twin --env staging. If you belong to none, join or create an Organization."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > aggregate: --group-by is not JSON 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--group-by is not JSON: {bad"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > aggregate: --select is an array 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--select is a JSON object of <Property>:<metric> keys, such as {\\"feeDollars:sum\\":\\"unordered\\"}."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > aggregate: --select is not JSON 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--select is not JSON: {bad"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > aggregate: --select is null 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--select is a JSON object of <Property>:<metric> keys, such as {\\"feeDollars:sum\\":\\"unordered\\"}."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > aggregate: a key with a colon and no metric 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--select key \\"amount:\\" has no metric: write <Property>:<metric>, such as \\"amount:sum\\", or $count."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > aggregate: a key with no metric 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--select key \\"amount\\" has no metric: write <Property>:<metric>, such as \\"amount:sum\\", or $count."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > aggregate: no --select 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos aggregate <ObjectType> --select <JSON> [--group-by <JSON>] [--where <JSON>]"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > apply: --parameters is not JSON 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--parameters is not JSON: {bad"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > apply: the service refuses the Action 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorCode":"CONFLICT","errorName":"ObjectAlreadyExists","errorInstanceId":"d7c26299-1870-4db0-bf9a-0fb82ddf5421","parameters":{}}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > describe: a name that no type has 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No Object Type, Link Type, or Action Type has the API name Nope."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > install: --test-user 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"ontos install does not take --test-user."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > login: an empty --org 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--org needs an Organization ID: ontos login --org <id>"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: --link with no primary key 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--link needs a primary key: ontos objects <ObjectType> <primary key> --link <link>"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: --page-size 0 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--page-size is a whole number from 1 to 10000, not 0."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: --page-size above the largest 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--page-size is a whole number from 1 to 10000, not 10001."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: --page-size is not a number 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--page-size is a whole number from 1 to 10000, not ten."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: --where is not JSON 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--where is not JSON: {bad"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: a primary key with --page-token 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"ontos objects <ObjectType> <primary key> reads 1 Object, so it does not take --page-token."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: a primary key with --where 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"ontos objects <ObjectType> <primary key> reads 1 Object, so it does not take --where."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: an Object that does not exist 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorCode":"NOT_FOUND","errorName":"ObjectNotFound","parameters":{"objectType":"com.example.twin.Account","primaryKey":"no-such"}}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: an error of the service 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorCode":"NOT_FOUND","errorName":"PropertiesNotFound","errorInstanceId":"ebe8005d-11d9-4f56-b2fe-615635d6689d","parameters":{"objectType":"com.example.twin.Engagement","properties":["nope"]}}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > objects: another error of 1 Object 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"e-1","parameters":{"objectType":"com.example.twin.Account"}}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > too few arguments 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos objects <ObjectType> [<primary key>] [--link <link>] [--ontology <apiName>]"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the commands > too many arguments 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos logout"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: a branch head check in GitHub Actions with no variable 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The publish job needs GITHUB_SHA, GITHUB_REF_NAME, GITHUB_REPOSITORY, GITHUB_API_URL, NODE_AUTH_TOKEN to check that its commit is the head of its branch."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: a registry that rejects 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"registry is down"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: an Action Type with no display name 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Action Type com.example.twin.create-account has no display name. The ontology-service module of the Ontology SDK holds the display name of each Action Type."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: an app that installs no @osdk/client 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The app installs no @osdk/client. The Ontology SDK declares it as a peer dependency, at the version of the OSDK set."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: npm pack writes no file 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"npm pack @ontos/notes-ontology-sdk@0.0.1 wrote no file."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: npm view answers E404 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No version of @ontos/notes-ontology-sdk has the ontologyHash a25e7c218fc8414a16408bb728500f959c671eb5326805acd112a31810859d56 of the current Ontology version of production. Publish the Ontology to staging first."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: npm view fails 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"npm view @ontos/notes-ontology-sdk@>=0.0.0 version --json --registry https://npm.pkg.github.com failed: boom"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: npm view gives text that is not JSON 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"npm view @ontos/notes-ontology-sdk@>=0.0.0 version --json --registry https://npm.pkg.github.com did not print JSON: \\"nope\\"","step":"Ontology SDK package","command":"npm view @ontos/notes-ontology-sdk@>=0.0.0 version --json --registry https://npm.pkg.github.com"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: production with no version of the hash in the registry 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No version of @ontos/notes-ontology-sdk has the ontologyHash a25e7c218fc8414a16408bb728500f959c671eb5326805acd112a31810859d56 of the current Ontology version of production. Publish the Ontology to staging first."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: staging with a GITHUB_RUN_NUMBER that is not a number 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The Ontology SDK package needs a new version, 0.0.<GITHUB_RUN_NUMBER>, and GITHUB_RUN_NUMBER is \\"0\\". Run ontos publish in the publish workflow."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the release of the Ontology SDK package > publish: staging with no GITHUB_RUN_NUMBER 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The Ontology SDK package needs a new version, 0.0.<GITHUB_RUN_NUMBER>, and GITHUB_RUN_NUMBER is not set. Run ontos publish in the publish workflow."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > a GitHub OIDC token that the job cannot get 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"no"}
+",
+  "stdout": "",
+  "waits": [],
+}
+`;
+
+exports[`service/cli#output > the sign-in > a refresh that WorkOS answers with 500 for each try 1`] = `
+{
+  "code": 1,
+  "stderr": "{"error":"server_error"}
+",
+  "stdout": "",
+  "waits": [
+    1000,
+    2000,
+    4000,
+  ],
+}
+`;
+
+exports[`service/cli#output > the sign-in > a refresh with an answer that has no access_token 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The token refresh gave no string for access_token."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > a stored token that WorkOS no longer accepts 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"WorkOS no longer accepts the stored token of twin/staging: run ontos login --app twin --env staging."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login --org: WorkOS answers for another Organization 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"message":"WorkOS answered for the Organization org_x, not org_1. The new token is stored. Run ontos login --app twin --env staging --org org_1 again."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login --org: WorkOS answers for no Organization 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"message":"WorkOS answered for no Organization, not org_1. The new token is stored. Run ontos login --app twin --env staging --org org_1 again."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login --org: a stored token that WorkOS refuses 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"message":"WorkOS answered for no Organization, not org_1. The new token is stored. Run ontos login --app twin --env staging --org org_1 again."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login --test-user: WorkOS refuses 1`] = `
+{
+  "code": 1,
+  "stderr": "{"error":"invalid_credentials"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login --test-user: no variable 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"ontos login --test-user reads ONTOLOGY_TEST_USER_EMAIL, ONTOLOGY_TEST_USER_PASSWORD, WORKOS_API_KEY from the shell, not from .env. Set each of them."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login --test-user: success 1`] = `
+{
+  "code": 0,
+  "stderr": "{"warning":"This token has no Organization. If you belong to an Organization, run ontos login --app twin --env staging --test-user --org <id>. If not, join or create an Organization."}
+",
+  "stdout": "{"loggedIn":"twin/staging-test-user","user":"user_1"}
+",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: a device authorization with an interval of 0 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The device authorization gave no positive number for interval."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: a device authorization with no device_code 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The device authorization gave no string for device_code."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: a device authorization with no interval 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The device authorization gave no positive number for interval."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: access_denied 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"error":"access_denied"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: an answer with no error 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"error":""}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: slow_down, then success 1`] = `
+{
+  "code": 0,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"warning":"This token has no Organization. If you belong to an Organization, run ontos login --app twin --env staging --org <id>. If not, join or create an Organization."}
+",
+  "stdout": "{"loggedIn":"twin/staging","user":"user_1"}
+",
+  "waits": [
+    10000,
+  ],
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: the device authorization answers 500 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"down"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: the list of Organizations answers 503 1`] = `
+{
+  "code": 0,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"warning":"The list of your Organizations failed: HTTP 503. The sign-in worked, and the token is stored. If you belong to an Organization, run ontos login --app twin --env staging --org <id>. If not, join or create an Organization."}
+",
+  "stdout": "{"loggedIn":"twin/staging","user":"user_1"}
+",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: the list of Organizations has 2 Organizations 1`] = `
+{
+  "code": 0,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"warning":"You belong to more than 1 Organization. Run ontos login --app twin --env staging --org <id> with 1 of the listed IDs."}
+",
+  "stdout": "{"loggedIn":"twin/staging","user":"user_1","organizations":[{"id":"o1","name":"One"},{"id":"o2","name":"Two"}]}
+",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: the list of Organizations is empty 1`] = `
+{
+  "code": 0,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"warning":"You belong to no Organization of this environment. Join or create an Organization."}
+",
+  "stdout": "{"loggedIn":"twin/staging","user":"user_1"}
+",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: the list of Organizations is not readable 1`] = `
+{
+  "code": 0,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"warning":"The list of your Organizations failed: an answer that the CLI cannot read. The sign-in worked, and the token is stored. If you belong to an Organization, run ontos login --app twin --env staging --org <id>. If not, join or create an Organization."}
+",
+  "stdout": "{"loggedIn":"twin/staging","user":"user_1"}
+",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: the list of Organizations is refused 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"message":"The list of your Organizations gave 403. The token is stored. If you belong to an Organization, run ontos login --app twin --env staging --org <id>. If not, join or create an Organization.","status":403,"errorName":"OntologyService:Forbidden"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: the sign-in times out 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"error":"authorization_pending"}
+",
+  "stdout": "",
+  "waits": [],
+}
+`;
+
+exports[`service/cli#output > the sign-in > login: tokens with no refresh_token 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"message":"The sign-in gave no string for refresh_token."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the sign-in > logout 1`] = `
+{
+  "code": 0,
+  "stderr": "",
+  "stdout": "{"loggedOut":"twin/staging"}
+",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > --test-user in the production environment of an app 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--test-user acts on staging only. The production environment of twin has no test user."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > a stored token that does not exist 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No stored token for twin/staging: run ontos login --app twin --env staging."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > a write that gets 429 is not tried again 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"slow"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > a write that gets 503 is not tried again 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"down"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > an app name that is not 1 DNS label 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The app name is 1 DNS label of lowercase letters, digits, and hyphens, not Bad_App."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > an app name too long for staging 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The app name has at most 55 characters in staging, so the staging host aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-staging is 1 DNS label of at most 63 characters. aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa has 60."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > an environment that is not staging or production 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The environment is staging or production, not prod."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > client-config: 429 is not tried again 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"slow down"}
+",
+  "stdout": "",
+  "waits": [],
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > client-config: a network error, with the waits 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorName":"TransientFailure","message":"https://stub.test gave 503.","status":503,"url":"https://stub.test/api/ontology-service/v1/client-config","tries":7}
+",
+  "stdout": "",
+  "waits": [
+    1000,
+    2000,
+    4000,
+    8000,
+    16000,
+    32000,
+  ],
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > client-config: an answer that is not 200 1`] = `
+{
+  "code": 1,
+  "stderr": "{"status":500,"message":"nope"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > client-config: an environment with no deployment 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorName":"EnvironmentNotDeployed","message":"https://stub.test has no deployment yet. Deploy the staging environment of twin first. Until then, ontos validate and the other commands fail on it.","url":"https://stub.test"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the targets and the calls to the service > no app 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No target: pass --url <url>, --app <name>, or set ONTOLOGY_APP."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the token store > a config folder variable that is not a string 1`] = `
+{
+  "ending": "throws at the call",
+  "error": {
+    "class": "TypeError",
+    "code": "ERR_INVALID_ARG_TYPE",
+    "message": "The "path" argument must be of type string. Received type number (5)",
+    "syscall": undefined,
+  },
+  "files": [],
+}
+`;
+
+exports[`service/cli#output > the token store > a link to a folder names the same store 1`] = `
+{
+  "other": false,
+  "same": true,
+  "sameWithDot": true,
+}
+`;
+
+exports[`service/cli#output > the token store > a store folder that is not a string 1`] = `
+{
+  "ending": "throws at the call",
+  "error": {
+    "class": "TypeError",
+    "code": "ERR_INVALID_ARG_TYPE",
+    "message": "The "paths[0]" argument must be of type string. Received type number (5)",
+    "syscall": undefined,
+  },
+  "files": [],
+}
+`;
+
+exports[`service/cli#output > the token store > login: the folder of the token is a file 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"message":"EEXIST: file already exists, mkdir '<tokens>/twin'"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the token store > login: the token is a folder 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"message":"EISDIR: illegal operation on a directory, rename '<tokens>/twin/staging.<pid>.tmp' -> '<tokens>/twin/staging'"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the token store > logout: a token 1`] = `
+{
+  "code": 0,
+  "stderr": "",
+  "stdout": "{"loggedOut":"twin/staging"}
+",
+}
+`;
+
+exports[`service/cli#output > the token store > logout: the folder of the token is a file 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"ENOTDIR: not a directory, open '<tokens>/twin/staging.lock'"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the token store > logout: the token is a folder 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Path is a directory: rm returned EISDIR (is a directory) <tokens>/twin/staging"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the token store > objects: the stored token is a folder 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"EISDIR: illegal operation on a directory, read"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the token store > read: a key that holds a token with line ends 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging",
+  ],
+  "ending": "resolves",
+  "files": [
+    "acme",
+    "acme/staging",
+  ],
+  "value": "r1",
+}
+`;
+
+exports[`service/cli#output > the token store > read: a key that is not a string 1`] = `
+{
+  "ending": "throws at the call",
+  "error": {
+    "class": "TypeError",
+    "code": "ERR_INVALID_ARG_TYPE",
+    "message": "The "path" argument must be of type string. Received type number (5)",
+    "syscall": undefined,
+  },
+  "files": [],
+}
+`;
+
+exports[`service/cli#output > the token store > read: the key is a folder 1`] = `
+{
+  "ending": "throws at the call",
+  "error": {
+    "class": "Error",
+    "code": "EISDIR",
+    "message": "EISDIR: illegal operation on a directory, read",
+    "syscall": "read",
+  },
+  "files": [
+    "acme",
+    "acme/staging",
+    "acme/staging/x",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > remove: a key 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/production",
+  ],
+  "ending": "resolves",
+  "files": [
+    "acme",
+    "acme/production",
+  ],
+  "value": undefined,
+}
+`;
+
+exports[`service/cli#output > the token store > remove: a key that is not a string 1`] = `
+{
+  "ending": "throws at the call",
+  "error": {
+    "class": "TypeError",
+    "code": "ERR_INVALID_ARG_TYPE",
+    "message": "The "path" argument must be of type string. Received type number (5)",
+    "syscall": undefined,
+  },
+  "files": [],
+}
+`;
+
+exports[`service/cli#output > the token store > remove: a key whose lock name is too long 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/x",
+  ],
+  "ending": "rejects",
+  "error": {
+    "class": "Error",
+    "code": "ENAMETOOLONG",
+    "message": "ENAMETOOLONG: name too long, open '<store>/acme/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.lock'",
+    "syscall": "open",
+  },
+  "files": [
+    "acme",
+    "acme/x",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > remove: a key with no folder 1`] = `
+{
+  "atReturn": [],
+  "ending": "resolves",
+  "files": [],
+  "value": undefined,
+}
+`;
+
+exports[`service/cli#output > the token store > remove: the folder of the key is a file 1`] = `
+{
+  "atReturn": [
+    "acme",
+  ],
+  "ending": "rejects",
+  "error": {
+    "class": "Error",
+    "code": "ENOTDIR",
+    "message": "ENOTDIR: not a directory, open '<store>/acme/staging.lock'",
+    "syscall": "open",
+  },
+  "files": [
+    "acme",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > remove: the key is a folder 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging",
+    "acme/staging/x",
+  ],
+  "ending": "rejects",
+  "error": {
+    "class": "SystemError",
+    "code": "ERR_FS_EISDIR",
+    "message": "Path is a directory: rm returned EISDIR (is a directory) <store>/acme/staging",
+    "syscall": "rm",
+  },
+  "files": [
+    "acme",
+    "acme/staging",
+    "acme/staging/x",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > the library entry: a config folder variable that is not a string 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"The \\"path\\" argument must be of type string. Received type number (5)"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the token store > the library entry: a getter of tokenStore that throws 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"getter boom"}
+",
+}
+`;
+
+exports[`service/cli#output > the token store > the library entry: login and logout with the default token store 1`] = `
+{
+  "kept": [
+    "ontos",
+    "ontos/tokens",
+    "ontos/tokens/twin",
+    "ontos/tokens/twin/staging",
+  ],
+  "left": [
+    "ontos",
+    "ontos/tokens",
+    "ontos/tokens/twin",
+  ],
+  "login": {
+    "code": 0,
+    "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"warning":"This token has no Organization. If you belong to an Organization, run ontos login --app twin --env staging --org <id>. If not, join or create an Organization."}
+",
+    "stdout": "{"loggedIn":"twin/staging","user":"user_1"}
+",
+  },
+  "logout": {
+    "code": 0,
+    "stderr": "",
+    "stdout": "{"loggedOut":"twin/staging"}
+",
+  },
+}
+`;
+
+exports[`service/cli#output > the token store > the library entry: login with a config folder under a file 1`] = `
+{
+  "code": 1,
+  "stderr": "{"userCode":"RRGQ-BJVS","verificationUri":"https://auth.example/device","open":"https://auth.example/device?user_code=RRGQ-BJVS"}
+{"message":"ENOTDIR: not a directory, mkdir '<config>/file/ontos/tokens/twin'"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > the token store > write with a token that it expects: a missing key stays missing 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/other",
+  ],
+  "ending": "resolves",
+  "files": [
+    "acme",
+    "acme/other",
+  ],
+  "value": undefined,
+}
+`;
+
+exports[`service/cli#output > the token store > write with a token that it expects: the key holds another token 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging",
+  ],
+  "ending": "resolves",
+  "files": [
+    "acme",
+    "acme/staging",
+  ],
+  "value": undefined,
+}
+`;
+
+exports[`service/cli#output > the token store > write with a token that it expects: the key is a folder 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging",
+    "acme/staging/x",
+  ],
+  "ending": "rejects",
+  "error": {
+    "class": "Error",
+    "code": "EISDIR",
+    "message": "EISDIR: illegal operation on a directory, read",
+    "syscall": "read",
+  },
+  "files": [
+    "acme",
+    "acme/staging",
+    "acme/staging/x",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > write: a free key 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging",
+  ],
+  "ending": "resolves",
+  "files": [
+    "acme",
+    "acme/staging",
+  ],
+  "value": undefined,
+}
+`;
+
+exports[`service/cli#output > the token store > write: a key that is not a string 1`] = `
+{
+  "ending": "throws at the call",
+  "error": {
+    "class": "TypeError",
+    "code": "ERR_INVALID_ARG_TYPE",
+    "message": "The "path" argument must be of type string. Received type number (5)",
+    "syscall": undefined,
+  },
+  "files": [],
+}
+`;
+
+exports[`service/cli#output > the token store > write: a key whose lock name is too long 1`] = `
+{
+  "atReturn": [
+    "acme",
+  ],
+  "ending": "rejects",
+  "error": {
+    "class": "Error",
+    "code": "ENAMETOOLONG",
+    "message": "ENAMETOOLONG: name too long, open '<store>/acme/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.lock'",
+    "syscall": "open",
+  },
+  "files": [
+    "acme",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > write: a lock older than 10 seconds 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging",
+  ],
+  "ending": "resolves",
+  "files": [
+    "acme",
+    "acme/staging",
+  ],
+  "value": undefined,
+}
+`;
+
+exports[`service/cli#output > the token store > write: a lock that another writer releases after 60 ms 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging.lock",
+  ],
+  "ending": "resolves",
+  "files": [
+    "acme",
+    "acme/staging",
+  ],
+  "value": undefined,
+}
+`;
+
+exports[`service/cli#output > the token store > write: a lock that is a folder and older than 10 seconds 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging.lock",
+    "acme/staging.lock/x",
+  ],
+  "ending": "rejects",
+  "error": {
+    "class": "SystemError",
+    "code": "ERR_FS_EISDIR",
+    "message": "Path is a directory: rm returned EISDIR (is a directory) <store>/acme/staging.lock",
+    "syscall": "rm",
+  },
+  "files": [
+    "acme",
+    "acme/staging.lock",
+    "acme/staging.lock/x",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > write: a lock with a time more than 10 seconds ahead 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging",
+  ],
+  "ending": "resolves",
+  "files": [
+    "acme",
+    "acme/staging",
+  ],
+  "value": undefined,
+}
+`;
+
+exports[`service/cli#output > the token store > write: the folder of the key is a file 1`] = `
+{
+  "ending": "throws at the call",
+  "error": {
+    "class": "Error",
+    "code": "EEXIST",
+    "message": "EEXIST: file already exists, mkdir '<store>/acme'",
+    "syscall": "mkdir",
+  },
+  "files": [
+    "acme",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > write: the key is a folder 1`] = `
+{
+  "atReturn": [
+    "acme",
+    "acme/staging",
+    "acme/staging/x",
+  ],
+  "ending": "rejects",
+  "error": {
+    "class": "Error",
+    "code": "EISDIR",
+    "message": "EISDIR: illegal operation on a directory, rename '<store>/acme/staging.<pid>.tmp' -> '<store>/acme/staging'",
+    "syscall": "rename",
+  },
+  "files": [
+    "acme",
+    "acme/staging",
+    "acme/staging/x",
+  ],
+}
+`;
+
+exports[`service/cli#output > the token store > write: the store folder is a file 1`] = `
+{
+  "ending": "throws at the call",
+  "error": {
+    "class": "Error",
+    "code": "ENOTDIR",
+    "message": "ENOTDIR: not a directory, mkdir '<store>/file/acme'",
+    "syscall": "mkdir",
+  },
+  "files": [
+    "file",
+  ],
+}
+`;

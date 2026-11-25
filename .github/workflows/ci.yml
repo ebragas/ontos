@@ -1,0 +1,77 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  merge_group:
+    types: [checks_requested]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/deps
+      - run: bun run build
+      - run: bun run format:check
+      - run: bun run lint
+      - run: bun run typecheck
+      - run: bun run lint:dropped
+      - run: bun run knip
+      - run: bun run check:pkg
+      - run: bun x vitest run --project unit --maxWorkers=2 --testTimeout=15000 --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/unit-report.json"
+      - run: node tools/docs/spec-sections.ts "$RUNNER_TEMP/unit-report.json"
+
+  mcp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/deps
+      - run: bun run --cwd packages/service build
+      - run: bun x vitest run --project mcp --testTimeout=60000 --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/mcp-report.json"
+      - run: node tools/docs/spec-sections.ts "$RUNNER_TEMP/mcp-report.json"
+
+  sql:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/deps
+      - run: bun run build
+      - run: bun x vitest run --project sql --testTimeout=30000 --hookTimeout=30000 --maxWorkers=2 --exclude 'tools/ops/restore-ontology-*.sql.test.ts' --reporter=default --reporter=json --outputFile="$RUNNER_TEMP/sql-report.json"
+      - run: node tools/docs/spec-sections.ts "$RUNNER_TEMP/sql-report.json"
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - run: docker build -t ontos:ci .

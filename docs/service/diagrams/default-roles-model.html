@@ -1,0 +1,2177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Default roles in WorkOS: model of publish and upgrade</title>
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --fg: #1d1d1b;
+        --muted: #6b6a65;
+        --line: #d8d5cc;
+        --card: #ffffff;
+        --accent: #1f6f4a;
+        --warn: #a5481c;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #171716;
+          --fg: #ecebe6;
+          --muted: #a19f97;
+          --line: #3a3935;
+          --card: #201f1d;
+          --accent: #5cc28f;
+          --warn: #e98a5c;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme='dark'] {
+        --bg: #171716;
+        --fg: #ecebe6;
+        --muted: #a19f97;
+        --line: #3a3935;
+        --card: #201f1d;
+        --accent: #5cc28f;
+        --warn: #e98a5c;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.5 -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 28px 16px 48px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-size: 17px;
+        margin: 28px 0 6px;
+      }
+      h3 {
+        font-size: 15px;
+        margin: 18px 0 6px;
+      }
+      figure {
+        margin: 0;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px;
+        overflow-x: auto;
+      }
+      figcaption {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+      td,
+      th {
+        border: 1px solid var(--line);
+        padding: 4px 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+      code {
+        font-size: 13px;
+      }
+      pre {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 8px 10px;
+        overflow-x: auto;
+        font-size: 12px;
+      }
+      .holds {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .breaks {
+        color: var(--warn);
+        font-weight: 600;
+      }
+      .note {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      ol.bugs > li {
+        margin-bottom: 14px;
+      }
+      ol.bugs ol {
+        font-size: 14px;
+      }
+
+      .pele {
+        --pele-bg: #ffffff;
+        --pele-fg: #1c1c1c;
+        --pele-muted: #656565;
+        --pele-line: #808080;
+        --pele-surface: #fcfcfc;
+        --pele-surface-alt: #f1f1f1;
+        --pele-border: #c9c9c9;
+      }
+      .pele .blue rect {
+        fill: #c3e0ff;
+      }
+      .pele .orange rect {
+        fill: #f0d3bf;
+      }
+      .pele .purple rect {
+        fill: #e3d5ff;
+      }
+      .pele .breaks rect {
+        fill: #ffecee !important;
+        stroke: #e72e3b !important;
+        stroke-width: 2.5px !important;
+      }
+      .pele .breaks text {
+        fill: #cd2834 !important;
+      }
+      .pele .bugPath rect {
+        stroke: #1680f3 !important;
+        stroke-width: 2.5px !important;
+      }
+      @media (prefers-color-scheme: dark) {
+        .pele {
+          --pele-bg: #1f1f1f;
+          --pele-fg: #f5f5f5;
+          --pele-muted: #acacac;
+          --pele-line: #939393;
+          --pele-surface: #121212;
+          --pele-surface-alt: #2c2c2c;
+          --pele-border: #4e4e4e;
+        }
+        .pele .blue rect {
+          fill: #1b3857;
+        }
+        .pele .orange rect {
+          fill: #573117;
+        }
+        .pele .purple rect {
+          fill: #3c2e57;
+        }
+        .pele .breaks rect {
+          fill: #2e2021 !important;
+          stroke: #cf2b35 !important;
+        }
+        .pele .breaks text {
+          fill: #ff6463 !important;
+        }
+        .pele .bugPath rect {
+          stroke: #116dd2 !important;
+        }
+      }
+      figure svg.pele {
+        display: block;
+        max-width: 760px;
+        margin: 0 auto;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Default roles in WorkOS: model of publish and upgrade</h1>
+      <p class="note">
+        <strong
+          >This page describes the design before
+          <a href="../../adr/0015-a-publish-upgrades-every-installation-of-a-product-in-1-transaction.md">ADR 0015</a
+          >.</strong
+        >
+        That design had a removal step, an upgrade of each installation after the store, and a hold. The Ontology
+        service no longer has them: a publish upgrades every installation in 1 transaction, and a reconcile makes each
+        default role equal to the newest grants file. So the paths of this page about a held or behind installation do
+        not apply. <a href="publish-model.html">The publish model</a> gives the model check of the design of today.
+      </p>
+      <p>
+        A publish copies the default role of its grants file to WorkOS before the store. Each installation then upgrades
+        at its own time, and the removal step takes permissions from the role at the end of a pass. This TLA+ model
+        checks if each member keeps the correct access during that time. It has 2 Organizations, each with 1
+        installation (I1 and I2) of 1 product, 1 default role, 2 Object Types (T1 and T2), and the permissions a, b, and
+        c. An operator can hold and release I2. A member sees each type whose permission, in the grants file of its own
+        installation's version, the role holds in WorkOS. The model comes only from the text of
+        <a href="../publish.md">Publish</a>, <a href="../cli.md#publish-job">Publish job</a>,
+        <a href="../ontology-as-code.md#the-grants-file">The grants file</a>, and
+        <a href="../authentication.md#access">Access</a>. TLC checked this model against that design.
+      </p>
+
+      <h2>Grants files</h2>
+      <p>
+        v1 is installed, and the role in WorkOS matches it. Each sequence then publishes v2 and v3. The notation
+        <code>T1:a</code> means that T1 needs the permission a.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Sequence</th>
+            <th>v1</th>
+            <th>v2</th>
+            <th>v3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Drop in place</td>
+            <td>T1:a, T2:b. Role: a, b.</td>
+            <td>T1:a, T2:b. Role: b. T1 keeps a, and the role loses a.</td>
+            <td>Same as v1. The role gets a back.</td>
+          </tr>
+          <tr>
+            <td>Split drop</td>
+            <td>T1:a, T2:b. Role: a, b.</td>
+            <td>T1:c, T2:b. Role: b, c. T1 moves to the new c, and the role loses a.</td>
+            <td>T1:a, T2:b. Role: b. T1 moves back to a. The end is the v2 of the drop sequence.</td>
+          </tr>
+          <tr>
+            <td>Move</td>
+            <td>T1:a, T2:b. Role: a.</td>
+            <td>T1:b, T2:b. Role: b. T1 moves to b, which exists already.</td>
+            <td>T1:c, T2:b. Role: c. T1 moves to the new c. The role loses b, and T2 keeps b.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Rules</h2>
+      <p>
+        The results are for the current text of Default roles in WorkOS, which settles 3 readings: the WorkOS steps add
+        each permission that the role lacks, PermissionInUse compares with the role in WorkOS, and the store runs
+        PermissionInUse again. The model has 382 states for the drop sequence, 766 for the split drop, and 972 for the
+        move.
+      </p>
+      <ul>
+        <li>
+          <span class="holds">Holds.</span> No loss: a member keeps each type that its own version gives to its role.
+          The spec accepts 1 case: an installation held after the store of a version that takes the permission, while a
+          type of that version still needs it. It breaks under the earlier text (paths 3 to 5).
+        </li>
+        <li>
+          <span class="holds">Holds.</span> No over-grant: a member never uses a type through a permission that a newer
+          version took from the role, and that its own version does not give. The spec accepts the time from the store
+          to the removal step of that version, also across a stopped job. This result needs only 1 held installation.
+          See "What the model leaves out".
+        </li>
+        <li>
+          <span class="breaks">Breaks.</span> No early grant: a member never uses a type that its own version keeps from
+          its role, through a permission that a newer version gives. The model accepts the time before the store and the
+          time until the installation upgrades. Paths 1 and 2. The specification accepts both paths.
+        </li>
+        <li>
+          <span class="holds">Holds.</span> Converge: after a removal step with no hold, the role in WorkOS holds
+          exactly the permissions that the newest version gives it. It breaks if the WorkOS steps add only new
+          permissions (paths 6 to 8).
+        </li>
+        <li>
+          <span class="holds">Holds.</span> No store before its WorkOS steps: at each store, WorkOS has each permission
+          of the version, and the role holds each permission that the version gives it. It breaks if the WorkOS steps
+          add only new permissions (paths 6 to 8).
+        </li>
+        <li><span class="holds">Holds.</span> No deadlock: each state has a next step.</li>
+      </ul>
+
+      <h2>Charts</h2>
+      <p>
+        The charts come from the runs of the earlier text, so they also draw the paths that the current text closes.
+        Each chart draws only the shortest paths to the bugs of 1 sequence, because each of those runs has more than 500
+        states. A red state breaks a rule. A blue border marks a state on the path. A self-loop is a step that the label
+        does not show, such as the create of a permission.
+      </p>
+      <h3>Drop in place</h3>
+      <figure>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="pele pele-state"
+          viewBox="0 0 1345 2689"
+          width="1345"
+          height="2689"
+          style="
+            max-width: 100%;
+            height: auto;
+            --_bg: var(--pele-bg,#fff);
+            --_fg: var(--pele-fg,#1f1f1f);
+            --_m: var(--pele-muted,#6e6e6e);
+            --_l: var(--pele-line,#1f1f1f);
+            --_s: var(--pele-surface,#f3f3f3);
+            --_a: var(--pele-surface-alt,#e6e6e6);
+            --_b: var(--pele-border,#8a8a8a);
+            --_c: var(--pele-accent,#5b7bd5);
+            color: var(--_fg);
+            --_fm: var(--pele-font-mono,monospace);
+            font: 16px sans-serif;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            direction: ltr;
+            font-family: var(--pele-font, sans-serif);
+          "
+          fill="var(--_fg)"
+          role="graphics-document document"
+          aria-roledescription="state"
+        >
+          <g class="pele-clusters">
+            <g class="pele-cluster pele-state-composite" data-id="legend">
+              <rect
+                x="300"
+                y="8"
+                width="1036.75"
+                height="130"
+                rx="10"
+                fill="var(--_a)"
+                fill-opacity="0.5"
+                stroke="var(--_b)"
+              />
+              <path d="M300,44H1336.75" fill="none" stroke="var(--_b)" />
+              <text class="pele-cluster-label" x="818.38" y="31.6" text-anchor="middle">Legend</text>
+            </g>
+          </g>
+          <g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+            <g class="pele-edge pele-transition" data-id="edge0">
+              <path d="M253,138L253,175" />
+              <path class="pele-marker" d="M253,182L249.64,174L256.36,174Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge1">
+              <path d="M253,244L253,306" />
+              <path class="pele-marker" d="M253,313L249.64,305L256.36,305Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge2">
+              <path d="M253,396L253,458" />
+              <path class="pele-marker" d="M253,465L249.64,457L256.36,457Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge3">
+              <path d="M253,548L253,610" />
+              <path class="pele-marker" d="M253,617L249.64,609L256.36,609Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge4">
+              <path d="M253,700L253,762" />
+              <path class="pele-marker" d="M253,769L249.64,761L256.36,761Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge5">
+              <path d="M253,852L253,914" />
+              <path class="pele-marker" d="M253,921L249.64,913L256.36,913Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge6">
+              <path d="M189.38,1004C189.38,1013.25 123.62,1013.25 123.62,1022.5L123.62,1076.5" />
+              <path
+                class="pele-marker"
+                d="M123.62,1083.5L120.26,1075.5L126.98,1075.5Z"
+                fill="var(--_l)"
+                stroke="none"
+              />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge7">
+              <path d="M316.62,1004C316.62,1013.25 382.38,1013.25 382.38,1022.5L382.38,1066" />
+              <path class="pele-marker" d="M382.38,1073L379.02,1065L385.74,1065Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge8">
+              <path d="M123.62,1145.5L123.62,1218" />
+              <path class="pele-marker" d="M123.62,1225L120.26,1217L126.98,1217Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge9">
+              <path d="M382.38,1156L382.38,1218" />
+              <path class="pele-marker" d="M382.38,1225L379.02,1217L385.74,1217Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge10">
+              <path d="M382.38,1287L382.38,1349" />
+              <path class="pele-marker" d="M382.38,1356L379.02,1348L385.74,1348Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge11">
+              <path d="M123.62,1287L123.62,1349" />
+              <path class="pele-marker" d="M123.62,1356L120.26,1348L126.98,1348Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge12">
+              <path d="M382.38,1418L382.38,1480" />
+              <path class="pele-marker" d="M382.38,1487L379.02,1479L385.74,1479Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge13">
+              <path d="M123.62,1418L123.62,1480" />
+              <path class="pele-marker" d="M123.62,1487L120.26,1479L126.98,1479Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge14">
+              <path d="M123.62,1549L123.62,1611" />
+              <path class="pele-marker" d="M123.62,1618L120.26,1610L126.98,1610Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge15">
+              <path d="M123.62,1680L123.62,1742" />
+              <path class="pele-marker" d="M123.62,1749L120.26,1741L126.98,1741Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge16">
+              <path d="M123.62,1832L123.62,1894" />
+              <path class="pele-marker" d="M123.62,1901L120.26,1893L126.98,1893Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge17">
+              <path d="M123.62,1963L123.62,2025" />
+              <path class="pele-marker" d="M123.62,2032L120.26,2024L126.98,2024Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge18">
+              <path d="M123.62,2115L123.62,2177" />
+              <path class="pele-marker" d="M123.62,2184L120.26,2176L126.98,2176Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge19">
+              <path d="M123.62,2267L123.62,2329" />
+              <path class="pele-marker" d="M123.62,2336L120.26,2328L126.98,2328Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge20">
+              <path d="M123.62,2419L123.62,2481" />
+              <path class="pele-marker" d="M123.62,2488L120.26,2480L126.98,2480Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge21">
+              <path d="M123.62,2550L123.62,2612" />
+              <path class="pele-marker" d="M123.62,2619L120.26,2611L126.98,2611Z" fill="var(--_l)" stroke="none" />
+            </g>
+          </g>
+          <g class="pele-edge-labels" font-size="14">
+            <g class="pele-edge-label" data-id="edge1">
+              <rect x="178.57" y="264.5" width="148.85" height="21" rx="3" fill="var(--_bg)" />
+              <text x="253" y="279.9" text-anchor="middle">a developer pushes v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge2">
+              <rect x="184.8" y="416.5" width="136.39" height="21" rx="3" fill="var(--_bg)" />
+              <text x="253" y="431.9" text-anchor="middle">the publish job starts</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge3">
+              <rect x="151.74" y="568.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="253" y="583.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge4">
+              <rect x="194.92" y="720.5" width="116.16" height="21" rx="3" fill="var(--_bg)" />
+              <text x="253" y="735.9" text-anchor="middle">the check passes</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge5">
+              <rect x="178.58" y="872.5" width="148.84" height="21" rx="3" fill="var(--_bg)" />
+              <text x="253" y="887.9" text-anchor="middle">the WorkOS steps end</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge6">
+              <rect x="62.81" y="1024.5" width="121.61" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="1039.9" text-anchor="middle">the store saves v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge7">
+              <rect x="316.13" y="1024.5" width="132.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="382.38" y="1039.9" text-anchor="middle">an operator holds I2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge8">
+              <rect x="37.12" y="1176.5" width="172.99" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="1191.9" text-anchor="middle">the pass upgrades I1 to v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge9">
+              <rect x="321.58" y="1176.5" width="121.61" height="21" rx="3" fill="var(--_bg)" />
+              <text x="382.38" y="1191.9" text-anchor="middle">the store saves v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge10">
+              <rect x="295.89" y="1307.5" width="172.99" height="21" rx="3" fill="var(--_bg)" />
+              <text x="382.38" y="1322.9" text-anchor="middle">the pass upgrades I1 to v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge11">
+              <rect x="37.12" y="1307.5" width="172.99" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="1322.9" text-anchor="middle">the pass upgrades I2 to v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge12">
+              <rect x="281.13" y="1438.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="382.38" y="1453.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge13">
+              <rect x="22.36" y="1438.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="1453.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge14">
+              <rect x="49.19" y="1569.5" width="148.85" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="1584.9" text-anchor="middle">a developer pushes v3</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge15">
+              <rect x="55.42" y="1700.5" width="136.39" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="1715.9" text-anchor="middle">the publish job starts</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge16">
+              <rect x="22.36" y="1852.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="1867.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge17">
+              <rect x="65.53" y="1983.5" width="116.16" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="1998.9" text-anchor="middle">the check passes</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge18">
+              <rect x="37.13" y="2135.5" width="172.96" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="2150.9" text-anchor="middle">WorkOS adds a to the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge19">
+              <rect x="49.2" y="2287.5" width="148.84" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="2302.9" text-anchor="middle">the WorkOS steps end</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge20">
+              <rect x="62.81" y="2439.5" width="121.61" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="2454.9" text-anchor="middle">the store saves v3</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge21">
+              <rect x="57.36" y="2570.5" width="132.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="123.62" y="2585.9" text-anchor="middle">an operator holds I2</text>
+            </g>
+          </g>
+          <g class="pele-nodes">
+            <g class="pele-node pele-state blue bugPath" data-id="s0" transform="translate(253,213)">
+              <rect x="-109.38" y="-31" width="218.77" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v1 stored. I1 v1, I2</tspan><tspan x="0" y="16.1">v1. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s1" transform="translate(253,354.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">No job. v1 stored, v2</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v1, I2 v1. Role: a</tspan><tspan x="0" y="26.6">b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s2" transform="translate(253,506.5)">
+              <rect x="-107.15" y="-41.5" width="214.3" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Catch-up pass. v1 stored,</tspan
+                ><tspan x="0" y="5.6">v2 pushed. I1 v1, I2 v1.</tspan><tspan x="0" y="26.6">Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s3" transform="translate(253,658.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Publish check. v1 stored, v2</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v1, I2 v1. Role: a</tspan><tspan x="0" y="26.6">b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s4" transform="translate(253,810.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v1 stored,</tspan
+                ><tspan x="0" y="5.6">v2 pushed. I1 v1, I2 v1.</tspan><tspan x="0" y="26.6">Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s5" transform="translate(253,962.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Store. v1 stored, v2</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v1, I2 v1. Role: a</tspan><tspan x="0" y="26.6">b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s6" transform="translate(123.62,1114.5)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v1, I2</tspan><tspan x="0" y="16.1">v1. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s7" transform="translate(382.38,1114.5)">
+              <rect x="-105.39" y="-41.5" width="210.78" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Store. v1 stored, v2</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v1, I2 v1 held.</tspan><tspan x="0" y="26.6">Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s8" transform="translate(382.38,1256)">
+              <rect x="-114.72" y="-31" width="229.44" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v1, I2 v1</tspan><tspan x="0" y="16.1">held. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s9" transform="translate(123.62,1256)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v1. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s10" transform="translate(382.38,1387)">
+              <rect x="-114.72" y="-31" width="229.44" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v2, I2 v1</tspan><tspan x="0" y="16.1">held. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s11" transform="translate(123.62,1387)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v2. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue breaks bugPath" data-id="s12" transform="translate(382.38,1518)">
+              <rect
+                x="-109.38"
+                y="-31"
+                width="218.77"
+                height="62"
+                rx="10"
+                fill="var(--_s)"
+                stroke="var(--_b)"
+                style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+              />
+              <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v1 held. Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s13" transform="translate(123.62,1518)">
+              <rect x="-109.38" y="-31" width="218.77" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v2. Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s14" transform="translate(123.62,1649)">
+              <rect x="-115.62" y="-31" width="231.23" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v2 stored, v3</tspan
+                ><tspan x="0" y="16.1">pushed. I1 v2, I2 v2. Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s15" transform="translate(123.62,1790.5)">
+              <rect x="-107.15" y="-41.5" width="214.3" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Catch-up pass. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v2.</tspan><tspan x="0" y="26.6">Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s16" transform="translate(123.62,1932)">
+              <rect x="-115.62" y="-31" width="231.23" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Publish check. v2 stored, v3</tspan
+                ><tspan x="0" y="16.1">pushed. I1 v2, I2 v2. Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s17" transform="translate(123.62,2073.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v2.</tspan><tspan x="0" y="26.6">Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s18" transform="translate(123.62,2225.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v2.</tspan><tspan x="0" y="26.6">Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s19" transform="translate(123.62,2377.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Store. v2 stored, v3</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v2, I2 v2. Role: a</tspan><tspan x="0" y="26.6">b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s20" transform="translate(123.62,2519)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v3 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v2. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple breaks bugPath" data-id="s21" transform="translate(123.62,2650)">
+              <rect
+                x="-114.72"
+                y="-31"
+                width="229.44"
+                height="62"
+                rx="10"
+                fill="var(--_s)"
+                stroke="var(--_b)"
+                style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+              />
+              <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v3 stored. I1 v2, I2 v2</tspan><tspan x="0" y="16.1">held. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state-start" data-id="root_start" transform="translate(253,131)">
+              <circle r="7" fill="var(--_l)" />
+            </g>
+            <g class="pele-node pele-state blue" data-id="lg0" transform="translate(355.12,91)">
+              <rect x="-39.12" y="-22" width="78.24" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">No job</text>
+            </g>
+            <g class="pele-node pele-state orange" data-id="lg1" transform="translate(521.39,91)">
+              <rect x="-87.15" y="-22" width="174.3" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">Job before the store</text>
+            </g>
+            <g class="pele-node pele-state purple" data-id="lg2" transform="translate(729.02,91)">
+              <rect x="-80.48" y="-22" width="160.96" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">Job after the store</text>
+            </g>
+            <g class="pele-node pele-state breaks" data-id="lg3" transform="translate(950.42,91)">
+              <rect
+                x="-100.91"
+                y="-31"
+                width="201.82"
+                height="62"
+                rx="10"
+                fill="var(--_s)"
+                stroke="var(--_b)"
+                style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+              />
+              <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Breaks NoEarlyGrant or</tspan><tspan x="0" y="16.1">NoLoss</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state bugPath" data-id="lg4" transform="translate(1206.04,91)">
+              <rect x="-114.71" y="-31" width="229.42" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Path to the NoEarlyGrant or</tspan><tspan x="0" y="16.1">NoLoss bug</tspan>
+              </text>
+            </g>
+          </g>
+        </svg>
+        <figcaption>
+          The end of the 17-step path breaks No early grant (path 1). The end of the 9-step path breaks No loss under
+          the earlier text (path 3).
+        </figcaption>
+      </figure>
+      <h3>Split drop</h3>
+      <figure>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="pele pele-state"
+          viewBox="0 0 1267 2844"
+          width="1267"
+          height="2844"
+          style="
+            max-width: 100%;
+            height: auto;
+            --_bg: var(--pele-bg,#fff);
+            --_fg: var(--pele-fg,#1f1f1f);
+            --_m: var(--pele-muted,#6e6e6e);
+            --_l: var(--pele-line,#1f1f1f);
+            --_s: var(--pele-surface,#f3f3f3);
+            --_a: var(--pele-surface-alt,#e6e6e6);
+            --_b: var(--pele-border,#8a8a8a);
+            --_c: var(--pele-accent,#5b7bd5);
+            color: var(--_fg);
+            --_fm: var(--pele-font-mono,monospace);
+            font: 16px sans-serif;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            direction: ltr;
+            font-family: var(--pele-font, sans-serif);
+          "
+          fill="var(--_fg)"
+          role="graphics-document document"
+          aria-roledescription="state"
+        >
+          <g class="pele-clusters">
+            <g class="pele-cluster pele-state-composite" data-id="legend">
+              <rect
+                x="313.73"
+                y="8"
+                width="945.2"
+                height="112"
+                rx="10"
+                fill="var(--_a)"
+                fill-opacity="0.5"
+                stroke="var(--_b)"
+              />
+              <path d="M313.73,44H1258.93" fill="none" stroke="var(--_b)" />
+              <text class="pele-cluster-label" x="786.33" y="31.6" text-anchor="middle">Legend</text>
+            </g>
+          </g>
+          <g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+            <g class="pele-edge pele-transition" data-id="edge0">
+              <path d="M266.73,120L266.73,157" />
+              <path class="pele-marker" d="M266.73,164L263.37,156L270.09,156Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge1">
+              <path d="M266.73,226L266.73,288" />
+              <path class="pele-marker" d="M266.73,295L263.37,287L270.09,287Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge2">
+              <path d="M266.73,378L266.73,440" />
+              <path class="pele-marker" d="M266.73,447L263.37,439L270.09,439Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge3">
+              <path d="M266.73,530L266.73,592" />
+              <path class="pele-marker" d="M266.73,599L263.37,591L270.09,591Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge4">
+              <path d="M266.73,682L266.73,744" />
+              <path class="pele-marker" d="M266.73,751L263.37,743L270.09,743Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge5">
+              <path d="M373.87,784.5C399.87,776.5 399.87,808.5 380.56,802.56" />
+              <path class="pele-marker" d="M373.87,800.5L382.5,799.64L380.53,806.06Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge6">
+              <path d="M266.73,834L266.73,896" />
+              <path class="pele-marker" d="M266.73,903L263.37,895L270.09,895Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge7">
+              <path d="M266.73,986L266.73,1048" />
+              <path class="pele-marker" d="M266.73,1055L263.37,1047L270.09,1047Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge8">
+              <path d="M266.73,1138L266.73,1200" />
+              <path class="pele-marker" d="M266.73,1207L263.37,1199L270.09,1199Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge9">
+              <path d="M266.73,1269L266.73,1331" />
+              <path class="pele-marker" d="M266.73,1338L263.37,1330L270.09,1330Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge10">
+              <path d="M266.73,1400L266.73,1462" />
+              <path class="pele-marker" d="M266.73,1469L263.37,1461L270.09,1461Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge11">
+              <path d="M266.73,1531L266.73,1593" />
+              <path class="pele-marker" d="M266.73,1600L263.37,1592L270.09,1592Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge12">
+              <path d="M266.73,1683L266.73,1745" />
+              <path class="pele-marker" d="M266.73,1752L263.37,1744L270.09,1744Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge13">
+              <path d="M266.73,1835L266.73,1897" />
+              <path class="pele-marker" d="M266.73,1904L263.37,1896L270.09,1896Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge14">
+              <path d="M266.73,1987L266.73,2049" />
+              <path class="pele-marker" d="M266.73,2056L263.37,2048L270.09,2048Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge15">
+              <path d="M266.73,2139L266.73,2201" />
+              <path class="pele-marker" d="M266.73,2208L263.37,2200L270.09,2200Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge16">
+              <path d="M266.73,2291L266.73,2353" />
+              <path class="pele-marker" d="M266.73,2360L263.37,2352L270.09,2352Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge17">
+              <path d="M266.73,2443L266.73,2505" />
+              <path class="pele-marker" d="M266.73,2512L263.37,2504L270.09,2504Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge18">
+              <path d="M266.73,2574L266.73,2636" />
+              <path class="pele-marker" d="M266.73,2643L263.37,2635L270.09,2635Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge19">
+              <path d="M266.73,2705L266.73,2767" />
+              <path class="pele-marker" d="M266.73,2774L263.37,2766L270.09,2766Z" fill="var(--_l)" stroke="none" />
+            </g>
+          </g>
+          <g class="pele-edge-labels" font-size="14">
+            <g class="pele-edge-label" data-id="edge1">
+              <rect x="192.3" y="246.5" width="148.85" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="261.9" text-anchor="middle">a developer pushes v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge2">
+              <rect x="198.53" y="398.5" width="136.39" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="413.9" text-anchor="middle">the publish job starts</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge3">
+              <rect x="165.47" y="550.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="565.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge4">
+              <rect x="208.64" y="702.5" width="116.16" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="717.9" text-anchor="middle">the check passes</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge5">
+              <rect x="405.87" y="782" width="121.58" height="21" rx="3" fill="var(--_bg)" />
+              <text x="466.66" y="797.4" text-anchor="middle">WorkOS creates c</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge6">
+              <rect x="180.64" y="854.5" width="172.18" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="869.9" text-anchor="middle">WorkOS adds c to the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge7">
+              <rect x="192.31" y="1006.5" width="148.84" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="1021.9" text-anchor="middle">the WorkOS steps end</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge8">
+              <rect x="205.92" y="1158.5" width="121.61" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="1173.9" text-anchor="middle">the store saves v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge9">
+              <rect x="180.23" y="1289.5" width="172.99" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="1304.9" text-anchor="middle">the pass upgrades I1 to v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge10">
+              <rect x="223.04" y="1420.5" width="87.38" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="1435.9" text-anchor="middle">the job stops</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge11">
+              <rect x="192.3" y="1551.5" width="148.85" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="1566.9" text-anchor="middle">a developer pushes v3</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge12">
+              <rect x="198.53" y="1703.5" width="136.39" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="1718.9" text-anchor="middle">the publish job starts</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge13">
+              <rect x="200.47" y="1855.5" width="132.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="1870.9" text-anchor="middle">an operator holds I2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge14">
+              <rect x="165.47" y="2007.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="2022.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge15">
+              <rect x="208.64" y="2159.5" width="116.16" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="2174.9" text-anchor="middle">the check passes</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge16">
+              <rect x="192.31" y="2311.5" width="148.84" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="2326.9" text-anchor="middle">the WorkOS steps end</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge17">
+              <rect x="205.92" y="2463.5" width="121.61" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="2478.9" text-anchor="middle">the store saves v3</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge18">
+              <rect x="180.23" y="2594.5" width="172.99" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="2609.9" text-anchor="middle">the pass upgrades I1 to v3</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge19">
+              <rect x="165.47" y="2725.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="266.73" y="2740.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+          </g>
+          <g class="pele-nodes">
+            <g class="pele-node pele-state blue bugPath" data-id="s0" transform="translate(266.73,195)">
+              <rect x="-109.38" y="-31" width="218.77" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v1 stored. I1 v1, I2</tspan><tspan x="0" y="16.1">v1. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s1" transform="translate(266.73,336.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">No job. v1 stored, v2</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v1, I2 v1. Role: a</tspan><tspan x="0" y="26.6">b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s2" transform="translate(266.73,488.5)">
+              <rect x="-107.15" y="-41.5" width="214.3" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Catch-up pass. v1 stored,</tspan
+                ><tspan x="0" y="5.6">v2 pushed. I1 v1, I2 v1.</tspan><tspan x="0" y="26.6">Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s3" transform="translate(266.73,640.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Publish check. v1 stored, v2</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v1, I2 v1. Role: a</tspan><tspan x="0" y="26.6">b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s4" transform="translate(266.73,792.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v1 stored,</tspan
+                ><tspan x="0" y="5.6">v2 pushed. I1 v1, I2 v1.</tspan><tspan x="0" y="26.6">Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s5" transform="translate(266.73,944.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v1 stored,</tspan
+                ><tspan x="0" y="5.6">v2 pushed. I1 v1, I2 v1.</tspan><tspan x="0" y="26.6">Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s6" transform="translate(266.73,1096.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Store. v1 stored, v2</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v1, I2 v1. Role: a</tspan><tspan x="0" y="26.6">b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s7" transform="translate(266.73,1238)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v1, I2</tspan><tspan x="0" y="16.1">v1. Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s8" transform="translate(266.73,1369)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v1. Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s9" transform="translate(266.73,1500)">
+              <rect x="-109.38" y="-31" width="218.77" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v1. Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s10" transform="translate(266.73,1641.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">No job. v2 stored, v3</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v2, I2 v1. Role: a</tspan><tspan x="0" y="26.6">b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s11" transform="translate(266.73,1793.5)">
+              <rect x="-107.15" y="-41.5" width="214.3" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Catch-up pass. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v1.</tspan><tspan x="0" y="26.6">Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s12" transform="translate(266.73,1945.5)">
+              <rect x="-107.15" y="-41.5" width="214.3" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Catch-up pass. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v1</tspan><tspan x="0" y="26.6">held. Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s13" transform="translate(266.73,2097.5)">
+              <rect x="-115.6" y="-41.5" width="231.2" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Publish check. v2 stored, v3</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v2, I2 v1 held.</tspan><tspan x="0" y="26.6">Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s14" transform="translate(266.73,2249.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v1</tspan><tspan x="0" y="26.6">held. Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s15" transform="translate(266.73,2401.5)">
+              <rect x="-105.39" y="-41.5" width="210.78" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Store. v2 stored, v3</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v2, I2 v1 held.</tspan><tspan x="0" y="26.6">Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s16" transform="translate(266.73,2543)">
+              <rect x="-114.72" y="-31" width="229.44" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v3 stored. I1 v2, I2 v1</tspan
+                ><tspan x="0" y="16.1">held. Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s17" transform="translate(266.73,2674)">
+              <rect x="-114.72" y="-31" width="229.44" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v3 stored. I1 v3, I2 v1</tspan
+                ><tspan x="0" y="16.1">held. Role: a b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue breaks bugPath" data-id="s18" transform="translate(266.73,2805)">
+              <rect
+                x="-109.38"
+                y="-31"
+                width="218.77"
+                height="62"
+                rx="10"
+                fill="var(--_s)"
+                stroke="var(--_b)"
+                style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+              />
+              <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v3 stored. I1 v3, I2</tspan><tspan x="0" y="16.1">v1 held. Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state-start" data-id="root_start" transform="translate(266.73,113)">
+              <circle r="7" fill="var(--_l)" />
+            </g>
+            <g class="pele-node pele-state blue" data-id="lg0" transform="translate(368.85,82)">
+              <rect x="-39.12" y="-22" width="78.24" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">No job</text>
+            </g>
+            <g class="pele-node pele-state orange" data-id="lg1" transform="translate(535.12,82)">
+              <rect x="-87.15" y="-22" width="174.3" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">Job before the store</text>
+            </g>
+            <g class="pele-node pele-state purple" data-id="lg2" transform="translate(742.75,82)">
+              <rect x="-80.48" y="-22" width="160.96" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">Job after the store</text>
+            </g>
+            <g class="pele-node pele-state breaks" data-id="lg3" transform="translate(933.47,82)">
+              <rect
+                x="-70.24"
+                y="-22"
+                width="140.48"
+                height="44"
+                rx="10"
+                fill="var(--_s)"
+                stroke="var(--_b)"
+                style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+              />
+              <text class="pele-label" style="fill: #cd2834" x="0" y="5.6" text-anchor="middle">Breaks NoLoss</text>
+            </g>
+            <g class="pele-node pele-state bugPath" data-id="lg4" transform="translate(1143.32,82)">
+              <rect x="-99.61" y="-22" width="199.22" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">Path to the NoLoss bug</text>
+            </g>
+          </g>
+        </svg>
+        <figcaption>The last state breaks No loss under the earlier text (path 4).</figcaption>
+      </figure>
+      <h3>Move</h3>
+      <figure>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="pele pele-state"
+          viewBox="0 0 1344 3061"
+          width="1344"
+          height="3061"
+          style="
+            max-width: 100%;
+            height: auto;
+            --_bg: var(--pele-bg,#fff);
+            --_fg: var(--pele-fg,#1f1f1f);
+            --_m: var(--pele-muted,#6e6e6e);
+            --_l: var(--pele-line,#1f1f1f);
+            --_s: var(--pele-surface,#f3f3f3);
+            --_a: var(--pele-surface-alt,#e6e6e6);
+            --_b: var(--pele-border,#8a8a8a);
+            --_c: var(--pele-accent,#5b7bd5);
+            color: var(--_fg);
+            --_fm: var(--pele-font-mono,monospace);
+            font: 16px sans-serif;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            direction: ltr;
+            font-family: var(--pele-font, sans-serif);
+          "
+          fill="var(--_fg)"
+          role="graphics-document document"
+          aria-roledescription="state"
+        >
+          <g class="pele-clusters">
+            <g class="pele-cluster pele-state-composite" data-id="legend">
+              <rect
+                x="299.1"
+                y="8"
+                width="1036.75"
+                height="130"
+                rx="10"
+                fill="var(--_a)"
+                fill-opacity="0.5"
+                stroke="var(--_b)"
+              />
+              <path d="M299.1,44H1335.86" fill="none" stroke="var(--_b)" />
+              <text class="pele-cluster-label" x="817.48" y="31.6" text-anchor="middle">Legend</text>
+            </g>
+          </g>
+          <g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+            <g class="pele-edge pele-transition" data-id="edge0">
+              <path d="M252.1,138L252.1,175" />
+              <path class="pele-marker" d="M252.1,182L248.74,174L255.46,174Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge1">
+              <path d="M252.1,244L252.1,306" />
+              <path class="pele-marker" d="M252.1,313L248.74,305L255.46,305Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge2">
+              <path d="M252.1,375L252.1,437" />
+              <path class="pele-marker" d="M252.1,444L248.74,436L255.46,436Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge3">
+              <path d="M252.1,527L252.1,589" />
+              <path class="pele-marker" d="M252.1,596L248.74,588L255.46,588Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge4">
+              <path d="M252.1,658L252.1,720" />
+              <path class="pele-marker" d="M252.1,727L248.74,719L255.46,719Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge5">
+              <path d="M252.1,810L252.1,872" />
+              <path class="pele-marker" d="M252.1,879L248.74,871L255.46,871Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge6">
+              <path d="M252.1,962L252.1,1024" />
+              <path class="pele-marker" d="M252.1,1031L248.74,1023L255.46,1023Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge7">
+              <path d="M252.1,1114L252.1,1176" />
+              <path class="pele-marker" d="M252.1,1183L248.74,1175L255.46,1175Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge8">
+              <path d="M200.06,1245C200.06,1254.25 122.72,1254.25 122.72,1263.5L122.72,1307" />
+              <path class="pele-marker" d="M122.72,1314L119.36,1306L126.08,1306Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge9">
+              <path d="M304.15,1245C304.15,1254.25 381.49,1254.25 381.49,1263.5L381.49,1307" />
+              <path class="pele-marker" d="M381.49,1314L378.13,1306L384.85,1306Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge10">
+              <path d="M381.49,1376L381.49,1438" />
+              <path class="pele-marker" d="M381.49,1445L378.13,1437L384.85,1437Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge11">
+              <path d="M381.49,1507L381.49,1569" />
+              <path class="pele-marker" d="M381.49,1576L378.13,1568L384.85,1568Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge12">
+              <path d="M381.49,1638L381.49,1700" />
+              <path class="pele-marker" d="M381.49,1707L378.13,1699L384.85,1699Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge13">
+              <path d="M381.49,1769L381.49,1831" />
+              <path class="pele-marker" d="M381.49,1838L378.13,1830L384.85,1830Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge14">
+              <path d="M381.49,1921L381.49,1983" />
+              <path class="pele-marker" d="M381.49,1990L378.13,1982L384.85,1982Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge15">
+              <path d="M381.49,2052L381.49,2114" />
+              <path class="pele-marker" d="M381.49,2121L378.13,2113L384.85,2113Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge16">
+              <path d="M488.63,2154.5C514.63,2146.5 514.63,2178.5 495.32,2172.56" />
+              <path
+                class="pele-marker"
+                d="M488.63,2170.5L497.27,2169.64L495.29,2176.06Z"
+                fill="var(--_l)"
+                stroke="none"
+              />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge17">
+              <path d="M381.49,2204L381.49,2266" />
+              <path class="pele-marker" d="M381.49,2273L378.13,2265L384.85,2265Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge18">
+              <path d="M381.49,2356L381.49,2418" />
+              <path class="pele-marker" d="M381.49,2425L378.13,2417L384.85,2417Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge19">
+              <path d="M381.49,2508L381.49,2570" />
+              <path class="pele-marker" d="M381.49,2577L378.13,2569L384.85,2569Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge20">
+              <path d="M381.49,2660L381.49,2722" />
+              <path class="pele-marker" d="M381.49,2729L378.13,2721L384.85,2721Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge21">
+              <path d="M381.49,2791L381.49,2853" />
+              <path class="pele-marker" d="M381.49,2860L378.13,2852L384.85,2852Z" fill="var(--_l)" stroke="none" />
+            </g>
+            <g class="pele-edge pele-transition" data-id="edge22">
+              <path d="M381.49,2922L381.49,2984" />
+              <path class="pele-marker" d="M381.49,2991L378.13,2983L384.85,2983Z" fill="var(--_l)" stroke="none" />
+            </g>
+          </g>
+          <g class="pele-edge-labels" font-size="14">
+            <g class="pele-edge-label" data-id="edge1">
+              <rect x="177.68" y="264.5" width="148.85" height="21" rx="3" fill="var(--_bg)" />
+              <text x="252.1" y="279.9" text-anchor="middle">a developer pushes v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge2">
+              <rect x="183.91" y="395.5" width="136.39" height="21" rx="3" fill="var(--_bg)" />
+              <text x="252.1" y="410.9" text-anchor="middle">the publish job starts</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge3">
+              <rect x="150.85" y="547.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="252.1" y="562.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge4">
+              <rect x="194.02" y="678.5" width="116.16" height="21" rx="3" fill="var(--_bg)" />
+              <text x="252.1" y="693.9" text-anchor="middle">the check passes</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge5">
+              <rect x="165.62" y="830.5" width="172.96" height="21" rx="3" fill="var(--_bg)" />
+              <text x="252.1" y="845.9" text-anchor="middle">WorkOS adds b to the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge6">
+              <rect x="177.68" y="982.5" width="148.84" height="21" rx="3" fill="var(--_bg)" />
+              <text x="252.1" y="997.9" text-anchor="middle">the WorkOS steps end</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge7">
+              <rect x="191.3" y="1134.5" width="121.61" height="21" rx="3" fill="var(--_bg)" />
+              <text x="252.1" y="1149.9" text-anchor="middle">the store saves v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge8">
+              <rect x="56.46" y="1265.5" width="132.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="122.72" y="1280.9" text-anchor="middle">an operator holds I2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge9">
+              <rect x="294.99" y="1265.5" width="172.99" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="1280.9" text-anchor="middle">the pass upgrades I1 to v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge10">
+              <rect x="294.99" y="1396.5" width="172.99" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="1411.9" text-anchor="middle">the pass upgrades I2 to v2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge11">
+              <rect x="280.23" y="1527.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="1542.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge12">
+              <rect x="307.06" y="1658.5" width="148.85" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="1673.9" text-anchor="middle">a developer pushes v3</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge13">
+              <rect x="313.29" y="1789.5" width="136.39" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="1804.9" text-anchor="middle">the publish job starts</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge14">
+              <rect x="280.23" y="1941.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="1956.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge15">
+              <rect x="323.41" y="2072.5" width="116.16" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="2087.9" text-anchor="middle">the check passes</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge16">
+              <rect x="520.63" y="2152" width="121.58" height="21" rx="3" fill="var(--_bg)" />
+              <text x="581.42" y="2167.4" text-anchor="middle">WorkOS creates c</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge17">
+              <rect x="295.4" y="2224.5" width="172.18" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="2239.9" text-anchor="middle">WorkOS adds c to the role</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge18">
+              <rect x="307.07" y="2376.5" width="148.84" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="2391.9" text-anchor="middle">the WorkOS steps end</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge19">
+              <rect x="315.23" y="2528.5" width="132.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="2543.9" text-anchor="middle">an operator holds I2</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge20">
+              <rect x="320.68" y="2680.5" width="121.61" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="2695.9" text-anchor="middle">the store saves v3</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge21">
+              <rect x="294.99" y="2811.5" width="172.99" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="2826.9" text-anchor="middle">the pass upgrades I1 to v3</text>
+            </g>
+            <g class="pele-edge-label" data-id="edge22">
+              <rect x="280.23" y="2942.5" width="202.52" height="21" rx="3" fill="var(--_bg)" />
+              <text x="381.49" y="2957.9" text-anchor="middle">the removal step writes the role</text>
+            </g>
+          </g>
+          <g class="pele-nodes">
+            <g class="pele-node pele-state blue bugPath" data-id="s0" transform="translate(252.1,213)">
+              <rect x="-109.38" y="-31" width="218.77" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v1 stored. I1 v1, I2</tspan><tspan x="0" y="16.1">v1. Role: a</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s1" transform="translate(252.1,344)">
+              <rect x="-115.62" y="-31" width="231.23" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v1 stored, v2</tspan
+                ><tspan x="0" y="16.1">pushed. I1 v1, I2 v1. Role: a</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s2" transform="translate(252.1,485.5)">
+              <rect x="-107.15" y="-41.5" width="214.3" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Catch-up pass. v1 stored,</tspan
+                ><tspan x="0" y="5.6">v2 pushed. I1 v1, I2 v1.</tspan><tspan x="0" y="26.6">Role: a</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s3" transform="translate(252.1,627)">
+              <rect x="-115.62" y="-31" width="231.23" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Publish check. v1 stored, v2</tspan
+                ><tspan x="0" y="16.1">pushed. I1 v1, I2 v1. Role: a</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s4" transform="translate(252.1,768.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v1 stored,</tspan
+                ><tspan x="0" y="5.6">v2 pushed. I1 v1, I2 v1.</tspan><tspan x="0" y="26.6">Role: a</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s5" transform="translate(252.1,920.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v1 stored,</tspan
+                ><tspan x="0" y="5.6">v2 pushed. I1 v1, I2 v1.</tspan><tspan x="0" y="26.6">Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s6" transform="translate(252.1,1072.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Store. v1 stored, v2</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v1, I2 v1. Role: a</tspan><tspan x="0" y="26.6">b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s7" transform="translate(252.1,1214)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v1, I2</tspan><tspan x="0" y="16.1">v1. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple breaks bugPath" data-id="s8" transform="translate(122.72,1345)">
+              <rect
+                x="-114.72"
+                y="-31"
+                width="229.44"
+                height="62"
+                rx="10"
+                fill="var(--_s)"
+                stroke="var(--_b)"
+                style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+              />
+              <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v1, I2 v1</tspan><tspan x="0" y="16.1">held. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s9" transform="translate(381.49,1345)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v1. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s10" transform="translate(381.49,1476)">
+              <rect x="-104.05" y="-31" width="208.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v2. Role: a b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s11" transform="translate(381.49,1607)">
+              <rect x="-109.38" y="-31" width="218.77" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v2 stored. I1 v2, I2</tspan><tspan x="0" y="16.1">v2. Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue bugPath" data-id="s12" transform="translate(381.49,1738)">
+              <rect x="-115.62" y="-31" width="231.23" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v2 stored, v3</tspan
+                ><tspan x="0" y="16.1">pushed. I1 v2, I2 v2. Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s13" transform="translate(381.49,1879.5)">
+              <rect x="-107.15" y="-41.5" width="214.3" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Catch-up pass. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v2.</tspan><tspan x="0" y="26.6">Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s14" transform="translate(381.49,2021)">
+              <rect x="-115.62" y="-31" width="231.23" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Publish check. v2 stored, v3</tspan
+                ><tspan x="0" y="16.1">pushed. I1 v2, I2 v2. Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s15" transform="translate(381.49,2162.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v2.</tspan><tspan x="0" y="26.6">Role: b</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s16" transform="translate(381.49,2314.5)">
+              <rect x="-107.14" y="-41.5" width="214.29" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">WorkOS steps. v2 stored,</tspan
+                ><tspan x="0" y="5.6">v3 pushed. I1 v2, I2 v2.</tspan><tspan x="0" y="26.6">Role: b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s17" transform="translate(381.49,2466.5)">
+              <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Store. v2 stored, v3</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v2, I2 v2. Role: b</tspan><tspan x="0" y="26.6">c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state orange bugPath" data-id="s18" transform="translate(381.49,2618.5)">
+              <rect x="-105.39" y="-41.5" width="210.78" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-15.4">Store. v2 stored, v3</tspan
+                ><tspan x="0" y="5.6">pushed. I1 v2, I2 v2 held.</tspan><tspan x="0" y="26.6">Role: b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s19" transform="translate(381.49,2760)">
+              <rect x="-114.72" y="-31" width="229.44" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v3 stored. I1 v2, I2 v2</tspan><tspan x="0" y="16.1">held. Role: b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state purple bugPath" data-id="s20" transform="translate(381.49,2891)">
+              <rect x="-114.72" y="-31" width="229.44" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Pass. v3 stored. I1 v3, I2 v2</tspan><tspan x="0" y="16.1">held. Role: b c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state blue breaks bugPath" data-id="s21" transform="translate(381.49,3022)">
+              <rect
+                x="-109.38"
+                y="-31"
+                width="218.77"
+                height="62"
+                rx="10"
+                fill="var(--_s)"
+                stroke="var(--_b)"
+                style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+              />
+              <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">No job. v3 stored. I1 v3, I2</tspan><tspan x="0" y="16.1">v2 held. Role: c</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state-start" data-id="root_start" transform="translate(252.1,131)">
+              <circle r="7" fill="var(--_l)" />
+            </g>
+            <g class="pele-node pele-state blue" data-id="lg0" transform="translate(354.22,91)">
+              <rect x="-39.12" y="-22" width="78.24" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">No job</text>
+            </g>
+            <g class="pele-node pele-state orange" data-id="lg1" transform="translate(520.5,91)">
+              <rect x="-87.15" y="-22" width="174.3" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">Job before the store</text>
+            </g>
+            <g class="pele-node pele-state purple" data-id="lg2" transform="translate(728.13,91)">
+              <rect x="-80.48" y="-22" width="160.96" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" x="0" y="5.6" text-anchor="middle">Job after the store</text>
+            </g>
+            <g class="pele-node pele-state breaks" data-id="lg3" transform="translate(949.52,91)">
+              <rect
+                x="-100.91"
+                y="-31"
+                width="201.82"
+                height="62"
+                rx="10"
+                fill="var(--_s)"
+                stroke="var(--_b)"
+                style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+              />
+              <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Breaks NoEarlyGrant or</tspan><tspan x="0" y="16.1">NoLoss</tspan>
+              </text>
+            </g>
+            <g class="pele-node pele-state bugPath" data-id="lg4" transform="translate(1205.14,91)">
+              <rect x="-114.71" y="-31" width="229.42" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+              <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                <tspan x="0" y="-4.9">Path to the NoEarlyGrant or</tspan><tspan x="0" y="16.1">NoLoss bug</tspan>
+              </text>
+            </g>
+          </g>
+        </svg>
+        <figcaption>
+          The end of the 8-step path breaks No early grant (path 2). The end of the 21-step path breaks No loss under
+          the earlier text (path 5).
+        </figcaption>
+      </figure>
+      <details>
+        <summary>Mermaid source of the charts</summary>
+        <pre>
+stateDiagram-v2
+  state &quot;Legend&quot; as legend {
+    lg0: No job
+    lg1: Job before the store
+    lg2: Job after the store
+    lg3: Breaks NoEarlyGrant or NoLoss
+    lg4: Path to the NoEarlyGrant or NoLoss bug
+  }
+  class lg0 blue
+  class lg1 orange
+  class lg2 purple
+  class lg3 breaks
+  class lg4 bugPath
+  s0: No job. v1 stored. I1 v1, I2 v1. Role: a b
+  s1: No job. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s2: Catch-up pass. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s3: Publish check. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s4: WorkOS steps. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s5: Store. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s6: Pass. v2 stored. I1 v1, I2 v1. Role: a b
+  s7: Store. v1 stored, v2 pushed. I1 v1, I2 v1 held. Role: a b
+  s8: Pass. v2 stored. I1 v1, I2 v1 held. Role: a b
+  s9: Pass. v2 stored. I1 v2, I2 v1. Role: a b
+  s10: Pass. v2 stored. I1 v2, I2 v1 held. Role: a b
+  s11: Pass. v2 stored. I1 v2, I2 v2. Role: a b
+  s12: No job. v2 stored. I1 v2, I2 v1 held. Role: b
+  s13: No job. v2 stored. I1 v2, I2 v2. Role: b
+  s14: No job. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b
+  s15: Catch-up pass. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b
+  s16: Publish check. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b
+  s17: WorkOS steps. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b
+  s18: WorkOS steps. v2 stored, v3 pushed. I1 v2, I2 v2. Role: a b
+  s19: Store. v2 stored, v3 pushed. I1 v2, I2 v2. Role: a b
+  s20: Pass. v3 stored. I1 v2, I2 v2. Role: a b
+  s21: Pass. v3 stored. I1 v2, I2 v2 held. Role: a b
+  [*] --&gt; s0
+  s0 --&gt; s1: a developer pushes v2
+  s1 --&gt; s2: the publish job starts
+  s2 --&gt; s3: the removal step writes the role
+  s3 --&gt; s4: the check passes
+  s4 --&gt; s5: the WorkOS steps end
+  s5 --&gt; s6: the store saves v2
+  s5 --&gt; s7: an operator holds I2
+  s6 --&gt; s9: the pass upgrades I1 to v2
+  s7 --&gt; s8: the store saves v2
+  s8 --&gt; s10: the pass upgrades I1 to v2
+  s9 --&gt; s11: the pass upgrades I2 to v2
+  s10 --&gt; s12: the removal step writes the role
+  s11 --&gt; s13: the removal step writes the role
+  s13 --&gt; s14: a developer pushes v3
+  s14 --&gt; s15: the publish job starts
+  s15 --&gt; s16: the removal step writes the role
+  s16 --&gt; s17: the check passes
+  s17 --&gt; s18: WorkOS adds a to the role
+  s18 --&gt; s19: the WorkOS steps end
+  s19 --&gt; s20: the store saves v3
+  s20 --&gt; s21: an operator holds I2
+  classDef breaks fill:#ffecee,stroke:#e72e3b,stroke-width:2.5px,color:#cd2834
+  class s0 blue
+  class s0 bugPath
+  class s1 blue
+  class s1 bugPath
+  class s2 orange
+  class s2 bugPath
+  class s3 orange
+  class s3 bugPath
+  class s4 orange
+  class s4 bugPath
+  class s5 orange
+  class s5 bugPath
+  class s6 purple
+  class s6 bugPath
+  class s7 orange
+  class s7 bugPath
+  class s8 purple
+  class s8 bugPath
+  class s9 purple
+  class s9 bugPath
+  class s10 purple
+  class s10 bugPath
+  class s11 purple
+  class s11 bugPath
+  class s12 blue
+  class s12 breaks
+  class s12 bugPath
+  class s13 blue
+  class s13 bugPath
+  class s14 blue
+  class s14 bugPath
+  class s15 orange
+  class s15 bugPath
+  class s16 orange
+  class s16 bugPath
+  class s17 orange
+  class s17 bugPath
+  class s18 orange
+  class s18 bugPath
+  class s19 orange
+  class s19 bugPath
+  class s20 purple
+  class s20 bugPath
+  class s21 purple
+  class s21 breaks
+  class s21 bugPath
+</pre>
+        <pre>
+stateDiagram-v2
+  state &quot;Legend&quot; as legend {
+    lg0: No job
+    lg1: Job before the store
+    lg2: Job after the store
+    lg3: Breaks NoLoss
+    lg4: Path to the NoLoss bug
+  }
+  class lg0 blue
+  class lg1 orange
+  class lg2 purple
+  class lg3 breaks
+  class lg4 bugPath
+  s0: No job. v1 stored. I1 v1, I2 v1. Role: a b
+  s1: No job. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s2: Catch-up pass. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s3: Publish check. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s4: WorkOS steps. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s5: WorkOS steps. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b c
+  s6: Store. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b c
+  s7: Pass. v2 stored. I1 v1, I2 v1. Role: a b c
+  s8: Pass. v2 stored. I1 v2, I2 v1. Role: a b c
+  s9: No job. v2 stored. I1 v2, I2 v1. Role: a b c
+  s10: No job. v2 stored, v3 pushed. I1 v2, I2 v1. Role: a b c
+  s11: Catch-up pass. v2 stored, v3 pushed. I1 v2, I2 v1. Role: a b c
+  s12: Catch-up pass. v2 stored, v3 pushed. I1 v2, I2 v1 held. Role: a b c
+  s13: Publish check. v2 stored, v3 pushed. I1 v2, I2 v1 held. Role: a b c
+  s14: WorkOS steps. v2 stored, v3 pushed. I1 v2, I2 v1 held. Role: a b c
+  s15: Store. v2 stored, v3 pushed. I1 v2, I2 v1 held. Role: a b c
+  s16: Pass. v3 stored. I1 v2, I2 v1 held. Role: a b c
+  s17: Pass. v3 stored. I1 v3, I2 v1 held. Role: a b c
+  s18: No job. v3 stored. I1 v3, I2 v1 held. Role: b
+  [*] --&gt; s0
+  s0 --&gt; s1: a developer pushes v2
+  s1 --&gt; s2: the publish job starts
+  s2 --&gt; s3: the removal step writes the role
+  s3 --&gt; s4: the check passes
+  s4 --&gt; s4: WorkOS creates c
+  s4 --&gt; s5: WorkOS adds c to the role
+  s5 --&gt; s6: the WorkOS steps end
+  s6 --&gt; s7: the store saves v2
+  s7 --&gt; s8: the pass upgrades I1 to v2
+  s8 --&gt; s9: the job stops
+  s9 --&gt; s10: a developer pushes v3
+  s10 --&gt; s11: the publish job starts
+  s11 --&gt; s12: an operator holds I2
+  s12 --&gt; s13: the removal step writes the role
+  s13 --&gt; s14: the check passes
+  s14 --&gt; s15: the WorkOS steps end
+  s15 --&gt; s16: the store saves v3
+  s16 --&gt; s17: the pass upgrades I1 to v3
+  s17 --&gt; s18: the removal step writes the role
+  classDef breaks fill:#ffecee,stroke:#e72e3b,stroke-width:2.5px,color:#cd2834
+  class s0 blue
+  class s0 bugPath
+  class s1 blue
+  class s1 bugPath
+  class s2 orange
+  class s2 bugPath
+  class s3 orange
+  class s3 bugPath
+  class s4 orange
+  class s4 bugPath
+  class s5 orange
+  class s5 bugPath
+  class s6 orange
+  class s6 bugPath
+  class s7 purple
+  class s7 bugPath
+  class s8 purple
+  class s8 bugPath
+  class s9 blue
+  class s9 bugPath
+  class s10 blue
+  class s10 bugPath
+  class s11 orange
+  class s11 bugPath
+  class s12 orange
+  class s12 bugPath
+  class s13 orange
+  class s13 bugPath
+  class s14 orange
+  class s14 bugPath
+  class s15 orange
+  class s15 bugPath
+  class s16 purple
+  class s16 bugPath
+  class s17 purple
+  class s17 bugPath
+  class s18 blue
+  class s18 breaks
+  class s18 bugPath
+</pre>
+        <pre>
+stateDiagram-v2
+  state &quot;Legend&quot; as legend {
+    lg0: No job
+    lg1: Job before the store
+    lg2: Job after the store
+    lg3: Breaks NoEarlyGrant or NoLoss
+    lg4: Path to the NoEarlyGrant or NoLoss bug
+  }
+  class lg0 blue
+  class lg1 orange
+  class lg2 purple
+  class lg3 breaks
+  class lg4 bugPath
+  s0: No job. v1 stored. I1 v1, I2 v1. Role: a
+  s1: No job. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a
+  s2: Catch-up pass. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a
+  s3: Publish check. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a
+  s4: WorkOS steps. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a
+  s5: WorkOS steps. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s6: Store. v1 stored, v2 pushed. I1 v1, I2 v1. Role: a b
+  s7: Pass. v2 stored. I1 v1, I2 v1. Role: a b
+  s8: Pass. v2 stored. I1 v1, I2 v1 held. Role: a b
+  s9: Pass. v2 stored. I1 v2, I2 v1. Role: a b
+  s10: Pass. v2 stored. I1 v2, I2 v2. Role: a b
+  s11: No job. v2 stored. I1 v2, I2 v2. Role: b
+  s12: No job. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b
+  s13: Catch-up pass. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b
+  s14: Publish check. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b
+  s15: WorkOS steps. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b
+  s16: WorkOS steps. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b c
+  s17: Store. v2 stored, v3 pushed. I1 v2, I2 v2. Role: b c
+  s18: Store. v2 stored, v3 pushed. I1 v2, I2 v2 held. Role: b c
+  s19: Pass. v3 stored. I1 v2, I2 v2 held. Role: b c
+  s20: Pass. v3 stored. I1 v3, I2 v2 held. Role: b c
+  s21: No job. v3 stored. I1 v3, I2 v2 held. Role: c
+  [*] --&gt; s0
+  s0 --&gt; s1: a developer pushes v2
+  s1 --&gt; s2: the publish job starts
+  s2 --&gt; s3: the removal step writes the role
+  s3 --&gt; s4: the check passes
+  s4 --&gt; s5: WorkOS adds b to the role
+  s5 --&gt; s6: the WorkOS steps end
+  s6 --&gt; s7: the store saves v2
+  s7 --&gt; s8: an operator holds I2
+  s7 --&gt; s9: the pass upgrades I1 to v2
+  s9 --&gt; s10: the pass upgrades I2 to v2
+  s10 --&gt; s11: the removal step writes the role
+  s11 --&gt; s12: a developer pushes v3
+  s12 --&gt; s13: the publish job starts
+  s13 --&gt; s14: the removal step writes the role
+  s14 --&gt; s15: the check passes
+  s15 --&gt; s15: WorkOS creates c
+  s15 --&gt; s16: WorkOS adds c to the role
+  s16 --&gt; s17: the WorkOS steps end
+  s17 --&gt; s18: an operator holds I2
+  s18 --&gt; s19: the store saves v3
+  s19 --&gt; s20: the pass upgrades I1 to v3
+  s20 --&gt; s21: the removal step writes the role
+  classDef breaks fill:#ffecee,stroke:#e72e3b,stroke-width:2.5px,color:#cd2834
+  class s0 blue
+  class s0 bugPath
+  class s1 blue
+  class s1 bugPath
+  class s2 orange
+  class s2 bugPath
+  class s3 orange
+  class s3 bugPath
+  class s4 orange
+  class s4 bugPath
+  class s5 orange
+  class s5 bugPath
+  class s6 orange
+  class s6 bugPath
+  class s7 purple
+  class s7 bugPath
+  class s8 purple
+  class s8 breaks
+  class s8 bugPath
+  class s9 purple
+  class s9 bugPath
+  class s10 purple
+  class s10 bugPath
+  class s11 blue
+  class s11 bugPath
+  class s12 blue
+  class s12 bugPath
+  class s13 orange
+  class s13 bugPath
+  class s14 orange
+  class s14 bugPath
+  class s15 orange
+  class s15 bugPath
+  class s16 orange
+  class s16 bugPath
+  class s17 orange
+  class s17 bugPath
+  class s18 orange
+  class s18 bugPath
+  class s19 purple
+  class s19 bugPath
+  class s20 purple
+  class s20 bugPath
+  class s21 blue
+  class s21 breaks
+  class s21 bugPath
+</pre>
+      </details>
+
+      <h2>Bug paths</h2>
+      <p>Each path is the shortest path that TLC found. Step numbers are those of TLC.</p>
+      <ol class="bugs">
+        <li>
+          <p>
+            <strong>No early grant</strong> (Drop in place sequence, 17 steps). A held installation gets back a type
+            that its own version took.
+          </p>
+          <ol start="0">
+            <li>Start: v1 is stored. I1 and I2 are on v1. The role holds a and b.</li>
+            <li>A developer pushes v2.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>The WorkOS steps end.</li>
+            <li>The store saves v2.</li>
+            <li>The pass upgrades I1 to v2.</li>
+            <li>The pass upgrades I2 to v2.</li>
+            <li>The removal step removes a from the role.</li>
+            <li>A developer pushes v3.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>WorkOS adds a to the role.</li>
+            <li>The WorkOS steps end.</li>
+            <li>The store saves v3.</li>
+            <li>An operator holds I2 on v2. Its members use T1 through a, but v2 does not give a to the role.</li>
+          </ol>
+          <p class="note">
+            The access lasts while the hold lasts. The specification accepts it. The current text does not change this
+            path. Its run finds a variant of the same length, in which the job stops after the store of v2.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>No early grant</strong> (Move sequence, 8 steps). A held installation gets a type that its own
+            version keeps from the role.
+          </p>
+          <ol start="0">
+            <li>Start: v1 is stored. I1 and I2 are on v1. The role holds a.</li>
+            <li>A developer pushes v2.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>WorkOS adds b to the role.</li>
+            <li>The WorkOS steps end.</li>
+            <li>The store saves v2.</li>
+            <li>
+              An operator holds I2 on v1. Its members use T2 through b. The role of v1 holds only a, so v1 keeps T2 from
+              them.
+            </li>
+          </ol>
+          <p class="note">
+            The access lasts while the hold lasts. Before the hold, the same access is in the window that ends when I2
+            upgrades. The current text does not change this path.
+          </p>
+        </li>
+      </ol>
+      <h3>Paths that the earlier text gave</h3>
+      <p>
+        The text of Default roles in WorkOS was updated during this model check. The revised text runs PermissionInUse
+        again under the store lock, and compares with the role in WorkOS. Each of these paths breaks No loss under the
+        earlier text, and the revised text closes it.
+      </p>
+      <ol class="bugs" start="3">
+        <li>
+          <p>
+            <strong>No loss</strong> (Drop in place sequence, 9 steps). A hold between the check and the store of a drop
+            in place.
+          </p>
+          <ol start="0">
+            <li>Start: v1 is stored. I1 and I2 are on v1. The role holds a and b.</li>
+            <li>A developer pushes v2.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes. No installation is held, so PermissionInUse finds nothing.</li>
+            <li>The WorkOS steps end. They add nothing.</li>
+            <li>An operator holds I2 on v1.</li>
+            <li>The store saves v2. The store checks only for a behind installation.</li>
+            <li>The pass upgrades I1 to v2.</li>
+            <li>
+              The removal step removes a from the role, because T1 of v2 still needs a. The members of I2 lose T1, which
+              v1 gives them.
+            </li>
+          </ol>
+          <p class="note">
+            The spec accepts this loss only for an installation that stops after the store. Here the hold came after the
+            check and before the store. The current text runs PermissionInUse again under the store lock, which refuses
+            this store.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>No loss</strong> (Split drop sequence, 19 steps). The same drop in place, split over 2 publishes,
+            gets past PermissionInUse.
+          </p>
+          <ol start="0">
+            <li>Start: v1 is stored. I1 and I2 are on v1. The role holds a and b.</li>
+            <li>A developer pushes v2.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>WorkOS creates the permission c.</li>
+            <li>WorkOS adds c to the role.</li>
+            <li>The WorkOS steps end.</li>
+            <li>The store saves v2.</li>
+            <li>The pass upgrades I1 to v2.</li>
+            <li>The job stops.</li>
+            <li>A developer pushes v3.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>An operator holds I2 on v1.</li>
+            <li>The removal step keeps a, because I2 on v1 uses it and v2 does not declare it.</li>
+            <li>
+              The publish check passes. It compares v3 with the grants file of v2, which already lacks a. So v3 takes
+              only c, and v3 does not declare c.
+            </li>
+            <li>The WorkOS steps end.</li>
+            <li>The store saves v3.</li>
+            <li>The pass upgrades I1 to v3.</li>
+            <li>
+              The removal step removes a, because T1 of v3 needs a. It removes c, because no installation uses c. The
+              members of I2 lose T1. I2 was held before the check.
+            </li>
+          </ol>
+          <p class="note">
+            The stop at step 10 is not necessary. A run with I2 held from the start, with no stop and no release, breaks
+            No loss in 18 steps. In 1 publish, the check refuses this change with PermissionInUse. The current text
+            compares with the role in WorkOS, which still holds a, so it refuses v3 here.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>No loss</strong> (Move sequence, 21 steps). A hold between the check and the store, when v3 takes b
+            and T2 still needs b.
+          </p>
+          <ol start="0">
+            <li>Start: v1 is stored. I1 and I2 are on v1. The role holds a.</li>
+            <li>A developer pushes v2.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>WorkOS adds b to the role.</li>
+            <li>The WorkOS steps end.</li>
+            <li>The store saves v2.</li>
+            <li>The pass upgrades I1 to v2.</li>
+            <li>The pass upgrades I2 to v2.</li>
+            <li>The removal step removes a from the role.</li>
+            <li>A developer pushes v3.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>WorkOS creates the permission c.</li>
+            <li>WorkOS adds c to the role.</li>
+            <li>The WorkOS steps end.</li>
+            <li>An operator holds I2 on v2.</li>
+            <li>The store saves v3.</li>
+            <li>The pass upgrades I1 to v3.</li>
+            <li>
+              The removal step removes b, because T2 of v3 needs b. The members of I2 lose T1 and T2, which v2 gives
+              them through b.
+            </li>
+          </ol>
+          <p class="note">
+            This is the cause of path 3, in the move sequence. The check again under the store lock refuses this store.
+          </p>
+        </li>
+      </ol>
+      <p>
+        Paths 6 to 8 occur if the WorkOS steps add to the role only the permissions that the same run creates. The
+        current text adds each permission that the role lacks, also when it exists in WorkOS, so it closes them.
+      </p>
+      <ol class="bugs" start="6">
+        <li>
+          <p>
+            <strong>No store before its WorkOS steps, then no loss and converge</strong> (Move sequence, 6, 7, 9 steps).
+            The role never gets a permission that already exists in WorkOS.
+          </p>
+          <ol start="0">
+            <li>Start: v1 is stored. I1 and I2 are on v1. The role holds a.</li>
+            <li>A developer pushes v2.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>The WorkOS steps end. b already exists in WorkOS, so no step adds b to the role.</li>
+            <li>The store saves v2, and the role does not hold b. No store before its WorkOS steps breaks.</li>
+            <li>The pass upgrades I1 to v2. Its members lose T1 and T2. No loss breaks.</li>
+            <li>The pass upgrades I2 to v2.</li>
+            <li>The removal step removes a. The role is empty, but v2 gives b. Converge breaks.</li>
+          </ol>
+        </li>
+        <li>
+          <p>
+            <strong>No store before its WorkOS steps, then converge</strong> (Drop in place sequence, 15, 18 steps). A
+            permission that v3 gives back is never added again.
+          </p>
+          <ol start="0">
+            <li>Start: v1 is stored. I1 and I2 are on v1. The role holds a and b.</li>
+            <li>A developer pushes v2.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>The WorkOS steps end.</li>
+            <li>The store saves v2.</li>
+            <li>The pass upgrades I1 to v2.</li>
+            <li>The pass upgrades I2 to v2.</li>
+            <li>The removal step removes a from the role.</li>
+            <li>A developer pushes v3.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>The WorkOS steps end. a still exists in WorkOS, so no step adds it to the role.</li>
+            <li>The store saves v3, and the role does not hold a. No store before its WorkOS steps breaks.</li>
+            <li>The pass upgrades I1 to v3.</li>
+            <li>The pass upgrades I2 to v3.</li>
+            <li>The removal step removes nothing. The role holds b, but v3 gives a and b. Converge breaks.</li>
+          </ol>
+        </li>
+        <li>
+          <p>
+            <strong>No store before its WorkOS steps, then no loss and converge</strong> (Split drop sequence, 11, 12,
+            14 steps). A job stops between the create and the add.
+          </p>
+          <ol start="0">
+            <li>Start: v1 is stored. I1 and I2 are on v1. The role holds a and b.</li>
+            <li>A developer pushes v2.</li>
+            <li>The publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>WorkOS creates the permission c.</li>
+            <li>The job stops before the add.</li>
+            <li>A new run of the publish job starts with its catch-up pass.</li>
+            <li>The removal step runs and removes nothing.</li>
+            <li>The publish check passes.</li>
+            <li>The WorkOS steps end. c exists now, so this run does not count it as new, and adds nothing.</li>
+            <li>The store saves v2, and the role does not hold c. No store before its WorkOS steps breaks.</li>
+            <li>The pass upgrades I1 to v2. Its members lose T1. No loss breaks.</li>
+            <li>The pass upgrades I2 to v2.</li>
+            <li>The removal step removes a. The role holds b, but v2 gives b and c. Converge breaks.</li>
+          </ol>
+        </li>
+      </ol>
+
+      <h2>In the spec</h2>
+      <p>
+        The Removal step section of <a href="../publish.md">Publish</a>, which
+        <a href="../publish.md#reconcile">Reconcile</a> replaced, stated the early grant of paths 1 and 2 as an accepted
+        window: the access is what the newest version grants, and only an operator's hold makes it last. It also noted
+        the over-grant with 2 held installations, which this model did not check. See "What the model leaves out".
+      </p>
+
+      <h2>Readings</h2>
+      <ul>
+        <li>
+          "Stops on an older version after the store": the model accepts a loss only when the hold starts after the
+          store. Under the current text, a hold before the store refuses the publish, so no other case remains.
+        </li>
+        <li>
+          The spec accepts early access during the window from the WorkOS steps to the upgrade of the installation, also
+          after a stopped job or a refused store. A held installation keeps it while it is held (paths 1 and 2).
+        </li>
+        <li>
+          The over-grant window ends at the next removal step for the newest version. That step can be in the catch-up
+          pass of the next job.
+        </li>
+        <li>
+          The catch-up pass runs the removal step, because each upgrade call that ends with nothing behind runs it.
+        </li>
+        <li>
+          A publish with the same grants file as the newest version makes no new version, runs no WorkOS step, and goes
+          to the pass.
+        </li>
+        <li>
+          The check refuses a behind installation first, then PermissionInUse. The spec gives no order between the 2.
+        </li>
+      </ul>
+
+      <h2>What the model leaves out</h2>
+      <ul>
+        <li>RoleInUse, and a grants file that adds or removes a default role. The 1 role always exists.</li>
+        <li>
+          Permissions of the Ontology service, custom roles, and Action Types with their check of Object Type
+          permissions.
+        </li>
+        <li>
+          Install, a hold of I1, and 2 held installations at a time. So the model does not test this case for No
+          over-grant: 1 held installation on a version that gives p, 1 on a version that maps a type to p and does not
+          give it, and a newest version that drops p and has no type that needs it. The spec states this case as an
+          inference, and accepts it.
+        </li>
+        <li>
+          Upgrade failures on data, lock waits, time limits, and the limit of 3 sweeps. A pass can sweep again without
+          limit, or stop.
+        </li>
+        <li>
+          The cache of WorkOS answers in each instance. The model gives a member the new role at once, not within 60
+          seconds or 5 minutes.
+        </li>
+        <li>
+          A pushed commit that no job publishes, and a rerun of an older commit. A new run repeats the same grants file.
+        </li>
+        <li>
+          <code>validateOnly</code>, the static problems of the grants check, and the descriptions of permissions.
+        </li>
+        <li>A replay of each path against code. The model describes the spec, not code.</li>
+      </ul>
+    </main>
+  </body>
+</html>

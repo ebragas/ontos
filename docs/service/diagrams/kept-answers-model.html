@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kept WorkOS answers: a model check</title>
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --fg: #1d1d1b;
+        --muted: #6b6a65;
+        --line: #d8d5cc;
+        --card: #ffffff;
+        --accent: #1f6f4a;
+        --warn: #a5481c;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #171716;
+          --fg: #ecebe6;
+          --muted: #a19f97;
+          --line: #3a3935;
+          --card: #201f1d;
+          --accent: #5cc28f;
+          --warn: #e98a5c;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme='dark'] {
+        --bg: #171716;
+        --fg: #ecebe6;
+        --muted: #a19f97;
+        --line: #3a3935;
+        --card: #201f1d;
+        --accent: #5cc28f;
+        --warn: #e98a5c;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.5 -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 28px 16px 48px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-size: 17px;
+        margin: 28px 0 6px;
+      }
+      figure {
+        margin: 0;
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px;
+        overflow-x: auto;
+      }
+      figcaption {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+      td,
+      th {
+        border: 1px solid var(--line);
+        padding: 4px 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+      code {
+        font-size: 13px;
+      }
+      pre {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 8px 10px;
+        overflow-x: auto;
+        font-size: 13px;
+      }
+      pre.mermaid {
+        background: #ffffff;
+        color: #1c1c1c;
+        border: none;
+        padding: 0;
+      }
+      li p {
+        margin: 8px 0 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Kept WorkOS answers: a model check</h1>
+      <p>
+        Each instance of the Ontology service keeps the WorkOS answers for the permissions of a caller, as
+        <a href="../authentication.md#permissions-of-a-caller">Permissions of a caller</a> specifies. This TLA+ model
+        checked the earlier blocking-refresh rules (60-second fresh window, 5-minute fallback on WorkOS failure) with 1
+        Organization, 1 person with 1 role, 1 service user, 2 permissions (P1 and P2), and 2 instances that each keep
+        their own answers and can start cold. WorkOS can fail and recover, and an admin can change the role, remove the
+        membership, delete the application, or remove a scope. The model also tested the <code>permissions</code> claim
+        of a person's token, used with no WorkOS read for up to 300 seconds. The table and
+        <a href="#in-the-spec">In the spec</a> below state how the current stale-while-revalidate rules (60 seconds
+        fresh and 300 seconds usable for memberships and applications, and 300 seconds fresh and 600 seconds usable for
+        roles) change each rule.
+      </p>
+      <h2>The chart</h2>
+      <p>
+        The model has too many states for a full chart, so the chart shows only the shortest path to each rule that
+        breaks for the person, with the <code>permissions</code> claim. "I1" and "I2" are the 2 instances. The red
+        states break a rule.
+      </p>
+      <figure>
+        <pre class="mermaid">
+stateDiagram-v2
+  state &quot;Legend&quot; as legend {
+    lg0: up
+    lg1: down
+    lg2: Breaks ColdDown503 or Grant60 or NoWorseThanNewest or Revoke60 or UpToDate
+    lg3: Path to the ColdDown503 or Grant60 or NoWorseThanNewest or Revoke60 or UpToDate bug
+  }
+  class lg0 teal
+  class lg1 orange
+  class lg2 breaks
+  class lg3 bugPath
+  state &quot;WorkOS answers&quot; as s0 {
+    s1: WorkOS: role grants P1 and P2 / I1 keeps nothing / I2 keeps nothing
+    s2: WorkOS: role grants P1 and P2 / I1 keeps nothing / I2 keeps nothing / token claim P1 and P2 (0 min)
+    s3: WorkOS: role grants P1 only, changed 0 min ago / I1 keeps nothing / I2 keeps nothing
+    s4: WorkOS: role grants P1 and P2 / I1 keeps member (0 min), role P1 and P2 (0 min) / I2 keeps nothing / person asks I1 for P1: allowed
+    s5: WorkOS: role grants P1 only, changed 0 min ago / I1 keeps nothing / I2 keeps nothing / token claim P1 and P2 (0 min)
+    s6: WorkOS: role grants P1 only, changed 0 min ago / I1 keeps member (0 min), role P1 and P2 (0 min) / I2 keeps nothing
+    s7: WorkOS: role grants P1 only, changed 0 min ago / I1 keeps nothing / I2 keeps nothing / token claim P1 only (0 min)
+    s8: WorkOS: role grants P1 and P2 / I1 keeps nothing / I2 keeps nothing / token claim P1 and P2 (1 min)
+    s9: WorkOS: role grants P1 only, changed 1 min ago / I1 keeps member (1 min), role P1 and P2 (1 min) / I2 keeps nothing
+    s10: WorkOS: role grants P1 and P2, changed 0 min ago / I1 keeps nothing / I2 keeps nothing / token claim P1 only (0 min)
+    s11: WorkOS: role grants P1 only, changed 1 min ago / I1 keeps nothing / I2 keeps nothing / token claim P1 and P2 (1 min)
+    s12: WorkOS: role grants P1 and P2 / I1 keeps nothing / I2 keeps nothing / token claim P1 and P2 (1 min) / person asks I1 for P1: allowed
+    s13: WorkOS: role grants P1 only, changed 1 min ago / I1 keeps member (1 min), role P1 and P2 (1 min) / I2 keeps member (0 min), role P1 only (0 min) / person asks I2 for P1: allowed
+    s14: WorkOS: role grants P1 only, changed 1 min ago / I1 keeps nothing / I2 keeps nothing / token claim P1 and P2 (1 min) / person asks I1 for P2: allowed
+    s15: WorkOS: role grants P1 and P2, changed 1 min ago / I1 keeps nothing / I2 keeps nothing / token claim P1 only (1 min)
+    s16: WorkOS: role grants P1 and P2, changed 1 min ago / I1 keeps nothing / I2 keeps nothing / token claim P1 only (1 min) / person asks I1 for P2: refused
+  }
+  state &quot;WorkOS fails&quot; as s17 {
+    s18: WorkOS: role grants P1 and P2 / I1 keeps nothing / I2 keeps nothing / token claim P1 and P2 (0 min)
+    s19: WorkOS: role grants P1 and P2 / I1 keeps nothing / I2 keeps nothing / token claim P1 and P2 (0 min) / person asks I1 for P1: allowed
+    s20: WorkOS: role grants P1 only, changed 1 min ago / I1 keeps member (1 min), role P1 and P2 (1 min) / I2 keeps member (0 min), role P1 only (0 min)
+    s21: WorkOS: role grants P1 only, changed 1 min ago / I1 keeps member (1 min), role P1 and P2 (1 min) / I2 keeps member (0 min), role P1 only (0 min) / person asks I1 for P2: allowed
+  }
+  [*] --&gt; s1
+  s1 --&gt; s2: the person gets a new token
+  s1 --&gt; s3: an admin removes P2 from the role
+  s1 --&gt; s4: the person asks instance 1 for P1
+  s2 --&gt; s18: WorkOS fails
+  s2 --&gt; s5: an admin removes P2 from the role
+  s2 --&gt; s8: 1 minute passes
+  s3 --&gt; s7: the person gets a new token
+  s4 --&gt; s6: an admin removes P2 from the role
+  s18 --&gt; s19: the person asks instance 1 for P1
+  s5 --&gt; s11: 1 minute passes
+  s6 --&gt; s9: 1 minute passes
+  s7 --&gt; s10: an admin adds P2 to the role
+  s8 --&gt; s12: the person asks instance 1 for P1
+  s9 --&gt; s13: the person asks instance 2 for P1
+  s10 --&gt; s15: 1 minute passes
+  s11 --&gt; s14: the person asks instance 1 for P2
+  s13 --&gt; s20: WorkOS fails
+  s15 --&gt; s16: the person asks instance 1 for P2
+  s20 --&gt; s21: the person asks instance 1 for P2
+  class s1 teal
+  class s1 bugPath
+  class s2 teal
+  class s2 bugPath
+  class s3 teal
+  class s3 bugPath
+  class s4 teal
+  class s4 bugPath
+  class s5 teal
+  class s5 bugPath
+  class s6 teal
+  class s6 bugPath
+  class s7 teal
+  class s7 bugPath
+  class s8 teal
+  class s8 bugPath
+  class s9 teal
+  class s9 bugPath
+  class s10 teal
+  class s10 bugPath
+  class s11 teal
+  class s11 bugPath
+  class s12 teal
+  class s12 breaks
+  class s12 bugPath
+  class s13 teal
+  class s13 bugPath
+  class s14 teal
+  class s14 breaks
+  class s14 bugPath
+  class s15 teal
+  class s15 bugPath
+  class s16 teal
+  class s16 breaks
+  class s16 bugPath
+  class s18 orange
+  class s18 bugPath
+  class s19 orange
+  class s19 breaks
+  class s19 bugPath
+  class s20 orange
+  class s20 bugPath
+  class s21 orange
+  class s21 breaks
+  class s21 bugPath
+  classDef teal fill:#bfe3df,color:#1c1c1c
+  classDef orange fill:#f0d3bf,color:#1c1c1c
+  classDef bugPath stroke:#1f6f4a,stroke-width:2px
+  classDef breaks fill:#ffecee,stroke:#e72e3b,stroke-width:2.5px,color:#cd2834
+</pre>
+        <figcaption>
+          Bug paths for the person. The service user has only the <code>NoWorseThanNewest</code> path, bug 6 below.
+        </figcaption>
+      </figure>
+      <h2>Rules</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Rule</th>
+            <th>In plain words</th>
+            <th>Pre-SWR model</th>
+            <th>Current SWR spec</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Fresh5</code></td>
+            <td>Fresh: no request decides on a WorkOS fact that is more than 5 minutes old.</td>
+            <td>holds</td>
+            <td>
+              holds for memberships and applications (300 seconds usable); roles stay usable up to 600 seconds (10
+              minutes)
+            </td>
+          </tr>
+          <tr>
+            <td><code>Revoke5</code></td>
+            <td>Revoke: no access more than 5 minutes after a removal in WorkOS.</td>
+            <td>holds</td>
+            <td>
+              holds for memberships and applications (at most 300 seconds); role permission removals take at most 600
+              seconds (10 minutes)
+            </td>
+          </tr>
+          <tr>
+            <td><code>Grant5</code></td>
+            <td>Grant: no refusal more than 5 minutes after a grant in WorkOS.</td>
+            <td>holds</td>
+            <td>
+              holds for memberships and applications (at most 300 seconds); role permission grants take at most 600
+              seconds (10 minutes)
+            </td>
+          </tr>
+          <tr>
+            <td><code>Revoke60</code></td>
+            <td>Revoke when WorkOS answers: no access 60 seconds or more after a removal, while WorkOS answers.</td>
+            <td>breaks (bug 2), only through the <code>permissions</code> claim</td>
+            <td>
+              does not hold: the first request past 60 seconds returns the kept answer at once while refreshing in the
+              background (300 seconds hard expiry for memberships and applications; roles stay fresh 300 seconds and
+              usable up to 600 seconds)
+            </td>
+          </tr>
+          <tr>
+            <td><code>Grant60</code></td>
+            <td>Grant when WorkOS answers: no refusal 60 seconds or more after a grant, while WorkOS answers.</td>
+            <td>breaks (bug 3), only through the <code>permissions</code> claim</td>
+            <td>
+              does not hold: the first request past 60 seconds returns the kept answer at once while refreshing in the
+              background (and roles stay fresh 300 seconds and usable up to 600 seconds)
+            </td>
+          </tr>
+          <tr>
+            <td><code>UpToDate</code></td>
+            <td>
+              Up-to-date when WorkOS answers: no request decides on a fact 60 seconds old or older while WorkOS answers.
+            </td>
+            <td>breaks (bug 1), only through the <code>permissions</code> claim</td>
+            <td>
+              does not hold: stale answers serve immediately within their usable window (300 seconds for memberships and
+              applications; 300 seconds fresh and 600 seconds usable for roles)
+            </td>
+          </tr>
+          <tr>
+            <td><code>NoWorseThanNewest</code></td>
+            <td>A WorkOS failure never allows what a newer answer on any instance refuses.</td>
+            <td>breaks (bugs 5 and 6), as the spec itself says</td>
+            <td>
+              breaks during a WorkOS failure and while 1 instance serves a stale kept answer before its background
+              refresh finishes, for at most 5 minutes for memberships and applications and at most 10 minutes for roles
+            </td>
+          </tr>
+          <tr>
+            <td><code>ColdDown503</code></td>
+            <td>A cold instance with WorkOS down gives 503, never access.</td>
+            <td>breaks (bug 4), only through the <code>permissions</code> claim</td>
+            <td>holds (the service reads no <code>permissions</code> claim)</td>
+          </tr>
+          <tr>
+            <td><code>Only503WhenDown</code></td>
+            <td>A request gets 503 only when WorkOS is down.</td>
+            <td>holds</td>
+            <td>holds</td>
+          </tr>
+          <tr>
+            <td><code>NoDeadlock</code></td>
+            <td>The system can always take a next step.</td>
+            <td>holds</td>
+            <td>holds</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        In the pre-SWR model without the <code>permissions</code> claim, only <code>NoWorseThanNewest</code> broke.
+        Under the current SWR spec without the <code>permissions</code> claim, <code>ColdDown503</code>,
+        <code>Only503WhenDown</code>, and <code>NoDeadlock</code> hold, <code>Fresh5</code>, <code>Revoke5</code>, and
+        <code>Grant5</code> hold at 5 minutes for memberships and applications and extend to 10 minutes for roles, and
+        <code>UpToDate</code>, <code>Revoke60</code>, <code>Grant60</code>, and <code>NoWorseThanNewest</code> are
+        relaxed by stale-while-revalidate.
+      </p>
+      <h2>Bug paths</h2>
+      <ol>
+        <li>
+          <p>Breaks <code>UpToDate</code>.</p>
+          <ol>
+            <li>WorkOS answers. The role grants P1 and P2. Both instances keep nothing.</li>
+            <li>The person gets a new token. Its <code>permissions</code> claim holds P1 and P2.</li>
+            <li>1 minute passes.</li>
+            <li>
+              The person asks instance 1 for P1. The instance uses the 60-second-old claim and reads nothing from
+              WorkOS. Allowed.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <p>Breaks <code>Revoke60</code>.</p>
+          <ol>
+            <li>WorkOS answers. The role grants P1 and P2.</li>
+            <li>The person gets a new token with the claim P1 and P2.</li>
+            <li>An admin removes P2 from the role.</li>
+            <li>1 minute passes.</li>
+            <li>
+              The person asks instance 1 for P2. WorkOS answers, but the instance uses the claim. Allowed 60 seconds
+              after the removal. The claim permits this for up to 300 seconds.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <p>Breaks <code>Grant60</code>.</p>
+          <ol>
+            <li>WorkOS answers. An admin removes P2 from the role.</li>
+            <li>The person gets a new token with the claim P1 only.</li>
+            <li>An admin adds P2 to the role again.</li>
+            <li>1 minute passes.</li>
+            <li>
+              The person asks instance 1 for P2. The instance uses the claim. Refused, 60 seconds after the grant.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <p>Breaks <code>ColdDown503</code>.</p>
+          <ol>
+            <li>WorkOS answers. Both instances keep nothing.</li>
+            <li>The person gets a new token with the claim P1 and P2.</li>
+            <li>WorkOS fails.</li>
+            <li>The person asks cold instance 1 for P1. The instance uses the claim. Allowed, not 503.</li>
+          </ol>
+        </li>
+        <li>
+          <p>Breaks <code>NoWorseThanNewest</code> (person).</p>
+          <ol>
+            <li>WorkOS answers. The role grants P1 and P2.</li>
+            <li>
+              The person asks instance 1 for P1. Instance 1 keeps the membership and the role (P1 and P2). Allowed.
+            </li>
+            <li>An admin removes P2 from the role.</li>
+            <li>1 minute passes.</li>
+            <li>The person asks instance 2 for P1. Instance 2 reads the role again and keeps P1 only. Allowed.</li>
+            <li>WorkOS fails.</li>
+            <li>
+              The person asks instance 1 for P2. Instance 1 uses its 1-minute-old answer. Allowed, but the newer answer
+              on instance 2 refuses P2.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <p>Breaks <code>NoWorseThanNewest</code> (service user).</p>
+          <ol>
+            <li>WorkOS answers. The application has the scopes P1 and P2.</li>
+            <li>The service user asks instance 1 for P1. Instance 1 keeps the application with P1 and P2. Allowed.</li>
+            <li>An admin removes the scope P2.</li>
+            <li>1 minute passes.</li>
+            <li>The service user asks instance 2 for P1. Instance 2 keeps P1 only. Allowed.</li>
+            <li>WorkOS fails.</li>
+            <li>
+              The service user asks instance 1 for P2. Instance 1 uses its 1-minute-old answer. Allowed, but the newer
+              answer on instance 2 refuses P2.
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <p>
+        In the pre-SWR model, bugs 1 to 4 came from 1 rule: a person's <code>permissions</code> claim was used with no
+        WorkOS read for up to 300 seconds. Bugs 5 and 6 show cross-instance skew when 1 instance serves an older kept
+        answer while another instance has read a newer answer from WorkOS.
+      </p>
+      <h2 id="in-the-spec">In the spec</h2>
+      <p>
+        <a href="../authentication.md#permissions-of-a-caller">Permissions of a caller</a> reads no
+        <code>permissions</code> claim, so a cold instance with WorkOS down always gives 503 (<code>ColdDown503</code>
+        holds). The service now uses stale-while-revalidate instead of blocking at 60 seconds. Memberships and
+        applications stay fresh for 60 seconds and usable up to 300 seconds, and roles stay fresh for 300 seconds and
+        usable up to 600 seconds. The first request past the fresh window returns the kept answer at once and starts 1
+        shared background refresh. So <code>UpToDate</code>, <code>Revoke60</code>, and <code>Grant60</code> do not
+        hold, <code>Fresh5</code>, <code>Revoke5</code>, and <code>Grant5</code> extend to 10 minutes for roles, and
+        cross-instance skew (<code>NoWorseThanNewest</code>) lasts at most 5 minutes for memberships and applications
+        and at most 10 minutes for roles.
+      </p>
+      <h2>What the model leaves out</h2>
+      <ul>
+        <li>
+          The chart and pre-SWR model above do not model stale-while-revalidate background refreshes or the separate
+          5-minute fresh and 10-minute usable role window.
+        </li>
+        <li>
+          Time moves in whole minutes, and each event happens at a whole minute. The limits in the chart are 1 and 5
+          minutes, so age 1 is 60 seconds and age 5 is 300 seconds.
+        </li>
+        <li>
+          A request is 1 step. The model has no read in flight, no shared WorkOS call, and no 5-second time limit.
+        </li>
+        <li>
+          WorkOS answers all reads of 1 request, or fails all of them. The model has no request where the membership
+          read works and the role read fails.
+        </li>
+        <li>The model changes the permissions of the 1 role. It does not give the person another role.</li>
+        <li>
+          Each refusal is 1 outcome: 401, 403, and a hidden type are the same. A 429 and a 5xx are both a failure of
+          WorkOS.
+        </li>
+        <li>
+          The person and the service user run in separate configs, because they share no kept key. The service user has
+          no <code>permissions</code> claim.
+        </li>
+        <li>
+          A deleted application does not come back. The model has no client secret, no token expiry, no
+          <code>scope</code> claim, and no token check of part 1.
+        </li>
+        <li>
+          The person gets a token only while WorkOS answers and the membership is active. The claim then holds the
+          permissions of the role.
+        </li>
+        <li>
+          The model has 1 Organization. It has no second Organization, no Ontology owner, and no object security policy.
+        </li>
+      </ul>
+    </main>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'strict' });
+    </script>
+  </body>
+</html>

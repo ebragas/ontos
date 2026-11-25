@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tgz
+.deepsec/
+packages/service/LICENSE
+packages/service/NOTICE
+packages/service/THIRD_PARTY_NOTICES.md
+packages/cli/LICENSE
+packages/cli/NOTICE
+packages/cli/THIRD_PARTY_NOTICES.md

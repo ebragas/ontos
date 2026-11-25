@@ -1,0 +1,5 @@
+apiNamespace: com.example.tasks
+osdkOutput: ontology/osdk-output
+components:
+  - type: ONTOLOGY
+    path: ./ontology

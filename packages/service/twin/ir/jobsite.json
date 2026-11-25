@@ -1,0 +1,1619 @@
+{
+  "ontology": {
+    "objectTypes": {
+      "com.example.twin.CrewMember": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Crew Member",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Crew Members",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["memberId"],
+          "propertyTypes": {
+            "memberId": {
+              "apiName": "memberId",
+              "displayMetadata": {
+                "displayName": "Member ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "userId": {
+              "apiName": "userId",
+              "displayMetadata": {
+                "displayName": "User ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "crewId": {
+              "apiName": "crewId",
+              "displayMetadata": {
+                "displayName": "Crew ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "memberId",
+          "apiName": "com.example.twin.CrewMember",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.CrewMember",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.CrewMember",
+                "propertyMapping": {
+                  "memberId": {
+                    "type": "column",
+                    "column": "memberId"
+                  },
+                  "userId": {
+                    "type": "column",
+                    "column": "userId"
+                  },
+                  "crewId": {
+                    "type": "column",
+                    "column": "crewId"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Crew": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Crew",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Crews",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["crewId"],
+          "propertyTypes": {
+            "crewId": {
+              "apiName": "crewId",
+              "displayMetadata": {
+                "displayName": "Crew ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "name": {
+              "apiName": "name",
+              "displayMetadata": {
+                "displayName": "Name",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "name",
+          "apiName": "com.example.twin.Crew",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Crew",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Crew",
+                "propertyMapping": {
+                  "crewId": {
+                    "type": "column",
+                    "column": "crewId"
+                  },
+                  "name": {
+                    "type": "column",
+                    "column": "name"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Jobsite": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Jobsite",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Jobsites",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["jobsiteId"],
+          "propertyTypes": {
+            "jobsiteId": {
+              "apiName": "jobsiteId",
+              "displayMetadata": {
+                "displayName": "Jobsite ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "name": {
+              "apiName": "name",
+              "displayMetadata": {
+                "displayName": "Name",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "budget": {
+              "apiName": "budget",
+              "displayMetadata": {
+                "displayName": "Budget",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "double",
+                "double": {}
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "name",
+          "apiName": "com.example.twin.Jobsite",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Jobsite",
+            "datasource": {
+              "type": "datasetV3",
+              "datasetV3": {
+                "datasetRid": "com.example.twin.Jobsite",
+                "propertyMapping": {
+                  "jobsiteId": {
+                    "type": "column",
+                    "column": "jobsiteId"
+                  },
+                  "name": {
+                    "type": "column",
+                    "column": "name"
+                  },
+                  "budget": {
+                    "type": "column",
+                    "column": "budget"
+                  }
+                },
+                "branchId": "master",
+                "propertySecurityGroups": {
+                  "groups": [
+                    {
+                      "rid": "crew",
+                      "security": {
+                        "type": "granular",
+                        "granular": {
+                          "viewPolicy": {
+                            "granularPolicyCondition": {
+                              "type": "or",
+                              "or": {
+                                "conditions": [
+                                  {
+                                    "type": "comparison",
+                                    "comparison": {
+                                      "operator": "INTERSECTS",
+                                      "left": {
+                                        "type": "userProperty",
+                                        "userProperty": {
+                                          "type": "groupIds",
+                                          "groupIds": {}
+                                        }
+                                      },
+                                      "right": {
+                                        "type": "constant",
+                                        "constant": {
+                                          "type": "strings",
+                                          "strings": ["admin"]
+                                        }
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "comparison",
+                                    "comparison": {
+                                      "left": {
+                                        "type": "property",
+                                        "property": "jobsiteId"
+                                      },
+                                      "operator": "SUBSET_OF",
+                                      "right": {
+                                        "type": "userProperty",
+                                        "userProperty": {
+                                          "type": "userAttributes",
+                                          "userAttributes": {
+                                            "attributeKey": "jobsiteIds"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalMandatory": {
+                              "markings": {},
+                              "assumedMarkings": [],
+                              "assumedMarkingsV2": {}
+                            }
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "primaryKey",
+                        "primaryKey": {}
+                      },
+                      "properties": ["jobsiteId", "name"]
+                    },
+                    {
+                      "rid": "finance",
+                      "security": {
+                        "type": "granular",
+                        "granular": {
+                          "viewPolicy": {
+                            "granularPolicyCondition": {
+                              "type": "comparison",
+                              "comparison": {
+                                "operator": "INTERSECTS",
+                                "left": {
+                                  "type": "userProperty",
+                                  "userProperty": {
+                                    "type": "groupIds",
+                                    "groupIds": {}
+                                  }
+                                },
+                                "right": {
+                                  "type": "constant",
+                                  "constant": {
+                                    "type": "strings",
+                                    "strings": ["admin"]
+                                  }
+                                }
+                              }
+                            },
+                            "additionalMandatory": {
+                              "markings": {},
+                              "assumedMarkings": [],
+                              "assumedMarkingsV2": {}
+                            }
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "property",
+                        "property": {
+                          "name": "finance"
+                        }
+                      },
+                      "properties": ["budget"]
+                    }
+                  ]
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": [],
+          "editsHistory": {
+            "type": "config",
+            "config": {
+              "store": "com.example.twin.Jobsite",
+              "storeAllPreviousProperties": true
+            }
+          }
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.DailyLog": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Daily Log",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Daily Logs",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["logId"],
+          "propertyTypes": {
+            "logId": {
+              "apiName": "logId",
+              "displayMetadata": {
+                "displayName": "Log ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "jobsiteId": {
+              "apiName": "jobsiteId",
+              "displayMetadata": {
+                "displayName": "Jobsite ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "note": {
+              "apiName": "note",
+              "displayMetadata": {
+                "displayName": "Note",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "hours": {
+              "apiName": "hours",
+              "displayMetadata": {
+                "displayName": "Hours",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "double",
+                "double": {}
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "authorId": {
+              "apiName": "authorId",
+              "displayMetadata": {
+                "displayName": "Author ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "note",
+          "apiName": "com.example.twin.DailyLog",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.DailyLog",
+            "datasource": {
+              "type": "datasetV3",
+              "datasetV3": {
+                "datasetRid": "com.example.twin.DailyLog",
+                "propertyMapping": {
+                  "logId": {
+                    "type": "column",
+                    "column": "logId"
+                  },
+                  "jobsiteId": {
+                    "type": "column",
+                    "column": "jobsiteId"
+                  },
+                  "note": {
+                    "type": "column",
+                    "column": "note"
+                  },
+                  "hours": {
+                    "type": "column",
+                    "column": "hours"
+                  },
+                  "authorId": {
+                    "type": "column",
+                    "column": "authorId"
+                  }
+                },
+                "branchId": "master",
+                "propertySecurityGroups": {
+                  "groups": [
+                    {
+                      "rid": "crew",
+                      "security": {
+                        "type": "granular",
+                        "granular": {
+                          "viewPolicy": {
+                            "granularPolicyCondition": {
+                              "type": "or",
+                              "or": {
+                                "conditions": [
+                                  {
+                                    "type": "comparison",
+                                    "comparison": {
+                                      "operator": "INTERSECTS",
+                                      "left": {
+                                        "type": "userProperty",
+                                        "userProperty": {
+                                          "type": "groupIds",
+                                          "groupIds": {}
+                                        }
+                                      },
+                                      "right": {
+                                        "type": "constant",
+                                        "constant": {
+                                          "type": "strings",
+                                          "strings": ["admin"]
+                                        }
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "comparison",
+                                    "comparison": {
+                                      "left": {
+                                        "type": "property",
+                                        "property": "jobsiteId"
+                                      },
+                                      "operator": "SUBSET_OF",
+                                      "right": {
+                                        "type": "userProperty",
+                                        "userProperty": {
+                                          "type": "userAttributes",
+                                          "userAttributes": {
+                                            "attributeKey": "jobsiteIds"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalMandatory": {
+                              "markings": {},
+                              "assumedMarkings": [],
+                              "assumedMarkingsV2": {}
+                            }
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "primaryKey",
+                        "primaryKey": {}
+                      },
+                      "properties": ["logId", "jobsiteId", "note", "hours", "authorId"]
+                    }
+                  ]
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": [],
+          "editsHistory": {
+            "type": "config",
+            "config": {
+              "store": "com.example.twin.DailyLog",
+              "storeAllPreviousProperties": true
+            }
+          }
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      }
+    },
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {
+      "crew-members": {
+        "linkType": {
+          "definition": {
+            "type": "oneToMany",
+            "oneToMany": {
+              "cardinalityHint": "ONE_TO_MANY",
+              "manyToOneLinkMetadata": {
+                "apiName": "crew",
+                "displayMetadata": {
+                  "displayName": "Crew",
+                  "pluralDisplayName": "Crews",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidManySide": "com.example.twin.CrewMember",
+              "objectTypeRidOneSide": "com.example.twin.Crew",
+              "oneToManyLinkMetadata": {
+                "apiName": "members",
+                "displayMetadata": {
+                  "displayName": "Member",
+                  "pluralDisplayName": "Members",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "oneSidePrimaryKeyToManySidePropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "crewId",
+                    "object": "com.example.twin.Crew"
+                  },
+                  "to": {
+                    "apiName": "crewId",
+                    "object": "com.example.twin.CrewMember"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "crew-members",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [],
+        "entityMetadata": {
+          "arePatchesEnabled": true
+        }
+      },
+      "crew-jobsites": {
+        "linkType": {
+          "definition": {
+            "type": "manyToMany",
+            "manyToMany": {
+              "objectTypeAToBLinkMetadata": {
+                "apiName": "jobsites",
+                "displayMetadata": {
+                  "displayName": "Jobsite",
+                  "pluralDisplayName": "Jobsites",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeBToALinkMetadata": {
+                "apiName": "crews",
+                "displayMetadata": {
+                  "displayName": "Crew",
+                  "pluralDisplayName": "Crews",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidA": "com.example.twin.Crew",
+              "objectTypeRidB": "com.example.twin.Jobsite",
+              "objectTypeAPrimaryKeyPropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "crewId",
+                    "object": "com.example.twin.Crew"
+                  },
+                  "to": {
+                    "apiName": "crewId",
+                    "object": "com.example.twin.Crew"
+                  }
+                }
+              ],
+              "objectTypeBPrimaryKeyPropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "jobsiteId",
+                    "object": "com.example.twin.Jobsite"
+                  },
+                  "to": {
+                    "apiName": "jobsiteId",
+                    "object": "com.example.twin.Jobsite"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "crew-jobsites",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [
+          {
+            "datasourceName": "crewJobsites",
+            "datasource": {
+              "type": "dataset",
+              "dataset": {
+                "datasetRid": "link-crewJobsites",
+                "objectTypeAPrimaryKeyMapping": [
+                  {
+                    "property": {
+                      "apiName": "crewId",
+                      "object": "com.example.twin.Crew"
+                    },
+                    "column": "crewId"
+                  }
+                ],
+                "objectTypeBPrimaryKeyMapping": [
+                  {
+                    "property": {
+                      "apiName": "jobsiteId",
+                      "object": "com.example.twin.Jobsite"
+                    },
+                    "column": "jobsiteId"
+                  }
+                ]
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            }
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": false
+        }
+      },
+      "jobsite-daily-logs": {
+        "linkType": {
+          "definition": {
+            "type": "oneToMany",
+            "oneToMany": {
+              "cardinalityHint": "ONE_TO_MANY",
+              "manyToOneLinkMetadata": {
+                "apiName": "jobsite",
+                "displayMetadata": {
+                  "displayName": "Jobsite",
+                  "pluralDisplayName": "Jobsites",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidManySide": "com.example.twin.DailyLog",
+              "objectTypeRidOneSide": "com.example.twin.Jobsite",
+              "oneToManyLinkMetadata": {
+                "apiName": "dailyLogs",
+                "displayMetadata": {
+                  "displayName": "Daily Log",
+                  "pluralDisplayName": "Daily Logs",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "oneSidePrimaryKeyToManySidePropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "jobsiteId",
+                    "object": "com.example.twin.Jobsite"
+                  },
+                  "to": {
+                    "apiName": "jobsiteId",
+                    "object": "com.example.twin.DailyLog"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "jobsite-daily-logs",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [],
+        "entityMetadata": {
+          "arePatchesEnabled": true
+        }
+      }
+    },
+    "actionTypes": {
+      "com.example.twin.create-daily-log": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "addObjectRule",
+                  "addObjectRule": {
+                    "objectTypeId": "com.example.twin.DailyLog",
+                    "propertyValues": {
+                      "logId": {
+                        "type": "parameterId",
+                        "parameterId": "logId"
+                      },
+                      "jobsiteId": {
+                        "type": "parameterId",
+                        "parameterId": "jobsiteId"
+                      },
+                      "note": {
+                        "type": "parameterId",
+                        "parameterId": "note"
+                      },
+                      "hours": {
+                        "type": "parameterId",
+                        "parameterId": "hours"
+                      },
+                      "authorId": {
+                        "type": "parameterId",
+                        "parameterId": "authorId"
+                      }
+                    },
+                    "structFieldValues": {}
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "logId": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "jobsiteId": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "note": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "hours": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "numericInput",
+                        "numericInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "range",
+                        "range": {
+                          "type": "range",
+                          "range": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "authorId": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "userDropdown",
+                        "userDropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "user",
+                        "user": {
+                          "type": "user",
+                          "user": {
+                            "filter": []
+                          }
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.create-daily-log",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Create Daily Log",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["authorId", "logId", "jobsiteId", "note", "hours"],
+            "formContentOrdering": [],
+            "parameters": {
+              "logId": {
+                "id": "logId",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Log ID",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "jobsiteId": {
+                "id": "jobsiteId",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Jobsite ID",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "note": {
+                "id": "note",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Note",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "hours": {
+                "id": "hours",
+                "type": {
+                  "type": "double",
+                  "double": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Hours",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "authorId": {
+                "id": "authorId",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Author ID",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.DailyLog"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.edit-jobsite": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "modifyObjectRule",
+                  "modifyObjectRule": {
+                    "objectToModify": "objectToModifyParameter",
+                    "propertyValues": {
+                      "name": {
+                        "type": "parameterId",
+                        "parameterId": "name"
+                      },
+                      "budget": {
+                        "type": "parameterId",
+                        "parameterId": "budget"
+                      }
+                    },
+                    "structFieldValues": {}
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "objectToModifyParameter": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "name": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      },
+                      "prefill": {
+                        "type": "objectParameterPropertyValue",
+                        "objectParameterPropertyValue": {
+                          "parameterId": "objectToModifyParameter",
+                          "propertyTypeId": "name"
+                        }
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "budget": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "numericInput",
+                        "numericInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      },
+                      "prefill": {
+                        "type": "objectParameterPropertyValue",
+                        "objectParameterPropertyValue": {
+                          "parameterId": "objectToModifyParameter",
+                          "propertyTypeId": "budget"
+                        }
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "range",
+                        "range": {
+                          "type": "range",
+                          "range": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.edit-jobsite",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Modify Jobsite",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["objectToModifyParameter", "name", "budget"],
+            "formContentOrdering": [],
+            "parameters": {
+              "objectToModifyParameter": {
+                "id": "objectToModifyParameter",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.Jobsite"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Modify object",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "name": {
+                "id": "name",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Name",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "budget": {
+                "id": "budget",
+                "type": {
+                  "type": "double",
+                  "double": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Budget",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.Jobsite"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      }
+    },
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "importedOntology": {
+    "objectTypes": {},
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {},
+    "actionTypes": {},
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "valueTypes": {
+    "valueTypes": []
+  },
+  "importedValueTypes": {
+    "valueTypes": []
+  }
+}

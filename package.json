@@ -1,0 +1,59 @@
+{
+  "name": "ontos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ontos: an open-source Ontology service and CLI for PostgreSQL and OSDK.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebragas/ontos.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "format": "bun fmt",
+    "format:check": "bun fmt --check",
+    "typecheck": "bun check --no-script -p . && bun check --no-script -p packages/service && bun check --no-script -p packages/cli",
+    "lint": "oxlint --type-aware --report-unused-disable-directives-severity=error",
+    "knip": "knip",
+    "lint:dropped": "./tools/fallible/dropped-call.ts",
+    "test:unit": "vitest run --project unit --testTimeout=15000",
+    "test:mcp": "vitest run --project mcp --testTimeout=60000",
+    "test": "bun run test:unit && bun run test:mcp",
+    "test:sql": "vitest run --project sql --testTimeout=30000 --hookTimeout=30000 --exclude 'tools/ops/restore-ontology-*.sql.test.ts'",
+    "test:sql:all": "vitest run --project sql --testTimeout=30000 --hookTimeout=30000",
+    "test:changed": "vitest run --changed origin/main --project unit --project mcp --project sql --testTimeout=30000 --hookTimeout=30000 --exclude 'tools/ops/restore-ontology-*.sql.test.ts'",
+    "check": "bun run format:check && bun run lint && bun run typecheck && bun run lint:dropped && bun run knip && bun run test:unit",
+    "check:pkg": "publint packages/service && publint packages/cli && attw --pack --profile esm-only packages/service && attw --pack --profile esm-only packages/cli",
+    "build": "bun run --cwd packages/service build && bun run --cwd packages/cli build"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@changesets/cli": "3.0.3",
+    "@interfere/landmines": "0.3.1",
+    "@osdk/cli": "0.120.0",
+    "@osdk/client.unstable": "2.92.0",
+    "@osdk/maker": "0.91.0",
+    "@osdk/maker-experimental": "0.87.0",
+    "@oxlint/plugins": "1.94.0",
+    "@types/node": "26.6.6",
+    "@types/pg": "8.23.1",
+    "knip": "6.47.0",
+    "msw": "2.15.0",
+    "oxlint": "1.94.0",
+    "oxlint-tsgolint": "7.0.2008",
+    "pg": "8.23.1",
+    "publint": "0.3.25",
+    "typescript": "6.0.3",
+    "vitest": "5.1.1"
+  },
+  "overrides": {
+    "zod": "4.6.7",
+    "ajv@8.13.0": "8.18.0"
+  }
+}

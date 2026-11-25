@@ -1,0 +1,2362 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: 2 group-bys on 1 field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "MultipleGroupByOnFieldNotSupported",
+    "parameters": {
+      "duplicateFields": [
+        "phase",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a defaultValue and includeNullValues true 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "DefaultAndNullGroupsNotSupported",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a defaultValue and includeNullValues true on an unknown Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "DefaultAndNullGroupsNotSupported",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a defaultValue that is not a string 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a duration of 1 hour on a Date 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidDurationGroupByValue",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a duration of 2 weeks 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidDurationGroupByValue",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a duration of an unknown unit 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a duration on a String 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyType",
+    "parameters": {
+      "property": "name",
+      "propertyBaseType": "String",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a duration value that is not a number 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a group-by of an unknown type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a group-by that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a metric with a direction and 2 group-bys 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidAggregationOrdering",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a metric with a direction and includeNullValues 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidAggregationOrderingWithNullValues",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a metric with a direction, 2 group-bys, and includeNullValues 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidAggregationOrdering",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a range bound of the wrong base type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyValue",
+    "parameters": {
+      "property": "employees",
+      "propertyBaseType": "Integer",
+      "propertyValue": "low",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: a range that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: an exact group-by on a struct Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "exact group-by on a struct Property",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: an exact group-by on an array Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "exact group-by on an array Property",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: an exact group-by with no field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: fixedWidth 0 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: fixedWidth on a String 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyType",
+    "parameters": {
+      "property": "name",
+      "propertyBaseType": "String",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: includeNullValues that is not a Boolean 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: maxGroupCount 0 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#group-bys > aggregate: ranges that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: a metric direction that is not ASC or DESC 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "aggregation",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: a metric name that is not a string 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "aggregation",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: a metric of an unknown type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "aggregation",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: a metric on a struct field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "structField",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: a metric on an unknown Property 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "missing",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: a metric that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "aggregation",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: a metric with no field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "aggregation",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: approximatePercentile 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "approximatePercentile",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: avg on a Date 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "metric": "avg",
+      "property": "founded",
+      "propertyBaseType": "LocalDate",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: sum on a String 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "metric": "sum",
+      "property": "name",
+      "propertyBaseType": "String",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#metrics > aggregate: sum on a struct Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "sum on a struct Property",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#response > aggregate: a body that is a JSON array 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "body",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#response > aggregate: accuracy that is not REQUIRE_ACCURATE or ALLOW_APPROXIMATE 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "accuracy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#response > aggregate: aggregation that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "aggregation",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/aggregations#response > aggregate: groupBy that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "groupBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > aggregate: an aggregate of an unknown Object Type 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Missing",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: a base member of an unknown Object Type 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Missing",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: a base member with no objectType 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "objectSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: a member of a type outside V1 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "static",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: a searchAround of an unknown Link side 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "LinkTypeNotFound",
+    "parameters": {
+      "linkType": "partners",
+      "objectType": "com.example.twin.Account",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: a searchAround with no link 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "objectSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: a subtract with an unknown Object Type in its second set 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Missing",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: a union of no set 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "objectSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: a union with no objectSets list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "objectSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: an intersect of 2 Object Types 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "objectSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: an objectSet that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "objectSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#members > loadObjects: no objectSet 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "objectSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: a select entry that is not a string 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "select",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: a select of 1 known and 2 unknown Properties 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "missing",
+        "gone",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: a selectV2 entry of an unknown type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "selectV2",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: a selectV2 entry that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "selectV2",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: a selectV2 load level extractMainValue 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "extractMainValue",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: a selectV2 load level of an unknown type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "selectV2",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: a selectV2 property with no apiName 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "selectV2",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: a selectV2 structField 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "structField",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: select that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "select",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#objects-in-a-page > loadObjects: selectV2 that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "selectV2",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: an orderBy direction that is not asc or desc 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "orderBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: an orderBy entry with no field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "orderBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: an orderBy of 1 Property 2 times 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "DuplicateOrderBy",
+    "parameters": {
+      "properties": [
+        "name",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: an orderBy of a struct Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "orderBy on a struct Property",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: an orderBy of an array Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "orderBy on an array Property",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: an orderBy of an unknown Property 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "missing",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: orderBy fields that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "orderBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: orderBy of an unknown orderType 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "orderBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: orderBy of the type relevance 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "relevance",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#order > loadObjects: orderBy that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "orderBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: a body that is a JSON array 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "body",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: a pageToken of another request body 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageToken",
+    "parameters": {
+      "pageToken": "eyJ2YWx1ZXMiOlsiYWNjLTEiXSwiY2hlY2tzdW0iOiJhbm90aGVyIGJvZHkiLCJleHBpcmVzIjo0MTAyNDQ0ODAwMDAwfQ",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: a pageToken that the service did not make 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageToken",
+    "parameters": {
+      "pageToken": "garbage",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: defaultLoadLevel applyReducers 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "applyReducers",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: defaultLoadLevel of an unknown type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "defaultLoadLevel",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: defaultLoadLevel that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "defaultLoadLevel",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: excludeRid that is not a Boolean 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "excludeRid",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: no body 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "body",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: pageSize 0 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageSize",
+    "parameters": {
+      "pageSize": 0,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: pageSize that is not a whole number 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "pageSize",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: pageToken that is not a string 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "pageToken",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#paging > loadObjects: snapshot that is not a Boolean 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "snapshot",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: 9 and 8 words in 2 filter members of 1 tree 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "maximum": 16,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: 17 words in 1 query 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "maximum": 16,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: a Property that is not Searchable 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "PropertiesNotSearchable",
+    "parameters": {
+      "propertyApiNames": [
+        "note",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: a Searchable Property that is not a String 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyType",
+    "parameters": {
+      "property": "employees",
+      "propertyBaseType": "Integer",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: a struct field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "PropertiesNotSearchable",
+    "parameters": {
+      "propertyApiNames": [
+        "relationship.label",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: a value of 257 characters 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "maximum": 256,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: a value that is not a string 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyValue",
+    "parameters": {
+      "property": "name",
+      "propertyBaseType": "String",
+      "propertyValue": 5,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: an analyzerSelection of an unknown name 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "analyzerSelection": "STANDARD",
+        "field": "name",
+        "type": "containsAnyTerm",
+        "value": "acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: analyzerSelection PHONETIC_ANALYZER 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "UnsupportedAnalyzerSelection",
+    "parameters": {
+      "analyzerSelection": "PHONETIC_ANALYZER",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: fuzzy that is not a Boolean 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "field": "name",
+        "fuzzy": "yes",
+        "type": "containsAnyTerm",
+        "value": "acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: fuzzy true 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "PropertyFiltersNotSupported",
+    "parameters": {
+      "property": "name",
+      "propertyFilters": [
+        "fuzzy",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: interval 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "PropertyFiltersNotSupported",
+    "parameters": {
+      "property": "name",
+      "propertyFilters": [
+        "interval",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#text-search > loadObjects: regex 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "PropertyFiltersNotSupported",
+    "parameters": {
+      "property": "name",
+      "propertyFilters": [
+        "regex",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > aggregate: a refused clause at the deepest of 3 levels of and and or in the objectSet filter 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyValue",
+    "parameters": {
+      "property": "employees",
+      "propertyBaseType": "Integer",
+      "propertyValue": "many",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a property propertyIdentifier with no apiName 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "propertyIdentifier": {
+          "type": "property",
+        },
+        "type": "eq",
+        "value": "Acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a propertyIdentifier of an unknown type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "propertyIdentifier": {
+          "type": "rid",
+        },
+        "type": "eq",
+        "value": "Acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a propertyIdentifier that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "propertyIdentifier": "name",
+        "type": "eq",
+        "value": "Acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a query on an unknown Property 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "missing",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a query outside V1 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "PropertyFiltersNotSupported",
+    "parameters": {
+      "property": "name",
+      "propertyFilters": [
+        "withinDistanceOf",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a query with both field and propertyIdentifier 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "field": "name",
+        "propertyIdentifier": {
+          "apiName": "name",
+          "type": "property",
+        },
+        "type": "eq",
+        "value": "Acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a query with no field and no propertyIdentifier 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "type": "eq",
+        "value": "Acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a refused clause at the deepest of 3 levels of and and or 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyValue",
+    "parameters": {
+      "property": "employees",
+      "propertyBaseType": "Integer",
+      "propertyValue": "many",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a structField of a Property that is not a struct 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "name.label",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a structField of an unknown field 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.StructProbe",
+      "properties": [
+        "relationship.missing",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a structField with no names 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "propertyIdentifier": {
+          "type": "structField",
+        },
+        "type": "eq",
+        "value": "Acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a where that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": 5,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: a where with no type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "field": "name",
+        "value": "Acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: an and with a value that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "type": "and",
+        "value": {
+          "field": "name",
+          "type": "eq",
+          "value": "Acme",
+        },
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: contains on a Property that is not an array 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyType",
+    "parameters": {
+      "property": "name",
+      "propertyBaseType": "String",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: eq on an array Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyType",
+    "parameters": {
+      "property": "tags",
+      "propertyBaseType": "Array<String>",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: eq with a value of the wrong base type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyValue",
+    "parameters": {
+      "property": "employees",
+      "propertyBaseType": "Integer",
+      "propertyValue": "many",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: gt on a Boolean 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyType",
+    "parameters": {
+      "property": "active",
+      "propertyBaseType": "Boolean",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: in with a value that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "field": "name",
+        "type": "in",
+        "value": "Acme",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: isNull with a value that is not a Boolean 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "where",
+      "query": {
+        "field": "phase",
+        "type": "isNull",
+        "value": "yes",
+      },
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`ontology/ontology-sdk/object-sets#where-clauses > loadObjects: not of a query on an unknown Property 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "missing",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > aggregate: 2 group-bys on 1 field and a metric with a direction 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "MultipleGroupByOnFieldNotSupported",
+    "parameters": {
+      "duplicateFields": [
+        "phase",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > aggregate: a refused group-by at entry 1 and a refused metric at entry 2 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "aggregation",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > aggregate: accuracy that is not REQUIRE_ACCURATE or ALLOW_APPROXIMATE and an unknown Object Type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "accuracy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > aggregate: accuracy, aggregation, and groupBy, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "accuracy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > aggregate: aggregation and groupBy, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "aggregation",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > aggregate: an unknown Object Type and a metric of an unknown type 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Missing",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: a filter of an unknown Object Type with a refused where 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Missing",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: a searchAround of an unknown Object Type with no link 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Missing",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: an and of 2 refused clauses 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "missing",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: an unknown Object Type, an unknown select, an unknown orderBy, and a pageToken that the service did not make 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Missing",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: an unknown orderBy and a pageToken that the service did not make 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "gone",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: an unknown select, an unknown orderBy, and a pageToken that the service did not make 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "PropertiesNotFound",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "properties": [
+        "missing",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: excludeRid that is not a Boolean and an unknown Object Type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "excludeRid",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: the fields of the body from defaultLoadLevel on, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "defaultLoadLevel",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: the fields of the body from excludeRid on, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "excludeRid",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: the fields of the body from orderBy on, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "orderBy",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: the fields of the body from pageSize on, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageSize",
+    "parameters": {
+      "pageSize": 0,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: the fields of the body from pageToken on, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "pageToken",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: the fields of the body from select on, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "select",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: the fields of the body from selectV2 on, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "selectV2",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > loadObjects: the fields of the body from snapshot on, each refused 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "field": "snapshot",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;

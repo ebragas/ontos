@@ -1,0 +1,44 @@
+// Dead-code gate: `bun run knip` fails on an unused file, export, type, or dependency. CI runs it in the verify
+// job. It runs the default mode, because the production mode reports each export that only a test uses. Each ignore
+// below names 1 file or 1 package, with its reason.
+{
+  "$schema": "https://unpkg.com/knip@6.45.1/schema-jsonc.json",
+  "workspaces": {
+    // Only the code of this repo.
+    ".": {
+      "project": ["tools/**/*.{ts,mjs}", "test/**/*.ts"],
+      "vitest": { "entry": ["tools/**/*.test.ts"] },
+      // Provides the `osdk` binary for CLI generate-osdk tests.
+      "ignoreDependencies": ["@osdk/cli"],
+    },
+    "packages/service": {
+      // The Vercel adapter, the compiled package entrypoints bundled by build.ts, and the files that tests and the CLI
+      // load by path at run time. Knip finds src/node.ts through the "start" script and build.ts through "build".
+      "entry": [
+        "api/index.ts",
+        "src/index.ts",
+        "src/handler/clientConfig.ts",
+        "src/publish/index.ts",
+        "src/publish/convert.ts",
+        "testing/index.ts",
+        "twin/ontology/0.4.0/ontology.ts",
+        "twin/ontology/0.6.3/ontology.ts",
+        "twin/ontology/0.7.0/ontology.ts",
+        "twin/ontology/attributes/ontology.ts",
+        "twin/ontology/derived/ontology.ts",
+        "twin/ontology/jobsite/ontology.ts",
+        "twin/ontology/policies/ontology.ts",
+        "twin/ontology/property-policies/ontology.ts",
+        "twin/ontology/uniqueness/ontology.ts",
+        "twin/ontology/value-types/ontology.ts",
+        "twin/functions/src/closeAccount.ts",
+        "twin/functions/src/probeVersionCheck.ts",
+        "twin/functions/src/setRelationship.ts",
+      ],
+      "project": ["api/**/*.ts", "src/**/*.ts", "twin/**/*.ts"],
+    },
+    "packages/cli": {
+      "project": ["src/**/*.ts"],
+    },
+  },
+}

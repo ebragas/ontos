@@ -1,0 +1,3140 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`install > a caller with no install permission 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 403,
+}
+`;
+
+exports[`install > a product that is not stored 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "OntologyService:ProductNotFound",
+    "parameters": {
+      "product": "twin",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`install > an API name that the Organization has 1`] = `
+{
+  "body": {
+    "errorCode": "CONFLICT",
+    "errorName": "OntologyService:ApiNameAlreadyExists",
+    "parameters": {
+      "apiName": "twin",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 409,
+}
+`;
+
+exports[`install > an API name with a capital 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "apiName",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`install > no API name 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "apiName",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`install > no display name 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "displayName",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`install > no product 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "product",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish and install: the registry has no product versions table > a publish 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "faults": [
+    {
+      "message": "relation "ontology_registry.product_versions" does not exist",
+      "name": "error",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 500,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "DatabaseError",
+        "sentry.op": "db.query",
+        "sql.template": "SELECT product FROM ontology_registry.product_versions WHERE product <> $1 LIMIT ?",
+      },
+      "name": "sql",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the registry has no product versions table > an install 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "faults": [
+    {
+      "message": "relation "ontology_registry.product_versions" does not exist",
+      "name": "error",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "person",
+        "http.status_code": 500,
+        "route.access": "organization",
+        "route.key": "POST /api/ontology-service/v1/ontologies",
+        "sentry.op": "http.server",
+        "user.id": "user_01HR01E61646d696e",
+      },
+      "name": "POST /api/ontology-service/v1/ontologies",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "DatabaseError",
+        "sentry.op": "db.query",
+        "sql.held": true,
+        "sql.template": "LOCK TABLE ontology_registry.product_versions IN EXCLUSIVE MODE",
+      },
+      "name": "sql",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish of a grants file with a problem 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INVALID_ARGUMENT",
+      "errorName": "Default:InvalidArgument",
+      "parameters": {
+        "part": "grants",
+        "problems": [
+          "The Object Type com.example.twin.Account names no permission.",
+          "The key Unknown of objectTypes names no Object Type of the IR.",
+        ],
+      },
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 400,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 400,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish of no body 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INVALID_ARGUMENT",
+      "errorName": "Default:InvalidArgument",
+      "parameters": {
+        "part": "product",
+      },
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 400,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 400,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish that an installed Ontology refuses 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INVALID_ARGUMENT",
+      "errorName": "Default:InvalidArgument",
+      "parameters": {
+        "change": "Create required parameter notes of Action Type com.example.twin.create-account",
+        "requiredStatus": "deprecated",
+        "status": "active",
+      },
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 400,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 400,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "Default:InvalidArgument",
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish whose RoleInUse check cannot read the Organizations 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "OntologyService:WorkosUnavailable",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "10",
+    },
+    "status": 503,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 503,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "http.status_code": 500,
+        "sentry.op": "http.client",
+        "workos.read": "organizations page",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish whose RoleInUse check finds a member of a dropped role 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "CONFLICT",
+      "errorName": "OntologyService:RoleInUse",
+      "parameters": {
+        "role": "viewer",
+      },
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 409,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 409,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:RoleInUse",
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "organizations page",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "memberships page",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish whose WorkOS permission read fails 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "OntologyService:WorkosUnavailable",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "10",
+    },
+    "status": 503,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 503,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "http.status_code": 500,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish whose WorkOS write fails 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "OntologyService:WorkosUnavailable",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "10",
+    },
+    "status": 503,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 503,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "sentry.op": "function",
+      },
+      "name": "publish workos steps",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "http.status_code": 500,
+        "sentry.op": "http.client",
+        "workos.write": "createPermission",
+      },
+      "name": "workos write",
+      "parent": "publish workos steps",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish reconcile",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish whose reconcile cannot read WorkOS 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "OntologyService:WorkosUnavailable",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "10",
+    },
+    "status": 503,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 503,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "sentry.op": "function",
+      },
+      "name": "publish workos steps",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "http.status_code": 500,
+        "sentry.op": "http.client",
+        "workos.write": "createPermission",
+      },
+      "name": "workos write",
+      "parent": "publish workos steps",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish reconcile",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a publish with a WorkOS step that has a defect 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 500,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "TypeError",
+        "sentry.op": "function",
+      },
+      "name": "publish workos steps",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish reconcile",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a validateOnly publish 1`] = `
+{
+  "answer": {
+    "body": "answered",
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 200,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "check",
+        "http.status_code": 200,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:pull_request",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > a validateOnly publish of a change to an installed Object Type 1`] = `
+{
+  "answer": {
+    "body": "answered",
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 200,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "check",
+        "http.status_code": 200,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:pull_request",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > an applied publish 1`] = `
+{
+  "answer": {
+    "body": "answered",
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 200,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "publish",
+        "http.status_code": 200,
+        "route.access": "publish",
+        "route.key": "POST /api/ontology-service/v1/publish",
+        "sentry.op": "http.server",
+        "user.id": "repo:example/test-app:environment:publish-staging",
+      },
+      "name": "POST /api/ontology-service/v1/publish",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish read",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish plan",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish workos",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish workos",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish workos steps",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 201,
+        "sentry.op": "http.client",
+        "workos.write": "createPermission",
+      },
+      "name": "workos write",
+      "parent": "publish workos steps",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 201,
+        "sentry.op": "http.client",
+        "workos.write": "createPermission",
+      },
+      "name": "workos write",
+      "parent": "publish workos steps",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.write": "setDescription",
+      },
+      "name": "workos write",
+      "parent": "publish workos steps",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.write": "setDescription",
+      },
+      "name": "workos write",
+      "parent": "publish workos steps",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish store",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "lock wait",
+      "parent": "publish store",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "function",
+      },
+      "name": "publish reconcile",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "permissions",
+      },
+      "name": "workos read",
+      "parent": "publish reconcile",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "roles",
+      },
+      "name": "workos read",
+      "parent": "publish reconcile",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 201,
+        "sentry.op": "http.client",
+        "workos.write": "createRole",
+      },
+      "name": "workos write",
+      "parent": "publish reconcile",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.write": "setPermissions",
+      },
+      "name": "workos write",
+      "parent": "publish reconcile",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 201,
+        "sentry.op": "http.client",
+        "workos.write": "createRole",
+      },
+      "name": "workos write",
+      "parent": "publish reconcile",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.write": "setPermissions",
+      },
+      "name": "workos write",
+      "parent": "publish reconcile",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/publish",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > an install 1`] = `
+{
+  "answer": {
+    "body": "answered",
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 200,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "person",
+        "http.status_code": 200,
+        "route.access": "organization",
+        "route.key": "POST /api/ontology-service/v1/ontologies",
+        "sentry.op": "http.server",
+        "user.id": "user_01HR01E61646d696e",
+      },
+      "name": "POST /api/ontology-service/v1/ontologies",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "membership",
+      },
+      "name": "workos read",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "role",
+      },
+      "name": "workos read",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > an install of a caller with no permission 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "PERMISSION_DENIED",
+      "errorName": "Default:PermissionDenied",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 403,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "person",
+        "http.status_code": 403,
+        "route.access": "organization",
+        "route.key": "POST /api/ontology-service/v1/ontologies",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/ontology-service/v1/ontologies",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish and install: the spans > an install that the product refuses 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "NOT_FOUND",
+      "errorName": "OntologyService:ProductNotFound",
+      "parameters": {
+        "product": "twin",
+      },
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 404,
+  },
+  "spans": [
+    {
+      "attributes": {
+        "caller.kind": "person",
+        "http.status_code": 404,
+        "route.access": "organization",
+        "route.key": "POST /api/ontology-service/v1/ontologies",
+        "sentry.op": "http.server",
+        "user.id": "user_01HR01E61646d696e",
+      },
+      "name": "POST /api/ontology-service/v1/ontologies",
+      "parent": null,
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "membership",
+      },
+      "name": "workos read",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "role",
+      },
+      "name": "workos read",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "parent": "POST /api/ontology-service/v1/ontologies",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+}
+`;
+
+exports[`publish: WorkOS > WorkOS fails after the version is stored 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "OntologyService:WorkosUnavailable",
+      "parameters": {
+        "reconciled": false,
+        "transactionMs": "<ms>",
+        "version": 1,
+      },
+    },
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "10",
+    },
+    "status": 503,
+  },
+  "versions": [
+    {
+      "version": 1,
+    },
+  ],
+}
+`;
+
+exports[`publish: WorkOS > WorkOS fails before the version is stored 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "OntologyService:WorkosUnavailable",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "10",
+    },
+    "status": 503,
+  },
+  "versions": [],
+}
+`;
+
+exports[`publish: WorkOS > a default role that a member holds is dropped 1`] = `
+{
+  "body": {
+    "errorCode": "CONFLICT",
+    "errorName": "OntologyService:RoleInUse",
+    "parameters": {
+      "role": "viewer",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 409,
+}
+`;
+
+exports[`publish: WorkOS > the insert of the product version has a defect, then the reconcile has a defect 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {
+        "transactionMs": "<ms>",
+      },
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "faults": [
+    {
+      "cause": {
+        "message": "The test makes the insert fail.",
+        "name": "TypeError",
+      },
+      "message": "Default:Internal",
+      "name": "ApiError",
+    },
+  ],
+  "versions": [],
+}
+`;
+
+exports[`publish: WorkOS > the reconcile fails with an error that is not a WorkOS failure 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {
+      "transactionMs": "<ms>",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 500,
+}
+`;
+
+exports[`publish: WorkOS > the store waits for the lock of the registry row, then the reconcile has a defect 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "CONFLICT",
+      "errorName": "PublishLockTimeout",
+      "parameters": {
+        "change": "lock",
+        "changed": false,
+        "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+        "phase": "registry",
+        "table": "ontology_registry.ontologies",
+        "transactionMs": "<ms>",
+      },
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 409,
+  },
+  "faults": [],
+  "versions": [
+    {
+      "version": 1,
+    },
+  ],
+}
+`;
+
+exports[`publish: faults > the apply of a WorkOS step has a defect 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "faults": [
+    {
+      "message": "The test makes the apply fail.",
+      "name": "TypeError",
+    },
+  ],
+  "versions": [],
+}
+`;
+
+exports[`publish: faults > the check of an installation has a defect 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "faults": [
+    {
+      "cause": {
+        "message": "The test makes the check fail.",
+        "name": "TypeError",
+      },
+      "message": "Default:Internal",
+      "name": "ApiError",
+    },
+  ],
+  "versions": [
+    {
+      "version": 1,
+    },
+  ],
+}
+`;
+
+exports[`publish: faults > the member roles of WorkOS have a defect 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "faults": [
+    {
+      "message": "The test makes the member roles fail.",
+      "name": "TypeError",
+    },
+  ],
+}
+`;
+
+exports[`publish: faults > the newest stored version does not compile 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "faults": [
+    {
+      "message": "The IR field ontology.objectTypes is not an object.",
+      "name": "CompileError",
+    },
+  ],
+  "versions": [
+    {
+      "version": 1,
+    },
+  ],
+}
+`;
+
+exports[`publish: faults > the read of WorkOS before the store has a defect 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "headers": {
+      "content-type": "application/json",
+    },
+    "status": 500,
+  },
+  "faults": [
+    {
+      "message": "The test makes the read fail.",
+      "name": "TypeError",
+    },
+  ],
+  "versions": [],
+}
+`;
+
+exports[`publish: the Action Types and the Link Types > a side of a Link Type that is renamed while it is active 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Rename Link side engagements to workOrders of Link Type accountToEngagements",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the Action Types and the Link Types > an Action Type that gets a required parameter while it is active 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Create required parameter notes of Action Type com.example.twin.create-account",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the Action Types and the Link Types > an Action Type that loses a parameter while it is active 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete parameter notes of Action Type com.example.twin.create-account",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > Functions that are not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "functions",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > Functions with no bundle 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "functions",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > Functions with no discovered list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "functions",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > a body that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "product",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > a caller that is a person 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 403,
+}
+`;
+
+exports[`publish: the request body > a discovered Function with no locator 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "functions",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > a grants file of v2 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "grants",
+      "problems": [
+        "The grants file has the key version. Its keys are permissions, objectTypes, actionTypes, defaultRoles, queryTypes, and personAttributes.",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > a schema migration outside V1 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "Cast property to new type",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > a schema migration that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "schemaMigrations",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > a schema migration with no field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "schemaMigrations",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > a schema migration with no type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "schemaMigrations",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > an IR with an Interface 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "The IR has the Interface com.example.twin.Asset. V1 has no Interfaces.",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > an IR with no Object Types 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "ir",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > an OSDK set that no release lists 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "listedOsdkSets": [
+        {
+          "name": "client-2.92.0",
+          "packages": {
+            "@osdk/cli": "0.120.0",
+            "@osdk/client": "2.92.0",
+            "@osdk/functions": "1.30.0",
+            "@osdk/maker": "0.91.0",
+            "@osdk/maker-experimental": "0.87.0",
+          },
+          "platformPackages": {
+            "@osdk/foundry.admin": "2.87.0",
+            "@osdk/foundry.ontologies": "2.87.0",
+          },
+        },
+      ],
+      "packages": [
+        "@osdk/maker",
+        "@osdk/maker-experimental",
+        "@osdk/client",
+        "@osdk/cli",
+        "@osdk/functions",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > an OSDK set with a version that is not a string 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "osdkSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > an empty product 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "product",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > an unknown schema migration 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "Schema migration frobnicate",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > grants that name an unknown Object Type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "grants",
+      "problems": [
+        "The Object Type com.example.twin.Account names no permission.",
+        "The key Unknown of objectTypes names no Object Type of the IR.",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > no IR 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "ir",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > no OSDK set 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "osdkSet",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > no grants 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "grants",
+      "problems": [
+        "The grants file is not a JSON object.",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > no product 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "product",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > no schema migrations 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "schemaMigrations",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > no validateOnly 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "validateOnly",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the request body > schema migrations that are not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "schemaMigrations",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a Link Type that is deleted while it is active 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete Link Type accountToEngagements",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a Property that is deleted while it is active 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete Property notes of Object Type com.example.twin.Account",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a Property that is deleted with values 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete Property notes of Object Type com.example.twin.Account",
+      "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+      "schemaMigrations": [
+        "dropProperty",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a Property whose base type changes while it is active 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Change the base type of Property notes of Object Type com.example.twin.Account",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a Property whose base type changes with values 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Change the base type of Property notes of Object Type com.example.twin.Account",
+      "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+      "schemaMigrations": [
+        "dropProperty",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a primary key change with Objects 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Change the primary key of Object Type com.example.twin.Account",
+      "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+      "schemaMigrations": [
+        "dropAllPatches",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a required Property that is new, with Objects 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "badObjects": 1,
+      "change": "Create Property must of Object Type com.example.twin.Account",
+      "objectType": "com.example.twin.Account",
+      "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+      "primaryKeys": [
+        "a1",
+      ],
+      "property": "must",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a schema migration that moves 2 Properties to 1 target 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Move Property b to c of Object Type com.example.twin.Account",
+      "target": "c",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a schema migration that moves an active Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Move Property notes to renamed of Object Type com.example.twin.Account",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a schema migration that moves the primary key 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Move Property accountId to code of Object Type com.example.twin.Account",
+      "primaryKey": "accountId",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > a struct field that is deleted with values 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete struct field flag of Property measures of Object Type com.example.twin.StructProbe",
+      "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+      "schemaMigrations": [
+        "dropProperty",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > an Action Type that is deleted while it is active 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete Action Type com.example.twin.create-account",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > an Object Type that is deleted while it is active 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete Object Type com.example.twin.Engagement",
+      "requiredStatus": "deprecated",
+      "status": "active",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the schema migrations and the edge rules > an Object Type that is deleted with Objects 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete Object Type com.example.twin.Engagement",
+      "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+      "schemaMigrations": [
+        "dropAllPatches",
+      ],
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the stored versions > 2 Object Types with 1 table name 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "apiNames": [
+        "com.example.twin.Account",
+        "com.example.twin.ACCOUNT",
+      ],
+      "name": "account",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the stored versions > 2 Properties with 1 column name 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "apiNames": [
+        "customerID",
+        "customerId",
+      ],
+      "name": "customer_id",
+      "objectType": "com.example.twin.Account",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the stored versions > a Property with a reserved column name 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "objectType": "com.example.twin.Account",
+      "property": "ctid",
+      "reserved": "ctid",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the stored versions > a name that an earlier version deleted 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Create Object Type com.example.twin.Engagement",
+      "deletedInVersion": 2,
+      "reservedApiName": "com.example.twin.Engagement",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the stored versions > a table with more than 1,600 columns 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "change": "Delete Property a0 of Object Type com.example.twin.Account",
+      "columns": 2004,
+      "maxColumns": 1600,
+      "objectType": "com.example.twin.Account",
+      "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the stored versions > a version stored while the publish waited for the lock 1`] = `
+{
+  "body": {
+    "errorCode": "CONFLICT",
+    "errorName": "PublishLockTimeout",
+    "parameters": {
+      "changed": false,
+      "phase": "version",
+      "table": "ontology_registry.product_versions",
+      "transactionMs": "<ms>",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 409,
+}
+`;
+
+exports[`publish: the stored versions > an installation that is not on the newest version 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {
+      "ontologyRid": "ri.ontology.main.ontology.<uuid>",
+      "transactionMs": "<ms>",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 500,
+}
+`;
+
+exports[`publish: the stored versions > another Ontology RID than the stored one 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "product": "twin",
+      "productRid": "ri.ontology.main.ontology.<uuid>",
+      "storedProductRid": "ri.ontology.main.ontology.<uuid>",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`publish: the stored versions > another product than the stored one 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "part": "product",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`remap > WorkOS that answers with no Organization ID 1`] = `
+{
+  "exitCode": 1,
+  "stderr": "WorkOS answered 500 for the owner org_01TEST0RG00000000000000001, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": [],
+}
+`;
+
+exports[`remap > WorkOS that cannot be reached 1`] = `
+{
+  "exitCode": 1,
+  "stderr": "WorkOS could not be reached for the owner org_01TEST0RG00000000000000001 (ECONNREFUSED). The remap changed nothing.
+",
+  "stdout": [],
+}
+`;
+
+exports[`remap > a lock wait that Postgres refuses 1`] = `
+{
+  "exitCode": 1,
+  "stderr": "The remap failed with the database error 22023. Its result is not known, and a repeat is safe.
+",
+  "stdout": [],
+}
+`;
+
+exports[`remap > a missing variable 1`] = `
+{
+  "exitCode": 1,
+  "stderr": "The remap entry reads DATABASE_URL_DIRECT, WORKOS_API_KEY, and NEON_BRANCH_ID from the environment. Missing: NEON_BRANCH_ID.
+",
+  "stdout": [],
+}
+`;
+
+exports[`restore > a drop of a schema with another form 1`] = `
+{
+  "gave": "The schema public is not of the form ontology_<n>_objects or ontology_<n>_engine, with or without _<stamp>, so drop drops nothing.",
+}
+`;
+
+exports[`restore > a drop with a lock wait that Postgres refuses 1`] = `
+{
+  "rejected": {
+    "code": "22023",
+    "message": "invalid value for parameter "lock_timeout": "bogus"",
+    "name": "error",
+  },
+}
+`;
+
+exports[`restore > a switch of an installation that production lacks 1`] = `
+{
+  "gave": "No installation has the RID ri.ontology.main.ontology.00000000-0000-4000-8000-0000000000ff in production.",
+}
+`;
+
+exports[`restore > a switch whose lock wait ends, for an installation that production lacks 1`] = `
+{
+  "rejected": {
+    "code": "55P03",
+    "message": "canceling statement due to lock timeout",
+    "name": "error",
+  },
+}
+`;
+
+exports[`restore > a switch with a lock wait that Postgres refuses 1`] = `
+{
+  "rejected": {
+    "code": "22023",
+    "message": "invalid value for parameter "lock_timeout": "bogus"",
+    "name": "error",
+  },
+}
+`;

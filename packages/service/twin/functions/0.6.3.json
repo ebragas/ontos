@@ -1,0 +1,209 @@
+{
+  "discovered": [
+    {
+      "locator": {
+        "type": "typescript",
+        "typescript": {
+          "functionName": "closeAccount"
+        }
+      },
+      "inputs": [
+        {
+          "name": "client",
+          "dataType": {
+            "type": "client",
+            "client": {}
+          }
+        },
+        {
+          "name": "account",
+          "dataType": {
+            "type": "object",
+            "object": {
+              "objectTypeId": "com.example.twin.Account"
+            }
+          }
+        },
+        {
+          "name": "reason",
+          "dataType": {
+            "type": "string",
+            "string": {}
+          },
+          "required": false
+        }
+      ],
+      "output": {
+        "single": {
+          "dataType": {
+            "type": "list",
+            "list": {
+              "elementsType": {
+                "type": "ontologyEdit",
+                "ontologyEdit": {}
+              }
+            }
+          }
+        }
+      },
+      "customTypes": {},
+      "ontologyProvenance": {
+        "editedObjects": {
+          "com.example.twin.Account": {},
+          "com.example.twin.Engagement": {}
+        },
+        "editedLinks": {},
+        "editedInterfaces": {}
+      }
+    },
+    {
+      "locator": {
+        "type": "typescript",
+        "typescript": {
+          "functionName": "probeVersionCheck"
+        }
+      },
+      "inputs": [
+        {
+          "name": "client",
+          "dataType": {
+            "type": "client",
+            "client": {}
+          }
+        },
+        {
+          "name": "account",
+          "dataType": {
+            "type": "object",
+            "object": {
+              "objectTypeId": "com.example.twin.Account"
+            }
+          }
+        },
+        {
+          "name": "engagementId",
+          "dataType": {
+            "type": "string",
+            "string": {}
+          }
+        },
+        {
+          "name": "mode",
+          "dataType": {
+            "type": "string",
+            "string": {}
+          }
+        },
+        {
+          "name": "delayMs",
+          "dataType": {
+            "type": "integer",
+            "integer": {}
+          },
+          "required": false
+        }
+      ],
+      "output": {
+        "single": {
+          "dataType": {
+            "type": "list",
+            "list": {
+              "elementsType": {
+                "type": "ontologyEdit",
+                "ontologyEdit": {}
+              }
+            }
+          }
+        }
+      },
+      "customTypes": {},
+      "ontologyProvenance": {
+        "editedObjects": {
+          "com.example.twin.Account": {},
+          "com.example.twin.Engagement": {}
+        },
+        "editedLinks": {},
+        "editedInterfaces": {}
+      }
+    },
+    {
+      "locator": {
+        "type": "typescript",
+        "typescript": {
+          "functionName": "setRelationship"
+        }
+      },
+      "inputs": [
+        {
+          "name": "client",
+          "dataType": {
+            "type": "client",
+            "client": {}
+          }
+        },
+        {
+          "name": "probe",
+          "dataType": {
+            "type": "object",
+            "object": {
+              "objectTypeId": "com.example.twin.StructProbe"
+            }
+          }
+        },
+        {
+          "name": "relationship",
+          "dataType": {
+            "type": "functionCustomType",
+            "functionCustomType": "Relationship"
+          }
+        },
+        {
+          "name": "mode",
+          "dataType": {
+            "type": "string",
+            "string": {}
+          }
+        }
+      ],
+      "output": {
+        "single": {
+          "dataType": {
+            "type": "list",
+            "list": {
+              "elementsType": {
+                "type": "ontologyEdit",
+                "ontologyEdit": {}
+              }
+            }
+          }
+        }
+      },
+      "customTypes": {
+        "Relationship": {
+          "fields": {
+            "label": {
+              "type": "string",
+              "string": {}
+            },
+            "since": {
+              "type": "optionalType",
+              "optionalType": {
+                "wrappedType": {
+                  "type": "date",
+                  "date": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "ontologyProvenance": {
+        "editedObjects": {
+          "com.example.twin.StructProbe": {}
+        },
+        "editedLinks": {},
+        "editedInterfaces": {}
+      }
+    }
+  ]
+}

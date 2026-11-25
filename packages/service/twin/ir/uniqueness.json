@@ -1,0 +1,439 @@
+{
+  "ontology": {
+    "objectTypes": {
+      "com.example.twin.Invoice": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Invoice",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Invoices",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["invoiceId"],
+          "propertyTypes": {
+            "invoiceId": {
+              "apiName": "invoiceId",
+              "displayMetadata": {
+                "displayName": "InvoiceId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "number": {
+              "apiName": "number",
+              "displayMetadata": {
+                "displayName": "Number",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "unique",
+                  "name": "invoiceNumber"
+                },
+                {
+                  "kind": "unique",
+                  "name": "numberPerYear"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "year": {
+              "apiName": "year",
+              "displayMetadata": {
+                "displayName": "Year",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "integer",
+                "integer": {}
+              },
+              "typeClasses": [
+                {
+                  "kind": "unique",
+                  "name": "numberPerYear"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "tags": {
+              "apiName": "tags",
+              "displayMetadata": {
+                "displayName": "Tags",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "array",
+                "array": {
+                  "subtype": {
+                    "type": "string",
+                    "string": {
+                      "isLongText": false,
+                      "supportsEfficientLeadingWildcard": false,
+                      "supportsExactMatching": true
+                    }
+                  },
+                  "reducers": []
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "address": {
+              "apiName": "address",
+              "displayMetadata": {
+                "displayName": "Address",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "struct",
+                "struct": {
+                  "structFields": [
+                    {
+                      "apiName": "street",
+                      "displayMetadata": {
+                        "displayName": "street"
+                      },
+                      "typeClasses": [],
+                      "aliases": [],
+                      "fieldType": {
+                        "type": "string",
+                        "string": {
+                          "isLongText": false,
+                          "supportsEfficientLeadingWildcard": false,
+                          "supportsExactMatching": true
+                        }
+                      }
+                    },
+                    {
+                      "apiName": "city",
+                      "displayMetadata": {
+                        "displayName": "city"
+                      },
+                      "typeClasses": [],
+                      "aliases": [],
+                      "fieldType": {
+                        "type": "string",
+                        "string": {
+                          "isLongText": false,
+                          "supportsEfficientLeadingWildcard": false,
+                          "supportsExactMatching": true
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "typeClasses": [],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "number",
+          "apiName": "com.example.twin.Invoice",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Invoice",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Invoice",
+                "propertyMapping": {
+                  "invoiceId": {
+                    "type": "column",
+                    "column": "invoiceId"
+                  },
+                  "number": {
+                    "type": "column",
+                    "column": "number"
+                  },
+                  "year": {
+                    "type": "column",
+                    "column": "year"
+                  },
+                  "tags": {
+                    "type": "column",
+                    "column": "tags"
+                  },
+                  "address": {
+                    "type": "struct",
+                    "struct": {
+                      "column": "address",
+                      "mapping": {
+                        "street": {
+                          "apiName": "street",
+                          "mappings": {}
+                        },
+                        "city": {
+                          "apiName": "city",
+                          "mappings": {}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": false,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Membership": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Membership",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Memberships",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["membershipId"],
+          "propertyTypes": {
+            "membershipId": {
+              "apiName": "membershipId",
+              "displayMetadata": {
+                "displayName": "MembershipId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "roleId": {
+              "apiName": "roleId",
+              "displayMetadata": {
+                "displayName": "RoleId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "unique",
+                  "name": "onePersonPerRole"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "personId": {
+              "apiName": "personId",
+              "displayMetadata": {
+                "displayName": "PersonId",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "unique",
+                  "name": "onePersonPerRole"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "membershipId",
+          "apiName": "com.example.twin.Membership",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Membership",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Membership",
+                "propertyMapping": {
+                  "membershipId": {
+                    "type": "column",
+                    "column": "membershipId"
+                  },
+                  "roleId": {
+                    "type": "column",
+                    "column": "roleId"
+                  },
+                  "personId": {
+                    "type": "column",
+                    "column": "personId"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": false,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      }
+    },
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {},
+    "actionTypes": {},
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "importedOntology": {
+    "objectTypes": {},
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {},
+    "actionTypes": {},
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "valueTypes": {
+    "valueTypes": []
+  },
+  "importedValueTypes": {
+    "valueTypes": []
+  }
+}

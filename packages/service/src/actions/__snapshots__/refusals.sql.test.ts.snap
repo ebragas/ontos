@@ -1,0 +1,1126 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`apply: the edits of a Function > a Function error 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionEncounteredUserFacingError",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5e92db1b-f885-5e65-9579-bfcf04f6b8e5",
+      "functionVersion": "1.0.0",
+      "message": "No.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the edits of a Function > a Link edit on an Object that an earlier edit deletes 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the edits of a Function > a fault of the Function run 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 500,
+}
+`;
+
+exports[`apply: the edits of a Function > a modify of an Object that another Action created during the run 1`] = `
+{
+  "body": {
+    "errorCode": "CONFLICT",
+    "errorName": "ObjectChanged",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 409,
+}
+`;
+
+exports[`apply: the edits of a Function > a modify of an Object that does not exist 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectNotFound",
+    "parameters": {
+      "primaryKey": {},
+    },
+  },
+  "contentType": "application/json",
+  "status": 404,
+}
+`;
+
+exports[`apply: the loads > an Object list parameter with an Object that does not exist 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectNotFound",
+    "parameters": {
+      "primaryKey": {},
+    },
+  },
+  "contentType": "application/json",
+  "status": 404,
+}
+`;
+
+exports[`apply: the loads > an Object parameter whose Object does not exist 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectNotFound",
+    "parameters": {
+      "primaryKey": {},
+    },
+  },
+  "contentType": "application/json",
+  "status": 404,
+}
+`;
+
+exports[`apply: the parameters > a list parameter with the value null 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "A list parameter received a single value instead of a list.",
+      "originalErrorName": "Ontos:SingletonValueForListParameter",
+      "userErrorMessage": "The Action could not apply because of an invalid list parameter.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > a list value that is not a list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterBaseType": "String",
+      "parameterId": "tags",
+      "parameterValue": "one",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > a list value with a null element 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterBaseType": "String",
+      "parameterId": "tags",
+      "parameterValue": [
+        "one",
+        null,
+      ],
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > a list value with an element of the wrong type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterBaseType": "String",
+      "parameterId": "tags",
+      "parameterValue": [
+        "one",
+        2,
+      ],
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > a scalar value of the wrong type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterBaseType": "Integer",
+      "parameterId": "count",
+      "parameterValue": "many",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > a struct field value of the wrong type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterBaseType": "String",
+      "parameterId": "relationship.label",
+      "parameterValue": 5,
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > a struct value of a Function input with no value for a required field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterId": "relationship",
+      "parameterValue": {
+        "since": "2026-02-03",
+      },
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > a struct value that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterId": "relationship",
+      "parameterValue": 5,
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > a struct value with an unknown field 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterId": "relationship",
+      "parameterValue": {
+        "nope": "x",
+      },
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > an Object list parameter with a null element 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidParameterValue",
+    "parameters": {
+      "parameterBaseType": "OntologyObject<com.example.twin.Engagement>",
+      "parameterId": "engagements",
+      "parameterValue": [
+        "eng-1",
+        null,
+      ],
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > an Object list parameter with an element that is not a String 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyValue",
+    "parameters": {
+      "property": "engagementId",
+      "propertyBaseType": "String",
+      "propertyValue": 5,
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > an Object parameter that is not a String 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPropertyValue",
+    "parameters": {
+      "property": "engagementId",
+      "propertyBaseType": "String",
+      "propertyValue": 5,
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the parameters > an unknown parameter 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ParametersNotFound",
+    "parameters": {
+      "actionType": "com.example.twin.check-parameter-types",
+      "configuredParameterIds": [
+        "accountId",
+        "at",
+        "count",
+        "due",
+        "flag",
+        "name",
+        "phase",
+        "rate",
+        "tags",
+      ],
+      "unknownParameterIds": [
+        "nope",
+      ],
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the route and the body > a body that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the route and the body > an unknown Action Type 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ActionTypeNotFound",
+    "parameters": {
+      "actionType": "nope",
+    },
+  },
+  "contentType": "application/json",
+  "status": 404,
+}
+`;
+
+exports[`apply: the route and the body > an unknown mode 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the route and the body > an unknown returnEdits 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the route and the body > options that are not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the route and the body > parameters that are not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the rules > 2 creates of the same Object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the rules > a Link rule on an Object that an earlier rule deletes 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the rules > a create with no primary key value 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "The primary key Property requires a valid value of its declared type.",
+      "originalErrorName": "Ontos:InvalidPrimaryKeyPropertyType",
+      "userErrorMessage": "The Action could not apply because of a primary key issue.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the rules > a modify after a delete of the same Object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the values > a Function create with no value for a required Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "The Function assigned a value whose type does not match the Property.",
+      "objectType": "com.example.twin.Account",
+      "originalErrorName": "Ontos:InvalidActionPropertyFormat",
+      "property": "name",
+      "userErrorMessage": "The Action could not apply because a Property value is invalid.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the values > a Function that edits Objects of more than 50 Object Types 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "OntologyEditsExceededLimit",
+    "parameters": {
+      "editsCount": 51,
+      "editsLimit": 50,
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the values > a Function that edits more than 10,000 Objects 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "OntologyEditsExceededLimit",
+    "parameters": {
+      "editsCount": 10001,
+      "editsLimit": 10000,
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the values > a Function value that breaks a value rule 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "The Function assigned a value whose type does not match the Property.",
+      "objectType": "com.example.twin.Engagement",
+      "originalErrorName": "Ontos:InvalidActionPropertyFormat",
+      "property": "status",
+      "userErrorMessage": "The Action could not apply because a Property value is invalid.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the values > a Function value that is an empty array of a Property with noEmptyCollections 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "The Function assigned a value whose type does not match the Property.",
+      "objectType": "com.example.twin.ValueProbe",
+      "originalErrorName": "Ontos:InvalidActionPropertyFormat",
+      "property": "labels",
+      "userErrorMessage": "The Action could not apply because a Property value is invalid.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the values > a rule value that breaks a value rule 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "A string is never empty.",
+      "objectType": "com.example.twin.Account",
+      "originalErrorName": "Ontos:InvalidActionPropertyFormat",
+      "property": "name",
+      "userErrorMessage": "The Action could not apply because a Property value is invalid.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`apply: the write > a create of a primary key that exists 1`] = `
+{
+  "body": {
+    "errorCode": "CONFLICT",
+    "errorName": "ObjectAlreadyExists",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 409,
+}
+`;
+
+exports[`apply: the write > a deadlock, 40P01, on each lock 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "CONFLICT",
+      "errorName": "ObjectChanged",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 409,
+  },
+  "status": "open",
+}
+`;
+
+exports[`apply: the write > a failure after COMMIT, past the deadline 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 500,
+  },
+  "status": "won",
+}
+`;
+
+exports[`apply: the write > a failure with no code before COMMIT 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 500,
+  },
+  "status": "open",
+}
+`;
+
+exports[`apply: the write > a failure with no code before COMMIT, past the deadline 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INVALID_ARGUMENT",
+      "errorName": "ActionDeadlineExceeded",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 400,
+  },
+  "status": "open",
+}
+`;
+
+exports[`apply: the write > a request that the client aborted before the write 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INVALID_ARGUMENT",
+      "errorName": "ActionRequestAborted",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 400,
+  },
+  "status": "open",
+}
+`;
+
+exports[`apply: the write > a request with no time left at the check before the write 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INVALID_ARGUMENT",
+      "errorName": "ActionDeadlineExceeded",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 400,
+  },
+  "status": "open",
+}
+`;
+
+exports[`apply: the write > a request with no time left when the transaction gets its connection 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INVALID_ARGUMENT",
+      "errorName": "ActionDeadlineExceeded",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 400,
+  },
+  "status": "open",
+}
+`;
+
+exports[`apply: the write > a version that changed before each of the 5 attempts 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "CONFLICT",
+      "errorName": "ObjectChanged",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 409,
+  },
+  "status": "open",
+}
+`;
+
+exports[`apply: the write > another Postgres code on the edit statement 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INTERNAL",
+      "errorName": "Default:Internal",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 500,
+  },
+  "status": "open",
+}
+`;
+
+exports[`apply: the write > the code 25P04 of transaction_timeout on the lock 1`] = `
+{
+  "answer": {
+    "body": {
+      "errorCode": "INVALID_ARGUMENT",
+      "errorName": "ActionDeadlineExceeded",
+      "parameters": {},
+    },
+    "contentType": "application/json",
+    "status": 400,
+  },
+  "status": "open",
+}
+`;
+
+exports[`applyBatch > each request 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {
+      "feature": "applyBatch",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > a body that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > a pageSize of 0 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageSize",
+    "parameters": {
+      "pageSize": 0,
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > a pageSize that is not an integer 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > a pageToken that is not a string 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > a pageToken that the service did not make 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageToken",
+    "parameters": {
+      "pageToken": "not-a-token",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > a read that fails after its first row 1`] = `
+{
+  "bodyFailed": "The test fails the stream after its first row.",
+}
+`;
+
+exports[`editsHistory > a read that fails before its first row 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 500,
+}
+`;
+
+exports[`editsHistory > a timestampFilter with a time that is not a time 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > an includeAllPreviousProperties that is not a Boolean 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > an objectPrimaryKey of another Property 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > an objectPrimaryKey that is not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > an objectPrimaryKey value that is not a key 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > an operationIdsFilter with no list of strings 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > an unknown Object Type 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "nope",
+    },
+  },
+  "contentType": "application/json",
+  "status": 404,
+}
+`;
+
+exports[`editsHistory > an unknown filter type 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > an unknown sortOrder 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`editsHistory > filters that are not an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the MCP tool apply_action > a create of a primary key that exists 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"CONFLICT","errorName":"ObjectAlreadyExists","errorInstanceId":"<uuid>","parameters":{}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "CONFLICT",
+        "errorInstanceId": "<uuid>",
+        "errorName": "ObjectAlreadyExists",
+        "parameters": {},
+      },
+    },
+  },
+  "status": 200,
+}
+`;
+
+exports[`the MCP tool apply_action > a failure with no code before COMMIT 1`] = `
+{
+  "answer": {
+    "body": {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "result": {
+        "content": [
+          {
+            "text": "{"errorCode":"INTERNAL","errorName":"Default:Internal","errorInstanceId":"<uuid>","parameters":{}}
+The Action may have applied. Call \`get_edit_history\` on the Objects before you call \`apply_action\` again.",
+            "type": "text",
+          },
+        ],
+        "isError": true,
+        "structuredContent": {
+          "errorCode": "INTERNAL",
+          "errorInstanceId": "<uuid>",
+          "errorName": "Default:Internal",
+          "parameters": {},
+        },
+      },
+    },
+    "status": 200,
+  },
+  "status": "open",
+}
+`;
+
+exports[`the MCP tool apply_action > a request that the client aborted before the write 1`] = `
+{
+  "answer": {
+    "body": {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "result": {
+        "content": [
+          {
+            "text": "{"errorCode":"INVALID_ARGUMENT","errorName":"ActionRequestAborted","errorInstanceId":"<uuid>","parameters":{}}",
+            "type": "text",
+          },
+        ],
+        "isError": true,
+        "structuredContent": {
+          "errorCode": "INVALID_ARGUMENT",
+          "errorInstanceId": "<uuid>",
+          "errorName": "ActionRequestAborted",
+          "parameters": {},
+        },
+      },
+    },
+    "status": 200,
+  },
+  "status": "open",
+}
+`;
+
+exports[`the MCP tool apply_action > a scalar value of the wrong type 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"INVALID_ARGUMENT","errorName":"InvalidParameterValue","errorInstanceId":"<uuid>","parameters":{"parameterBaseType":"Integer","parameterId":"count","parameterValue":"many"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "INVALID_ARGUMENT",
+        "errorInstanceId": "<uuid>",
+        "errorName": "InvalidParameterValue",
+        "parameters": {
+          "parameterBaseType": "Integer",
+          "parameterId": "count",
+          "parameterValue": "many",
+        },
+      },
+    },
+  },
+  "status": 200,
+}
+`;
+
+exports[`the MCP tool apply_action > a version that changed before each of the 5 attempts 1`] = `
+{
+  "answer": {
+    "body": {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "result": {
+        "content": [
+          {
+            "text": "{"errorCode":"CONFLICT","errorName":"ObjectChanged","errorInstanceId":"<uuid>","parameters":{}}",
+            "type": "text",
+          },
+        ],
+        "isError": true,
+        "structuredContent": {
+          "errorCode": "CONFLICT",
+          "errorInstanceId": "<uuid>",
+          "errorName": "ObjectChanged",
+          "parameters": {},
+        },
+      },
+    },
+    "status": 200,
+  },
+  "status": "open",
+}
+`;
+
+exports[`the MCP tool apply_action > an Object parameter whose Object does not exist 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectNotFound","errorInstanceId":"<uuid>","parameters":{"primaryKey":{}}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "<uuid>",
+        "errorName": "ObjectNotFound",
+        "parameters": {
+          "primaryKey": {},
+        },
+      },
+    },
+  },
+  "status": 200,
+}
+`;
+
+exports[`the MCP tool apply_action > an unknown Action Type 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"<uuid>","parameters":{"actionType":"nope"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "<uuid>",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "nope",
+        },
+      },
+    },
+  },
+  "status": 200,
+}
+`;

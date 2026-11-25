@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.base.json",
+  // The Vercel build reads this file before `extends`. Without `module` here it turns off `strict`, and without `target` it uses ES2021.
+  "compilerOptions": { "target": "es2024", "module": "nodenext" },
+  "include": ["src", "api", "twin", "testing", "build.ts"]
+}

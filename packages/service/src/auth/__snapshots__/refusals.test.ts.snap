@@ -1,0 +1,7740 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > get of a former member 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "UserDeleted",
+    "parameters": {
+      "principalId": "user_01FORMER00000000000000000",
+    },
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > get of a former member with the status DELETED 1`] = `
+{
+  "body": {
+    "attributes": {},
+    "email": "grace@example.com",
+    "familyName": "Hopper",
+    "givenName": "Grace",
+    "id": "user_01FORMER00000000000000000",
+    "realm": "workos",
+    "status": "DELETED",
+    "username": "grace@example.com",
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > get of an active member with the status DELETED 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "UserIsActive",
+    "parameters": {
+      "principalId": "user_01TEST00000000000000000001",
+    },
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > get of an invited user 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "UserNotFound",
+    "parameters": {
+      "userId": "user_01INVITED0000000000000000",
+    },
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 404,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > get of an unknown user 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "UserNotFound",
+    "parameters": {
+      "userId": "user_01UNKNOWN0000000000000000",
+    },
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 404,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > get with a status that is no status 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch of a GitHub token 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with 501 elements 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list and an application list that both fail 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 503,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list of 21 pages 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS listed more than 20 pages for the Organization org_01TEST0RG00000000000000001.",
+      "name": "Error",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list of another shape 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the members page read a body of another shape.",
+      "name": "Error",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list read of the Organization that fails with a 5xx 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 503,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list read that answers 403 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS answered 403 to the members page read.",
+      "name": "Error",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "httpStatus": 403,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list read that answers 404 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave no list for /user_management/organization_memberships.",
+      "name": "Error",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 404,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list read that fails with a 429 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosRateLimited",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "name": "ApiError",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "5",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list read that fails with a network error 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list that fails with a 5xx 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a member list that is not JSON 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the members page read a body that is not JSON.",
+      "name": "Error",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a person with no Organization 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "OntologyService:NoOrganization",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a status that is no status 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with a userId that is no string 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with an application list of 21 pages 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS listed more than 20 pages for the Organization org_01TEST0RG00000000000000001.",
+      "name": "Error",
+      "route": "POST /api/v2/admin/users/getBatch",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with an element that is no object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with an empty list 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getBatch with an object 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent of a service user that the application list lacks 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "UserNotFound",
+    "parameters": {
+      "userId": "client_01JSERV1CEUSER0000000000AB",
+    },
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 404,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent of a service user with an application list that fails 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent of a user that WorkOS does not find 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "UserNotFound",
+    "parameters": {
+      "userId": "user_01UNKNOWN0000000000000000",
+    },
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 404,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 404,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent with a user read of another shape 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the user read a body of another shape.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent with a user read that fails with a 5xx 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent with a user read that fails with a 429 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosRateLimited",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "9",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent with a user read that fails with a network error 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent with a user read that has no answer in 5 seconds 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent with a user read that is not JSON 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the user read a body that is not JSON.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`Users.get, Users.getBatch, and Users.getCurrent > getCurrent with a user read with the body null 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "UserNotFound",
+    "parameters": {
+      "userId": "user_01TEST00000000000000000001",
+    },
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 404,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a Response whose text() gives a string with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "response.text(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a Response whose text() gives an object whose catch gives the text 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the membership read a body of another shape.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a Response whose text() gives undefined 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of undefined (reading 'catch')",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a Response whose text() throws a 418 ApiError at once 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Teapot",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "Teapot",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 418,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a Response whose text() throws a RangeError at once 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "text threw at once",
+      "name": "RangeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "RangeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a fetch that gives a 404 Response with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a fetch that gives a 500 Response with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a fetch that gives a thenable of a 404 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a fetch that gives a thenable that rejects 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a fetch that gives an object whose catch gives a 404 Response 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 404,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a fetch that gives null 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of null (reading 'catch')",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a membership read with a fetch that gives undefined 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of undefined (reading 'catch')",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a Response whose text() gives a string with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "response.text(...).catch is not a function",
+      "name": "TypeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a Response whose text() gives an object whose catch gives the text 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the role read a body of another shape.",
+      "name": "Error",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a Response whose text() gives undefined 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of undefined (reading 'catch')",
+      "name": "TypeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a Response whose text() throws a 418 ApiError at once 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Teapot",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Teapot",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 418,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a Response whose text() throws a RangeError at once 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "text threw at once",
+      "name": "RangeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "cold start",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "RangeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a fetch that gives a 404 Response with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a fetch that gives a 500 Response with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a fetch that gives a thenable of a 404 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a fetch that gives a thenable that rejects 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a fetch that gives an object whose catch gives a 404 Response 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 404,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a fetch that gives null 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of null (reading 'catch')",
+      "name": "TypeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > a role read with a fetch that gives undefined 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of undefined (reading 'catch')",
+      "name": "TypeError",
+      "route": "POST /api/ontology-service/v1/ontologies",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a Response whose text() gives a string with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "response.text(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a Response whose text() gives an object whose catch gives the text 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the application read a body of another shape.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a Response whose text() gives undefined 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of undefined (reading 'catch')",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a Response whose text() throws a 418 ApiError at once 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Teapot",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Teapot",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "Teapot",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 418,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a Response whose text() throws a RangeError at once 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "text threw at once",
+      "name": "RangeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "RangeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a fetch that gives a 404 Response with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a fetch that gives a 500 Response with no Promise 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a fetch that gives a thenable of a 404 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a fetch that gives a thenable that rejects 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch(...).catch is not a function",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a fetch that gives an object whose catch gives a 404 Response 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 404,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a fetch that gives null 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of null (reading 'catch')",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS read whose fetch or Response breaks a type > an application read with a fetch that gives undefined 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Cannot read properties of undefined (reading 'catch')",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the Organizations route > a GitHub token 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the Organizations route > a person whose list of memberships fails with a 429 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosRateLimited",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "name": "ApiError",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "2",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the Organizations route > a person whose list of memberships fails with a 500 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the Organizations route > a person whose list of memberships has 21 pages 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS listed more than 20 pages of memberships for user_01TEST00000000000000000001.",
+      "name": "Error",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the Organizations route > a person whose list of memberships has another shape 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the memberships page read a body of another shape.",
+      "name": "Error",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the Organizations route > a person whose list of memberships has no body 1`] = `
+{
+  "body": {
+    "data": [],
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 404,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`the Organizations route > a service user whose Organization WorkOS does not find 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS does not find the Organization org_01TEST0RG00000000000000001 of a service user.",
+      "name": "Error",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 404,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the Organizations route > a service user whose Organization has another ID 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave an Organization with another ID.",
+      "name": "Error",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the Organizations route > a service user whose Organization read fails with a 429 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosRateLimited",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "name": "ApiError",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the Organizations route > a service user whose Organization read fails with a 500 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the Organizations route > a service user whose Organization read fails with a network error 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the Organizations route > a service user whose Organization read has a body of another shape 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the organization read a body of another shape.",
+      "name": "Error",
+      "route": "GET /api/ontology-service/v1/organizations",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the WorkOS port of publish > a description of a slug that the URL parser changes 1`] = `
+{
+  "errorName": "Default:InvalidArgument",
+  "headers": {},
+  "kind": "ApiError",
+  "parameters": {
+    "part": "grants",
+    "problems": [
+      "WorkOS refuses the slug "..".",
+    ],
+  },
+  "status": 400,
+}
+`;
+
+exports[`the WorkOS port of publish > a list of members of an Organization list that fails 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a list of members that fails 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a list of members that has no role 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a read with a 5xx 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a read with a 429 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a read with a body of another shape 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a read with a body that is not JSON 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a read with a network error 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a role list that names a next page 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a role read that fails 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a set of permissions of a role slug that the URL parser changes 1`] = `
+{
+  "errorName": "Default:InvalidArgument",
+  "headers": {},
+  "kind": "ApiError",
+  "parameters": {
+    "part": "grants",
+    "problems": [
+      "WorkOS refuses the slug ".".",
+    ],
+  },
+  "status": 400,
+}
+`;
+
+exports[`the WorkOS port of publish > a set of permissions that fails 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a write that answers 409 with another code 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a write that answers 409 with its code 1`] = `"no error"`;
+
+exports[`the WorkOS port of publish > a write that answers a body that is not JSON 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a write that fails with a 5xx 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > a write that fails with a network error 1`] = `
+{
+  "errorName": "OntologyService:WorkosUnavailable",
+  "headers": {
+    "retry-after": "10",
+  },
+  "kind": "ApiError",
+  "parameters": {},
+  "status": 503,
+}
+`;
+
+exports[`the WorkOS port of publish > an empty role slug of a permission add 1`] = `
+{
+  "errorName": "Default:InvalidArgument",
+  "headers": {},
+  "kind": "ApiError",
+  "parameters": {
+    "part": "grants",
+    "problems": [
+      "WorkOS refuses the slug "".",
+    ],
+  },
+  "status": 400,
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a Response whose json() gives a Promise that rejects 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a Response whose json() gives an object whose catch gives a page 1`] = `
+{
+  "error": "no error",
+  "spans": [
+    {
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "kind": "roles",
+      "name": "workos read",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a Response whose json() gives an object with no Promise 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "response.json(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a Response whose json() gives undefined 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of undefined (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a Response whose json() throws a 418 ApiError at once 1`] = `
+{
+  "error": {
+    "errorName": "Teapot",
+    "headers": {},
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 418,
+  },
+  "spans": [
+    {
+      "errorType": "Teapot",
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a Response whose json() throws a RangeError at once 1`] = `
+{
+  "error": {
+    "kind": "RangeError",
+    "message": "json threw at once",
+  },
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a fetch that gives a 500 Response with no Promise 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "fetch(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a fetch that gives a Promise that rejects with a 418 ApiError 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a fetch that gives a thenable that rejects 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "fetch(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a fetch that gives an object whose catch gives a 500 Response 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a fetch that gives null 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of null (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a fetch that gives undefined 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of undefined (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a fetch that throws a 418 ApiError at once 1`] = `
+{
+  "error": {
+    "errorName": "Teapot",
+    "headers": {},
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 418,
+  },
+  "spans": [
+    {
+      "errorType": "Teapot",
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a permission read with a fetch that throws a RangeError at once 1`] = `
+{
+  "error": {
+    "kind": "RangeError",
+    "message": "fetch threw at once",
+  },
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a Response whose json() gives a Promise that rejects 1`] = `
+{
+  "error": "no error",
+  "spans": [
+    {
+      "httpStatus": 200,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a Response whose json() gives an object whose catch gives a page 1`] = `
+{
+  "error": "no error",
+  "spans": [
+    {
+      "httpStatus": 200,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a Response whose json() gives an object with no Promise 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "response.json(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a Response whose json() gives undefined 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of undefined (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a Response whose json() throws a 418 ApiError at once 1`] = `
+{
+  "error": {
+    "errorName": "Teapot",
+    "headers": {},
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 418,
+  },
+  "spans": [
+    {
+      "errorType": "Teapot",
+      "httpStatus": 200,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a Response whose json() throws a RangeError at once 1`] = `
+{
+  "error": {
+    "kind": "RangeError",
+    "message": "json threw at once",
+  },
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "httpStatus": 200,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a fetch that gives a 500 Response with no Promise 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "fetch(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a fetch that gives a Promise that rejects with a 418 ApiError 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a fetch that gives a thenable that rejects 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "fetch(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a fetch that gives an object whose catch gives a 500 Response 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a fetch that gives null 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of null (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a fetch that gives undefined 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of undefined (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a fetch that throws a 418 ApiError at once 1`] = `
+{
+  "error": {
+    "errorName": "Teapot",
+    "headers": {},
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 418,
+  },
+  "spans": [
+    {
+      "errorType": "Teapot",
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > a role create with a fetch that throws a RangeError at once 1`] = `
+{
+  "error": {
+    "kind": "RangeError",
+    "message": "fetch threw at once",
+  },
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a Response whose json() gives a Promise that rejects 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 200,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a Response whose json() gives an object whose catch gives a page 1`] = `
+{
+  "error": "no error",
+  "spans": [
+    {
+      "httpStatus": 200,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a Response whose json() gives an object with no Promise 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "response.json(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a Response whose json() gives undefined 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of undefined (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a Response whose json() throws a 418 ApiError at once 1`] = `
+{
+  "error": {
+    "errorName": "Teapot",
+    "headers": {},
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 418,
+  },
+  "spans": [
+    {
+      "errorType": "Teapot",
+      "httpStatus": 200,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a Response whose json() throws a RangeError at once 1`] = `
+{
+  "error": {
+    "kind": "RangeError",
+    "message": "json threw at once",
+  },
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "httpStatus": 200,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a fetch that gives a 500 Response with no Promise 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "fetch(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a fetch that gives a Promise that rejects with a 418 ApiError 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a fetch that gives a thenable that rejects 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "fetch(...).catch is not a function",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a fetch that gives an object whose catch gives a 500 Response 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a fetch that gives null 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of null (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a fetch that gives undefined 1`] = `
+{
+  "error": {
+    "kind": "TypeError",
+    "message": "Cannot read properties of undefined (reading 'catch')",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a fetch that throws a 418 ApiError at once 1`] = `
+{
+  "error": {
+    "errorName": "Teapot",
+    "headers": {},
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 418,
+  },
+  "spans": [
+    {
+      "errorType": "Teapot",
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, whose fetch or Response breaks a type > an Organization page with a fetch that throws a RangeError at once 1`] = `
+{
+  "error": {
+    "kind": "RangeError",
+    "message": "fetch threw at once",
+  },
+  "spans": [
+    {
+      "errorType": "RangeError",
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a description of a slug that the URL parser changes 1`] = `
+{
+  "error": {
+    "errorName": "Default:InvalidArgument",
+    "headers": {},
+    "kind": "ApiError",
+    "parameters": {
+      "part": "grants",
+      "problems": [
+        "WorkOS refuses the slug "..".",
+      ],
+    },
+    "status": 400,
+  },
+  "spans": [],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a list of members that fails 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "kind": "memberships page",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a list of members that has no role 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "kind": "organizations page",
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "kind": "memberships page",
+      "name": "workos read",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a read with a 5xx 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a read with a 429 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 429,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a read with a body of another shape 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a read with a body that is not JSON 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a read with a network error 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a role list that names a next page 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "kind": "roles",
+      "name": "workos read",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a role read that fails 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "kind": "permissions",
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "kind": "roles",
+      "name": "workos read",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a set of permissions that fails 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "kind": "setPermissions",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a write that answers 409 with another code 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 409,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a write that answers 409 with its code 1`] = `
+{
+  "error": "no error",
+  "spans": [
+    {
+      "httpStatus": 409,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 0,
+    },
+  ],
+}
+`;
+
+exports[`the WorkOS port of publish, with the spans of a failure > a write that fails with a 5xx 1`] = `
+{
+  "error": {
+    "errorName": "OntologyService:WorkosUnavailable",
+    "headers": {
+      "retry-after": "10",
+    },
+    "kind": "ApiError",
+    "parameters": {},
+    "status": 503,
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "kind": "createRole",
+      "name": "workos write",
+      "status": 2,
+    },
+  ],
+}
+`;
+
+exports[`the key sources > a key source that fails with a JWKS time-out 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "request timed out",
+      "name": "JWKSTimeout",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "JWKSTimeout",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the key sources > a key source that fails with a bad JWKS 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "not a key set",
+      "name": "JWKSInvalid",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "JWKSInvalid",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the key sources > a key source that fails with a network error 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch failed",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the key sources > a key source that is no token failure of jose 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the key sources > the remote keys of a service user token, with no AuthKit domain 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "AUTHKIT_DOMAIN is not set.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Error",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the key sources > the remote keys, with a JWKS fetch that answers 500 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "Expected 200 OK from the JSON Web Key Set HTTP response",
+      "name": "JOSEError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 500,
+      "name": "jwks fetch",
+      "status": 0,
+    },
+    {
+      "errorType": "JOSEError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the key sources > the remote keys, with a JWKS fetch that fails 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch failed",
+      "name": "TypeError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "jwks fetch",
+      "status": 2,
+    },
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the permissions of a person > 2 role reads that fail one after the other 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the role read a body that is not JSON.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "Error",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the permissions of a person > a membership read that answers 401 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS answered 401 to the membership read.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "httpStatus": 401,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the permissions of a person > a membership read that fails with a 5xx 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > a membership read that fails with a 429 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosRateLimited",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "7",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > a membership read that fails with a 429 and a date 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosRateLimited",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > a membership read that fails with a network error 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > a membership read with a body of another shape 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the membership read a body of another shape.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the permissions of a person > a membership read with a body that is not JSON 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the membership read a body that is not JSON.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the permissions of a person > a membership read with the body null 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the permissions of a person > a person in another Organization 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the permissions of a person > a person with a pending membership 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the permissions of a person > a person with no Organization 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "OntologyService:NoOrganization",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the permissions of a person > a person with no membership 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the permissions of a person > a role read that answers 403 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS answered 403 to the role read.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "httpStatus": 403,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the permissions of a person > a role read that fails with a 5xx 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > a role read that fails with a 429 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosRateLimited",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "3",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > a role read that fails with a network error 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > a role read with a body of another shape 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the role read a body of another shape.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the permissions of a person > with the time limit of 5 seconds > a membership read with a stalled body 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > with the time limit of 5 seconds > a membership read with a timeout 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the permissions of a person > with the time limit of 5 seconds > a request that the client stops while a membership read waits 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "the client left",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the permissions of a person > with the time limit of 5 seconds > a role read with a timeout 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/{userId}",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the settings from the environment > a missing AUTHKIT_DOMAIN 1`] = `
+{
+  "kind": "Error",
+  "message": "The environment variable AUTHKIT_DOMAIN is not set.",
+}
+`;
+
+exports[`the settings from the environment > a missing DATABASE_URL is a missing setting 1`] = `
+{
+  "missing": [
+    "DATABASE_URL",
+  ],
+}
+`;
+
+exports[`the settings from the environment > a missing PRODUCT_RID 1`] = `
+{
+  "kind": "Error",
+  "message": "The environment variable PRODUCT_RID is not set.",
+}
+`;
+
+exports[`the settings from the environment > a missing WORKOS_CLIENT_ID 1`] = `
+{
+  "kind": "Error",
+  "message": "The environment variable WORKOS_CLIENT_ID is not set.",
+}
+`;
+
+exports[`the settings from the environment > a missing trusted repository 1`] = `
+{
+  "kind": "Error",
+  "message": "TRUSTED_GITHUB_REPOSITORY and TRUSTED_GITHUB_ENVIRONMENT must each hold 1 value, with no comma and no space at either end.",
+}
+`;
+
+exports[`the settings from the environment > a trusted environment with a comma 1`] = `
+{
+  "kind": "Error",
+  "message": "TRUSTED_GITHUB_REPOSITORY and TRUSTED_GITHUB_ENVIRONMENT must each hold 1 value, with no comma and no space at either end.",
+}
+`;
+
+exports[`the settings from the environment > a trusted repository with a space at its end 1`] = `
+{
+  "kind": "Error",
+  "message": "TRUSTED_GITHUB_REPOSITORY and TRUSTED_GITHUB_ENVIRONMENT must each hold 1 value, with no comma and no space at either end.",
+}
+`;
+
+exports[`the settings from the environment > an empty ONTOLOGY_BASE_URL 1`] = `
+{
+  "kind": "Error",
+  "message": "The environment variable ONTOLOGY_BASE_URL is not set.",
+}
+`;
+
+exports[`the settings from the environment > the input of an environment with the missing variables named 1`] = `
+{
+  "missing": [
+    "DATABASE_URL",
+    "WORKOS_API_KEY",
+  ],
+}
+`;
+
+exports[`the token check of a route of a person > a Basic header 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "MissingCredentials",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "MissingCredentials",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a GitHub token of a pull request check 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the token check of a route of a person > a GitHub token of another audience 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a GitHub token of another environment 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a GitHub token of another repository 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a GitHub token of the publish workflow 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "Default:PermissionDenied",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the token check of a route of a person > a WorkOS token of an unknown issuer 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a WorkOS token of another client 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a WorkOS token with a sub that is no WorkOS user ID 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a WorkOS token with an empty sub 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a WorkOS token with no exp 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a WorkOS token with no sub 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a person token with no org_id 1`] = `
+{
+  "body": {
+    "errorCode": "PERMISSION_DENIED",
+    "errorName": "OntologyService:NoOrganization",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "name": "token check",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`the token check of a route of a person > a token of a key that the key set lacks 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > a token that is not a JWT 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > an MCP token 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > an empty Bearer 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "MissingCredentials",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "MissingCredentials",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > an expired WorkOS token 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a route of a person > no token 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "MissingCredentials",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "MissingCredentials",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > a token of another audience 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > a token with a client_id that is no client ID 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > a token with a sid 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > a token with a sub that differs from its client_id 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > a token with a sub_profile 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > a token with no org_id 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > an application of another Organization 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > an application of another type 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of a service user > an application read that answers 401 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS answered 401 to the application read.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Error",
+      "httpStatus": 401,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "Error",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the token check of a service user > an application read that fails with a 5xx 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "httpStatus": 500,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the token check of a service user > an application read that fails with a 429 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosRateLimited",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "4",
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "httpStatus": 429,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "OntologyService:WorkosRateLimited",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the token check of a service user > an application read that fails with a network error 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "OntologyService:WorkosUnavailable",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "spans": [
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "OntologyService:WorkosUnavailable",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the token check of a service user > an application read with a body of another shape 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the application read a body of another shape.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Error",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the token check of a service user > an application read with a body that is not JSON 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the application read a body that is not JSON.",
+      "name": "Error",
+      "route": "GET /api/v2/admin/users/getCurrent",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "Error",
+      "httpStatus": 200,
+      "name": "workos read",
+      "status": 2,
+    },
+    {
+      "errorType": "Error",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the token check of a service user > an application that WorkOS does not find 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "httpStatus": 404,
+      "name": "workos read",
+      "status": 0,
+    },
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > a Basic header 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "MissingCredentials",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "MissingCredentials",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > a GitHub token 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > a WorkOS token 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > a key source that fails 1`] = `
+{
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "faults": [
+    {
+      "errorName": "Default:Internal",
+      "message": "fetch failed",
+      "name": "TypeError",
+      "route": "POST /api/mcp",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the token check of the MCP route > a token that is not a JWT 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > an AuthKit token of a service user 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > an AuthKit token of a stranger key 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > an AuthKit token of another audience 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > an AuthKit token of another issuer 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > an AuthKit token with a sub that is no WorkOS user ID 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > an AuthKit token with no exp 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > an M2M token 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "Default:Unauthorized",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "Default:Unauthorized",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token check of the MCP route > no token 1`] = `
+{
+  "body": {
+    "errorCode": "UNAUTHORIZED",
+    "errorName": "MissingCredentials",
+    "parameters": {},
+  },
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "spans": [
+    {
+      "errorType": "MissingCredentials",
+      "name": "token check",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`the token route > a WorkOS answer of 204 1`] = `
+{
+  "body": null,
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "httpStatus": 204,
+      "name": "workos token",
+      "status": 0,
+    },
+    {
+      "httpStatus": 204,
+      "name": "POST /multipass/api/oauth2/token",
+      "status": 0,
+    },
+  ],
+  "status": 204,
+}
+`;
+
+exports[`the token route > a WorkOS answer of 304 1`] = `
+{
+  "body": {
+    "error": "temporarily_unavailable",
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "POST /multipass/api/oauth2/token",
+    },
+  ],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "errorType": "Error",
+      "httpStatus": 304,
+      "name": "workos token",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the token route > a WorkOS answer of 400 1`] = `
+{
+  "body": {
+    "error": "invalid_client",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "httpStatus": 400,
+      "name": "workos token",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the token route > a WorkOS answer of 429 with a Retry-After of a date 1`] = `
+{
+  "body": {
+    "error": "slow_down",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+    "retry-after": "Wed, 21 Oct 2026 07:28:00 GMT",
+  },
+  "spans": [
+    {
+      "httpStatus": 429,
+      "name": "workos token",
+      "status": 0,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 429,
+}
+`;
+
+exports[`the token route > a WorkOS answer of a redirect 1`] = `
+{
+  "body": {
+    "error": "temporarily_unavailable",
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "POST /multipass/api/oauth2/token",
+    },
+  ],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "workos token",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the token route > a WorkOS answer with a body that fails 1`] = `
+{
+  "body": {
+    "error": "temporarily_unavailable",
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "POST /multipass/api/oauth2/token",
+    },
+  ],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "httpStatus": 200,
+      "name": "workos token",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the token route > a WorkOS call that fails with a network error 1`] = `
+{
+  "body": {
+    "error": "temporarily_unavailable",
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "name": "ApiError",
+      "route": "POST /multipass/api/oauth2/token",
+    },
+  ],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "errorType": "TypeError",
+      "name": "workos token",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the token route > a body of more than 4096 bytes 1`] = `
+{
+  "body": {
+    "error": "invalid_request",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the token route > a client that stops the request 1`] = `
+{
+  "body": {
+    "error": "invalid_request",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "errorType": "DOMException",
+      "name": "workos token",
+      "status": 2,
+    },
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the token route > a grant that is not client_credentials 1`] = `
+{
+  "body": {
+    "error": "unsupported_grant_type",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the token route > a parameter that the body holds twice 1`] = `
+{
+  "body": {
+    "error": "invalid_request",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the token route > a request body stream with a chunk that is null 1`] = `
+{
+  "body": {
+    "error": "invalid_request",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the token route > a request whose body another reader locked 1`] = `
+{
+  "body": {
+    "error": "invalid_request",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the token route > a request whose body is already read 1`] = `
+{
+  "body": {
+    "error": "invalid_request",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the token route > an environment with no AuthKit domain 1`] = `
+{
+  "body": {
+    "error": "temporarily_unavailable",
+  },
+  "faults": [
+    {
+      "errorName": "OntologyService:SettingMissing",
+      "message": "OntologyService:SettingMissing",
+      "name": "ApiError",
+      "route": "POST /multipass/api/oauth2/token",
+    },
+  ],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`the token route > no grant 1`] = `
+{
+  "body": {
+    "error": "unsupported_grant_type",
+  },
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "spans": [
+    {
+      "name": "response.body",
+      "status": 0,
+    },
+  ],
+  "status": 400,
+}
+`;

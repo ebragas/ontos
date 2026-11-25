@@ -1,0 +1,160 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`service/http-api#errors > the route answers a negative page size 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageSize",
+    "parameters": {
+      "pageSize": -5,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > the route answers a page size of 0 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageSize",
+    "parameters": {
+      "pageSize": 0,
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > the route answers a page size that is not a number 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "Default:InvalidArgument",
+    "parameters": {},
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > the route answers a page token that is not a name 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageToken",
+    "parameters": {
+      "pageToken": "NQ",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > the route answers a page token that is not base64 1`] = `
+{
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "InvalidPageToken",
+    "parameters": {
+      "pageToken": "%%",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 400,
+}
+`;
+
+exports[`service/http-api#errors > the route answers an Action Type by its published name 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ActionTypeNotFound",
+    "parameters": {
+      "actionType": "com.example.twin.closeAccountAction",
+      "publishedApiName": "com.example.twin.close-account-action",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > the route answers an unknown Action Type 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ActionTypeNotFound",
+    "parameters": {
+      "actionType": "nope",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > the route answers an unknown Action Type by RID 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ActionTypeNotFound",
+    "parameters": {
+      "rid": "ri.actions.main.action-type.nope",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > the route answers an unknown Object Type 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "Nope",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;
+
+exports[`service/http-api#errors > the route answers an unknown Object Type in fullMetadata 1`] = `
+{
+  "body": {
+    "errorCode": "NOT_FOUND",
+    "errorName": "ObjectTypeNotFound",
+    "parameters": {
+      "objectType": "Nope",
+    },
+  },
+  "headers": {
+    "content-type": "application/json",
+  },
+  "status": 404,
+}
+`;

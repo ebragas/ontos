@@ -1,0 +1,16 @@
+.git
+.github
+.deepsec
+.env
+.env.local
+node_modules
+**/node_modules
+**/dist
+*.tgz
+benchmarks
+docs
+examples
+packages/cli
+reports
+test
+tools

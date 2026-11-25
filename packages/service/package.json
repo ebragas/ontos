@@ -1,0 +1,84 @@
+{
+  "name": "@ericbragas/ontos-service",
+  "version": "1.0.0",
+  "description": "The Ontos service: an OSDK-compatible Ontology service on PostgreSQL.",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebragas/ontos.git",
+    "directory": "packages/service"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./client-config": {
+      "types": "./dist/client-config.d.ts",
+      "default": "./dist/client-config.js"
+    },
+    "./publish": {
+      "types": "./dist/publish.d.ts",
+      "default": "./dist/publish.js"
+    },
+    "./convert": {
+      "types": "./dist/convert.d.ts",
+      "default": "./dist/convert.js"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "default": "./dist/testing/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "osdk-sets.json",
+    "LICENSE",
+    "NOTICE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "./build.ts",
+    "start": "./src/node.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
+    "@opentelemetry/api": "1.10.0",
+    "@opentelemetry/context-async-hooks": "3.1.1",
+    "@opentelemetry/exporter-trace-otlp-proto": "0.301.2",
+    "@opentelemetry/resources": "3.1.1",
+    "@opentelemetry/sdk-trace": "3.1.1",
+    "@sentry/node": "11.16.0",
+    "@vercel/functions": "3.11.3",
+    "big.js": "5.2.2",
+    "jose": "6.2.18",
+    "pg": "8.23.1",
+    "pg-query-stream": "4.17.1",
+    "posthog-node": "6.0.5",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.4.0",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@osdk/client": "2.92.0",
+    "@osdk/client.unstable": "2.92.0",
+    "@osdk/docs-spec-platform": "0.5.0",
+    "@osdk/foundry.admin": "2.87.0",
+    "@osdk/foundry.ontologies": "2.87.0",
+    "@osdk/functions": "1.30.0",
+    "@osdk/generator": "2.92.0",
+    "@testcontainers/postgresql": "12.2.2",
+    "@types/big.js": "4.0.5",
+    "@types/pg": "8.23.1",
+    "esbuild": "0.28.2",
+    "fast-check": "4.11.0",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "tasks:read": {
+      "description": "Read tasks"
+    },
+    "tasks:write": {
+      "description": "Create and update tasks"
+    }
+  },
+  "objectTypes": {
+    "com.example.tasks.Task": "tasks:read"
+  },
+  "actionTypes": {
+    "com.example.tasks.create-task": "tasks:write"
+  },
+  "defaultRoles": {
+    "admin": ["ontology:install", "tasks:read", "tasks:write"],
+    "member": ["tasks:read", "tasks:write"]
+  }
+}

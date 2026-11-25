@@ -1,0 +1,51 @@
+{
+  "name": "@ericbragas/ontos-cli",
+  "version": "1.0.0",
+  "description": "The Ontos CLI: sign in, read, apply, and publish against an Ontology service deployment.",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebragas/ontos.git",
+    "directory": "packages/cli"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/ontos.d.ts",
+      "default": "./dist/ontos.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "ontos": "dist/ontos.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "./build.ts"
+  },
+  "dependencies": {
+    "esbuild": "0.28.2",
+    "typescript": "6.0.3"
+  },
+  "optionalDependencies": {
+    "@ericbragas/ontos-service": "1.0.0"
+  },
+  "devDependencies": {
+    "@osdk/client": "2.92.0",
+    "@osdk/foundry.admin": "2.87.0",
+    "@osdk/foundry.ontologies": "2.87.0",
+    "@osdk/maker": "0.91.0",
+    "yaml": "2.9.1"
+  }
+}

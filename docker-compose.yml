@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ontos}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ontos}
+      POSTGRES_DB: ${POSTGRES_DB:-ontos}
+    ports:
+      - '${POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - ontos_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-ontos} -d ${POSTGRES_DB:-ontos}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  ontos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - '${PORT:-8080}:8080'
+    environment:
+      PORT: '8080'
+      DATABASE_URL: postgres://${POSTGRES_USER:-ontos}:${POSTGRES_PASSWORD:-ontos}@postgres:5432/${POSTGRES_DB:-ontos}?sslmode=disable
+      ONTOS_AUTH_MODE: dev
+      ONTOS_DEV_TOKEN: ${ONTOS_DEV_TOKEN:-ontos-dev-token}
+      ONTOLOGY_BASE_URL: http://localhost:${PORT:-8080}
+      PRODUCT_RID: ${PRODUCT_RID:-ri.ontology.main.ontology.00000000-0000-4000-8000-000000000001}
+      ONTOLOGY_MCP: 'true'
+
+volumes:
+  ontos_pgdata:

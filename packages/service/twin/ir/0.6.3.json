@@ -1,0 +1,2869 @@
+{
+  "ontology": {
+    "objectTypes": {
+      "com.example.twin.Account": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Account",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Accounts",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["accountId"],
+          "propertyTypes": {
+            "accountId": {
+              "apiName": "accountId",
+              "displayMetadata": {
+                "displayName": "Account ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "name": {
+              "apiName": "name",
+              "displayMetadata": {
+                "displayName": "Name",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              },
+              "dataConstraints": {
+                "propertyTypeConstraints": [],
+                "nullabilityV2": {
+                  "noNulls": true,
+                  "noEmptyCollections": false
+                }
+              }
+            },
+            "phase": {
+              "apiName": "phase",
+              "displayMetadata": {
+                "displayName": "Phase",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "name",
+          "apiName": "com.example.twin.Account",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Account",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Account",
+                "propertyMapping": {
+                  "accountId": {
+                    "type": "column",
+                    "column": "accountId"
+                  },
+                  "name": {
+                    "type": "column",
+                    "column": "name"
+                  },
+                  "phase": {
+                    "type": "column",
+                    "column": "phase"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.Engagement": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Engagement",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Engagements",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["engagementId"],
+          "propertyTypes": {
+            "engagementId": {
+              "apiName": "engagementId",
+              "displayMetadata": {
+                "displayName": "Engagement ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "accountId": {
+              "apiName": "accountId",
+              "displayMetadata": {
+                "displayName": "Account ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "title": {
+              "apiName": "title",
+              "displayMetadata": {
+                "displayName": "Title",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              },
+              "dataConstraints": {
+                "propertyTypeConstraints": [],
+                "nullabilityV2": {
+                  "noNulls": true,
+                  "noEmptyCollections": false
+                }
+              }
+            },
+            "amount": {
+              "apiName": "amount",
+              "displayMetadata": {
+                "displayName": "Amount",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "double",
+                "double": {}
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "status": {
+              "apiName": "status",
+              "displayMetadata": {
+                "displayName": "Status",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "createdAt": {
+              "apiName": "createdAt",
+              "displayMetadata": {
+                "displayName": "CreatedAt",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "timestamp",
+                "timestamp": {}
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "title",
+          "apiName": "com.example.twin.Engagement",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Engagement",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Engagement",
+                "propertyMapping": {
+                  "engagementId": {
+                    "type": "column",
+                    "column": "engagementId"
+                  },
+                  "accountId": {
+                    "type": "column",
+                    "column": "accountId"
+                  },
+                  "title": {
+                    "type": "column",
+                    "column": "title"
+                  },
+                  "amount": {
+                    "type": "column",
+                    "column": "amount"
+                  },
+                  "status": {
+                    "type": "column",
+                    "column": "status"
+                  },
+                  "createdAt": {
+                    "type": "column",
+                    "column": "createdAt"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      },
+      "com.example.twin.StructProbe": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Struct Probe",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Struct Probes",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["probeId"],
+          "propertyTypes": {
+            "probeId": {
+              "apiName": "probeId",
+              "displayMetadata": {
+                "displayName": "Probe ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "relationship": {
+              "apiName": "relationship",
+              "displayMetadata": {
+                "displayName": "Relationship",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "struct",
+                "struct": {
+                  "structFields": [
+                    {
+                      "apiName": "label",
+                      "displayMetadata": {
+                        "displayName": "label"
+                      },
+                      "typeClasses": [],
+                      "aliases": [],
+                      "fieldType": {
+                        "type": "string",
+                        "string": {
+                          "isLongText": false,
+                          "supportsEfficientLeadingWildcard": false,
+                          "supportsExactMatching": true
+                        }
+                      }
+                    },
+                    {
+                      "apiName": "since",
+                      "displayMetadata": {
+                        "displayName": "since"
+                      },
+                      "typeClasses": [],
+                      "aliases": [],
+                      "fieldType": {
+                        "type": "date",
+                        "date": {}
+                      }
+                    }
+                  ]
+                }
+              },
+              "typeClasses": [],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "measures": {
+              "apiName": "measures",
+              "displayMetadata": {
+                "displayName": "Measures",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "struct",
+                "struct": {
+                  "structFields": [
+                    {
+                      "apiName": "flag",
+                      "displayMetadata": {
+                        "displayName": "flag"
+                      },
+                      "typeClasses": [],
+                      "aliases": [],
+                      "fieldType": {
+                        "type": "boolean",
+                        "boolean": {}
+                      }
+                    },
+                    {
+                      "apiName": "count",
+                      "displayMetadata": {
+                        "displayName": "count"
+                      },
+                      "typeClasses": [],
+                      "aliases": [],
+                      "fieldType": {
+                        "type": "integer",
+                        "integer": {}
+                      }
+                    },
+                    {
+                      "apiName": "score",
+                      "displayMetadata": {
+                        "displayName": "score"
+                      },
+                      "typeClasses": [],
+                      "aliases": [],
+                      "fieldType": {
+                        "type": "double",
+                        "double": {}
+                      }
+                    },
+                    {
+                      "apiName": "at",
+                      "displayMetadata": {
+                        "displayName": "at"
+                      },
+                      "typeClasses": [],
+                      "aliases": [],
+                      "fieldType": {
+                        "type": "timestamp",
+                        "timestamp": {}
+                      }
+                    }
+                  ]
+                }
+              },
+              "typeClasses": [],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            }
+          },
+          "titlePropertyTypeRid": "probeId",
+          "apiName": "com.example.twin.StructProbe",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.StructProbe",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.StructProbe",
+                "propertyMapping": {
+                  "probeId": {
+                    "type": "column",
+                    "column": "probeId"
+                  },
+                  "relationship": {
+                    "type": "struct",
+                    "struct": {
+                      "column": "relationship",
+                      "mapping": {
+                        "label": {
+                          "apiName": "label",
+                          "mappings": {}
+                        },
+                        "since": {
+                          "apiName": "since",
+                          "mappings": {}
+                        }
+                      }
+                    }
+                  },
+                  "measures": {
+                    "type": "struct",
+                    "struct": {
+                      "column": "measures",
+                      "mapping": {
+                        "flag": {
+                          "apiName": "flag",
+                          "mappings": {}
+                        },
+                        "count": {
+                          "apiName": "count",
+                          "mappings": {}
+                        },
+                        "score": {
+                          "apiName": "score",
+                          "mappings": {}
+                        },
+                        "at": {
+                          "apiName": "at",
+                          "mappings": {}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": true,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      }
+    },
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {
+      "account-to-engagements": {
+        "linkType": {
+          "definition": {
+            "type": "oneToMany",
+            "oneToMany": {
+              "cardinalityHint": "ONE_TO_MANY",
+              "manyToOneLinkMetadata": {
+                "apiName": "account",
+                "displayMetadata": {
+                  "displayName": "Account",
+                  "pluralDisplayName": "Accounts",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "objectTypeRidManySide": "com.example.twin.Engagement",
+              "objectTypeRidOneSide": "com.example.twin.Account",
+              "oneToManyLinkMetadata": {
+                "apiName": "engagements",
+                "displayMetadata": {
+                  "displayName": "Engagement",
+                  "pluralDisplayName": "Engagements",
+                  "visibility": "NORMAL",
+                  "groupDisplayName": ""
+                },
+                "typeClasses": []
+              },
+              "oneSidePrimaryKeyToManySidePropertyMapping": [
+                {
+                  "from": {
+                    "apiName": "accountId",
+                    "object": "com.example.twin.Account"
+                  },
+                  "to": {
+                    "apiName": "accountId",
+                    "object": "com.example.twin.Engagement"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "account-to-engagements",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false
+        },
+        "datasources": [],
+        "entityMetadata": {
+          "arePatchesEnabled": true
+        }
+      }
+    },
+    "actionTypes": {
+      "com.example.twin.create-account": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "addObjectRule",
+                  "addObjectRule": {
+                    "objectTypeId": "com.example.twin.Account",
+                    "propertyValues": {
+                      "accountId": {
+                        "type": "parameterId",
+                        "parameterId": "accountId"
+                      },
+                      "name": {
+                        "type": "parameterId",
+                        "parameterId": "name"
+                      },
+                      "phase": {
+                        "type": "parameterId",
+                        "parameterId": "phase"
+                      }
+                    },
+                    "structFieldValues": {}
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "accountId": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "name": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "phase": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.create-account",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Create Account",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["accountId", "name", "phase"],
+            "formContentOrdering": [],
+            "parameters": {
+              "accountId": {
+                "id": "accountId",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Account ID",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "name": {
+                "id": "name",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Name",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "phase": {
+                "id": "phase",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Phase",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.Account"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.create-engagement": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "addObjectRule",
+                  "addObjectRule": {
+                    "objectTypeId": "com.example.twin.Engagement",
+                    "propertyValues": {
+                      "engagementId": {
+                        "type": "parameterId",
+                        "parameterId": "engagementId"
+                      },
+                      "accountId": {
+                        "type": "parameterId",
+                        "parameterId": "accountId"
+                      },
+                      "title": {
+                        "type": "parameterId",
+                        "parameterId": "title"
+                      },
+                      "amount": {
+                        "type": "parameterId",
+                        "parameterId": "amount"
+                      },
+                      "status": {
+                        "type": "staticValue",
+                        "staticValue": {
+                          "type": "string",
+                          "string": "open"
+                        }
+                      },
+                      "createdAt": {
+                        "type": "currentTime",
+                        "currentTime": {}
+                      }
+                    },
+                    "structFieldValues": {}
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "engagementId": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "accountId": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "title": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "amount": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "numericInput",
+                        "numericInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "range",
+                        "range": {
+                          "type": "range",
+                          "range": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.create-engagement",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Create Engagement",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["engagementId", "accountId", "title", "amount"],
+            "formContentOrdering": [],
+            "parameters": {
+              "engagementId": {
+                "id": "engagementId",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Engagement ID",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "accountId": {
+                "id": "accountId",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Account ID",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "title": {
+                "id": "title",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Title",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "amount": {
+                "id": "amount",
+                "type": {
+                  "type": "double",
+                  "double": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Amount",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.Engagement"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.set-engagement-status": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "modifyObjectRule",
+                  "modifyObjectRule": {
+                    "objectToModify": "objectToModifyParameter",
+                    "propertyValues": {
+                      "status": {
+                        "type": "parameterId",
+                        "parameterId": "status"
+                      }
+                    },
+                    "structFieldValues": {}
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "objectToModifyParameter": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "status": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      },
+                      "prefill": {
+                        "type": "objectParameterPropertyValue",
+                        "objectParameterPropertyValue": {
+                          "parameterId": "objectToModifyParameter",
+                          "propertyTypeId": "status"
+                        }
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.set-engagement-status",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Modify Engagement",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["objectToModifyParameter", "status"],
+            "formContentOrdering": [],
+            "parameters": {
+              "objectToModifyParameter": {
+                "id": "objectToModifyParameter",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.Engagement"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Modify object",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "status": {
+                "id": "status",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Status",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.Engagement"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.delete-account": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "deleteObjectRule",
+                  "deleteObjectRule": {
+                    "objectToDelete": "objectToDeleteParameter"
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "objectToDeleteParameter": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.delete-account",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Delete Account",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["objectToDeleteParameter"],
+            "formContentOrdering": [],
+            "parameters": {
+              "objectToDeleteParameter": {
+                "id": "objectToDeleteParameter",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.Account"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Delete object",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.Account"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.delete-engagement": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "deleteObjectRule",
+                  "deleteObjectRule": {
+                    "objectToDelete": "objectToDeleteParameter"
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "objectToDeleteParameter": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.delete-engagement",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Delete Engagement",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["objectToDeleteParameter"],
+            "formContentOrdering": [],
+            "parameters": {
+              "objectToDeleteParameter": {
+                "id": "objectToDeleteParameter",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.Engagement"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Delete object",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.Engagement"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.close-account-action": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "functionRule",
+                  "functionRule": {
+                    "functionRid": "closeAccount",
+                    "functionInputValues": {},
+                    "functionVersion": "0.1.0"
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "Validation failed",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {},
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.close-account-action",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Close account",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": [],
+            "formContentOrdering": [],
+            "parameters": {},
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": [],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.set-account-phase": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "modifyObjectRule",
+                  "modifyObjectRule": {
+                    "objectToModify": "objectToModifyParameter",
+                    "propertyValues": {
+                      "phase": {
+                        "type": "parameterId",
+                        "parameterId": "phase"
+                      }
+                    },
+                    "structFieldValues": {}
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "objectToModifyParameter": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "phase": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      },
+                      "prefill": {
+                        "type": "objectParameterPropertyValue",
+                        "objectParameterPropertyValue": {
+                          "parameterId": "objectToModifyParameter",
+                          "propertyTypeId": "phase"
+                        }
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.set-account-phase",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Modify Account",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["objectToModifyParameter", "phase"],
+            "formContentOrdering": [],
+            "parameters": {
+              "objectToModifyParameter": {
+                "id": "objectToModifyParameter",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.Account"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Modify object",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "phase": {
+                "id": "phase",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Phase",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.Account"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.copy-account-phase": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "modifyObjectRule",
+                  "modifyObjectRule": {
+                    "objectToModify": "objectToModifyParameter",
+                    "propertyValues": {
+                      "status": {
+                        "type": "objectParameterPropertyValue",
+                        "objectParameterPropertyValue": {
+                          "parameterId": "account",
+                          "propertyTypeId": "phase"
+                        }
+                      }
+                    },
+                    "structFieldValues": {}
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "objectToModifyParameter": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "account": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.copy-account-phase",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Modify Engagement",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["objectToModifyParameter", "account"],
+            "formContentOrdering": [],
+            "parameters": {
+              "objectToModifyParameter": {
+                "id": "objectToModifyParameter",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.Engagement"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Modify object",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "account": {
+                "id": "account",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.Account"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Account",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.Engagement"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.probe-version-check-action": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "functionRule",
+                  "functionRule": {
+                    "functionRid": "probeVersionCheck",
+                    "functionInputValues": {},
+                    "functionVersion": "0.1.0"
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "Validation failed",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {},
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.probe-version-check-action",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Probe version check",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": [],
+            "formContentOrdering": [],
+            "parameters": {},
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": [],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.create-struct-probe": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "addObjectRule",
+                  "addObjectRule": {
+                    "objectTypeId": "com.example.twin.StructProbe",
+                    "propertyValues": {
+                      "probeId": {
+                        "type": "parameterId",
+                        "parameterId": "probeId"
+                      }
+                    },
+                    "structFieldValues": {
+                      "relationship": {
+                        "label": {
+                          "type": "structParameterFieldValue",
+                          "structParameterFieldValue": {
+                            "parameterId": "relationship",
+                            "structFieldApiName": "label"
+                          }
+                        },
+                        "since": {
+                          "type": "structParameterFieldValue",
+                          "structParameterFieldValue": {
+                            "parameterId": "relationship",
+                            "structFieldApiName": "since"
+                          }
+                        }
+                      },
+                      "measures": {
+                        "flag": {
+                          "type": "structParameterFieldValue",
+                          "structParameterFieldValue": {
+                            "parameterId": "measures",
+                            "structFieldApiName": "flag"
+                          }
+                        },
+                        "count": {
+                          "type": "structParameterFieldValue",
+                          "structParameterFieldValue": {
+                            "parameterId": "measures",
+                            "structFieldApiName": "count"
+                          }
+                        },
+                        "score": {
+                          "type": "structParameterFieldValue",
+                          "structParameterFieldValue": {
+                            "parameterId": "measures",
+                            "structFieldApiName": "score"
+                          }
+                        },
+                        "at": {
+                          "type": "structParameterFieldValue",
+                          "structParameterFieldValue": {
+                            "parameterId": "measures",
+                            "structFieldApiName": "at"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "probeId": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "text",
+                        "text": {
+                          "type": "text",
+                          "text": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "relationship": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "struct",
+                        "struct": {
+                          "type": "struct",
+                          "struct": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "measures": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "struct",
+                        "struct": {
+                          "type": "struct",
+                          "struct": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.create-struct-probe",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Create Struct Probe",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["probeId", "relationship", "measures"],
+            "formContentOrdering": [],
+            "parameters": {
+              "probeId": {
+                "id": "probeId",
+                "type": {
+                  "type": "string",
+                  "string": {}
+                },
+                "displayMetadata": {
+                  "displayName": "Probe ID",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "relationship": {
+                "id": "relationship",
+                "type": {
+                  "type": "struct",
+                  "struct": {
+                    "structFieldTypes": {
+                      "label": {
+                        "type": "string",
+                        "string": {}
+                      },
+                      "since": {
+                        "type": "date",
+                        "date": {}
+                      }
+                    }
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Relationship",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "measures": {
+                "id": "measures",
+                "type": {
+                  "type": "struct",
+                  "struct": {
+                    "structFieldTypes": {
+                      "flag": {
+                        "type": "boolean",
+                        "boolean": {}
+                      },
+                      "count": {
+                        "type": "integer",
+                        "integer": {}
+                      },
+                      "score": {
+                        "type": "double",
+                        "double": {}
+                      },
+                      "at": {
+                        "type": "timestamp",
+                        "timestamp": {}
+                      }
+                    }
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Measures",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.StructProbe"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.set-struct-probe-relationship": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "modifyObjectRule",
+                  "modifyObjectRule": {
+                    "objectToModify": "objectToModifyParameter",
+                    "propertyValues": {},
+                    "structFieldValues": {
+                      "relationship": {
+                        "label": {
+                          "type": "structParameterFieldValue",
+                          "structParameterFieldValue": {
+                            "parameterId": "relationship",
+                            "structFieldApiName": "label"
+                          }
+                        },
+                        "since": {
+                          "type": "structParameterFieldValue",
+                          "structParameterFieldValue": {
+                            "parameterId": "relationship",
+                            "structFieldApiName": "since"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "objectToModifyParameter": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                },
+                "relationship": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "textInput",
+                        "textInput": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "struct",
+                        "struct": {
+                          "type": "struct",
+                          "struct": {}
+                        }
+                      },
+                      "required": {
+                        "type": "notRequired",
+                        "notRequired": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.set-struct-probe-relationship",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Modify Struct Probe",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["objectToModifyParameter", "relationship"],
+            "formContentOrdering": [],
+            "parameters": {
+              "objectToModifyParameter": {
+                "id": "objectToModifyParameter",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.StructProbe"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Modify object",
+                  "description": "",
+                  "typeClasses": []
+                }
+              },
+              "relationship": {
+                "id": "relationship",
+                "type": {
+                  "type": "struct",
+                  "struct": {
+                    "structFieldTypes": {
+                      "label": {
+                        "type": "string",
+                        "string": {}
+                      },
+                      "since": {
+                        "type": "date",
+                        "date": {}
+                      }
+                    }
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Relationship",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.StructProbe"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.set-relationship-action": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "functionRule",
+                  "functionRule": {
+                    "functionRid": "setRelationship",
+                    "functionInputValues": {},
+                    "functionVersion": "0.1.0"
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "Validation failed",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {},
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.set-relationship-action",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Set relationship",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": [],
+            "formContentOrdering": [],
+            "parameters": {},
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": [],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      },
+      "com.example.twin.delete-struct-probe": {
+        "actionType": {
+          "actionTypeLogic": {
+            "logic": {
+              "rules": [
+                {
+                  "type": "deleteObjectRule",
+                  "deleteObjectRule": {
+                    "objectToDelete": "objectToDeleteParameter"
+                  }
+                }
+              ]
+            },
+            "validation": {
+              "actionTypeLevelValidation": {
+                "rules": {
+                  "0": {
+                    "condition": {
+                      "type": "true",
+                      "true": {}
+                    },
+                    "displayMetadata": {
+                      "failureMessage": "",
+                      "typeClasses": []
+                    }
+                  }
+                }
+              },
+              "parameterValidations": {
+                "objectToDeleteParameter": {
+                  "defaultValidation": {
+                    "display": {
+                      "renderHint": {
+                        "type": "dropdown",
+                        "dropdown": {}
+                      },
+                      "visibility": {
+                        "type": "editable",
+                        "editable": {}
+                      }
+                    },
+                    "validation": {
+                      "allowedValues": {
+                        "type": "objectQuery",
+                        "objectQuery": {
+                          "type": "objectQuery",
+                          "objectQuery": {}
+                        }
+                      },
+                      "required": {
+                        "type": "required",
+                        "required": {}
+                      }
+                    }
+                  },
+                  "conditionalOverrides": []
+                }
+              },
+              "sectionValidations": {}
+            }
+          },
+          "metadata": {
+            "apiName": "com.example.twin.delete-struct-probe",
+            "displayMetadata": {
+              "configuration": {
+                "defaultLayout": "FORM",
+                "displayAndFormat": {
+                  "table": {
+                    "columnWidthByParameterRid": {},
+                    "enableFileImport": true,
+                    "fitHorizontally": false,
+                    "frozenColumnCount": 0,
+                    "rowHeightInLines": 1
+                  }
+                },
+                "enableLayoutUserSwitch": false
+              },
+              "description": "",
+              "displayName": "Delete Struct Probe",
+              "icon": {
+                "type": "blueprint",
+                "blueprint": {
+                  "locator": "edit",
+                  "color": "#000000"
+                }
+              },
+              "successMessage": [],
+              "typeClasses": [],
+              "applyingMessage": []
+            },
+            "parameterOrdering": ["objectToDeleteParameter"],
+            "formContentOrdering": [],
+            "parameters": {
+              "objectToDeleteParameter": {
+                "id": "objectToDeleteParameter",
+                "type": {
+                  "type": "objectReference",
+                  "objectReference": {
+                    "objectTypeId": "com.example.twin.StructProbe"
+                  }
+                },
+                "displayMetadata": {
+                  "displayName": "Delete object",
+                  "description": "",
+                  "typeClasses": []
+                }
+              }
+            },
+            "sections": {},
+            "status": {
+              "type": "active",
+              "active": {}
+            },
+            "entities": {
+              "affectedInterfaceTypes": [],
+              "affectedObjectTypes": ["com.example.twin.StructProbe"],
+              "affectedLinkTypes": [],
+              "typeGroups": []
+            }
+          }
+        }
+      }
+    },
+    "blockPermissionInformation": {
+      "actionTypes": {
+        "com.example.twin.close-account-action": {
+          "restrictionStatus": {
+            "hasRolesApplied": true,
+            "publicProject": false,
+            "ontologyPackageRid": null
+          }
+        },
+        "com.example.twin.probe-version-check-action": {
+          "restrictionStatus": {
+            "hasRolesApplied": true,
+            "publicProject": false,
+            "ontologyPackageRid": null
+          }
+        },
+        "com.example.twin.set-relationship-action": {
+          "restrictionStatus": {
+            "hasRolesApplied": true,
+            "publicProject": false,
+            "ontologyPackageRid": null
+          }
+        }
+      },
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "importedOntology": {
+    "objectTypes": {},
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {},
+    "actionTypes": {},
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "valueTypes": {
+    "valueTypes": []
+  },
+  "importedValueTypes": {
+    "valueTypes": []
+  }
+}

@@ -1,0 +1,213 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`service/cli#output > --version with a command 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos --version, with no command or other flag."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > --version with a flag and a value 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos --version, with no command or other flag."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > --version with another flag 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos --version, with no command or other flag."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > a command that is a key of the prototype 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos <init | dev | login | logout | install | describe | objects | aggregate | apply | history | validate | publish | generate-osdk> [options], or ontos --version"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > a command that is a property of Object 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos <init | dev | login | logout | install | describe | objects | aggregate | apply | history | validate | publish | generate-osdk> [options], or ontos --version"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > a flag that takes no value, with a value 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Option '--local' does not take an argument"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > a flag with no value 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Option '--app <value>' argument missing"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > a short flag 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Unknown option '-x'. To specify a positional argument starting with a '-', place it at the end of the command after '--', as in '-- \\"-x\\""}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an empty command 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos <init | dev | login | logout | install | describe | objects | aggregate | apply | history | validate | publish | generate-osdk> [options], or ontos --version"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an error of a command: an empty --org 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"--org needs an Organization ID: ontos login --org <id>"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an error of a command: no target 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"No target: pass --url <url>, --app <name>, or set ONTOLOGY_APP."}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an error of a command: too many arguments 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos logout"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an error of the service: a fetch that rejects 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorName":"TransientFailure","message":"Cannot reach https://stub.test: no network in this test.","status":null,"url":"https://stub.test/api/ontology-service/v1/client-config","tries":7}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an error of the service: an OSDK error body 1`] = `
+{
+  "code": 1,
+  "stderr": "{"errorCode":"NOT_FOUND","errorName":"PropertiesNotFound","errorInstanceId":"ebe8005d-11d9-4f56-b2fe-615635d6689d","parameters":{"objectType":"com.example.twin.Engagement","properties":["nope"]}}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an error of the service: an answer that is not an OSDK error body 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Failed to fetch 500 Internal Server Error","status":500}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an unknown command 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos <init | dev | login | logout | install | describe | objects | aggregate | apply | history | validate | publish | generate-osdk> [options], or ontos --version"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an unknown command with a flag 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos <init | dev | login | logout | install | describe | objects | aggregate | apply | history | validate | publish | generate-osdk> [options], or ontos --version"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > an unknown flag 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Unknown option '--nope'. To specify a positional argument starting with a '-', place it at the end of the command after '--', as in '-- \\"--nope\\""}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output > no command 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"Usage: ontos <init | dev | login | logout | install | describe | objects | aggregate | apply | history | validate | publish | generate-osdk> [options], or ontos --version"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output: a failure of the io > a stdout that throws a string 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"stdout is closed"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output: a failure of the io > a stdout that throws an Error 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"stdout is closed"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#output: a failure of the io > a stdout that throws an Error with a cause that is an Error 1`] = `
+{
+  "code": 1,
+  "stderr": "{"message":"outer"}
+",
+  "stdout": "",
+}
+`;
+
+exports[`service/cli#sign-in: the token store with a path that fails > a key whose folder is a file 1`] = `
+{
+  "code": "EEXIST",
+  "syscall": "mkdir",
+}
+`;
+
+exports[`service/cli#sign-in: the token store with a path that fails > a key whose lock name is too long 1`] = `
+{
+  "code": "ENAMETOOLONG",
+  "syscall": "open",
+}
+`;

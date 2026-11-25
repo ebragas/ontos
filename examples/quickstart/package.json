@@ -1,0 +1,22 @@
+{
+  "name": "ontos-quickstart",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "ontos dev",
+    "generate-osdk": "ontos generate-osdk",
+    "publish:local": "ontos publish --url http://127.0.0.1:8080 --skip-sdk-package"
+  },
+  "dependencies": {
+    "@osdk/maker": "0.91.0",
+    "@osdk/maker-experimental": "0.87.0",
+    "@osdk/client": "2.92.0",
+    "@osdk/cli": "0.120.0",
+    "@osdk/functions": "1.30.0"
+  },
+  "devDependencies": {
+    "@ericbragas/ontos-cli": "1.0.0",
+    "@ericbragas/ontos-service": "1.0.0"
+  }
+}

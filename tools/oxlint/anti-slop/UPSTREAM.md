@@ -1,0 +1,1 @@
+Copied from https://github.com/dmmulroy/anti-slop at 13909c9e07590f5a85d93c62712259fe14a883f7 (src/, no tests, no effect/). Only the 6 active rules in oxlint.config.ts are kept, with the shared files they import.

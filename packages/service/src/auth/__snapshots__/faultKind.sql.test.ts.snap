@@ -1,0 +1,1622 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_AND_EXECUTE: WorkOS answers the member list read with 401 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"Default:Internal","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "message": "WorkOS answered 401 to the members page read.",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "Error: WorkOS answered 401 to the members page read.",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "Error",
+        "http.status_code": 401,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 500,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_AND_EXECUTE: WorkOS answers the member list read with 429 and retry-after 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"OntologyService:WorkosRateLimited","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "3",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosRateLimited",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: OntologyService:WorkosRateLimited",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosRateLimited",
+        "http.status_code": 429,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 503,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_AND_EXECUTE: WorkOS answers the member list read with 500 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"OntologyService:WorkosUnavailable","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosUnavailable",
+      "message": "OntologyService:WorkosUnavailable",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "10",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosUnavailable",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: OntologyService:WorkosUnavailable",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosUnavailable",
+        "http.status_code": 500,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 503,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_AND_EXECUTE: the member check gets a 503 ApiError with retry-after 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"OntologyService:WorkosRateLimited","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "7",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosRateLimited",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: OntologyService:WorkosRateLimited",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosRateLimited",
+        "http.status_code": 429,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 503,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_AND_EXECUTE: the member check gets a plain Error 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"Default:Internal","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the members page read a body of another shape.",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "Error: WorkOS gave the members page read a body of another shape.",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "membership",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "role",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT ir, metadata, osdk_set, functions, grants FROM ontology_registry.product_versions WHERE product = $1 AND version = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.version": 1,
+        "sentry.op": "function",
+      },
+      "name": "ontology compile",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": false,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 500,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_AND_EXECUTE: the member check gets a wait until the client aborts the request 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"Default:Internal","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "message": "This operation was aborted",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "AbortError: This operation was aborted",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 500,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_ONLY: the member check gets a 503 ApiError with retry-after 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"OntologyService:WorkosRateLimited","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosRateLimited",
+      "message": "OntologyService:WorkosRateLimited",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+    "retry-after": "7",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosRateLimited",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: OntologyService:WorkosRateLimited",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosRateLimited",
+        "http.status_code": 429,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 503,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_ONLY: the member check gets a plain Error 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"Default:Internal","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "message": "WorkOS gave the members page read a body of another shape.",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "Error: WorkOS gave the members page read a body of another shape.",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 500,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_ONLY: the member check gets a wait until the client aborts the request 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"INTERNAL","errorName":"Default:Internal","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "message": "This operation was aborted",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "AbortError: This operation was aborted",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 500,
+        "ontology.version": 1,
+        "route.access": "ontology",
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > handleTrusted: an apply never reaches the member check 1`] = `
+{
+  "accounts": [],
+  "body": "{"errorCode":"PERMISSION_DENIED","errorName":"Default:PermissionDenied","errorInstanceId":"<uuid>","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "errorName": "Default:PermissionDenied",
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:PermissionDenied",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "http.status_code": 403,
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "handler",
+      },
+      "name": "function client POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > the MCP tool apply_action: the client aborts during the member list read and WorkOS then answers, so the call answers 200 with the result INVALID and no fault 1`] = `
+{
+  "accounts": [],
+  "body": "{"result":{"content":[{"type":"text","text":"{\\"validation\\":{\\"result\\":\\"INVALID\\",\\"submissionCriteria\\":[],\\"parameters\\":{\\"name\\":{\\"result\\":\\"VALID\\",\\"evaluatedConstraints\\":[],\\"required\\":true},\\"phase\\":{\\"result\\":\\"VALID\\",\\"evaluatedConstraints\\":[],\\"required\\":false},\\"assignee\\":{\\"result\\":\\"INVALID\\",\\"evaluatedConstraints\\":[{\\"type\\":\\"groupMember\\"}],\\"required\\":false},\\"accountId\\":{\\"result\\":\\"VALID\\",\\"evaluatedConstraints\\":[],\\"required\\":false}}}}"}],"structuredContent":{"validation":{"result":"INVALID","submissionCriteria":[],"parameters":{"name":{"result":"VALID","evaluatedConstraints":[],"required":true},"phase":{"result":"VALID","evaluatedConstraints":[],"required":false},"assignee":{"result":"INVALID","evaluatedConstraints":[{"type":"groupMember"}],"required":false},"accountId":{"result":"VALID","evaluatedConstraints":[],"required":false}}}},"isError":true},"jsonrpc":"2.0","id":1}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "mcp": {
+        "apiName": "com.example.twin.assign-account",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "apply_action",
+      },
+      "ontologyVersion": 1,
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name FROM ontology_registry.ontologies WHERE organization = $1 ORDER BY api_name COLLATE "C"",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "apply.attempt": 1,
+        "sentry.op": "function",
+      },
+      "name": "apply attempt",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "handler",
+      },
+      "name": "mcp route POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "gen_ai.operation.name": "execute_tool",
+        "gen_ai.tool.name": "apply_action",
+        "mcp.method.name": "tools/call",
+        "mcp.tool.name": "apply_action",
+        "mcp.transport": "http",
+        "network.transport": "tcp",
+        "sentry.op": "mcp.server",
+      },
+      "name": "mcp tool",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 200,
+        "mcp.method.name": "tools/call",
+        "mcp.tool.name": "apply_action",
+        "ontology.version": 1,
+        "route.access": "mcp",
+        "route.key": "POST /api/mcp",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/mcp",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > the MCP tool apply_action: the member check gets a 503 ApiError with retry-after 1`] = `
+{
+  "accounts": [],
+  "body": "{"result":{"content":[{"type":"text","text":"{\\"errorCode\\":\\"INTERNAL\\",\\"errorName\\":\\"OntologyService:WorkosRateLimited\\",\\"errorInstanceId\\":\\"<uuid>\\",\\"parameters\\":{}}\\nThe Action may have applied. Call \`get_edit_history\` on the Objects before you call \`apply_action\` again."}],"structuredContent":{"errorCode":"INTERNAL","errorName":"OntologyService:WorkosRateLimited","errorInstanceId":"<uuid>","parameters":{}},"isError":true},"jsonrpc":"2.0","id":1}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosRateLimited",
+      "mcp": {
+        "apiName": "com.example.twin.assign-account",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "tool": "apply_action",
+      },
+      "message": "OntologyService:WorkosRateLimited",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:WorkosRateLimited",
+      "mcp": {
+        "apiName": "com.example.twin.assign-account",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "apply_action",
+      },
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: OntologyService:WorkosRateLimited",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name FROM ontology_registry.ontologies WHERE organization = $1 ORDER BY api_name COLLATE "C"",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "error.type": "OntologyService:WorkosRateLimited",
+        "http.status_code": 429,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 2,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 503,
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "handler",
+      },
+      "name": "mcp route POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "gen_ai.operation.name": "execute_tool",
+        "gen_ai.tool.name": "apply_action",
+        "mcp.method.name": "tools/call",
+        "mcp.tool.name": "apply_action",
+        "mcp.transport": "http",
+        "network.transport": "tcp",
+        "sentry.op": "mcp.server",
+      },
+      "name": "mcp tool",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 200,
+        "mcp.method.name": "tools/call",
+        "mcp.tool.name": "apply_action",
+        "ontology.version": 1,
+        "route.access": "mcp",
+        "route.key": "POST /api/mcp",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/mcp",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`a WorkOS fault in the member check of an apply > the MCP tool apply_action: the member check gets a plain Error 1`] = `
+{
+  "accounts": [],
+  "body": "{"result":{"content":[{"type":"text","text":"{\\"errorCode\\":\\"INTERNAL\\",\\"errorName\\":\\"Default:Internal\\",\\"errorInstanceId\\":\\"<uuid>\\",\\"parameters\\":{}}\\nThe Action may have applied. Call \`get_edit_history\` on the Objects before you call \`apply_action\` again."}],"structuredContent":{"errorCode":"INTERNAL","errorName":"Default:Internal","errorInstanceId":"<uuid>","parameters":{}},"isError":true},"jsonrpc":"2.0","id":1}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "mcp": {
+        "apiName": "com.example.twin.assign-account",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "tool": "apply_action",
+      },
+      "message": "WorkOS gave the members page read a body of another shape.",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "mcp": {
+        "apiName": "com.example.twin.assign-account",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "apply_action",
+      },
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.assign-account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "Error: WorkOS gave the members page read a body of another shape.",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "spans": [
+    {
+      "attributes": {
+        "sentry.op": "middleware",
+      },
+      "name": "token check",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name FROM ontology_registry.ontologies WHERE organization = $1 ORDER BY api_name COLLATE "C"",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db",
+      },
+      "name": "sql connection wait",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "db.query",
+        "sql.template": "SELECT rid, api_name, display_name, object_schema, engine_schema, product, version, current_database() AS database FROM ontology_registry.ontologies WHERE rid = $1 AND organization = $2",
+      },
+      "name": "sql",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "ontology.cache.hit": true,
+        "ontology.version": 1,
+        "sentry.op": "cache.get",
+      },
+      "name": "ontology view",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 500,
+        "route.key": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+        "sentry.op": "handler",
+      },
+      "name": "mcp route POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "gen_ai.operation.name": "execute_tool",
+        "gen_ai.tool.name": "apply_action",
+        "mcp.method.name": "tools/call",
+        "mcp.tool.name": "apply_action",
+        "mcp.transport": "http",
+        "network.transport": "tcp",
+        "sentry.op": "mcp.server",
+      },
+      "name": "mcp tool",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "sentry.op": "http.server",
+      },
+      "name": "response.body",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "action.api_name": "com.example.twin.assign-account",
+        "caller.kind": "person",
+        "http.status_code": 200,
+        "mcp.method.name": "tools/call",
+        "mcp.tool.name": "apply_action",
+        "ontology.version": 1,
+        "route.access": "mcp",
+        "route.key": "POST /api/mcp",
+        "sentry.op": "http.server",
+        "user.id": "user_01TEST00000000000000000001",
+      },
+      "name": "POST /api/mcp",
+      "status": {
+        "code": 0,
+      },
+    },
+  ],
+  "status": 200,
+}
+`;

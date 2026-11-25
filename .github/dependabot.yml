@@ -1,0 +1,70 @@
+# Dependabot opens 1 grouped pull request each week for each group below. No pull request merges by itself:
+# the tests and CI checks judge each update.
+version: 2
+updates:
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    target-branch: main
+    # Each package pins an exact version, so an update changes the pin.
+    versioning-strategy: increase
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps)
+    # The OSDK set moves on purpose, as 1 set of exact versions, when a feature needs it (Releases "OSDK sets").
+    ignore:
+      - dependency-name: '@osdk/*'
+    groups:
+      opentelemetry:
+        patterns:
+          - '@opentelemetry/*'
+      # Dependabot puts each update in the first group that matches, so other-major comes before other.
+      # A person decides on each major update, and a major update never holds back a minor or patch update.
+      other-major:
+        patterns:
+          - '*'
+        exclude-patterns:
+          - '@opentelemetry/*'
+        update-types:
+          - major
+      other:
+        patterns:
+          - '*'
+        exclude-patterns:
+          - '@opentelemetry/*'
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    target-branch: main
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: chore(ci)
+    groups:
+      actions:
+        patterns:
+          - '*'
+  # Covers Dockerfile base images (node:24-alpine); docker-compose.yml stays pinned on PostgreSQL 17 intentionally.
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    target-branch: main
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: chore(docker)
+    ignore:
+      - dependency-name: node
+        update-types:
+          - version-update:semver-major
+    groups:
+      docker-images:
+        patterns:
+          - '*'

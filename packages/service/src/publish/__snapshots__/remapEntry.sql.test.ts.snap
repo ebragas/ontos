@@ -1,0 +1,403 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`the answers of the child process of the CLI > DATABASE_URL_DIRECT is missing 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap entry reads DATABASE_URL_DIRECT, WORKOS_API_KEY, and NEON_BRANCH_ID from the environment. Missing: DATABASE_URL_DIRECT.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > NEON_BRANCH_ID differs from neon.branch_id 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The connection is to the Neon branch br-staging-0001, not to the branch staging br-production-0002. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > NEON_BRANCH_ID is empty 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap entry reads DATABASE_URL_DIRECT, WORKOS_API_KEY, and NEON_BRANCH_ID from the environment. Missing: NEON_BRANCH_ID.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > NEON_BRANCH_ID is missing 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap entry reads DATABASE_URL_DIRECT, WORKOS_API_KEY, and NEON_BRANCH_ID from the environment. Missing: NEON_BRANCH_ID.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WORKOS_API_KEY is missing 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap entry reads DATABASE_URL_DIRECT, WORKOS_API_KEY, and NEON_BRANCH_ID from the environment. Missing: WORKOS_API_KEY.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 200 with a body that is not JSON 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 200 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 200 with an empty id 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 200 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 200 with an id that is not text 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 200 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 200 with no id 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 200 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 200 with the JSON null 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 200 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 201 with an id 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 201 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 204 with no body 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 204 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 401 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 401 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 429 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 429 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS answers 500 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS answered 500 for the owner org_BOLT, with no Mirror Organization ID. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS drops the connection 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS could not be reached for the owner org_BOLT (UND_ERR_SOCKET). The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > WorkOS is not reachable 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "WorkOS could not be reached for the owner org_ACME (ECONNREFUSED). The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > a Mirror Organization has an Ontology of the API name 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_ACME_MIRROR",
+    "alpha@org_ACME_MIRROR",
+  ],
+  "stderr": "",
+  "stdout": "{"remapped":[{"ontologyRid":"ri.ontology.main.ontology.00000000-0000-4000-8000-000000000002","apiName":"beta","from":"org_ACME","to":"org_ACME_MIRROR"}],"clashes":[{"ontologyRid":"ri.ontology.main.ontology.00000000-0000-4000-8000-000000000001","apiName":"alpha","organization":"org_ACME","mirror":"org_ACME_MIRROR"}]}
+",
+}
+`;
+
+exports[`the answers of the child process of the CLI > a deadlock with a second connection 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "PublishLockTimeout: the wait for the lock of install ended. The remap changed nothing, and a repeat is safe.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > an error at the commit 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap failed with the database error P0001. Its result is not known, and a repeat is safe.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > each owner has a Mirror Organization 1`] = `
+{
+  "code": 0,
+  "owners": [
+    "alpha@org_ACME_MIRROR",
+    "beta@org_ACME_MIRROR",
+    "gamma@null",
+    "delta@",
+  ],
+  "stderr": "",
+  "stdout": "{"remapped":[{"ontologyRid":"ri.ontology.main.ontology.00000000-0000-4000-8000-000000000001","apiName":"alpha","from":"org_ACME","to":"org_ACME_MIRROR"},{"ontologyRid":"ri.ontology.main.ontology.00000000-0000-4000-8000-000000000002","apiName":"beta","from":"org_ACME","to":"org_ACME_MIRROR"}],"clashes":[]}
+",
+}
+`;
+
+exports[`the answers of the child process of the CLI > each variable is missing 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap entry reads DATABASE_URL_DIRECT, WORKOS_API_KEY, and NEON_BRANCH_ID from the environment. Missing: DATABASE_URL_DIRECT, WORKOS_API_KEY, NEON_BRANCH_ID.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > neon.branch_id is empty 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The connection has no Neon branch (no neon.branch_id), not the branch staging br-staging-0001. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > no owner has a Mirror Organization 1`] = `
+{
+  "code": 0,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "",
+  "stdout": "{"remapped":[],"clashes":[]}
+",
+}
+`;
+
+exports[`the answers of the child process of the CLI > the connection is refused 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap failed with the database error ECONNREFUSED. Its result is not known, and a repeat is safe.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > the connection string is malformed 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap failed with the database error ERR_INVALID_URL. Its result is not known, and a repeat is safe.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > the database has no neon.branch_id 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The connection has no Neon branch (no neon.branch_id), not the branch staging br-staging-0001. The remap changed nothing.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > the owner ID has a slash 1`] = `
+{
+  "code": 0,
+  "owners": [
+    "alpha@org_ODD_MIRROR",
+  ],
+  "stderr": "",
+  "stdout": "{"remapped":[{"ontologyRid":"ri.ontology.main.ontology.00000000-0000-4000-8000-000000000001","apiName":"alpha","from":"org/odd","to":"org_ODD_MIRROR"}],"clashes":[]}
+",
+}
+`;
+
+exports[`the answers of the child process of the CLI > the password is wrong 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "The remap failed with the database error 28P01. Its result is not known, and a repeat is safe.
+",
+  "stdout": "",
+}
+`;
+
+exports[`the answers of the child process of the CLI > the registry has no row 1`] = `
+{
+  "code": 0,
+  "owners": [],
+  "stderr": "",
+  "stdout": "{"remapped":[],"clashes":[]}
+",
+}
+`;
+
+exports[`the answers of the child process of the CLI > the wait for the lock of install ends 1`] = `
+{
+  "code": 1,
+  "owners": [
+    "alpha@org_ACME",
+    "beta@org_BOLT",
+  ],
+  "stderr": "PublishLockTimeout: the wait for the lock of install ended. The remap changed nothing, and a repeat is safe.
+",
+  "stdout": "",
+}
+`;

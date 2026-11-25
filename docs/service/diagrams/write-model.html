@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The write path model</title>
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --fg: #1d1d1b;
+        --muted: #6b6a65;
+        --line: #d8d5cc;
+        --card: #ffffff;
+        --accent: #1f6f4a;
+        --warn: #a5481c;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #171716;
+          --fg: #ecebe6;
+          --muted: #a19f97;
+          --line: #3a3935;
+          --card: #201f1d;
+          --accent: #5cc28f;
+          --warn: #e98a5c;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme='dark'] {
+        --bg: #171716;
+        --fg: #ecebe6;
+        --muted: #a19f97;
+        --line: #3a3935;
+        --card: #201f1d;
+        --accent: #5cc28f;
+        --warn: #e98a5c;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.5 -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 28px 16px 48px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-size: 17px;
+        margin: 28px 0 6px;
+      }
+      h3 {
+        font-size: 15px;
+        margin: 18px 0 6px;
+      }
+      figure {
+        margin: 0;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px;
+        overflow-x: auto;
+      }
+      figcaption {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+      td,
+      th {
+        border: 1px solid var(--line);
+        padding: 4px 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+      code {
+        font-size: 13px;
+      }
+      pre {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 8px 10px;
+        overflow-x: auto;
+        font-size: 12px;
+      }
+      .holds {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .breaks {
+        color: var(--warn);
+        font-weight: 600;
+      }
+      .note {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      ol.bugs > li {
+        margin-bottom: 14px;
+      }
+      ol.bugs ol {
+        font-size: 14px;
+      }
+
+      .pele {
+        --pele-bg: #ffffff;
+        --pele-fg: #1c1c1c;
+        --pele-muted: #656565;
+        --pele-line: #808080;
+        --pele-surface: #fcfcfc;
+        --pele-surface-alt: #f1f1f1;
+        --pele-border: #c9c9c9;
+      }
+      .pele .blue rect {
+        fill: #c3e0ff;
+      }
+      .pele .orange rect {
+        fill: #f0d3bf;
+      }
+      .pele .purple rect {
+        fill: #e3d5ff;
+      }
+      .pele .breaks rect {
+        fill: #ffecee !important;
+        stroke: #e72e3b !important;
+        stroke-width: 2.5px !important;
+      }
+      .pele .breaks text {
+        fill: #cd2834 !important;
+      }
+      .pele .bugPath rect {
+        stroke: #1680f3 !important;
+        stroke-width: 2.5px !important;
+      }
+      @media (prefers-color-scheme: dark) {
+        .pele {
+          --pele-bg: #1f1f1f;
+          --pele-fg: #f5f5f5;
+          --pele-muted: #acacac;
+          --pele-line: #939393;
+          --pele-surface: #121212;
+          --pele-surface-alt: #2c2c2c;
+          --pele-border: #4e4e4e;
+        }
+        .pele .blue rect {
+          fill: #1b3857;
+        }
+        .pele .orange rect {
+          fill: #573117;
+        }
+        .pele .purple rect {
+          fill: #3c2e57;
+        }
+        .pele .breaks rect {
+          fill: #2e2021 !important;
+          stroke: #cf2b35 !important;
+        }
+        .pele .breaks text {
+          fill: #ff6463 !important;
+        }
+        .pele .bugPath rect {
+          stroke: #116dd2 !important;
+        }
+      }
+      figure svg.pele {
+        display: block;
+        max-width: 760px;
+        margin: 0 auto;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>The write path model</h1>
+      <p>
+        A write of an Action runs in 1 transaction of <code>Db.transaction</code>, and <code>writeEdits</code> turns its
+        failure into the answer (<a href="../storage.md#writes">Storage "Writes"</a>). This TLA+ model checks what the
+        caller is told when the transaction fails at each step. It has 2 Actions that edit 1 Object, and each Action
+        loaded version 0 of it. A body can fail, the server can end the session with
+        <code>25P04</code> (<code>transaction_timeout</code>) or <code>57P01</code> (an admin shutdown), and the
+        connection can drop after <code>COMMIT</code> is sent. At <code>COMMIT</code>, the commit can apply or not
+        before a dropped connection or a <code>57P01</code>. A <code>25P04</code> comes only before the commit applies:
+        in PostgreSQL 17, <code>CommitTransaction</code> in <code>src/backend/access/transam/xact.c</code> holds
+        interrupts and turns off the transaction timeout before <code>RecordTransactionCommit</code>, and the timeout of
+        the write is local to its transaction, so it is 0 after the commit. The model comes from
+        <code>packages/service/src/db/index.ts</code> and <code>packages/service/src/actions/write.ts</code>. TLC
+        checked 219 states and 570 steps.
+      </p>
+
+      <h2>Rules</h2>
+      <ul>
+        <li>
+          <span class="holds">Holds.</span> No lost update: both Actions loaded version 0, so at most 1 write commits.
+          The second Action locks the Object after the first one ends, finds the newer version, rolls back, and gets
+          409.
+        </li>
+        <li>
+          <span class="holds">Holds.</span> A refusal wrote nothing: a 409 or a 400 tells the caller that nothing was
+          written. A rule-backed Action runs again on a 409.
+        </li>
+        <li><span class="holds">Holds.</span> A 200 means that the write committed.</li>
+        <li><span class="holds">Holds.</span> An answered write holds no row lock.</li>
+        <li>
+          <span class="holds">Holds.</span> A connection whose session ended never goes back to the pool. A failed
+          <code>ROLLBACK</code> occurs only on an ended session, and the pool drops that connection.
+        </li>
+        <li><span class="holds">Holds.</span> No deadlock: each path ends with an answer to both Actions.</li>
+      </ul>
+
+      <h2>Chart</h2>
+      <figure>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="pele pele-state"
+          viewBox="0 0 3504 1099"
+          width="3504"
+          height="1099"
+          style="
+            max-width: 100%;
+            height: auto;
+            --_bg: var(--pele-bg,#fff);
+            --_fg: var(--pele-fg,#1f1f1f);
+            --_m: var(--pele-muted,#6e6e6e);
+            --_l: var(--pele-line,#1f1f1f);
+            --_s: var(--pele-surface,#f3f3f3);
+            --_a: var(--pele-surface-alt,#e6e6e6);
+            --_b: var(--pele-border,#8a8a8a);
+            --_c: var(--pele-accent,#5b7bd5);
+            color: var(--_fg);
+            --_tw: var(--pele-title-weight,bold);
+            --_fm: var(--pele-font-mono,monospace);
+            font: 16px sans-serif;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            direction: ltr;
+            font-family: var(--pele-font, sans-serif);
+          "
+          fill="var(--_fg)"
+          role="graphics-document document"
+          aria-roledescription="state"
+        >
+          <text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve">
+            <tspan x="1752" y="25.6">db.transaction write path: 2 Actions edit 1 Object</tspan>
+          </text>
+          <g transform="translate(0,36)">
+            <g class="pele-clusters">
+              <g class="pele-cluster pele-state-composite" data-id="all">
+                <rect
+                  x="8"
+                  y="8"
+                  width="3487.19"
+                  height="1046.5"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M8,44H3495.19" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="1751.6" y="31.6" text-anchor="middle">At the same time</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="r0">
+                <rect
+                  x="34"
+                  y="70"
+                  width="1687.6"
+                  height="958.5"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M34,106H1721.6" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="877.8" y="93.6" text-anchor="middle">Action A</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="r1">
+                <rect
+                  x="1781.59"
+                  y="70"
+                  width="1687.6"
+                  height="958.5"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M1781.59,106H3469.19" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="2625.39" y="93.6" text-anchor="middle">Action B</text>
+              </g>
+            </g>
+            <g class="pele-dividers" stroke-dasharray="4 4" fill="none" stroke="var(--_b)">
+              <path class="pele-divider" d="M1751.59,44V1054.5" />
+            </g>
+            <g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+              <g class="pele-edge pele-transition" data-id="edge0">
+                <path d="M931.64,136L931.64,173" />
+                <path class="pele-marker" d="M931.64,180L928.28,172L935,172Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge1">
+                <path d="M931.64,224L931.64,301" />
+                <path class="pele-marker" d="M931.64,308L928.28,300L935,300Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge2">
+                <path
+                  d="M897.83,352C897.83,369.36 767.89,380 555.88,380C343.86,380 213.92,402.42 213.92,439L213.92,641.5"
+                />
+                <path class="pele-marker" d="M213.92,648.5L210.56,640.5L217.28,640.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge3">
+                <path
+                  d="M965.45,352C965.45,436.75 1610.36,436.75 1610.36,521.5L1610.36,579.5C1610.36,607.5 1469.57,607.5 1469.57,635.5L1469.57,641.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1469.57,648.5L1466.21,640.5L1472.93,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge4">
+                <path
+                  d="M913.83,352C913.83,376.8 896.33,392 867.77,392C839.21,392 821.71,402.64 821.71,420L821.71,521.5"
+                />
+                <path class="pele-marker" d="M821.71,528.5L818.35,520.5L825.07,520.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge5">
+                <path d="M150.55,692.5L150.55,836.5C150.55,896 263.62,896 263.62,955.5L263.62,961.5" />
+                <path class="pele-marker" d="M263.62,968.5L260.26,960.5L266.98,960.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge6">
+                <path
+                  d="M283.75,692.5C283.75,726.5 367.65,726.5 367.65,760.5L367.65,836.5C367.65,896 770.28,896 770.28,955.5L770.28,961.5"
+                />
+                <path class="pele-marker" d="M770.28,968.5L766.92,960.5L773.64,960.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge7">
+                <path d="M1423.77,692.5L1423.77,836.5C1423.77,896 807.67,896 807.67,955.5L807.67,961.5" />
+                <path class="pele-marker" d="M807.67,968.5L804.31,960.5L811.03,960.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge8">
+                <path d="M781.23,572.5C781.23,578.88 313.52,591.63 313.52,598L313.52,641.5" />
+                <path class="pele-marker" d="M313.52,648.5L310.16,640.5L316.88,640.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge9">
+                <path
+                  d="M862.19,572.5C862.19,578.88 1404.17,591.63 1404.17,598L1404.17,623C1404.17,629.94 1437.57,629.94 1437.57,636.88L1437.57,641.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1437.57,648.5L1434.21,640.5L1440.93,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge10">
+                <path d="M821.71,572.5L821.71,641.5" />
+                <path class="pele-marker" d="M821.71,648.5L818.35,640.5L825.07,640.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge11">
+                <path
+                  d="M790.45,692.5C790.45,709.86 749.67,720.5 683.12,720.5C616.58,720.5 575.79,735.7 575.79,760.5L575.79,836.5C575.79,896 301.01,896 301.01,955.5L301.01,961.5"
+                />
+                <path class="pele-marker" d="M301.01,968.5L297.65,960.5L304.37,960.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge12">
+                <path d="M806.45,692.5L806.45,720.5C806.45,740.5 788.98,740.5 788.98,760.5L788.98,961.5" />
+                <path class="pele-marker" d="M788.98,968.5L785.62,960.5L792.34,960.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge13">
+                <path
+                  d="M827.49,692.5C827.49,717.3 863.34,732.5 921.82,732.5C980.31,732.5 1016.16,743.14 1016.16,760.5L1016.16,836.5C1016.16,896 1079.53,896 1079.53,955.5L1079.53,961.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1079.53,968.5L1076.17,960.5L1082.89,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge14">
+                <path
+                  d="M843.49,692.5C843.49,709.86 911.92,720.5 1023.57,720.5C1135.21,720.5 1203.64,735.7 1203.64,760.5L1203.64,836.5C1203.64,896 1267.02,896 1267.02,955.5L1267.02,961.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1267.02,968.5L1263.66,960.5L1270.38,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge15">
+                <path d="M949.45,352C949.45,436.75 1453.57,436.75 1453.57,521.5L1453.57,641.5" />
+                <path
+                  class="pele-marker"
+                  d="M1453.57,648.5L1450.21,640.5L1456.93,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge16">
+                <path d="M1461.14,692.5C1461.14,726.5 1610.11,726.5 1610.11,760.5L1610.11,961.5" />
+                <path
+                  class="pele-marker"
+                  d="M1610.11,968.5L1606.75,960.5L1613.47,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge17">
+                <path d="M2679.23,136L2679.23,173" />
+                <path class="pele-marker" d="M2679.23,180L2675.87,172L2682.59,172Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge18">
+                <path d="M2679.23,224L2679.23,301" />
+                <path class="pele-marker" d="M2679.23,308L2675.87,300L2682.59,300Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge19">
+                <path
+                  d="M2645.43,352C2645.43,369.36 2515.48,380 2303.47,380C2091.46,380 1961.52,402.42 1961.52,439L1961.52,641.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1961.52,648.5L1958.16,640.5L1964.88,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge20">
+                <path
+                  d="M2713.04,352C2713.04,436.75 3357.95,436.75 3357.95,521.5L3357.95,579.5C3357.95,607.5 3217.17,607.5 3217.17,635.5L3217.17,641.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M3217.17,648.5L3213.81,640.5L3220.53,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge21">
+                <path
+                  d="M2661.43,352C2661.43,376.8 2643.92,392 2615.36,392C2586.81,392 2569.3,402.64 2569.3,420L2569.3,521.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M2569.3,528.5L2565.94,520.5L2572.66,520.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge22">
+                <path d="M1898.14,692.5L1898.14,836.5C1898.14,896 2011.21,896 2011.21,955.5L2011.21,961.5" />
+                <path
+                  class="pele-marker"
+                  d="M2011.21,968.5L2007.85,960.5L2014.57,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge23">
+                <path
+                  d="M2031.34,692.5C2031.34,726.5 2115.24,726.5 2115.24,760.5L2115.24,836.5C2115.24,896 2517.88,896 2517.88,955.5L2517.88,961.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M2517.88,968.5L2514.52,960.5L2521.24,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge24">
+                <path d="M3171.37,692.5L3171.37,836.5C3171.37,896 2555.27,896 2555.27,955.5L2555.27,961.5" />
+                <path
+                  class="pele-marker"
+                  d="M2555.27,968.5L2551.91,960.5L2558.63,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge25">
+                <path d="M2528.82,572.5C2528.82,578.88 2061.11,591.63 2061.11,598L2061.11,641.5" />
+                <path
+                  class="pele-marker"
+                  d="M2061.11,648.5L2057.75,640.5L2064.47,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge26">
+                <path
+                  d="M2609.78,572.5C2609.78,578.88 3151.76,591.63 3151.76,598L3151.76,623C3151.76,629.94 3185.17,629.94 3185.17,636.88L3185.17,641.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M3185.17,648.5L3181.81,640.5L3188.53,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge27">
+                <path d="M2569.3,572.5L2569.3,641.5" />
+                <path
+                  class="pele-marker"
+                  d="M2569.3,648.5L2565.94,640.5L2572.66,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge28">
+                <path
+                  d="M2538.05,692.5C2538.05,709.86 2497.26,720.5 2430.72,720.5C2364.17,720.5 2323.39,735.7 2323.39,760.5L2323.39,836.5C2323.39,896 2048.6,896 2048.6,955.5L2048.6,961.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M2048.6,968.5L2045.24,960.5L2051.96,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge29">
+                <path d="M2554.05,692.5L2554.05,720.5C2554.05,740.5 2536.57,740.5 2536.57,760.5L2536.57,961.5" />
+                <path
+                  class="pele-marker"
+                  d="M2536.57,968.5L2533.21,960.5L2539.93,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge30">
+                <path
+                  d="M2575.09,692.5C2575.09,717.3 2610.93,732.5 2669.42,732.5C2727.9,732.5 2763.75,743.14 2763.75,760.5L2763.75,836.5C2763.75,896 2827.12,896 2827.12,955.5L2827.12,961.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M2827.12,968.5L2823.76,960.5L2830.48,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge31">
+                <path
+                  d="M2591.09,692.5C2591.09,709.86 2659.52,720.5 2771.16,720.5C2882.81,720.5 2951.24,735.7 2951.24,760.5L2951.24,836.5C2951.24,896 3014.61,896 3014.61,955.5L3014.61,961.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M3014.61,968.5L3011.25,960.5L3017.97,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge32">
+                <path d="M2697.04,352C2697.04,436.75 3201.17,436.75 3201.17,521.5L3201.17,641.5" />
+                <path
+                  class="pele-marker"
+                  d="M3201.17,648.5L3197.81,640.5L3204.53,640.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge33">
+                <path d="M3208.73,692.5C3208.73,726.5 3357.71,726.5 3357.71,760.5L3357.71,961.5" />
+                <path
+                  class="pele-marker"
+                  d="M3357.71,968.5L3354.35,960.5L3361.07,960.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+            </g>
+            <g class="pele-edge-labels" font-size="14">
+              <g class="pele-edge-label" data-id="edge1">
+                <rect x="836.2" y="244.5" width="190.88" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="931.64" y="258.4">the Action takes a connection</tspan
+                  ><tspan x="931.64" y="276.4">and begins</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge2">
+                <rect x="124.33" y="540" width="179.19" height="21" rx="3" fill="var(--_bg)" />
+                <text x="213.92" y="555.4" text-anchor="middle">the server ends the session</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge3">
+                <rect x="1570.95" y="540" width="78.81" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1610.36" y="555.4" text-anchor="middle">an edit fails</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge4">
+                <rect x="719.68" y="422" width="204.06" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="821.71" y="435.9">it locks the Object [unless 200,</tspan
+                  ><tspan x="821.71" y="453.9">written or 500, written or</tspan
+                  ><tspan x="821.71" y="471.9">COMMIT sent or Object locked,</tspan
+                  ><tspan x="821.71" y="489.9">editing]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge5">
+                <rect x="52" y="780.5" width="197.1" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="150.55" y="794.4">ROLLBACK fails on the ended</tspan
+                  ><tspan x="150.55" y="812.4">session</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge6">
+                <rect x="269.1" y="780.5" width="197.1" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="367.65" y="794.4">ROLLBACK fails on the ended</tspan
+                  ><tspan x="367.65" y="812.4">session</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge7">
+                <rect x="1350.92" y="788" width="145.72" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1423.77" y="803.4" text-anchor="middle">ROLLBACK succeeds</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge8">
+                <rect x="223.92" y="600" width="179.19" height="21" rx="3" fill="var(--_bg)" />
+                <text x="313.52" y="615.4" text-anchor="middle">the server ends the session</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge9">
+                <rect x="1364.76" y="600" width="78.81" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1404.17" y="615.4" text-anchor="middle">an edit fails</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge10">
+                <rect x="763.26" y="600" width="116.91" height="21" rx="3" fill="var(--_bg)" />
+                <text x="821.71" y="615.4" text-anchor="middle">it sends COMMIT</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge11">
+                <rect x="486.2" y="780.5" width="179.19" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="575.79" y="794.4">the server ends the session</tspan
+                  ><tspan x="575.79" y="812.4">during COMMIT</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge12">
+                <rect x="685.39" y="762.5" width="207.18" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="788.98" y="776.4">the server ends the session</tspan
+                  ><tspan x="788.98" y="794.4">during COMMIT or the</tspan
+                  ><tspan x="788.98" y="812.4">connection drops after COMMIT</tspan
+                  ><tspan x="788.98" y="830.4">is sent</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge13">
+                <rect x="912.57" y="762.5" width="207.18" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1016.16" y="776.4">the server ends the session</tspan
+                  ><tspan x="1016.16" y="794.4">during COMMIT or the</tspan
+                  ><tspan x="1016.16" y="812.4">connection drops after COMMIT</tspan
+                  ><tspan x="1016.16" y="830.4">is sent</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge14">
+                <rect x="1139.74" y="788" width="127.8" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1203.64" y="803.4" text-anchor="middle">COMMIT succeeds</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge15">
+                <rect x="1356.19" y="523.5" width="194.76" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1453.57" y="537.4">it locks the Object, and finds a</tspan
+                  ><tspan x="1453.57" y="555.4">newer version [when 200,</tspan
+                  ><tspan x="1453.57" y="573.4">written or 500, written]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge16">
+                <rect x="1516.63" y="780.5" width="186.96" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1610.11" y="794.4">ROLLBACK succeeds [when</tspan
+                  ><tspan x="1610.11" y="812.4">200, written or 500, written]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge18">
+                <rect x="2583.79" y="244.5" width="190.88" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2679.23" y="258.4">the Action takes a connection</tspan
+                  ><tspan x="2679.23" y="276.4">and begins</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge19">
+                <rect x="1871.92" y="540" width="179.19" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1961.52" y="555.4" text-anchor="middle">the server ends the session</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge20">
+                <rect x="3318.55" y="540" width="78.81" height="21" rx="3" fill="var(--_bg)" />
+                <text x="3357.95" y="555.4" text-anchor="middle">an edit fails</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge21">
+                <rect x="2467.28" y="422" width="204.06" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2569.3" y="435.9">it locks the Object [unless 200,</tspan
+                  ><tspan x="2569.3" y="453.9">written or 500, written or</tspan
+                  ><tspan x="2569.3" y="471.9">COMMIT sent or Object locked,</tspan
+                  ><tspan x="2569.3" y="489.9">editing]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge22">
+                <rect x="1799.59" y="780.5" width="197.1" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1898.14" y="794.4">ROLLBACK fails on the ended</tspan
+                  ><tspan x="1898.14" y="812.4">session</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge23">
+                <rect x="2016.69" y="780.5" width="197.1" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2115.24" y="794.4">ROLLBACK fails on the ended</tspan
+                  ><tspan x="2115.24" y="812.4">session</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge24">
+                <rect x="3098.51" y="788" width="145.72" height="21" rx="3" fill="var(--_bg)" />
+                <text x="3171.37" y="803.4" text-anchor="middle">ROLLBACK succeeds</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge25">
+                <rect x="1971.52" y="600" width="179.19" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2061.11" y="615.4" text-anchor="middle">the server ends the session</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge26">
+                <rect x="3112.35" y="600" width="78.81" height="21" rx="3" fill="var(--_bg)" />
+                <text x="3151.76" y="615.4" text-anchor="middle">an edit fails</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge27">
+                <rect x="2510.85" y="600" width="116.91" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2569.3" y="615.4" text-anchor="middle">it sends COMMIT</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge28">
+                <rect x="2233.79" y="780.5" width="179.19" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2323.39" y="794.4">the server ends the session</tspan
+                  ><tspan x="2323.39" y="812.4">during COMMIT</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge29">
+                <rect x="2432.98" y="762.5" width="207.18" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2536.57" y="776.4">the server ends the session</tspan
+                  ><tspan x="2536.57" y="794.4">during COMMIT or the</tspan
+                  ><tspan x="2536.57" y="812.4">connection drops after COMMIT</tspan
+                  ><tspan x="2536.57" y="830.4">is sent</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge30">
+                <rect x="2660.16" y="762.5" width="207.18" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2763.75" y="776.4">the server ends the session</tspan
+                  ><tspan x="2763.75" y="794.4">during COMMIT or the</tspan
+                  ><tspan x="2763.75" y="812.4">connection drops after COMMIT</tspan
+                  ><tspan x="2763.75" y="830.4">is sent</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge31">
+                <rect x="2887.34" y="788" width="127.8" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2951.24" y="803.4" text-anchor="middle">COMMIT succeeds</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge32">
+                <rect x="3103.79" y="523.5" width="194.76" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="3201.17" y="537.4">it locks the Object, and finds a</tspan
+                  ><tspan x="3201.17" y="555.4">newer version [when 200,</tspan
+                  ><tspan x="3201.17" y="573.4">written or 500, written]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge33">
+                <rect x="3264.23" y="780.5" width="186.96" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="3357.71" y="794.4">ROLLBACK succeeds [when</tspan
+                  ><tspan x="3357.71" y="812.4">200, written or 500, written]</tspan>
+                </text>
+              </g>
+            </g>
+            <g class="pele-nodes">
+              <g class="pele-node pele-state" data-id="s0" transform="translate(931.64,202)">
+                <rect x="-42.67" y="-22" width="85.34" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Waiting</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s1" transform="translate(931.64,330)">
+                <rect x="-77.81" y="-22" width="155.62" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Transaction open</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s2" transform="translate(221.92,670.5)">
+                <rect x="-113.82" y="-22" width="227.65" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Session ended, rolling back</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s3" transform="translate(1453.57,670.5)">
+                <rect x="-59.57" y="-22" width="119.14" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Rolling back</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s4" transform="translate(821.71,550.5)">
+                <rect x="-92.48" y="-22" width="184.96" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Object locked, editing</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s5" transform="translate(282.31,990.5)">
+                <rect x="-70.7" y="-22" width="141.39" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">400, not written</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s6" transform="translate(788.98,990.5)">
+                <rect x="-70.7" y="-22" width="141.39" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">500, not written</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s7" transform="translate(821.71,670.5)">
+                <rect x="-65.78" y="-22" width="131.57" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">COMMIT sent</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s8" transform="translate(1079.53,990.5)">
+                <rect x="-57.35" y="-22" width="114.7" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">500, written</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s9" transform="translate(1267.02,990.5)">
+                <rect x="-57.35" y="-22" width="114.7" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">200, written</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s10" transform="translate(1610.11,990.5)">
+                <rect x="-70.7" y="-22" width="141.39" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">409, not written</text>
+              </g>
+              <g class="pele-node pele-state-start" data-id="r0_start" transform="translate(931.64,129)">
+                <circle r="7" fill="var(--_l)" />
+              </g>
+              <g class="pele-node pele-state" data-id="s11" transform="translate(2679.23,202)">
+                <rect x="-42.67" y="-22" width="85.34" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Waiting</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s12" transform="translate(2679.23,330)">
+                <rect x="-77.81" y="-22" width="155.62" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Transaction open</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s13" transform="translate(1969.52,670.5)">
+                <rect x="-113.82" y="-22" width="227.65" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Session ended, rolling back</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s14" transform="translate(3201.17,670.5)">
+                <rect x="-59.57" y="-22" width="119.14" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Rolling back</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s15" transform="translate(2569.3,550.5)">
+                <rect x="-92.48" y="-22" width="184.96" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Object locked, editing</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s16" transform="translate(2029.91,990.5)">
+                <rect x="-70.7" y="-22" width="141.39" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">400, not written</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s17" transform="translate(2536.57,990.5)">
+                <rect x="-70.7" y="-22" width="141.39" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">500, not written</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s18" transform="translate(2569.3,670.5)">
+                <rect x="-65.78" y="-22" width="131.57" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">COMMIT sent</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s19" transform="translate(2827.12,990.5)">
+                <rect x="-57.35" y="-22" width="114.7" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">500, written</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s20" transform="translate(3014.61,990.5)">
+                <rect x="-57.35" y="-22" width="114.7" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">200, written</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s21" transform="translate(3357.71,990.5)">
+                <rect x="-70.7" y="-22" width="141.39" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">409, not written</text>
+              </g>
+              <g class="pele-node pele-state-start" data-id="r1_start" transform="translate(2679.23,129)">
+                <circle r="7" fill="var(--_l)" />
+              </g>
+            </g>
+          </g>
+        </svg>
+        <figcaption>
+          Each region is 1 Action. No state breaks a rule. The chart does not draw the end step, in which both Actions
+          have their answer.
+        </figcaption>
+      </figure>
+
+      <h2>A case that the model raised</h2>
+      <p>
+        A first model let the server end the session with <code>25P04</code> after the <code>COMMIT</code> applied. Then
+        <code>writeEdits</code> would answer 400 <code>ActionDeadlineExceeded</code>, and the row would be written. The
+        PostgreSQL 17 source above rules that path out, so the model now sends <code>25P04</code> only before the commit
+        applies, and each rule holds.
+      </p>
+
+      <h2>What the model leaves out</h2>
+      <ul>
+        <li>
+          A deadlock: the model has 1 Object, so 2 Actions never lock in a cycle. The overlap tests of
+          <code>packages/service/src/db/versions.sql.test.ts</code> and the deadlock test of
+          <code>packages/service/src/functions/links.sql.test.ts</code> carry it on Postgres.
+        </li>
+        <li>
+          A <code>ROLLBACK</code> that fails on a live connection. <code>pg</code> rejects a query on a live connection
+          only for an error of the statement, and <code>ROLLBACK</code> has none.
+        </li>
+        <li>
+          The deadline check of <code>writeEdits</code> after a body failure, which can turn a 500 into a 400. It runs
+          before <code>COMMIT</code>, so no write has applied.
+        </li>
+        <li>Reads, streams, and <code>Db.snapshot</code>, which write nothing.</li>
+      </ul>
+      <p class="note">
+        The model is not stored. To check it again, write a TLA+ specification from the code and this page and run TLC.
+      </p>
+    </main>
+  </body>
+</html>

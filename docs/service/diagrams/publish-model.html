@@ -1,0 +1,2923 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Publish in 1 transaction: a model check</title>
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --fg: #1d1d1b;
+        --muted: #6b6a65;
+        --line: #d8d5cc;
+        --card: #ffffff;
+        --accent: #1f6f4a;
+        --warn: #a5481c;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #171716;
+          --fg: #ecebe6;
+          --muted: #a19f97;
+          --line: #3a3935;
+          --card: #1f1f1f;
+          --accent: #5cc28f;
+          --warn: #e98a5c;
+          color-scheme: dark;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.5 -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+      }
+      main {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 28px 16px 48px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-size: 17px;
+        margin: 28px 0 6px;
+      }
+      a {
+        color: var(--accent);
+      }
+      .note {
+        border-left: 3px solid var(--warn);
+        padding: 2px 10px;
+        margin: 10px 0;
+      }
+      figure {
+        margin: 0;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px;
+        overflow-x: auto;
+      }
+      figure svg {
+        display: block;
+        margin: 0 auto;
+        max-width: none !important;
+      }
+      figcaption {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      details {
+        margin-top: 6px;
+        font-size: 13px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+      td,
+      th {
+        border: 1px solid var(--line);
+        padding: 4px 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+      code {
+        font-size: 12px;
+      }
+      pre {
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 8px 10px;
+        overflow-x: auto;
+        font-size: 12px;
+      }
+      .holds {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .breaks {
+        color: var(--warn);
+        font-weight: 600;
+      }
+      li p {
+        margin: 8px 0 2px;
+      }
+      .pele {
+        --pele-bg: #ffffff;
+        --pele-fg: #1c1c1c;
+        --pele-muted: #656565;
+        --pele-line: #808080;
+        --pele-surface: #fcfcfc;
+        --pele-surface-alt: #f1f1f1;
+        --pele-border: #c9c9c9;
+      }
+      .pele .blue rect {
+        fill: #c3e0ff;
+      }
+      .pele .orange rect {
+        fill: #f0d3bf;
+      }
+      .pele .purple rect {
+        fill: #e3d5ff;
+      }
+      .pele .yellow rect {
+        fill: #f0dcbf;
+      }
+      .pele .teal rect {
+        fill: #bfe3df;
+      }
+      .pele .tan rect {
+        fill: #e5d9ce;
+      }
+      .pele .pink rect {
+        fill: #ffcbe6;
+      }
+      .pele .breaks rect {
+        fill: #ffecee !important;
+        stroke: #e72e3b !important;
+        stroke-width: 2.5px !important;
+      }
+      .pele .breaks text {
+        fill: #cd2834 !important;
+      }
+      .pele .mayBreak rect {
+        fill: #fff3e6 !important;
+        stroke: #e8730c !important;
+        stroke-width: 2.5px !important;
+      }
+      .pele .mayBreak text {
+        fill: #b85a06 !important;
+      }
+      .pele .bugPath rect {
+        stroke: #1680f3 !important;
+        stroke-width: 2.5px !important;
+      }
+      .pele .repeats rect {
+        stroke: #9b35d6 !important;
+        stroke-width: 2.5px !important;
+        stroke-dasharray: 6 3;
+      }
+      @media (prefers-color-scheme: dark) {
+        .pele {
+          --pele-bg: #1f1f1f;
+          --pele-fg: #f5f5f5;
+          --pele-muted: #acacac;
+          --pele-line: #939393;
+          --pele-surface: #121212;
+          --pele-surface-alt: #2c2c2c;
+          --pele-border: #4e4e4e;
+        }
+        .pele .blue rect {
+          fill: #1b3857;
+        }
+        .pele .orange rect {
+          fill: #573117;
+        }
+        .pele .purple rect {
+          fill: #3c2e57;
+        }
+        .pele .yellow rect {
+          fill: #573d17;
+        }
+        .pele .teal rect {
+          fill: #174641;
+        }
+        .pele .tan rect {
+          fill: #3d3127;
+        }
+        .pele .pink rect {
+          fill: #57233e;
+        }
+        .pele .breaks rect {
+          fill: #2e2021 !important;
+          stroke: #cf2b35 !important;
+        }
+        .pele .breaks text {
+          fill: #ff6463 !important;
+        }
+        .pele .mayBreak rect {
+          fill: #2e2619 !important;
+          stroke: #d0700f !important;
+        }
+        .pele .mayBreak text {
+          fill: #ffa257 !important;
+        }
+        .pele .bugPath rect {
+          stroke: #116dd2 !important;
+        }
+        .pele .repeats rect {
+          stroke: #9a3fcf !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Publish in 1 transaction: a model check</h1>
+      <p class="note">
+        This page verifies the publish, install, restore, and reconcile logic with a TLA+ model checked by TLC.
+      </p>
+      <p>
+        This TLA+ model describes the publish, install, restore, and WorkOS reconcile implementation. Each action of the
+        model names the code that it describes: the check (<code>publishOntology</code>, <code>checkWorkos</code>), the
+        WorkOS additions (<code>planWorkosSteps</code>), the transaction (<code>transact</code>, <code>lockRows</code>,
+        <code>runChain</code>), the reconcile (<code>reconcile</code>, <code>planReconcile</code>), the answer, the CLI
+        job (<code>sendPublish</code>, <code>releaseSdkPackage</code>), <code>installOntology</code>, the copy and the
+        switch of a restore (<code>restoreSwitch</code>), and <code>dropSchema</code>. The transactions are read
+        committed, as <code>db.transaction</code> opens them.
+      </p>
+      <p>
+        In short: with 1 publish job at a time, each rule holds, except in the known cases documented in
+        <a href="../../adr/0015-a-publish-upgrades-every-installation-of-a-product-in-1-transaction.md">ADR 0015</a>
+        and in 1 state that the spec allows (path 6). A job can exit 1 for a version that is stored (known case 2), and
+        then the roles can stay on the older file until a rerun. 2 publishes at one time, after a job ends while its
+        request still runs, can leave a default role with a wrong list or release the SDK package of an older version
+        (known case 1). No path loses data. TLC found no bug of the code outside these cases. Each bug path is replayed
+        against the code in <code>packages/service/src/publish/modelPaths.sql.test.ts</code>, and path 5 also in
+        <code>packages/cli/src/publishModelPath.sql.test.ts</code>.
+      </p>
+      <h2>Known cases that stay open</h2>
+      <p>
+        <a href="../../adr/0015-a-publish-upgrades-every-installation-of-a-product-in-1-transaction.md">ADR 0015</a>
+        documents these accepted cases. The repair for each one is a rerun of the failed publish job, or the next
+        publish when no job failed (paths 4, 5, and 8). Rules 11a and 11b check the repair by a rerun.
+      </p>
+      <ul>
+        <li>
+          <strong>Known case 1.</strong> Paths 3, 4, 5, and 8. Each needs a job that ends while its request still runs,
+          and a next job. A cancel or a lost HTTP answer can end the job while its request runs. Without a job that ends
+          while its request runs, these rules hold (GhostNoCancel run, 3,555 states).
+        </li>
+        <li>
+          <strong>Known case 2.</strong> Paths 1, 2, and 7. The service stops after its commit, the reconcile fails
+          after the commit, or the answer to COMMIT is lost.
+        </li>
+        <li>
+          <strong>Allowed by the spec.</strong> Path 6: an added permission stays after a stop until a later reconcile.
+        </li>
+        <li>
+          <strong>No data loss.</strong> Rules 1, 2a, 3, 4, 8, 9, 10, and the extra rule hold in each safety run, the
+          variant runs too.
+        </li>
+      </ul>
+      <h2>Chart 1: the life of 1 publish job</h2>
+      <figure>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="pele pele-state"
+          viewBox="0 0 3181 1514"
+          width="3181"
+          height="1514"
+          style="
+            max-width: 100%;
+            height: auto;
+            --_bg: var(--pele-bg,#fff);
+            --_fg: var(--pele-fg,#1f1f1f);
+            --_m: var(--pele-muted,#6e6e6e);
+            --_l: var(--pele-line,#1f1f1f);
+            --_s: var(--pele-surface,#f3f3f3);
+            --_a: var(--pele-surface-alt,#e6e6e6);
+            --_b: var(--pele-border,#8a8a8a);
+            --_c: var(--pele-accent,#5b7bd5);
+            color: var(--_fg);
+            --_tw: var(--pele-title-weight,bold);
+            --_fm: var(--pele-font-mono,monospace);
+            font: 16px sans-serif;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            direction: ltr;
+            font-family: var(--pele-font, sans-serif);
+          "
+          fill="var(--_fg)"
+          role="graphics-document document"
+          aria-roledescription="state"
+        >
+          <text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve">
+            <tspan x="1590.5" y="25.6">The life of 1 publish job</tspan>
+          </text>
+          <g transform="translate(0,36)">
+            <g class="pele-clusters">
+              <g class="pele-cluster pele-state-composite" data-id="legend">
+                <rect
+                  x="397.61"
+                  y="8"
+                  width="1609.41"
+                  height="256"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M397.61,44H2007.02" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="1202.32" y="31.6" text-anchor="middle">Legend</text>
+              </g>
+            </g>
+            <g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+              <g class="pele-edge pele-transition" data-id="edge0">
+                <path d="M350.61,264L350.61,301" />
+                <path class="pele-marker" d="M350.61,308L347.25,300L353.97,300Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge1">
+                <path d="M350.61,352L350.61,414" />
+                <path class="pele-marker" d="M350.61,421L347.25,413L353.97,413Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge2">
+                <path
+                  d="M291,483C291,499.5 221.24,499.5 221.24,516L221.24,1150.5C221.24,1199.75 630.4,1199.75 630.4,1249L630.4,1255"
+                />
+                <path class="pele-marker" d="M630.4,1262L627.04,1254L633.76,1254Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge3">
+                <path d="M462.22,444C488.22,436 488.22,468 468.91,462.06" />
+                <path class="pele-marker" d="M462.22,460L470.85,459.14L468.88,465.56Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge4">
+                <path d="M350.61,483L350.61,578" />
+                <path class="pele-marker" d="M350.61,585L347.25,577L353.97,577Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge5">
+                <path d="M350.61,647L350.61,1150.5C350.61,1199.75 646.4,1199.75 646.4,1249L646.4,1255" />
+                <path class="pele-marker" d="M646.4,1262L643.04,1254L649.76,1254Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge6">
+                <path d="M410.22,483C410.22,487.63 902.18,496.88 902.18,501.5L902.18,578" />
+                <path class="pele-marker" d="M902.18,585L898.82,577L905.54,577Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge7">
+                <path
+                  d="M844.82,647C844.82,681.5 557.58,681.5 557.58,716L557.58,1150.5C557.58,1199.75 662.4,1199.75 662.4,1249L662.4,1255"
+                />
+                <path class="pele-marker" d="M662.4,1262L659.04,1254L665.76,1254Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge8">
+                <path d="M902.18,647L902.18,891C902.18,971.75 1091.21,971.75 1091.21,1052.5L1091.21,1058.5" />
+                <path
+                  class="pele-marker"
+                  d="M1091.21,1065.5L1087.85,1057.5L1094.57,1057.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge9">
+                <path d="M1011.55,608C1037.55,600 1037.55,632 1018.24,626.06" />
+                <path
+                  class="pele-marker"
+                  d="M1011.55,624L1020.19,623.14L1018.21,629.56Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge10">
+                <path d="M959.55,647C959.55,651.63 1433.18,660.88 1433.18,665.5L1433.18,709" />
+                <path class="pele-marker" d="M1433.18,716L1429.82,708L1436.54,708Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge11">
+                <path
+                  d="M1405.6,760C1405.6,791.38 798.7,797.62 798.7,829L798.7,1150.5C798.7,1199.75 705.16,1199.75 705.16,1249L705.16,1255"
+                />
+                <path class="pele-marker" d="M705.16,1262L701.8,1254L708.52,1254Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge12">
+                <path d="M1504.76,730C1530.76,722 1530.76,754 1511.45,748.06" />
+                <path
+                  class="pele-marker"
+                  d="M1504.76,746L1513.39,745.14L1511.41,751.56Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge13">
+                <path d="M1421.6,760C1421.6,794.5 1151.68,794.5 1151.68,829L1151.68,1058.5" />
+                <path
+                  class="pele-marker"
+                  d="M1151.68,1065.5L1148.32,1057.5L1155.04,1057.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge14">
+                <path
+                  d="M1151.68,1127.5L1151.68,1194C1151.68,1211.36 1069.88,1222 936.42,1222C802.96,1222 721.16,1232.26 721.16,1249L721.16,1255"
+                />
+                <path class="pele-marker" d="M721.16,1262L717.8,1254L724.52,1254Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge15">
+                <path d="M1452.76,760C1452.76,764.63 1798.84,773.88 1798.84,778.5L1798.84,822" />
+                <path class="pele-marker" d="M1798.84,829L1795.48,821L1802.2,821Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge16">
+                <path
+                  d="M1762.8,891C1762.8,966.75 1630.37,966.75 1630.37,1042.5L1630.37,1187.75C1630.37,1204.55 737.16,1232.2 737.16,1249L737.16,1255"
+                />
+                <path class="pele-marker" d="M737.16,1262L733.8,1254L740.52,1254Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge17">
+                <path
+                  d="M1746.8,891C1746.8,925 1257.1,925 1257.1,959L1257.1,1017C1257.1,1034.75 1212.15,1034.75 1212.15,1052.5L1212.15,1058.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1212.15,1065.5L1208.79,1057.5L1215.51,1057.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge18">
+                <path d="M1894.89,852C1920.89,844 1920.89,876 1901.58,870.06" />
+                <path
+                  class="pele-marker"
+                  d="M1894.89,868L1903.53,867.14L1901.55,873.56Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge19">
+                <path
+                  d="M1834.89,891C1834.89,915.8 1885.64,931 1968.43,931C2051.23,931 2101.97,941.64 2101.97,959L2101.97,1058.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M2101.97,1065.5L2098.61,1057.5L2105.33,1057.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge20">
+                <path
+                  d="M1850.89,891C1850.89,908.36 2037.21,919 2341.21,919C2645.2,919 2831.52,934.2 2831.52,959L2831.52,1058.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M2831.52,1065.5L2828.16,1057.5L2834.88,1057.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge21">
+                <path d="M2214.44,1088.5C2240.44,1080.5 2240.44,1112.5 2221.13,1106.56" />
+                <path
+                  class="pele-marker"
+                  d="M2214.44,1104.5L2223.08,1103.64L2221.1,1110.06Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge22">
+                <path
+                  d="M2777.72,1127.5C2777.72,1194.75 2708.78,1194.75 2708.78,1262L2708.78,1324C2708.78,1342.38 1611.56,1376.62 1611.56,1395L1611.56,1401"
+                />
+                <path class="pele-marker" d="M1611.56,1408L1608.2,1400L1614.92,1400Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge23">
+                <path d="M2937.32,1088.5C2963.32,1080.5 2963.32,1112.5 2944.01,1106.56" />
+                <path
+                  class="pele-marker"
+                  d="M2937.32,1104.5L2945.95,1103.64L2943.98,1110.06Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge24">
+                <path
+                  d="M2093.97,1127.5L2093.97,1194C2093.97,1218.8 1839.22,1234 1423.57,1234C1007.92,1234 753.16,1239.98 753.16,1249.75L753.16,1255"
+                />
+                <path class="pele-marker" d="M753.16,1262L749.8,1254L756.52,1254Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge25">
+                <path d="M2147.65,1127.5L2147.65,1324C2147.65,1359.5 1595.56,1359.5 1595.56,1395L1595.56,1401" />
+                <path class="pele-marker" d="M1595.56,1408L1592.2,1400L1598.92,1400Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge26">
+                <path d="M687.78,1324L687.78,1382.5C687.78,1385.97 1530.58,1392.91 1530.58,1396.38L1530.58,1401" />
+                <path class="pele-marker" d="M1530.58,1408L1527.22,1400L1533.94,1400Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge27">
+                <path d="M2885.32,1127.5C2885.32,1148.25 2954.26,1148.25 2954.26,1169L2954.26,1264" />
+                <path class="pele-marker" d="M2954.26,1271L2950.9,1263L2957.62,1263Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge28">
+                <path d="M2954.26,1315L2954.26,1401" />
+                <path class="pele-marker" d="M2954.26,1408L2950.9,1400L2957.62,1400Z" fill="var(--_l)" stroke="none" />
+              </g>
+            </g>
+            <g class="pele-edge-labels" font-size="14">
+              <g class="pele-edge-label" data-id="edge1">
+                <rect x="277.35" y="372.5" width="146.52" height="21" rx="3" fill="var(--_bg)" />
+                <text x="350.61" y="387.9" text-anchor="middle">a person starts the job</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge2">
+                <rect x="127.76" y="727.5" width="186.98" height="21" rx="3" fill="var(--_bg)" />
+                <text x="221.24" y="742.9" text-anchor="middle">the service stops the request</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge3">
+                <rect x="494.22" y="434" width="201" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="594.72" y="447.9">the check reads the data or the</tspan
+                  ><tspan x="594.72" y="465.9">check reads WorkOS</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge4">
+                <rect x="251.69" y="503.5" width="197.84" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="350.61" y="517.4">saved data blocks the step</tspan
+                  ><tspan x="350.61" y="535.4">(400) or the WorkOS read fails</tspan
+                  ><tspan x="350.61" y="553.4">(503)</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge5">
+                <rect x="257.13" y="849.5" width="186.96" height="21" rx="3" fill="var(--_bg)" />
+                <text x="350.61" y="864.9" text-anchor="middle">answers 400 or answers 503</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge6">
+                <rect x="844.1" y="520" width="116.16" height="21" rx="3" fill="var(--_bg)" />
+                <text x="902.18" y="535.4" text-anchor="middle">the check passes</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge7">
+                <rect x="464.09" y="849.5" width="186.98" height="21" rx="3" fill="var(--_bg)" />
+                <text x="557.58" y="864.9" text-anchor="middle">the service stops the request</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge8">
+                <rect x="806.76" y="727.5" width="190.84" height="21" rx="3" fill="var(--_bg)" />
+                <text x="902.18" y="742.9" text-anchor="middle">a WorkOS addition fails (503)</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge9">
+                <rect x="1043.55" y="605.5" width="170.62" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1128.86" y="620.9" text-anchor="middle">WorkOS takes an addition</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge10">
+                <rect x="1364.21" y="667.5" width="137.95" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1433.18" y="682.9" text-anchor="middle">the transaction starts</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge11">
+                <rect x="705.21" y="849.5" width="186.98" height="21" rx="3" fill="var(--_bg)" />
+                <text x="798.7" y="864.9" text-anchor="middle">the service stops the request</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge12">
+                <rect x="1536.76" y="720" width="197.87" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1635.69" y="733.9">gets the lock of the versions or</tspan
+                  ><tspan x="1635.69" y="751.9">gets the lock of each row</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge13">
+                <rect x="1076.1" y="842" width="151.16" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1151.68" y="855.9">the 60 s limit (400) or a</tspan
+                  ><tspan x="1151.68" y="873.9">Postgres error (500)</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge14">
+                <rect x="1068.69" y="1171" width="165.98" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1151.68" y="1186.4" text-anchor="middle">answers 503, 400, or 500</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge15">
+                <rect x="1738.05" y="780.5" width="121.6" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1798.84" y="795.9" text-anchor="middle">inserts the version</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge16">
+                <rect x="1536.89" y="1086" width="186.98" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1630.37" y="1101.4" text-anchor="middle">the service stops the request</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge17">
+                <rect x="1161.68" y="961" width="190.84" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1257.1" y="974.9">the 60 s limit (400) or a</tspan
+                  ><tspan x="1257.1" y="992.9">Postgres error (500) or saved</tspan
+                  ><tspan x="1257.1" y="1010.9">data blocks the step (400)</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge18">
+                <rect x="1926.89" y="849.5" width="88.93" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1971.36" y="864.9" text-anchor="middle">runs the step</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge19">
+                <rect x="2005.78" y="977.5" width="192.38" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2101.97" y="992.9" text-anchor="middle">the answer to COMMIT is lost</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge20">
+                <rect x="2771.9" y="977.5" width="119.24" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2831.52" y="992.9" text-anchor="middle">Postgres commits</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge21">
+                <rect x="2246.44" y="1042.5" width="205.64" height="108" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2349.26" y="1056.4">the reconcile reads the versions</tspan
+                  ><tspan x="2349.26" y="1074.4">or Postgres commits after the</tspan
+                  ><tspan x="2349.26" y="1092.4">lost answer or the reconcile</tspan
+                  ><tspan x="2349.26" y="1110.4">reads WorkOS or the reconcile</tspan
+                  ><tspan x="2349.26" y="1128.4">writes a role or the reconcile</tspan
+                  ><tspan x="2349.26" y="1146.4">ends</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge22">
+                <rect x="2607.12" y="1275" width="203.31" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2708.78" y="1288.9">the service stops the request or</tspan
+                  ><tspan x="2708.78" y="1306.9">answers 503, reconciled false</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge23">
+                <rect x="2969.32" y="1078.5" width="205.64" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="3072.14" y="1092.4">the reconcile reads the versions</tspan
+                  ><tspan x="3072.14" y="1110.4">or WorkOS fails in the reconcile</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge24">
+                <rect x="2050.29" y="1171" width="87.37" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2093.97" y="1186.4" text-anchor="middle">answers 500</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge25">
+                <rect x="2103.97" y="1282.5" width="87.37" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2147.65" y="1297.9" text-anchor="middle">answers 500</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge26">
+                <rect x="587.69" y="1344.5" width="200.18" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="687.78" y="1358.4">Postgres commits after the lost</tspan
+                  ><tspan x="687.78" y="1376.4">answer</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge27">
+                <rect x="2910.58" y="1171" width="87.37" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2954.26" y="1186.4" text-anchor="middle">answers 200</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge28">
+                <rect x="2867.39" y="1352" width="173.75" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2954.26" y="1367.4" text-anchor="middle">releases the SDK package</text>
+              </g>
+            </g>
+            <g class="pele-nodes">
+              <g class="pele-node pele-state tan bugPath" data-id="s0" transform="translate(350.61,330)">
+                <rect x="-55.13" y="-22" width="110.26" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Not started</text>
+              </g>
+              <g class="pele-node pele-state teal bugPath" data-id="s1" transform="translate(350.61,452)">
+                <rect x="-111.61" y="-31" width="223.22" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Checks the data and reads</tspan
+                  ><tspan x="0" y="16.1">WorkOS, with no lock</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state tan mayBreak bugPath" data-id="s2" transform="translate(687.78,1293)">
+                <rect
+                  x="-93.38"
+                  y="-31"
+                  width="186.77"
+                  height="62"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #fff3e6; stroke: #e8730c; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #b85a06" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Ended: failed, nothing</tspan><tspan x="0" y="16.1">stored</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state teal" data-id="s3" transform="translate(350.61,616)">
+                <rect x="-101.37" y="-31" width="202.74" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Answers the error of the</tspan><tspan x="0" y="16.1">check</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state teal bugPath" data-id="s4" transform="translate(902.18,616)">
+                <rect x="-109.37" y="-31" width="218.74" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Adds the new permissions</tspan><tspan x="0" y="16.1">in WorkOS</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state purple" data-id="s5" transform="translate(1151.68,1096.5)">
+                <rect x="-112.47" y="-31" width="224.94" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Reconciles WorkOS after a</tspan><tspan x="0" y="16.1">failure</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state blue bugPath" data-id="s6" transform="translate(1433.18,738)">
+                <rect x="-71.58" y="-22" width="143.15" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Takes the locks</text>
+              </g>
+              <g class="pele-node pele-state blue bugPath" data-id="s7" transform="translate(1798.84,860)">
+                <rect x="-96.05" y="-31" width="192.1" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Runs the step on each</tspan><tspan x="0" y="16.1">installation</tspan>
+                </text>
+              </g>
+              <g
+                class="pele-node pele-state purple mayBreak bugPath"
+                data-id="s8"
+                transform="translate(2101.97,1096.5)"
+              >
+                <rect
+                  x="-112.47"
+                  y="-31"
+                  width="224.94"
+                  height="62"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #fff3e6; stroke: #e8730c; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #b85a06" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Reconciles WorkOS after a</tspan
+                  ><tspan x="0" y="16.1">lost COMMIT answer</tspan>
+                </text>
+              </g>
+              <g
+                class="pele-node pele-state purple mayBreak bugPath"
+                data-id="s9"
+                transform="translate(2831.52,1096.5)"
+              >
+                <rect
+                  x="-105.8"
+                  y="-31"
+                  width="211.6"
+                  height="62"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #fff3e6; stroke: #e8730c; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #b85a06" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Reconciles WorkOS after</tspan><tspan x="0" y="16.1">the commit</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state tan breaks bugPath" data-id="s10" transform="translate(1567.07,1439)">
+                <rect
+                  x="-88.49"
+                  y="-31"
+                  width="176.98"
+                  height="62"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Ended: failed, but its</tspan><tspan x="0" y="16.1">version is stored</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state purple" data-id="s11" transform="translate(2954.26,1293)">
+                <rect x="-113.82" y="-22" width="227.65" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Releases the SDK package</text>
+              </g>
+              <g class="pele-node pele-state tan" data-id="s12" transform="translate(2954.26,1430)">
+                <rect x="-77.82" y="-22" width="155.63" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Ended: published</text>
+              </g>
+              <g class="pele-node pele-state-start" data-id="root_start" transform="translate(350.61,257)">
+                <circle r="7" fill="var(--_l)" />
+              </g>
+              <g class="pele-node pele-state teal" data-id="lg0" transform="translate(507.88,154)">
+                <rect x="-94.26" y="-22" width="188.53" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Before the transaction</text>
+              </g>
+              <g class="pele-node pele-state blue" data-id="lg1" transform="translate(719.51,154)">
+                <rect x="-77.37" y="-22" width="154.74" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">In the transaction</text>
+              </g>
+              <g class="pele-node pele-state purple" data-id="lg2" transform="translate(924.47,154)">
+                <rect x="-87.59" y="-22" width="175.18" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">After the transaction</text>
+              </g>
+              <g class="pele-node pele-state tan" data-id="lg3" transform="translate(1109.41,154)">
+                <rect x="-57.35" y="-22" width="114.7" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Not running</text>
+              </g>
+              <g class="pele-node pele-state breaks" data-id="lg4" transform="translate(1324.14,154)">
+                <rect
+                  x="-117.38"
+                  y="-62.5"
+                  width="234.75"
+                  height="125"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-36.4">Breaks</tspan><tspan x="0" y="-15.4">FailedJobStoredNothing or</tspan
+                  ><tspan x="0" y="5.6">NoHiddenTypeFirstReading</tspan><tspan x="0" y="26.6">or</tspan
+                  ><tspan x="0" y="47.6">RolesExactWhenJobsEnded</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state mayBreak" data-id="lg5" transform="translate(1598.89,154)">
+                <rect
+                  x="-117.38"
+                  y="-83.5"
+                  width="234.75"
+                  height="167"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #fff3e6; stroke: #e8730c; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #b85a06" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-57.4">Breaks</tspan><tspan x="0" y="-36.4">NoHiddenTypeFirstReading</tspan
+                  ><tspan x="0" y="-15.4">or</tspan><tspan x="0" y="5.6">RolesExactAfterReconcile</tspan
+                  ><tspan x="0" y="26.6">or</tspan><tspan x="0" y="47.6">RolesExactWhenJobsEnded</tspan
+                  ><tspan x="0" y="68.6">in some cases</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state bugPath" data-id="lg6" transform="translate(1873.64,154)">
+                <rect x="-117.38" y="-94" width="234.75" height="188" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-67.9">Path to the</tspan><tspan x="0" y="-46.9">FailedJobStoredNothing or</tspan
+                  ><tspan x="0" y="-25.9">NoHiddenTypeFirstReading</tspan><tspan x="0" y="-4.9">or</tspan
+                  ><tspan x="0" y="16.1">RolesExactAfterReconcile</tspan><tspan x="0" y="37.1">or</tspan
+                  ><tspan x="0" y="58.1">RolesExactWhenJobsEnded</tspan><tspan x="0" y="79.1">bug</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <figcaption>
+          1 job of 1 run, 1 installation, and 1 fault: saved data that the step rejects, a WorkOS failure, a stop, a
+          lost answer, or a limit. TLC reached 99 states, so the chart shows the full graph. A red state breaks a rule,
+          an orange state breaks a rule in some of the model states behind it, and the legend names the rules. A blue
+          border marks the shortest path to a break. "Ended: failed, but its version is stored" breaks rule 2b (path 1).
+          "Reconciles WorkOS after a lost COMMIT answer" breaks rule 5 as first worded (path 2). A 400 or a 503 of the
+          check answers with no reconcile. A loop on a state is a step that does not change what this chart shows.
+        </figcaption>
+      </figure>
+      <details>
+        <summary>Mermaid text</summary>
+        <pre>
+---
+title: &quot;The life of 1 publish job&quot;
+---
+stateDiagram-v2
+  state &quot;Legend&quot; as legend {
+    lg0: Before the transaction
+    lg1: In the transaction
+    lg2: After the transaction
+    lg3: Not running
+    lg4: Breaks FailedJobStoredNothing or NoHiddenTypeFirstReading or RolesExactWhenJobsEnded
+    lg5: Breaks NoHiddenTypeFirstReading or RolesExactAfterReconcile or RolesExactWhenJobsEnded in some cases
+    lg6: Path to the FailedJobStoredNothing or NoHiddenTypeFirstReading or RolesExactAfterReconcile or RolesExactWhenJobsEnded bug
+  }
+  class lg0 teal
+  class lg1 blue
+  class lg2 purple
+  class lg3 tan
+  class lg4 breaks
+  class lg5 mayBreak
+  class lg6 bugPath
+  s0: Not started
+  s1: Checks the data and reads WorkOS, with no lock
+  s2: Ended: failed, nothing stored
+  s3: Answers the error of the check
+  s4: Adds the new permissions in WorkOS
+  s5: Reconciles WorkOS after a failure
+  s6: Takes the locks
+  s7: Runs the step on each installation
+  s8: Reconciles WorkOS after a lost COMMIT answer
+  s9: Reconciles WorkOS after the commit
+  s10: Ended: failed, but its version is stored
+  s11: Releases the SDK package
+  s12: Ended: published
+  [*] --&gt; s0
+  s0 --&gt; s1: a person starts the job
+  s1 --&gt; s2: the service stops the request
+  s1 --&gt; s1: the check reads the data or the check reads WorkOS
+  s1 --&gt; s3: saved data blocks the step (400) or the WorkOS read fails (503)
+  s3 --&gt; s2: answers 400 or answers 503
+  s1 --&gt; s4: the check passes
+  s4 --&gt; s2: the service stops the request
+  s4 --&gt; s5: a WorkOS addition fails (503)
+  s4 --&gt; s4: WorkOS takes an addition
+  s4 --&gt; s6: the transaction starts
+  s6 --&gt; s2: the service stops the request
+  s6 --&gt; s6: gets the lock of the versions or gets the lock of each row
+  s6 --&gt; s5: the 60 s limit (400) or a Postgres error (500)
+  s5 --&gt; s2: answers 503, 400, or 500
+  s6 --&gt; s7: inserts the version
+  s7 --&gt; s2: the service stops the request
+  s7 --&gt; s5: the 60 s limit (400) or a Postgres error (500) or saved data blocks the step (400)
+  s7 --&gt; s7: runs the step
+  s7 --&gt; s8: the answer to COMMIT is lost
+  s7 --&gt; s9: Postgres commits
+  s8 --&gt; s8: the reconcile reads the versions or Postgres commits after the lost answer or the reconcile reads WorkOS or the reconcile writes a role or the reconcile ends
+  s9 --&gt; s10: the service stops the request or answers 503, reconciled false
+  s9 --&gt; s9: the reconcile reads the versions or WorkOS fails in the reconcile
+  s8 --&gt; s2: answers 500
+  s8 --&gt; s10: answers 500
+  s2 --&gt; s10: Postgres commits after the lost answer
+  s9 --&gt; s11: answers 200
+  s11 --&gt; s12: releases the SDK package
+  classDef breaks fill:#ffecee,stroke:#e72e3b,stroke-width:2.5px,color:#cd2834
+  classDef mayBreak fill:#fff3e6,stroke:#e8730c,stroke-width:2.5px,color:#b85a06
+  class s0 tan
+  class s0 bugPath
+  class s1 teal
+  class s1 bugPath
+  class s2 tan
+  class s2 mayBreak
+  class s2 bugPath
+  class s3 teal
+  class s4 teal
+  class s4 bugPath
+  class s5 purple
+  class s6 blue
+  class s6 bugPath
+  class s7 blue
+  class s7 bugPath
+  class s8 purple
+  class s8 mayBreak
+  class s8 bugPath
+  class s9 purple
+  class s9 mayBreak
+  class s9 bugPath
+  class s10 tan
+  class s10 breaks
+  class s10 bugPath
+  class s11 purple
+  class s12 tan
+</pre>
+      </details>
+      <h2>Chart 2: 1 installation across a publish and a restore</h2>
+      <figure>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="pele pele-state"
+          viewBox="0 0 1982 1079"
+          width="1982"
+          height="1079"
+          style="
+            max-width: 100%;
+            height: auto;
+            --_bg: var(--pele-bg,#fff);
+            --_fg: var(--pele-fg,#1f1f1f);
+            --_m: var(--pele-muted,#6e6e6e);
+            --_l: var(--pele-line,#1f1f1f);
+            --_s: var(--pele-surface,#f3f3f3);
+            --_a: var(--pele-surface-alt,#e6e6e6);
+            --_b: var(--pele-border,#8a8a8a);
+            --_c: var(--pele-accent,#5b7bd5);
+            color: var(--_fg);
+            --_tw: var(--pele-title-weight,bold);
+            --_fm: var(--pele-font-mono,monospace);
+            font: 16px sans-serif;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            direction: ltr;
+            font-family: var(--pele-font, sans-serif);
+          "
+          fill="var(--_fg)"
+          role="graphics-document document"
+          aria-roledescription="state"
+        >
+          <text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve">
+            <tspan x="991" y="25.6">Installation i1 across 1 publish and 1 restore</tspan>
+          </text>
+          <g transform="translate(0,36)">
+            <g class="pele-clusters">
+              <g class="pele-cluster pele-state-composite" data-id="all">
+                <rect
+                  x="8"
+                  y="8"
+                  width="1965.79"
+                  height="1027"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M8,44H1973.79" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="990.9" y="31.6" text-anchor="middle">At the same time</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="r0">
+                <rect
+                  x="34"
+                  y="299.5"
+                  width="506.12"
+                  height="480"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M34,335.5H540.12" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="287.06" y="323.1" text-anchor="middle">Registry row of i1</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="r1">
+                <rect
+                  x="600.12"
+                  y="70"
+                  width="611.83"
+                  height="939"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M600.12,106H1211.96" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="906.04" y="93.6" text-anchor="middle">Publish job</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="r2">
+                <rect
+                  x="1271.96"
+                  y="234"
+                  width="675.83"
+                  height="611"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M1271.96,270H1947.79" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="1609.87" y="257.6" text-anchor="middle">Restore</text>
+              </g>
+            </g>
+            <g class="pele-dividers" stroke-dasharray="4 4" fill="none" stroke="var(--_b)">
+              <path class="pele-divider" d="M570.12,44V1035" />
+              <path class="pele-divider" d="M1241.96,44V1035" />
+            </g>
+            <g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+              <g class="pele-edge pele-transition" data-id="edge0">
+                <path d="M290.72,365.5L290.72,402.5" />
+                <path class="pele-marker" d="M290.72,409.5L287.36,401.5L294.08,401.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge1">
+                <path d="M240.04,453.5C240.04,462.75 162.92,462.75 162.92,472L162.92,548.5" />
+                <path class="pele-marker" d="M162.92,555.5L159.56,547.5L166.28,547.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge2">
+                <path d="M341.41,453.5C341.41,462.75 418.53,462.75 418.53,472L418.53,557.5" />
+                <path class="pele-marker" d="M418.53,564.5L415.17,556.5L421.89,556.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge3">
+                <path d="M418.53,608.5L418.53,676C418.53,682.94 351.64,682.94 351.64,689.88L351.64,694.5" />
+                <path class="pele-marker" d="M351.64,701.5L348.28,693.5L355,693.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge4">
+                <path d="M162.92,617.5L162.92,676C162.92,682.94 229.8,682.94 229.8,689.88L229.8,694.5" />
+                <path class="pele-marker" d="M229.8,701.5L226.44,693.5L233.16,693.5Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge5">
+                <path d="M930.29,136L930.29,173" />
+                <path class="pele-marker" d="M930.29,180L926.93,172L933.65,172Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge6">
+                <path d="M930.29,224L930.29,286" />
+                <path class="pele-marker" d="M930.29,293L926.93,285L933.65,285Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge7">
+                <path d="M922.29,337C922.29,346.25 825.6,346.25 825.6,355.5L825.6,459" />
+                <path class="pele-marker" d="M825.6,466L822.24,458L828.96,458Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge8">
+                <path d="M938.29,337C938.29,346.02 1089.98,346.48 1089.98,355.5L1089.98,450" />
+                <path class="pele-marker" d="M1089.98,457L1086.62,449L1093.34,449Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge9">
+                <path d="M1089.98,519L1089.98,904.5C1089.98,920.25 1041.66,920.25 1041.66,936L1041.66,942" />
+                <path class="pele-marker" d="M1041.66,949L1038.3,941L1045.02,941Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge10">
+                <path d="M825.6,510L825.6,614" />
+                <path class="pele-marker" d="M825.6,621L822.24,613L828.96,613Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge11">
+                <path
+                  d="M812.7,665C812.7,674.25 738.48,674.25 738.48,683.5L738.48,759.5C738.48,766.44 817.6,766.44 817.6,773.38L817.6,778"
+                />
+                <path class="pele-marker" d="M817.6,785L814.24,777L820.96,777Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge12">
+                <path
+                  d="M838.5,665C838.5,674.25 928.31,674.25 928.31,683.5L928.31,759.5C928.31,766.44 833.6,766.44 833.6,773.38L833.6,778"
+                />
+                <path class="pele-marker" d="M833.6,785L830.24,777L836.96,777Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge13">
+                <path d="M817.6,829C817.6,838.25 718.23,838.25 718.23,847.5L718.23,942" />
+                <path class="pele-marker" d="M718.23,949L714.87,941L721.59,941Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge14">
+                <path
+                  d="M833.6,829C833.6,838.02 985.34,838.48 985.34,847.5L985.34,923.5C985.34,930.44 1025.66,930.44 1025.66,937.38L1025.66,942"
+                />
+                <path class="pele-marker" d="M1025.66,949L1022.3,941L1029.02,941Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge15">
+                <path d="M1605.6,300L1605.6,337" />
+                <path class="pele-marker" d="M1605.6,344L1602.24,336L1608.96,336Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge16">
+                <path d="M1589.6,388C1589.6,394.81 1388.51,399.69 1388.51,406.5L1388.51,519" />
+                <path class="pele-marker" d="M1388.51,526L1385.15,518L1391.87,518Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge17">
+                <path d="M1605.6,388L1605.6,519" />
+                <path class="pele-marker" d="M1605.6,526L1602.24,518L1608.96,518Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge18">
+                <path d="M1388.51,570L1388.51,646.5C1388.51,650.33 1589.6,656.55 1589.6,660.38L1589.6,665" />
+                <path class="pele-marker" d="M1589.6,672L1586.24,664L1592.96,664Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge19">
+                <path d="M1605.6,570L1605.6,665" />
+                <path class="pele-marker" d="M1605.6,672L1602.24,664L1608.96,664Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge20">
+                <path d="M1592.7,716C1592.7,725.25 1517.21,725.25 1517.21,734.5L1517.21,778" />
+                <path class="pele-marker" d="M1517.21,785L1513.85,777L1520.57,777Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge21">
+                <path d="M1618.51,716C1618.51,725.25 1694,725.25 1694,734.5L1694,778" />
+                <path class="pele-marker" d="M1694,785L1690.64,777L1697.36,777Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge22">
+                <path d="M1621.6,388C1621.6,394.67 1826.97,399.83 1826.97,406.5L1826.97,519" />
+                <path class="pele-marker" d="M1826.97,526L1823.61,518L1830.33,518Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge23">
+                <path d="M1826.97,570L1826.97,646.5C1826.97,650.25 1621.6,656.63 1621.6,660.38L1621.6,665" />
+                <path class="pele-marker" d="M1621.6,672L1618.24,664L1624.96,664Z" fill="var(--_l)" stroke="none" />
+              </g>
+            </g>
+            <g class="pele-edge-labels" font-size="14">
+              <g class="pele-edge-label" data-id="edge1">
+                <rect x="61.27" y="474" width="203.3" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="162.92" y="487.9">the switch commits [when</tspan
+                  ><tspan x="162.92" y="505.9">Publish job is not Holds the row</tspan
+                  ><tspan x="162.92" y="523.9">and Restore is Holds the row]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge2">
+                <rect x="314.93" y="474" width="207.19" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="418.53" y="487.9">the publish commits [when</tspan
+                  ><tspan x="418.53" y="505.9">Publish job is Holds the row and</tspan
+                  ><tspan x="418.53" y="523.9">Restore is not Holds the row]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge3">
+                <rect x="334.78" y="638" width="167.49" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="418.53" y="651.9">the switch commits [when</tspan
+                  ><tspan x="418.53" y="669.9">Restore is Holds the row]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge4">
+                <rect x="71" y="638" width="183.84" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="162.92" y="651.9">the publish commits [when</tspan
+                  ><tspan x="162.92" y="669.9">Publish job is Holds the row]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge6">
+                <rect x="857.03" y="244.5" width="146.52" height="21" rx="3" fill="var(--_bg)" />
+                <text x="930.29" y="259.9" text-anchor="middle">a person starts the job</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge7">
+                <rect x="756.63" y="383" width="137.95" height="21" rx="3" fill="var(--_bg)" />
+                <text x="825.6" y="398.4" text-anchor="middle">the transaction starts</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge8">
+                <rect x="986.01" y="357.5" width="207.95" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1089.98" y="371.4">saved data blocks the step</tspan
+                  ><tspan x="1089.98" y="389.4">(400) [when Registry row of i1 is</tspan
+                  ><tspan x="1089.98" y="407.4">Restored schemas, version 2</tspan
+                  ><tspan x="1089.98" y="425.4">and Restore is Switched]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge9">
+                <rect x="997.67" y="632.5" width="184.62" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1089.98" y="647.9" text-anchor="middle">the publish answers an error</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge10">
+                <rect x="726.28" y="539.5" width="198.64" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="825.6" y="553.4">the publish gets the row lock</tspan
+                  ><tspan x="825.6" y="571.4">[when Restore is not Holds the</tspan
+                  ><tspan x="825.6" y="589.4">row]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge11">
+                <rect x="672.63" y="711" width="131.7" height="21" rx="3" fill="var(--_bg)" />
+                <text x="738.48" y="726.4" text-anchor="middle">the publish commits</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge12">
+                <rect x="824.33" y="685.5" width="207.95" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="928.31" y="699.4">saved data blocks the step</tspan
+                  ><tspan x="928.31" y="717.4">(400) [when Registry row of i1 is</tspan
+                  ><tspan x="928.31" y="735.4">Restored schemas, version 2</tspan
+                  ><tspan x="928.31" y="753.4">and Restore is Switched]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge13">
+                <rect x="618.12" y="858.5" width="200.21" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="718.23" y="872.4">the publish answers 200 [when</tspan
+                  ><tspan x="718.23" y="890.4">Registry row of i1 is not</tspan
+                  ><tspan x="718.23" y="908.4">Restored schemas, version 2]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge14">
+                <rect x="890.7" y="849.5" width="189.29" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="985.34" y="863.4">the publish answers an error</tspan
+                  ><tspan x="985.34" y="881.4">[when Registry row of i1 is</tspan
+                  ><tspan x="985.34" y="899.4">Restored schemas, version 2</tspan
+                  ><tspan x="985.34" y="917.4">and Restore is Switched]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge16">
+                <rect x="1289.96" y="443" width="197.1" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1388.51" y="458.4" text-anchor="middle">the operator copies the source</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge17">
+                <rect x="1507.05" y="443" width="197.1" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1605.6" y="458.4" text-anchor="middle">the operator copies the source</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge18">
+                <rect x="1291.13" y="590.5" width="194.75" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1388.51" y="604.4">the switch gets the row lock</tspan
+                  ><tspan x="1388.51" y="622.4">[when Publish job is not Holds</tspan
+                  ><tspan x="1388.51" y="640.4">the row]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge19">
+                <rect x="1508.23" y="590.5" width="194.75" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1605.6" y="604.4">the switch gets the row lock</tspan
+                  ><tspan x="1605.6" y="622.4">[when Publish job is not Holds</tspan
+                  ><tspan x="1605.6" y="640.4">the row]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge20">
+                <rect x="1423.55" y="736.5" width="187.33" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1517.21" y="751.9" text-anchor="middle">the copy's data blocks a step</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge21">
+                <rect x="1630.87" y="736.5" width="126.24" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1694" y="751.9" text-anchor="middle">the switch commits</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge22">
+                <rect x="1724.15" y="408.5" width="205.64" height="90" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1826.97" y="422.4">the operator copies the source</tspan
+                  ><tspan x="1826.97" y="440.4">[when Registry row of i1 is First</tspan
+                  ><tspan x="1826.97" y="458.4">schemas, version 3 and Publish</tspan
+                  ><tspan x="1826.97" y="476.4">job is one of Published,</tspan
+                  ><tspan x="1826.97" y="494.4">Reconciles]</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge23">
+                <rect x="1737.38" y="607" width="179.18" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1826.97" y="622.4" text-anchor="middle">the switch gets the row lock</text>
+              </g>
+            </g>
+            <g class="pele-nodes">
+              <g class="pele-node pele-state" data-id="s0" transform="translate(290.72,431.5)">
+                <rect x="-102.69" y="-22" width="205.38" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">First schemas, version 2</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s1" transform="translate(162.92,586.5)">
+                <rect x="-112.92" y="-31" width="225.84" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Restored schemas, version</tspan><tspan x="0" y="16.1">2</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state" data-id="s2" transform="translate(418.53,586.5)">
+                <rect x="-102.69" y="-22" width="205.38" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">First schemas, version 3</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s3" transform="translate(290.72,732.5)">
+                <rect x="-112.92" y="-31" width="225.84" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Restored schemas, version</tspan><tspan x="0" y="16.1">3</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state-start" data-id="r0_start" transform="translate(290.72,358.5)">
+                <circle r="7" fill="var(--_l)" />
+              </g>
+              <g class="pele-node pele-state" data-id="s4" transform="translate(930.29,202)">
+                <rect x="-55.13" y="-22" width="110.26" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Not started</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s5" transform="translate(930.29,315)">
+                <rect x="-42.67" y="-22" width="85.34" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Checks</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s6" transform="translate(825.6,488)">
+                <rect x="-68.01" y="-22" width="136.02" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Waits for locks</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s7" transform="translate(1089.98,488)">
+                <rect x="-101.37" y="-31" width="202.74" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Answers the error of the</tspan><tspan x="0" y="16.1">check</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state" data-id="s8" transform="translate(1033.66,971)">
+                <rect x="-37.78" y="-22" width="75.57" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Failed</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s9" transform="translate(825.6,643)">
+                <rect x="-64.9" y="-22" width="129.81" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Holds the row</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s10" transform="translate(825.6,807)">
+                <rect x="-55.12" y="-22" width="110.24" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Reconciles</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s11" transform="translate(718.23,971)">
+                <rect x="-51.13" y="-22" width="102.26" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Published</text>
+              </g>
+              <g class="pele-node pele-state-start" data-id="r1_start" transform="translate(930.29,129)">
+                <circle r="7" fill="var(--_l)" />
+              </g>
+              <g class="pele-node pele-state" data-id="s12" transform="translate(1605.6,366)">
+                <rect x="-55.13" y="-22" width="110.26" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Not started</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s13" transform="translate(1388.51,548)">
+                <rect x="-84.92" y="-22" width="169.84" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Copied at version 1</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s14" transform="translate(1605.6,548)">
+                <rect x="-84.92" y="-22" width="169.84" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Copied at version 2</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s15" transform="translate(1605.6,694)">
+                <rect x="-64.9" y="-22" width="129.81" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Holds the row</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s16" transform="translate(1517.21,807)">
+                <rect x="-37.78" y="-22" width="75.57" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Failed</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s17" transform="translate(1694,807)">
+                <rect x="-48.46" y="-22" width="96.91" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Switched</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s18" transform="translate(1826.97,548)">
+                <rect x="-84.92" y="-22" width="169.84" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Copied at version 3</text>
+              </g>
+              <g class="pele-node pele-state-start" data-id="r2_start" transform="translate(1605.6,293)">
+                <circle r="7" fill="var(--_l)" />
+              </g>
+            </g>
+          </g>
+        </svg>
+        <figcaption>
+          Installation i1 on version 2, 1 publish job with table changes, and 1 restore of i1 from a copy on any stored
+          version (1 or 2, or 3 after the publish), whose data can block a step. No fault. TLC reached 294 states, so
+          the chart shows the full graph in 3 regions that change at the same time. Words in brackets give the condition
+          on the other regions. Each rule holds in this graph. A publish moves the row on the schemas that the row names
+          when the publish gets the row lock. The switch runs its chain to the newest version under the row lock.
+        </figcaption>
+      </figure>
+      <details>
+        <summary>Mermaid text</summary>
+        <pre>
+---
+title: &quot;Installation i1 across 1 publish and 1 restore&quot;
+---
+stateDiagram-v2
+  direction LR
+  state &quot;At the same time&quot; as all {
+    state &quot;Registry row of i1&quot; as r0 {
+      s0: First schemas, version 2
+      s1: Restored schemas, version 2
+      s2: First schemas, version 3
+      s3: Restored schemas, version 3
+      [*] --&gt; s0
+      s0 --&gt; s1: the switch commits [when Publish job is not Holds the row and Restore is Holds the row]
+      s0 --&gt; s2: the publish commits [when Publish job is Holds the row and Restore is not Holds the row]
+      s2 --&gt; s3: the switch commits [when Restore is Holds the row]
+      s1 --&gt; s3: the publish commits [when Publish job is Holds the row]
+    }
+    --
+    state &quot;Publish job&quot; as r1 {
+      s4: Not started
+      s5: Checks
+      s6: Waits for locks
+      s7: Answers the error of the check
+      s8: Failed
+      s9: Holds the row
+      s10: Reconciles
+      s11: Published
+      [*] --&gt; s4
+      s4 --&gt; s5: a person starts the job
+      s5 --&gt; s6: the transaction starts
+      s5 --&gt; s7: saved data blocks the step (400) [when Registry row of i1 is Restored schemas, version 2 and Restore is Switched]
+      s7 --&gt; s8: the publish answers an error
+      s6 --&gt; s9: the publish gets the row lock [when Restore is not Holds the row]
+      s9 --&gt; s10: the publish commits
+      s9 --&gt; s10: saved data blocks the step (400) [when Registry row of i1 is Restored schemas, version 2 and Restore is Switched]
+      s10 --&gt; s11: the publish answers 200 [when Registry row of i1 is not Restored schemas, version 2]
+      s10 --&gt; s8: the publish answers an error [when Registry row of i1 is Restored schemas, version 2 and Restore is Switched]
+    }
+    --
+    state &quot;Restore&quot; as r2 {
+      s12: Not started
+      s13: Copied at version 1
+      s14: Copied at version 2
+      s15: Holds the row
+      s16: Failed
+      s17: Switched
+      s18: Copied at version 3
+      [*] --&gt; s12
+      s12 --&gt; s13: the operator copies the source
+      s12 --&gt; s14: the operator copies the source
+      s13 --&gt; s15: the switch gets the row lock [when Publish job is not Holds the row]
+      s14 --&gt; s15: the switch gets the row lock [when Publish job is not Holds the row]
+      s15 --&gt; s16: the copy&#x27;s data blocks a step
+      s15 --&gt; s17: the switch commits
+      s12 --&gt; s18: the operator copies the source [when Registry row of i1 is First schemas, version 3 and Publish job is one of Published, Reconciles]
+      s18 --&gt; s15: the switch gets the row lock
+    }
+  }
+</pre>
+      </details>
+      <h2>Chart 3: the WorkOS default roles against the newest stored version</h2>
+      <figure>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="pele pele-state"
+          viewBox="0 0 3139 2432"
+          width="3139"
+          height="2432"
+          style="
+            max-width: 100%;
+            height: auto;
+            --_bg: var(--pele-bg,#fff);
+            --_fg: var(--pele-fg,#1f1f1f);
+            --_m: var(--pele-muted,#6e6e6e);
+            --_l: var(--pele-line,#1f1f1f);
+            --_s: var(--pele-surface,#f3f3f3);
+            --_a: var(--pele-surface-alt,#e6e6e6);
+            --_b: var(--pele-border,#8a8a8a);
+            --_c: var(--pele-accent,#5b7bd5);
+            color: var(--_fg);
+            --_tw: var(--pele-title-weight,bold);
+            --_fm: var(--pele-font-mono,monospace);
+            font: 16px sans-serif;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            direction: ltr;
+            font-family: var(--pele-font, sans-serif);
+          "
+          fill="var(--_fg)"
+          role="graphics-document document"
+          aria-roledescription="state"
+        >
+          <text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve">
+            <tspan x="1569.5" y="25.6">The WorkOS default roles against the newest stored version</tspan>
+          </text>
+          <g transform="translate(0,36)">
+            <g class="pele-clusters">
+              <g class="pele-cluster pele-state-composite" data-id="legend">
+                <rect
+                  x="1931.06"
+                  y="8"
+                  width="798.45"
+                  height="214"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M1931.06,44H2729.51" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="2330.28" y="31.6" text-anchor="middle">Legend</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="s0">
+                <rect
+                  x="2239.42"
+                  y="266"
+                  width="664.69"
+                  height="279"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M2239.42,302H2904.11" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="2571.76" y="289.6" text-anchor="middle">Not running</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="s4">
+                <rect
+                  x="918.35"
+                  y="717"
+                  width="1165.44"
+                  height="329"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M918.35,753H2083.79" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="1501.07" y="740.6" text-anchor="middle">
+                  Runs, before the commit
+                </text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="s8">
+                <rect
+                  x="1137.31"
+                  y="1820.34"
+                  width="526.43"
+                  height="239"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M1137.31,1856.34H1663.74" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="1182.21" y="1843.94" text-anchor="middle">Exited 1</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="s11">
+                <rect
+                  x="2046.85"
+                  y="1369.84"
+                  width="255.2"
+                  height="152"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M2046.85,1405.84H2302.05" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="2174.45" y="1393.44" text-anchor="middle">
+                  Answers the error of the check
+                </text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="s13">
+                <rect
+                  x="757.11"
+                  y="1228.34"
+                  width="963.11"
+                  height="435"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M757.11,1264.34H1720.22" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="1238.66" y="1251.94" text-anchor="middle">Reconciles</text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="s17">
+                <rect
+                  x="1045.63"
+                  y="2216.34"
+                  width="770.94"
+                  height="171"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M1045.63,2252.34H1816.57" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="1431.1" y="2239.94" text-anchor="middle">
+                  Exited 1, version stored
+                </text>
+              </g>
+              <g class="pele-cluster pele-state-composite" data-id="s21">
+                <rect
+                  x="1703.74"
+                  y="1873.84"
+                  width="255.2"
+                  height="132"
+                  rx="10"
+                  fill="var(--_a)"
+                  fill-opacity="0.5"
+                  stroke="var(--_b)"
+                />
+                <path d="M1703.74,1909.84H1958.94" fill="none" stroke="var(--_b)" />
+                <text class="pele-cluster-label" x="1748.65" y="1897.44" text-anchor="middle">Exited 0</text>
+              </g>
+            </g>
+            <g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round">
+              <g class="pele-edge pele-transition" data-id="edge0">
+                <path d="M2776.51,122L2776.51,458" />
+                <path class="pele-marker" d="M2776.51,465L2773.15,457L2779.87,457Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge1">
+                <path
+                  d="M2706.71,509L2706.71,545C2706.71,576.25 2737.12,576.25 2737.12,607.5L2737.12,647.5C2737.12,666.59 1725.19,697.91 1725.19,717L1725.19,791"
+                />
+                <path class="pele-marker" d="M1725.19,798L1721.83,790L1728.55,790Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge2">
+                <path
+                  d="M1796.93,842L1796.93,1046C1796.93,1086.75 2425.54,1086.75 2425.54,1127.5L2425.54,1744.59C2425.54,1767.38 1418.53,1797.55 1418.53,1820.34L1418.53,1872.34C1418.53,1889.7 1431.07,1900.34 1451.54,1900.34C1472,1900.34 1484.54,1918.01 1484.54,1946.84L1484.54,1952.84"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1484.54,1959.84L1481.18,1951.84L1487.9,1951.84Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge3">
+                <path d="M1836.79,812C1862.79,804 1862.79,836 1843.48,830.06" />
+                <path
+                  class="pele-marker"
+                  d="M1836.79,828L1845.42,827.14L1843.45,833.56Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge4">
+                <path
+                  d="M1544.14,1959.84L1544.14,1820.34C1544.14,1801.4 2842.38,1763.53 2842.38,1744.59L2842.38,617.5C2842.38,581.25 2776.51,581.25 2776.51,545L2776.51,516"
+                />
+                <path class="pele-marker" d="M2776.51,509L2779.87,517L2773.15,517Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge5">
+                <path d="M1780.93,842L1780.93,1046C1780.93,1077.25 2174.45,1077.25 2174.45,1108.5L2174.45,1434.84" />
+                <path
+                  class="pele-marker"
+                  d="M2174.45,1441.84L2171.09,1433.84L2177.81,1433.84Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge6">
+                <path
+                  d="M2174.45,1485.84L2174.45,1750.84C2174.45,1782.29 1560.14,1788.89 1560.14,1820.34L1560.14,1952.84"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1560.14,1959.84L1556.78,1951.84L1563.5,1951.84Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge7">
+                <path
+                  d="M1764.93,842L1764.93,1046C1764.93,1077.25 1901.89,1077.25 1901.89,1108.5L1901.89,1184.5C1901.89,1206.42 1643.3,1206.42 1643.3,1228.34L1643.3,1445.34"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1643.3,1452.34L1639.94,1444.34L1646.66,1444.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge8">
+                <path
+                  d="M1665.59,842C1665.59,855.75 1447.29,855.75 1447.29,869.5L1447.29,894.5C1447.29,902.75 1351.57,902.75 1351.57,911L1351.57,916.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1351.57,923.5L1348.21,915.5L1354.93,915.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge9">
+                <path
+                  d="M1279.96,1006.5L1279.96,1046C1279.96,1080.01 498.79,1093.49 498.79,1127.5L498.79,1744.59C498.79,1770.44 1386.53,1794.48 1386.53,1820.34L1386.53,1872.34C1386.53,1899.84 1332.54,1899.84 1332.54,1927.34L1332.54,1933.34"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1332.54,1940.34L1329.18,1932.34L1335.9,1932.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge10">
+                <path
+                  d="M1351.57,1006.5C1351.57,1016.61 1570.13,1019.89 1570.13,1030L1570.13,1046C1570.13,1066.33 801.65,1088.17 801.65,1108.5L801.65,1184.5C801.65,1206.42 1124.36,1206.42 1124.36,1228.34L1124.36,1293.34"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1124.36,1300.34L1121,1292.34L1127.72,1292.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge11">
+                <path d="M1403.57,957C1429.57,949 1429.57,981 1410.26,975.06" />
+                <path
+                  class="pele-marker"
+                  d="M1403.57,973L1412.21,972.14L1410.23,978.56Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge12">
+                <path
+                  d="M1260.92,1940.34L1260.92,1820.34C1260.92,1741.84 98.83,1741.84 98.83,1663.34L98.83,617.5C98.83,599.38 2355.04,563.13 2355.04,545L2355.04,428"
+                />
+                <path class="pele-marker" d="M2355.04,421L2358.4,429L2351.67,429Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge13">
+                <path
+                  d="M2434.65,421L2434.65,434C2434.65,449.5 2495.97,449.5 2495.97,465L2495.97,545C2495.97,560.63 592.63,591.88 592.63,607.5L592.63,647.5C592.63,682.25 1110.07,682.25 1110.07,717L1110.07,888.25C1110.07,899.38 1224.34,899.38 1224.34,910.5L1224.34,916.5"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1224.34,923.5L1220.98,915.5L1227.7,915.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge14">
+                <path
+                  d="M1584.62,1496.34L1584.62,1663.34C1584.62,1694.59 1402.53,1694.59 1402.53,1725.84L1402.53,1872.34C1402.53,1897.14 1415.07,1912.34 1435.54,1912.34C1456,1912.34 1468.54,1925.45 1468.54,1946.84L1468.54,1952.84"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1468.54,1959.84L1465.18,1951.84L1471.9,1951.84Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge15">
+                <path d="M1206.96,1383.34C1206.96,1387.96 1549.94,1397.21 1549.94,1401.84L1549.94,1445.34" />
+                <path
+                  class="pele-marker"
+                  d="M1549.94,1452.34L1546.58,1444.34L1553.3,1444.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge16">
+                <path d="M1239.98,1333.84C1265.98,1325.84 1265.98,1357.84 1246.67,1351.9" />
+                <path
+                  class="pele-marker"
+                  d="M1239.98,1349.84L1248.61,1348.98L1246.63,1355.4Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge17">
+                <path
+                  d="M1060.74,1383.34C1060.74,1417.84 851.29,1417.84 851.29,1452.34L851.29,1663.34C851.29,1741.84 708,1741.84 708,1820.34L708,2059.34C708,2137.84 1294.18,2137.84 1294.18,2216.34L1294.18,2268.34C1294.18,2273.21 1240.86,2273.21 1240.86,2278.09L1240.86,2281.34"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1240.86,2288.34L1237.5,2280.34L1244.22,2280.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge18">
+                <path
+                  d="M1169.24,2288.34L1169.24,2216.34C1169.24,2137.84 296.48,2137.84 296.48,2059.34L296.48,617.5C296.48,599.38 2371.04,563.13 2371.04,545L2371.04,428"
+                />
+                <path class="pele-marker" d="M2371.04,421L2374.4,429L2367.67,429Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge19">
+                <path d="M1190.96,1383.34C1190.96,1417.84 1209.95,1417.84 1209.95,1452.34L1209.95,1558.34" />
+                <path
+                  class="pele-marker"
+                  d="M1209.95,1565.34L1206.59,1557.34L1213.31,1557.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge20">
+                <path
+                  d="M1616.62,1496.34L1616.62,1663.34C1616.62,1697.71 2090.6,1697.71 2090.6,1732.09L2090.6,2140.59C2090.6,2178.46 1574.04,2178.46 1574.04,2216.34L1574.04,2268.34C1574.04,2273.21 1629.37,2273.21 1629.37,2278.09L1629.37,2281.34"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1629.37,2288.34L1626.01,2280.34L1632.73,2280.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge21">
+                <path
+                  d="M1696.97,2288.34L1696.97,2216.34C1696.97,2142.93 3040.03,2132.75 3040.03,2059.34L3040.03,617.5C3040.03,581.25 2792.51,581.25 2792.51,545L2792.51,516"
+                />
+                <path class="pele-marker" d="M2792.51,509L2795.87,517L2789.15,517Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge22">
+                <path d="M1320.21,1588.34C1346.21,1580.34 1346.21,1612.34 1326.9,1606.4" />
+                <path
+                  class="pele-marker"
+                  d="M1320.21,1604.34L1328.84,1603.48L1326.87,1609.9Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge23">
+                <path d="M1533.02,1496.34C1533.02,1502.04 1292.8,1509.14 1292.8,1514.84L1292.8,1558.34" />
+                <path
+                  class="pele-marker"
+                  d="M1292.8,1565.34L1289.44,1557.34L1296.16,1557.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge24">
+                <path
+                  d="M1600.62,1496.34L1600.62,1663.34C1600.62,1694.59 1831.34,1694.59 1831.34,1725.84L1831.34,1938.84"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1831.34,1945.84L1827.98,1937.84L1834.7,1937.84Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge25">
+                <path
+                  d="M1217.95,1627.34L1217.95,1663.34C1217.95,1741.84 895.51,1741.84 895.51,1820.34L895.51,2059.34C895.51,2137.84 1310.18,2137.84 1310.18,2216.34L1310.18,2268.34C1310.18,2273.21 1384.86,2273.21 1384.86,2278.09L1384.86,2281.34"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1384.86,2288.34L1381.5,2280.34L1388.22,2280.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge26">
+                <path
+                  d="M1536.14,2003.84L1536.14,2146.84C1536.14,2181.59 1558.04,2181.59 1558.04,2216.34L1558.04,2268.34C1558.04,2273.21 1485.37,2273.21 1485.37,2278.09L1485.37,2281.34"
+                />
+                <path
+                  class="pele-marker"
+                  d="M1485.37,2288.34L1482.01,2280.34L1488.73,2280.34Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge27">
+                <path
+                  d="M1435.11,2288.34L1435.11,2216.34C1435.11,2197.16 2631.85,2159.77 2631.85,2140.59L2631.85,617.5C2631.85,581.25 2636.91,581.25 2636.91,545L2636.91,428"
+                />
+                <path class="pele-marker" d="M2636.91,421L2640.27,429L2633.55,429Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge28">
+                <path
+                  d="M2578.65,421L2578.65,434C2578.65,449.5 2511.97,449.5 2511.97,465L2511.97,545C2511.97,560.63 1348.37,591.88 1348.37,607.5L1348.37,647.5C1348.37,682.25 1240.33,682.25 1240.33,717L1240.33,782"
+                />
+                <path class="pele-marker" d="M1240.33,789L1236.97,781L1243.69,781Z" fill="var(--_l)" stroke="none" />
+              </g>
+              <g class="pele-edge pele-transition" data-id="edge29">
+                <path d="M1240.33,851L1240.33,916.5" />
+                <path
+                  class="pele-marker"
+                  d="M1240.34,923.5L1236.97,915.5L1243.69,915.5Z"
+                  fill="var(--_l)"
+                  stroke="none"
+                />
+              </g>
+            </g>
+            <g class="pele-edge-labels" font-size="14">
+              <g class="pele-edge-label" data-id="edge1">
+                <rect x="2649.85" y="609.5" width="174.53" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2737.12" y="623.4">a person starts the job or a</tspan
+                  ><tspan x="2737.12" y="641.4">person runs the job again</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge2">
+                <rect x="2332.05" y="1435.34" width="186.98" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2425.54" y="1450.74" text-anchor="middle">the service stops the request</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge3">
+                <rect x="1868.79" y="793" width="201" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1969.29" y="806.9">the check reads the data or the</tspan
+                  ><tspan x="1969.29" y="824.9">check reads WorkOS or the</tspan
+                  ><tspan x="1969.29" y="842.9">check passes</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge4">
+                <rect x="2753.56" y="1435.34" width="177.65" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2842.38" y="1450.74" text-anchor="middle">a person runs the job again</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge5">
+                <rect x="2083.7" y="1136" width="181.5" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2174.45" y="1151.4" text-anchor="middle">the WorkOS read fails (503)</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge6">
+                <rect x="2108.6" y="1727.84" width="131.7" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2174.45" y="1743.24" text-anchor="middle">the service answers</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge7">
+                <rect x="1816.58" y="1128.5" width="170.61" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1901.89" y="1142.4">a WorkOS addition fails or</tspan
+                  ><tspan x="1901.89" y="1160.4">Postgres commits</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge8">
+                <rect x="1353.81" y="871.5" width="186.96" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1447.29" y="886.9" text-anchor="middle">an addition reaches WorkOS</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge9">
+                <rect x="405.3" y="1435.34" width="186.98" height="21" rx="3" fill="var(--_bg)" />
+                <text x="498.79" y="1450.74" text-anchor="middle">the service stops the request</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge10">
+                <rect x="704.67" y="1110.5" width="193.96" height="72" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="801.65" y="1124.4">a WorkOS addition fails or the</tspan
+                  ><tspan x="801.65" y="1142.4">transaction rolls back or the</tspan
+                  ><tspan x="801.65" y="1160.4">answer to COMMIT is lost or</tspan
+                  ><tspan x="801.65" y="1178.4">Postgres commits</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge11">
+                <rect x="1435.57" y="920" width="207.99" height="90" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1539.57" y="933.9">an addition reaches WorkOS or</tspan
+                  ><tspan x="1539.57" y="951.9">the transaction starts or gets the</tspan
+                  ><tspan x="1539.57" y="969.9">lock of the versions or gets the</tspan
+                  ><tspan x="1539.57" y="987.9">row lock or inserts the version</tspan
+                  ><tspan x="1539.57" y="1005.9">or runs the step</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge12">
+                <rect x="10" y="1435.34" width="177.65" height="21" rx="3" fill="var(--_bg)" />
+                <text x="98.83" y="1450.74" text-anchor="middle">a person runs the job again</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge13">
+                <rect x="503.8" y="617" width="177.65" height="21" rx="3" fill="var(--_bg)" />
+                <text x="592.63" y="632.4" text-anchor="middle">a person runs the job again</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge14">
+                <rect x="1336.68" y="1727.84" width="131.7" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1402.53" y="1743.24" text-anchor="middle">the service answers</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge15">
+                <rect x="1466.58" y="1403.84" width="166.72" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1549.94" y="1419.24" text-anchor="middle">the reconcile writes a role</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge16">
+                <rect x="1271.98" y="1314.84" width="205.64" height="54" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1374.79" y="1328.74">the reconcile reads the versions</tspan
+                  ><tspan x="1374.79" y="1346.74">or Postgres commits late or the</tspan
+                  ><tspan x="1374.79" y="1364.74">reconcile reads WorkOS</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge17">
+                <rect x="606.34" y="1921.84" width="203.31" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="708" y="1935.74">the service stops the request or</tspan
+                  ><tspan x="708" y="1953.74">the service answers</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge18">
+                <rect x="207.65" y="1435.34" width="177.65" height="21" rx="3" fill="var(--_bg)" />
+                <text x="296.48" y="1450.74" text-anchor="middle">a person runs the job again</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge19">
+                <rect x="1118.42" y="1456.34" width="183.06" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1209.95" y="1470.24">the reconcile writes a role or</tspan
+                  ><tspan x="1209.95" y="1488.24">Postgres commits late</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge20">
+                <rect x="1988.94" y="1921.84" width="203.31" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="2090.6" y="1935.74">the service stops the request or</tspan
+                  ><tspan x="2090.6" y="1953.74">the service answers</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge21">
+                <rect x="2951.21" y="1435.34" width="177.65" height="21" rx="3" fill="var(--_bg)" />
+                <text x="3040.03" y="1450.74" text-anchor="middle">a person runs the job again</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge22">
+                <rect x="1352.21" y="1578.34" width="206.41" height="36" rx="3" fill="var(--_bg)" />
+                <text text-anchor="middle" xml:space="preserve">
+                  <tspan x="1455.41" y="1592.24">the reconcile writes a role or the</tspan
+                  ><tspan x="1455.41" y="1610.24">reconcile ends</tspan>
+                </text>
+              </g>
+              <g class="pele-edge-label" data-id="edge23">
+                <rect x="1219.95" y="1516.84" width="145.7" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1292.8" y="1532.24" text-anchor="middle">Postgres commits late</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge24">
+                <rect x="1765.49" y="1727.84" width="131.7" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1831.34" y="1743.24" text-anchor="middle">the service answers</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge25">
+                <rect x="829.66" y="1929.34" width="131.7" height="21" rx="3" fill="var(--_bg)" />
+                <text x="895.51" y="1944.74" text-anchor="middle">the service answers</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge26">
+                <rect x="1463.29" y="2123.84" width="145.7" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1536.14" y="2139.24" text-anchor="middle">Postgres commits late</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge27">
+                <rect x="2543.03" y="1435.34" width="177.65" height="21" rx="3" fill="var(--_bg)" />
+                <text x="2631.85" y="1450.74" text-anchor="middle">a person runs the job again</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge28">
+                <rect x="1259.54" y="617" width="177.65" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1348.37" y="632.4" text-anchor="middle">a person runs the job again</text>
+              </g>
+              <g class="pele-edge-label" data-id="edge29">
+                <rect x="1146.85" y="871.5" width="186.96" height="21" rx="3" fill="var(--_bg)" />
+                <text x="1240.33" y="886.9" text-anchor="middle">an addition reaches WorkOS</text>
+              </g>
+            </g>
+            <g class="pele-nodes">
+              <g class="pele-node pele-state-start" data-id="root_start" transform="translate(2776.51,115)">
+                <circle r="7" fill="var(--_l)" />
+              </g>
+              <g class="pele-node pele-state breaks" data-id="lg0" transform="translate(2596.13,133)">
+                <rect
+                  x="-117.38"
+                  y="-41.5"
+                  width="234.75"
+                  height="83"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-15.4">Breaks</tspan><tspan x="0" y="5.6">FailedJobStoredNothing or</tspan
+                  ><tspan x="0" y="26.6">RolesExactWhenJobsEnded</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state mayBreak" data-id="lg1" transform="translate(2330.28,133)">
+                <rect
+                  x="-108.47"
+                  y="-41.5"
+                  width="216.94"
+                  height="83"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #fff3e6; stroke: #e8730c; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #b85a06" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-15.4">Breaks</tspan><tspan x="0" y="5.6">RolesExactAfterReconcile</tspan
+                  ><tspan x="0" y="26.6">in some cases</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state bugPath" data-id="lg2" transform="translate(2064.44,133)">
+                <rect x="-117.38" y="-73" width="234.75" height="146" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-46.9">Path to the</tspan><tspan x="0" y="-25.9">FailedJobStoredNothing or</tspan
+                  ><tspan x="0" y="-4.9">RolesExactAfterReconcile</tspan><tspan x="0" y="16.1">or</tspan
+                  ><tspan x="0" y="37.1">RolesExactWhenJobsEnded</tspan><tspan x="0" y="58.1">bug</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state bugPath" data-id="s1" transform="translate(2776.51,487)">
+                <rect x="-111.6" y="-22" width="223.2" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Roles equal the newest file</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s2" transform="translate(2371.04,379.5)">
+                <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-15.4">A role holds a permission</tspan
+                  ><tspan x="0" y="5.6">that the newest file does not</tspan><tspan x="0" y="26.6">give</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state" data-id="s3" transform="translate(2628.91,390)">
+                <rect x="-102.26" y="-31" width="204.51" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Roles hold an early</tspan><tspan x="0" y="16.1">permission and lack one</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state bugPath" data-id="s5" transform="translate(1725.19,820)">
+                <rect x="-111.6" y="-22" width="223.2" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Roles equal the newest file</text>
+              </g>
+              <g class="pele-node pele-state bugPath" data-id="s6" transform="translate(1287.96,965)">
+                <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-15.4">A role holds a permission</tspan
+                  ><tspan x="0" y="5.6">that the newest file does not</tspan><tspan x="0" y="26.6">give</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state" data-id="s7" transform="translate(1240.33,820)">
+                <rect x="-102.26" y="-31" width="204.51" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Roles hold an early</tspan><tspan x="0" y="16.1">permission and lack one</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state" data-id="s9" transform="translate(1536.14,1981.84)">
+                <rect x="-111.6" y="-22" width="223.2" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Roles equal the newest file</text>
+              </g>
+              <g class="pele-node pele-state breaks bugPath" data-id="s10" transform="translate(1268.92,1981.84)">
+                <rect
+                  x="-115.62"
+                  y="-41.5"
+                  width="231.23"
+                  height="83"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-15.4">A role holds a permission</tspan
+                  ><tspan x="0" y="5.6">that the newest file does not</tspan><tspan x="0" y="26.6">give</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state" data-id="s12" transform="translate(2174.45,1463.84)">
+                <rect x="-111.6" y="-22" width="223.2" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Roles equal the newest file</text>
+              </g>
+              <g class="pele-node pele-state" data-id="s14" transform="translate(1592.62,1474.34)">
+                <rect x="-111.6" y="-22" width="223.2" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Roles equal the newest file</text>
+              </g>
+              <g class="pele-node pele-state bugPath" data-id="s15" transform="translate(1124.36,1341.84)">
+                <rect x="-115.62" y="-41.5" width="231.23" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-15.4">A role holds a permission</tspan
+                  ><tspan x="0" y="5.6">that the newest file does not</tspan><tspan x="0" y="26.6">give</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state mayBreak bugPath" data-id="s16" transform="translate(1217.95,1596.34)">
+                <rect
+                  x="-102.26"
+                  y="-31"
+                  width="204.51"
+                  height="62"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #fff3e6; stroke: #e8730c; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #b85a06" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Roles hold an early</tspan><tspan x="0" y="16.1">permission and lack one</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state breaks bugPath" data-id="s18" transform="translate(1177.24,2329.84)">
+                <rect
+                  x="-115.62"
+                  y="-41.5"
+                  width="231.23"
+                  height="83"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-15.4">A role holds a permission</tspan
+                  ><tspan x="0" y="5.6">that the newest file does not</tspan><tspan x="0" y="26.6">give</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state breaks" data-id="s19" transform="translate(1688.97,2310.34)">
+                <rect
+                  x="-111.6"
+                  y="-22"
+                  width="223.2"
+                  height="44"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #cd2834" x="0" y="5.6" text-anchor="middle">
+                  Roles equal the newest file
+                </text>
+              </g>
+              <g class="pele-node pele-state breaks" data-id="s20" transform="translate(1435.11,2319.34)">
+                <rect
+                  x="-102.26"
+                  y="-31"
+                  width="204.51"
+                  height="62"
+                  rx="10"
+                  fill="var(--_s)"
+                  stroke="var(--_b)"
+                  style="fill: #ffecee; stroke: #e72e3b; stroke-width: 2.5px"
+                />
+                <text class="pele-label" style="fill: #cd2834" text-anchor="middle" xml:space="preserve">
+                  <tspan x="0" y="-4.9">Roles hold an early</tspan><tspan x="0" y="16.1">permission and lack one</tspan>
+                </text>
+              </g>
+              <g class="pele-node pele-state" data-id="s22" transform="translate(1831.34,1967.84)">
+                <rect x="-111.6" y="-22" width="223.2" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)" />
+                <text class="pele-label" x="0" y="5.6" text-anchor="middle">Roles equal the newest file</text>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <figcaption>
+          2 stored versions: version 1 names r1 and r2, and version 2 names only r1, so r2 is named only by an older
+          version. The job publishes a new file that gives r2 a permission again. 2 job runs and 1 fault. TLC reached
+          190 states. The legend names the rule of each red or orange state. Each parent state is the phase of the job,
+          and each state in it says how the default roles compare with the newest stored file. "Exited 1, version
+          stored" breaks rule 2b, and a reconcile after a lost COMMIT answer breaks rule 5 as first worded. A rerun
+          brings the roles back to "Roles equal the newest file".
+        </figcaption>
+      </figure>
+      <details>
+        <summary>Mermaid text</summary>
+        <pre>
+---
+title: &quot;The WorkOS default roles against the newest stored version&quot;
+---
+stateDiagram-v2
+  state &quot;Legend&quot; as legend {
+    lg0: Breaks FailedJobStoredNothing or RolesExactWhenJobsEnded
+    lg1: Breaks RolesExactAfterReconcile in some cases
+    lg2: Path to the FailedJobStoredNothing or RolesExactAfterReconcile or RolesExactWhenJobsEnded bug
+  }
+  class lg0 breaks
+  class lg1 mayBreak
+  class lg2 bugPath
+  state &quot;Not running&quot; as s0 {
+    s1: Roles equal the newest file
+    s2: A role holds a permission that the newest file does not give
+    s3: Roles hold an early permission and lack one
+  }
+  state &quot;Runs, before the commit&quot; as s4 {
+    s5: Roles equal the newest file
+    s6: A role holds a permission that the newest file does not give
+    s7: Roles hold an early permission and lack one
+  }
+  state &quot;Exited 1&quot; as s8 {
+    s9: Roles equal the newest file
+    s10: A role holds a permission that the newest file does not give
+  }
+  state &quot;Answers the error of the check&quot; as s11 {
+    s12: Roles equal the newest file
+  }
+  state &quot;Reconciles&quot; as s13 {
+    s14: Roles equal the newest file
+    s15: A role holds a permission that the newest file does not give
+    s16: Roles hold an early permission and lack one
+  }
+  state &quot;Exited 1, version stored&quot; as s17 {
+    s18: A role holds a permission that the newest file does not give
+    s19: Roles equal the newest file
+    s20: Roles hold an early permission and lack one
+  }
+  state &quot;Exited 0&quot; as s21 {
+    s22: Roles equal the newest file
+  }
+  [*] --&gt; s1
+  s1 --&gt; s5: a person starts the job or a person runs the job again
+  s5 --&gt; s9: the service stops the request
+  s5 --&gt; s5: the check reads the data or the check reads WorkOS or the check passes
+  s9 --&gt; s1: a person runs the job again
+  s5 --&gt; s12: the WorkOS read fails (503)
+  s12 --&gt; s9: the service answers
+  s5 --&gt; s14: a WorkOS addition fails or Postgres commits
+  s5 --&gt; s6: an addition reaches WorkOS
+  s6 --&gt; s10: the service stops the request
+  s6 --&gt; s15: a WorkOS addition fails or the transaction rolls back or the answer to COMMIT is lost or Postgres commits
+  s6 --&gt; s6: an addition reaches WorkOS or the transaction starts or gets the lock of the versions or gets the row lock or inserts the version or runs the step
+  s10 --&gt; s2: a person runs the job again
+  s2 --&gt; s6: a person runs the job again
+  s14 --&gt; s9: the service answers
+  s15 --&gt; s14: the reconcile writes a role
+  s15 --&gt; s15: the reconcile reads the versions or Postgres commits late or the reconcile reads WorkOS
+  s15 --&gt; s18: the service stops the request or the service answers
+  s18 --&gt; s2: a person runs the job again
+  s15 --&gt; s16: the reconcile writes a role or Postgres commits late
+  s14 --&gt; s19: the service stops the request or the service answers
+  s19 --&gt; s1: a person runs the job again
+  s16 --&gt; s16: the reconcile writes a role or the reconcile ends
+  s14 --&gt; s16: Postgres commits late
+  s14 --&gt; s22: the service answers
+  s16 --&gt; s20: the service answers
+  s9 --&gt; s20: Postgres commits late
+  s20 --&gt; s3: a person runs the job again
+  s3 --&gt; s7: a person runs the job again
+  s7 --&gt; s6: an addition reaches WorkOS
+  classDef breaks fill:#ffecee,stroke:#e72e3b,stroke-width:2.5px,color:#cd2834
+  classDef mayBreak fill:#fff3e6,stroke:#e8730c,stroke-width:2.5px,color:#b85a06
+  class s1 bugPath
+  class s5 bugPath
+  class s6 bugPath
+  class s10 breaks
+  class s10 bugPath
+  class s15 bugPath
+  class s16 mayBreak
+  class s16 bugPath
+  class s18 breaks
+  class s18 bugPath
+  class s19 breaks
+  class s20 breaks
+</pre>
+      </details>
+      <h2>Rules</h2>
+      <p>
+        Each count is the count of distinct states of a complete TLC run, unless the row says "breaks at". When a rule
+        breaks, TLC runs again without that rule, so the count of a holding rule is that of the run that checked it.
+        "Breaks at" gives the states that TLC found when it stopped at the first break, in 1 run. TLC runs with several
+        workers, so that count changes from run to run.
+      </p>
+      <ul>
+        <li>
+          <strong>WorkOS run.</strong> 4 starts: no version (the first publish), 1 version, 2 versions where only the
+          older names r2, and a newest grants file that does not parse. Each role starts absent from WorkOS or with any
+          list. 2 grants files to publish, 3 job runs, new pushes, cancels, and 2 faults.
+        </li>
+        <li>
+          <strong>Data run.</strong> 2 stored versions, 1 installation, an install of a second one, a restore with a
+          copy on each stored version, a drop, saved data, table changes or none, 3 job runs, and 2 faults.
+        </li>
+        <li>
+          <strong>Ghost run.</strong> The service runs 2 requests: a canceled job keeps its request, and the next job
+          starts. 2 job runs and 2 faults. <strong>GhostNoCancel</strong> is the same with no cancel.
+        </li>
+        <li>
+          <strong>Liveness runs.</strong> Fairness: while a normal step can happen, one happens. A person reruns a
+          failed job, and an admin fixes saved data before the rerun. 4 job runs and 2 faults. The WorkOS runs start
+          with each role absent or with any list. The rules about the old page wording of rule 5 and rule 6 also run on
+          a start where WorkOS equals the newest file.
+        </li>
+      </ul>
+      <p>
+        A fault is a WorkOS failure, a stop of the request, a lost answer to COMMIT, the 60 s limit or a Postgres error,
+        a lock wait that ends, a cancel, or saved data that blocks a step.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Rule</th>
+            <th>Name in the model</th>
+            <th>In plain words</th>
+            <th>Result</th>
+            <th>Run, distinct states</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><code>EveryInstallationOnNewest</code></td>
+            <td>Between transactions, every installation is on the newest product version.</td>
+            <td>holds</td>
+            <td>WorkOS 662,361; Data 10,084,648; Ghost 111,233</td>
+          </tr>
+          <tr>
+            <td>2a</td>
+            <td><code>RollbackChangesNothing</code></td>
+            <td>A transaction that rolls back leaves no stored version and no moved data.</td>
+            <td>holds</td>
+            <td>WorkOS 662,361; Data 10,084,648; Ghost 111,233</td>
+          </tr>
+          <tr>
+            <td>2b</td>
+            <td><code>FailedJobStoredNothing</code></td>
+            <td>A publish job that reports a failure stored no version.</td>
+            <td><span class="breaks">breaks</span>, known case 2 (path 1)</td>
+            <td>breaks at 16,272 (WorkOS) and 46,438 (Data)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><code>NoStepTwice</code></td>
+            <td>No step runs on data that is not at the version before it.</td>
+            <td>holds</td>
+            <td>Data 10,084,648</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><code>StoredOnlyWithEveryMove</code></td>
+            <td>
+              A version is stored only when each installation moved to it in the same commit. The transaction never
+              meets an installation that is not on the newest version.
+            </td>
+            <td>holds</td>
+            <td>WorkOS 662,361; Data 10,084,648; Ghost 111,233</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><code>RolesExactAfterSeenEnd</code></td>
+            <td>
+              When a reconcile passes after a commit or a rollback that the service saw, and no other request runs, each
+              default role equals the newest stored grants file.
+            </td>
+            <td>
+              holds with 1 job at a time; <span class="breaks">breaks</span> with a job that ends while its request
+              runs, known case 1 (path 3)
+            </td>
+            <td>holds: WorkOS 662,361, GhostNoCancel 3,555; breaks at 6,432 (Ghost)</td>
+          </tr>
+          <tr>
+            <td>5, any end</td>
+            <td><code>RolesExactAfterReconcile</code></td>
+            <td>
+              The same after any reconcile that passed with no open transaction, also after a lost answer to COMMIT.
+            </td>
+            <td><span class="breaks">breaks</span>, known case 2 (path 2)</td>
+            <td>breaks at 33,753 (WorkOS) and 682 (GhostNoCancel)</td>
+          </tr>
+          <tr>
+            <td>5, exit 0</td>
+            <td><code>RolesExactWhenJobSucceeded</code></td>
+            <td>When the job exited 0 and no request runs, each default role equals the newest stored grants file.</td>
+            <td>
+              holds with 1 job at a time; <span class="breaks">breaks</span> with a job that ends while its request
+              runs, known case 1 (path 4)
+            </td>
+            <td>holds: WorkOS 662,361, GhostNoCancel 3,555; breaks at 12,895 (Ghost)</td>
+          </tr>
+          <tr>
+            <td>5, jobs ended</td>
+            <td><code>RolesExactWhenJobsEnded</code></td>
+            <td>
+              The old wording of rule 5: when no request runs and the job ended with exit 0 or exit 1, each default role
+              equals the newest stored grants file.
+            </td>
+            <td>
+              <span class="breaks">breaks</span>, wrong as worded (path 6): the spec lets an early permission stay after
+              a stop
+            </td>
+            <td>breaks at 387 (WorkOS run with WorkOS reconciled at the start)</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><code>NoHiddenTypeOutsideWindow</code></td>
+            <td>
+              A type of a committed version is never hidden because a default role lacks its permission, outside 2
+              windows. The first lasts while a reconcile reads or writes WorkOS. The second opens at the commit and
+              closes when a reconcile that read that version passes.
+            </td>
+            <td>
+              holds with 1 job at a time; <span class="breaks">breaks</span> with a job that ends while its request
+              runs, known case 1 (path 8)
+            </td>
+            <td>
+              holds: WorkOS 662,361, WorkOS run with WorkOS reconciled at the start 27,573, GhostNoCancel 3,555; breaks
+              at 61,773 (Ghost)
+            </td>
+          </tr>
+          <tr>
+            <td>6, first reading</td>
+            <td><code>NoHiddenTypeFirstReading</code></td>
+            <td>
+              The same, with a narrower window: it closes at the end of the first reconcile that read that version, also
+              when that reconcile fails.
+            </td>
+            <td>
+              <span class="breaks">breaks</span>, known case 2 (path 7): the spec lets a role lack its permissions until
+              a rerun
+            </td>
+            <td>breaks at 888 (WorkOS run with WorkOS reconciled at the start) and 520 (GhostNoCancel)</td>
+          </tr>
+          <tr>
+            <td>6b</td>
+            <td><code>NoPermissionOnUnnamedRole</code></td>
+            <td>
+              A default role that no stored version names keeps the permissions that it had before. So a failed publish
+              leaves no permission on such a role.
+            </td>
+            <td>holds</td>
+            <td>WorkOS 662,361; Ghost 111,233; Data 10,084,648</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><code>SdkOnlyForNewest</code></td>
+            <td>
+              The SDK package of version N is released only after a 200 answer, when N is stored and every installation
+              is on N.
+            </td>
+            <td>
+              holds with 1 job at a time; <span class="breaks">breaks</span> with a job that ends while its request
+              runs, known case 1 (path 5)
+            </td>
+            <td>holds: WorkOS 662,361, Data 10,084,648, GhostNoCancel 3,555; breaks at 38,662 (Ghost)</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><code>RestoreAllOrNothing, RowNamesExistingSchemas</code></td>
+            <td>
+              A restore that fails leaves the row on its old schemas. A restore that passes leaves the row on the copy
+              at the newest version. The registry row never names schemas that do not exist.
+            </td>
+            <td>holds</td>
+            <td>Data 10,084,648</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><code>NoEarlyCopyRead</code></td>
+            <td>A request never reads the schemas of a copy before its switch.</td>
+            <td>holds</td>
+            <td>Data 10,084,648</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><code>NoWaitCycle, no deadlock</code></td>
+            <td>No cycle of lock waits through any number of actors, and no state with no step out.</td>
+            <td>holds</td>
+            <td>Data 10,084,648; WorkOS 662,361; Ghost 111,233</td>
+          </tr>
+          <tr>
+            <td>11a</td>
+            <td><code>EachPublishStored</code></td>
+            <td>
+              When the job runs again after each failure and the data gets fixed, the publish ends stored and the job
+              exits 0.
+            </td>
+            <td>holds</td>
+            <td>LiveWorkOS 93,528; LiveData 10,199</td>
+          </tr>
+          <tr>
+            <td>11b</td>
+            <td><code>RolesConverge</code></td>
+            <td>Then each default role converges to the newest stored grants file.</td>
+            <td>holds</td>
+            <td>LiveWorkOS 93,528; LiveData 10,199</td>
+          </tr>
+          <tr>
+            <td>Extra</td>
+            <td><code>RowMatchesData</code></td>
+            <td>Each registry row names data at the version of the row.</td>
+            <td>holds</td>
+            <td>Data 10,084,648</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Rules 2a and 9, and the last part of rule 8, hold by the shape of the code. A transaction writes nothing that
+        another actor sees until its commit, and a row names a copy only in the commit of its switch. The model keeps
+        these rules so that a fault can show them break.
+      </p>
+      <p>
+        Rule 10: each lock wait in the model ends when the holder releases the lock, or through a fault (the 5 s
+        <code>lock_timeout</code>, the statement limit of an install, or the 90 s wait of a switch). So with no fault
+        left, a cycle of waits shows as a deadlock, and TLC found none. TLC counts no seconds, so the lengths come from
+        the code.
+      </p>
+      <h2>Bug paths</h2>
+      <p>
+        Each step is 1 action of the model, in the words of the chart. Each test replays its path against the code on
+        Testcontainers Postgres. Each test of <code>modelPaths.sql.test.ts</code> runs as a role that is not a
+        superuser, with the WorkOS stub. The CLI test runs <code>node.ts</code> as the superuser role of the test
+        Postgres. A <code>Db</code> wrapper makes a lost answer to COMMIT, and a held WorkOS call keeps 2 requests
+        apart. Each test passes, so each path occurs in the code. A stop of the service is replayed as a Fault of the
+        WorkOS port, or a thrown error of the <code>Db</code>. After it, the code still tries the reconcile and answers
+        500, where a real stop gives no answer. The stored version and the roles end the same.
+      </p>
+      <h3>Path 1: rule 2b, known case 2</h3>
+      <p>
+        The first publish commits, and the service stops the request before the reconcile. The job exits 1, version 1 is
+        stored, and no default role has its permissions.
+      </p>
+      <p>
+        Steps: a person starts the job; the check reads the data; the check reads WorkOS; the check passes; the
+        transaction starts; gets the lock of the versions; inserts the version; Postgres commits; the service stops the
+        request.
+      </p>
+      <p>
+        Test: <code>path WorkOS.1</code>, and <code>path WorkOS.1b</code> for a lost answer to COMMIT after Postgres
+        committed, in <code>packages/service/src/publish/modelPaths.sql.test.ts</code>. On the first publish, no default
+        role has a permission until the rerun, so no person can install. The rerun stores no new version, creates r1,
+        and gives it p1.
+      </p>
+      <h3>Path 2: rule 5, any end, known case 2</h3>
+      <p>
+        The answer to COMMIT is lost. The reconcile reads the stored versions before Postgres applies the COMMIT, so it
+        sees no version and writes nothing. Then Postgres commits. The service answers 500, and the roles stay on the
+        older file until a rerun. In the worst case of this window, a default role lacks a permission that the newest
+        version adds, and still holds a permission that the newest version drops. The model shows both, and the second
+        test of this path shows both on the code: after version 1 gives r1 p1, a publish of a file that gives r1 p2 ends
+        with r1 holding p1 and not p2. A rerun stores no new version, runs the reconcile, and each default role then
+        equals the newest stored grants file.
+      </p>
+      <p>
+        Steps: a person starts the job; the check reads the data; the check reads WorkOS; the check passes; the
+        transaction starts; gets the lock of the versions; inserts the version; the answer to COMMIT is lost; the
+        reconcile reads the versions; Postgres commits after the lost answer; the reconcile reads WorkOS; the reconcile
+        ends.
+      </p>
+      <p>
+        Test: <code>path WorkOS.2: the first publish</code> and <code>path WorkOS.2 after version 1</code>, in
+        <code>packages/service/src/publish/modelPaths.sql.test.ts</code>. In each, the rerun repairs the roles.
+      </p>
+      <h3>Path 3: rule 5, known case 1</h3>
+      <p>
+        Job A publishes the parts of version 1, and its reconcile reads WorkOS. Job A is canceled. The next job B
+        publishes a new grants file, adds p2 to r1, and the service stops request B. Then request A answers 200, and r1
+        holds p2, which no stored version gives it.
+      </p>
+      <p>
+        Steps: request A: starts, checks, commits with the same parts, the reconcile reads; job A is canceled; a person
+        pushes a new commit; request B: starts, checks, adds p2 to r1; the service stops request B; request A answers
+        200.
+      </p>
+      <p>
+        Test: <code>path Ghost.3</code>, in <code>packages/service/src/publish/modelPaths.sql.test.ts</code>. The extra
+        permission stays until the next publish runs its reconcile, which Publish "Reconcile" allows as an early
+        permission.
+      </p>
+      <h3>Path 4: rule 5, exit 0, known case 1</h3>
+      <p>
+        Job A publishes a new grants file and is canceled after its check. Job B publishes the parts of version 1,
+        reconciles, and exits 0. Then request A adds p2 to r1 and stops. r1 holds a permission that the newest stored
+        file does not give.
+      </p>
+      <p>
+        Steps: request A: starts, checks; job A is canceled; a person pushes a new commit; request B: starts, checks,
+        commits with the same parts, reconciles, answers 200; job B releases the SDK package; request A adds p2 to r1;
+        the service stops request A.
+      </p>
+      <p>
+        Test: <code>path Ghost.4</code>, in <code>packages/service/src/publish/modelPaths.sql.test.ts</code>. Job B
+        exits 0 and job A was canceled, so no failed job asks for a rerun. The extra permission stays until the next
+        publish runs its reconcile, which Publish "Reconcile" allows as an early permission.
+      </p>
+      <h3>Path 5: rule 7, known case 1</h3>
+      <p>
+        Job A publishes a new grants file and is canceled after its check. Job B publishes the parts of version 1 and
+        answers 200 with version 1. Then request A stores version 2. Job B releases the SDK package of version 1 while
+        version 2 is the newest.
+      </p>
+      <p>
+        Steps: request A: starts, checks; job A is canceled; a person pushes a new commit; request B: starts, checks,
+        commits with the same parts, reconciles; request A: adds, takes the locks, inserts version 2, runs the step,
+        commits; job B releases the SDK package of version 1.
+      </p>
+      <p>
+        Test: <code>request B answers version 1 while request A stores version 2</code>, in
+        <code>packages/service/src/publish/modelPaths.sql.test.ts</code>, and the CLI test in
+        <code>packages/cli/src/publishModelPath.sql.test.ts</code>. The CLI test runs job B through the publish job
+        against the service from node.ts: its answer of version 1 arrives after request A stores version 2, and job B
+        tags the package of version 1. A throw before <code>releaseSdkPackage</code> fails it.
+      </p>
+      <h3>Path 6: rule 5 as the old page words it, allowed by the spec</h3>
+      <p>
+        Version 1 gives r1 p1. The job publishes a file that gives r1 p2. The WorkOS additions give r1 p2, then the
+        service stops the request. The job exits 1, nothing is stored, and r1 holds p2 until a rerun. "Default roles in
+        WorkOS" says that an added permission can stay when the publish stops, until a later publish runs its reconcile.
+      </p>
+      <p>
+        Steps: a person starts the job; the check reads the data; the check reads WorkOS; the check passes; WorkOS takes
+        an addition; the service stops the request.
+      </p>
+      <p>
+        Test: <code>path JobsEnded</code>, in <code>packages/service/src/publish/modelPaths.sql.test.ts</code>. The
+        rerun stores version 2 and reconciles.
+      </p>
+      <h3>Path 7: rule 6, first reading, known case 2</h3>
+      <p>
+        The first publish commits. The reconcile reads the stored versions, and its read of WorkOS fails. The publish
+        answers 503 with version 1 and reconciled false, and r1 lacks p1 until a rerun.
+      </p>
+      <p>
+        Steps: a person starts the job; the check reads the data; the check reads WorkOS; the check passes; the
+        transaction starts; gets the lock of the versions; inserts the version; Postgres commits; the reconcile reads
+        the versions; WorkOS fails in the reconcile.
+      </p>
+      <p>
+        Test: <code>path FirstReading</code>, in <code>packages/service/src/publish/modelPaths.sql.test.ts</code>. The
+        rerun stores no new version and gives r1 p1.
+      </p>
+      <h3>Path 8: rule 6, known case 1</h3>
+      <p>
+        Job A publishes the parts of version 1 and is canceled while its request waits for the lock of the versions.
+        Request B of the next job publishes a new file and holds that lock. The 5 s lock wait of A ends (409), and A
+        reads version 1 and WorkOS for its reconcile. B stores version 2 and reconciles. Then A sets r1 to the list of
+        version 1, and r1 lacks p2 of version 2 after both reconciles passed.
+      </p>
+      <p>
+        Steps: request A: starts, checks, the transaction starts; job A is canceled; a person pushes a new commit;
+        request B: starts, checks, adds p2 to r1, gets the lock of the versions; the lock wait of A ends (409); A reads
+        the versions and WorkOS; B takes the row lock, inserts version 2, runs the step, commits, reconciles; A writes
+        r1 and ends.
+      </p>
+      <p>Test: <code>path Ghost.8</code>, in <code>packages/service/src/publish/modelPaths.sql.test.ts</code>.</p>
+      <p>
+        <strong>A late COMMIT after a rerun.</strong> The runs above let a late COMMIT land only while its request runs,
+        or during the job run that sent it. A variant run removes that limit. In the path that it finds, a COMMIT whose
+        answer was lost lands after the job exited 1, a person reran it, a WorkOS addition of the rerun failed, and the
+        reconcile of the rerun read the version before. Then version 2 is stored, and the roles stay on the file of
+        version 1: the state of known case 2, which a second rerun repairs. On GhostNoCancel, beyond the 4 rules that
+        break in the main run, the variant breaks only rule 5 after a seen end, at 3,041 states in 1 run. With those 5
+        rules removed, each other rule holds (4,033 states). On the data run, the variant reaches the same 10,084,648
+        states, and each data rule holds. That data run has 1 request slot, and a new request needs the slot of the old
+        one to have no open COMMIT, so it gives no evidence about a late COMMIT after a rerun. In the code, a COMMIT can
+        land late only while it is on its way to Postgres (inference). The <code>transaction_timeout</code> of 60 s ends
+        a transaction whose COMMIT does not arrive in time, so a COMMIT cannot land later than that (inference from the
+        Postgres rules).
+      </p>
+      <h2>Faults that break the rules</h2>
+      <p>Each fault is a change to 1 action of the model. Each one breaks its rule, so each rule can fail.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Fault</th>
+            <th>Rule that breaks</th>
+            <th>Distinct states</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>An install that takes no lock of the product versions</td>
+            <td><code>EveryInstallationOnNewest</code></td>
+            <td>10,011</td>
+          </tr>
+          <tr>
+            <td>A step that writes outside the transaction</td>
+            <td><code>RollbackChangesNothing</code></td>
+            <td>13,666</td>
+          </tr>
+          <tr>
+            <td>A copy whose data is newer than its source row</td>
+            <td><code>NoStepTwice</code></td>
+            <td>275</td>
+          </tr>
+          <tr>
+            <td>A publish that reads the rows before the lock of the versions</td>
+            <td><code>StoredOnlyWithEveryMove</code></td>
+            <td>16,056</td>
+          </tr>
+          <tr>
+            <td>A reconcile that uses the request, not the newest stored file</td>
+            <td><code>RolesExactAfterSeenEnd</code></td>
+            <td>9,509</td>
+          </tr>
+          <tr>
+            <td>A rerun with the same parts that skips the reconcile</td>
+            <td><code>RolesExactWhenJobSucceeded</code></td>
+            <td>11,093</td>
+          </tr>
+          <tr>
+            <td>WorkOS additions to a role that no stored version names</td>
+            <td><code>NoPermissionOnUnnamedRole</code></td>
+            <td>3,106</td>
+          </tr>
+          <tr>
+            <td>A job that releases the SDK package after a 503 of the reconcile</td>
+            <td><code>SdkOnlyForNewest</code></td>
+            <td>12,897</td>
+          </tr>
+          <tr>
+            <td>A switch that moves the row when its chain fails</td>
+            <td><code>RestoreAllOrNothing</code></td>
+            <td>347</td>
+          </tr>
+          <tr>
+            <td>A drop that takes no row lock</td>
+            <td><code>RowNamesExistingSchemas</code></td>
+            <td>7,353</td>
+          </tr>
+          <tr>
+            <td>A copy that writes the registry row before the switch</td>
+            <td><code>NoEarlyCopyRead</code></td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>A switch that locks the row, then the product versions</td>
+            <td><code>NoWaitCycle</code></td>
+            <td>2,487</td>
+          </tr>
+          <tr>
+            <td>A switch that skips its chain</td>
+            <td><code>RowMatchesData</code></td>
+            <td>617</td>
+          </tr>
+          <tr>
+            <td>A reconcile that creates no missing role</td>
+            <td><code>NoHiddenTypeOutsideWindow</code></td>
+            <td>7,327</td>
+          </tr>
+          <tr>
+            <td>A check that always refuses (liveness)</td>
+            <td><code>EachPublishStored</code></td>
+            <td>602</td>
+          </tr>
+          <tr>
+            <td>A rerun with the same parts that skips the reconcile (liveness)</td>
+            <td><code>RolesConverge</code></td>
+            <td>91,154</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>States that TLC reached</h2>
+      <p>Each probe is a rule that must break, so it shows that the run reaches that state.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Distinct states</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A job that exits 0 after it releases the SDK package</td>
+            <td>14,926</td>
+          </tr>
+          <tr>
+            <td>A retry after 409</td>
+            <td>21,749</td>
+          </tr>
+          <tr>
+            <td>A reconcile after a rollback that writes a role</td>
+            <td>5,842</td>
+          </tr>
+          <tr>
+            <td>A rerun of the same commit with table changes that stores no new version</td>
+            <td>146,973</td>
+          </tr>
+          <tr>
+            <td>A restore that ends 2 versions above its copy</td>
+            <td>20,881</td>
+          </tr>
+          <tr>
+            <td>An install that waits for an open publish transaction</td>
+            <td>1,425</td>
+          </tr>
+          <tr>
+            <td>A publish that waits for the row lock of a switch</td>
+            <td>2,226</td>
+          </tr>
+          <tr>
+            <td>A switch that waits for the row lock of a publish</td>
+            <td>2,590</td>
+          </tr>
+          <tr>
+            <td>An install between the check and the transaction that the transaction moves</td>
+            <td>12,628</td>
+          </tr>
+          <tr>
+            <td>A drop that refuses the copy after the switch</td>
+            <td>4,115</td>
+          </tr>
+          <tr>
+            <td>A drop of the old schemas after the switch</td>
+            <td>6,023</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>What the model leaves out</h2>
+      <ul>
+        <li>1 product, 2 installations at most, 1 restore, 1 install, and 1 drop.</li>
+        <li>
+          2 default roles and 2 permissions. The model has no permission create or description, no
+          <code>RoleInUse</code> check, and no Organization role.
+        </li>
+        <li>
+          A step is 1 action, and the table locks of 1 installation are 1 lock. Each pair of schemas has 1 flag for data
+          that the next step rejects. The check reads only that flag. Reserved names, the OSDK set, the column limit,
+          the product RID, and <code>validateOnly</code> are not in the model.
+        </li>
+        <li>
+          A late commit after a lost answer lands only while its request runs, or during the job run that sent the
+          COMMIT. A late rollback can land at any time.
+        </li>
+        <li>
+          The copy of a restore always passes, from a source on any stored version. The source branch is a fixed point
+          in time, so its row and its data agree. The checks of engine changes, schema owner, and row number are not in
+          the model. A stop of the restore script is not in the model.
+        </li>
+        <li>
+          The engine-change catch-up of a request, the cold-start check, the remap, the staging reset, and a release
+          rollback are not in the model.
+        </li>
+        <li>Requests that read data are not in the model. Rule 9 reads the registry row in their place.</li>
+        <li>Time has no clock. Each limit is a step that can occur while its wait or its transaction is open.</li>
+        <li>
+          2 publishes at one time come from any job that ends while its request still runs: a canceled job, or a job
+          whose HTTP answer is lost and that a person runs again (checked on <code>node.ts</code> by an independent
+          probe, below). The model has 1 action for both: the job ends, and its request runs on. The queue of the
+          managed workflow keeps the other jobs apart.
+        </li>
+      </ul>
+      <h2>What TLC checked, and what is an inference</h2>
+      <ul>
+        <li>TLC checked each rule of this page on the model, with the state counts above.</li>
+        <li>
+          That the model matches the code is an inference from reading the code. The 11 replay tests confirm it for each
+          bug path. The probes confirm that each part of the model is reached.
+        </li>
+        <li>
+          That a COMMIT which reached Postgres commits at once, and that <code>transaction_timeout</code> limits how
+          late a COMMIT can land, are inferences from the Postgres rules. The variant run above checks the rules without
+          that limit.
+        </li>
+        <li>
+          That a lost HTTP answer leaves the request running was checked on <code>node.ts</code> by an independent probe
+          of the verifier: a publish held in its transaction by a row lock, a client socket that ends (the CLI exits 1),
+          then the release of the lock. Version 2 committed, the installation moved, and the reconcile ran. It is not
+          checked on the Vercel runtime, and not for a cut during the check or the additions. The publish route passes
+          no abort signal (<code>handler/index.ts</code>), and <code>sendPublish</code> has no catch, so the job exits 1
+          and the operator reruns the publish job.
+        </li>
+      </ul>
+      <h2>The run</h2>
+      <p>TLC 2.19 (tla2tools.jar 1.7.4) checked the TLA+ model, and Pele 1.9.0 rendered the statechart diagrams.</p>
+    </main>
+  </body>
+</html>

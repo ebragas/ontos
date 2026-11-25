@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1200 476" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ontos-architecture-light-title ontos-architecture-light-desc" id="ontos-architecture-light-root">
+        <title id="ontos-architecture-light-title">Ontos service architecture</title>
+        <desc id="ontos-architecture-light-desc">Architecture diagram showing Applications through the OSDK Client, the Ontos CLI, and MCP Clients calling the Ontos Service over HTTP, with PostgreSQL 17 storage and an optional Identity Provider for JWKS and tokens.</desc>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #ontos-architecture-light-root { --color-paper:   #fafaf7;
+      --color-ink:     #1e2124;
+      --color-muted:   #5c6066;
+      --color-accent:  #2b5945;
+      --font-sans:     'Geist', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace; }
+      #ontos-architecture-light-root { font-family: var(--font-sans); color: var(--color-ink); }
+      #ontos-architecture-light-root .diagram-wrap { width: 100%; overflow-x: auto; }</style>
+          <marker id="ontos-architecture-light-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#5c6066"/>
+          </marker>
+          <marker id="ontos-architecture-light-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#2b5945"/>
+          </marker>
+          <marker id="ontos-architecture-light-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#1a66c9"/>
+          </marker>
+        </defs>
+
+        <!-- Clean paper ground -->
+        <rect width="100%" height="100%" fill="#fafaf7"/>
+
+        <!-- Zone: Callers (drawn before arrows and nodes) -->
+        <rect x="24" y="24" width="232" height="336" rx="8"
+              fill="#1e2124" stroke="#1e2124" stroke-width="0.8" fill-opacity="0.02" stroke-opacity="0.12"/>
+        <rect x="36" y="28" width="56" height="12" rx="2" fill="#fafaf7"/>
+        <text x="64" y="37" fill="#545960" font-size="7" font-weight="500"
+              font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.14em">CALLERS</text>
+
+        <!-- Connectors (drawn before boxes, strictly orthogonal with r=8 elbows) -->
+        <!-- Applications -> OSDK Client -->
+        <line x1="244" y1="96" x2="296" y2="96" stroke="#5c6066" stroke-width="1.2" marker-end="url(#ontos-architecture-light-arrow)"/>
+
+        <!-- OSDK Client -> Ontos Service (port k=1 at y=172) -->
+        <path d="M 512,96 H 616 Q 624,96 624,104 V 164 Q 624,172 632,172 H 664"
+              fill="none" stroke="#1a66c9" stroke-width="1.2" marker-end="url(#ontos-architecture-light-arrow-link)"/>
+
+        <!-- Ontos CLI -> Ontos Service (port k=2 at y=200) -->
+        <line x1="244" y1="200" x2="664" y2="200" stroke="#1a66c9" stroke-width="1.2" marker-end="url(#ontos-architecture-light-arrow-link)"/>
+
+        <!-- MCP Clients -> Ontos Service (port k=3 at y=228) -->
+        <path d="M 244,304 H 616 Q 624,304 624,296 V 236 Q 624,228 632,228 H 664"
+              fill="none" stroke="#1a66c9" stroke-width="1.2" marker-end="url(#ontos-architecture-light-arrow-link)"/>
+
+        <!-- Ontos Service -> PostgreSQL 17 (focal headline path) -->
+        <line x1="888" y1="200" x2="964" y2="200" stroke="#2b5945" stroke-width="1.4" marker-end="url(#ontos-architecture-light-arrow-accent)"/>
+
+        <!-- Identity Provider -> Ontos Service (optional dashed auth tokens/JWKS) -->
+        <line x1="776" y1="316" x2="776" y2="256" stroke="#5c6066" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#ontos-architecture-light-arrow)"/>
+
+        <!-- Arrow labels (opaque paper mask, 8px gap from stroke) -->
+        <rect x="520" y="72" width="88" height="16" rx="2" fill="#fafaf7"/>
+        <text x="564" y="83" fill="#1a66c9" font-size="8" font-family="'Geist Mono', ui-monospace, monospace"
+              text-anchor="middle" letter-spacing="0.06em">OSDK HTTP V2</text>
+
+        <rect x="488" y="176" width="120" height="16" rx="2" fill="#fafaf7"/>
+        <text x="548" y="187" fill="#1a66c9" font-size="8" font-family="'Geist Mono', ui-monospace, monospace"
+              text-anchor="middle" letter-spacing="0.06em">HTTP V2 + PUBLISH</text>
+
+        <rect x="500" y="280" width="96" height="16" rx="2" fill="#fafaf7"/>
+        <text x="548" y="291" fill="#1a66c9" font-size="8" font-family="'Geist Mono', ui-monospace, monospace"
+              text-anchor="middle" letter-spacing="0.06em">HTTP /api/mcp</text>
+
+        <rect x="896" y="176" width="60" height="16" rx="2" fill="#fafaf7"/>
+        <text x="926" y="187" fill="#2b5945" font-size="8" font-family="'Geist Mono', ui-monospace, monospace"
+              text-anchor="middle" letter-spacing="0.06em">SQL · TX</text>
+
+        <rect x="784" y="276" width="96" height="16" rx="2" fill="#fafaf7"/>
+        <text x="832" y="287" fill="#5c6066" font-size="8" font-family="'Geist Mono', ui-monospace, monospace"
+              text-anchor="middle" letter-spacing="0.06em">JWKS · TOKENS</text>
+
+        <!-- Node: Applications -->
+        <rect x="36" y="56" width="208" height="80" rx="6" fill="#fafaf7"/>
+        <rect x="36" y="56" width="208" height="80" rx="6" fill="#5c6066" stroke="#545960" stroke-width="1" fill-opacity="0.08"/>
+        <rect x="46" y="64" width="32" height="14" rx="2" fill="none" stroke="#545960" stroke-width="0.8" stroke-opacity="0.40"/>
+        <text x="62" y="74" fill="#545960" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.10em">APP</text>
+        <text x="140" y="102" fill="#1e2124" font-size="13" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">Applications</text>
+        <text x="140" y="120" fill="#5c6066" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">WEB APPS · SERVICES</text>
+
+        <!-- Node: OSDK Client -->
+        <rect x="296" y="56" width="216" height="80" rx="6" fill="#fafaf7"/>
+        <rect x="296" y="56" width="216" height="80" rx="6" fill="#ffffff" stroke="#1e2124" stroke-width="1"/>
+        <rect x="306" y="64" width="32" height="14" rx="2" fill="none" stroke="#1e2124" stroke-width="0.8" stroke-opacity="0.35"/>
+        <text x="322" y="74" fill="#1e2124" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.10em">SDK</text>
+        <text x="404" y="102" fill="#1e2124" font-size="13" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">OSDK Client</text>
+        <text x="404" y="120" fill="#5c6066" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">@osdk/client · ONTOLOGY SDK</text>
+
+        <!-- Node: Ontos CLI -->
+        <rect x="36" y="160" width="208" height="80" rx="6" fill="#fafaf7"/>
+        <rect x="36" y="160" width="208" height="80" rx="6" fill="#5c6066" stroke="#545960" stroke-width="1" fill-opacity="0.08"/>
+        <rect x="46" y="168" width="32" height="14" rx="2" fill="none" stroke="#545960" stroke-width="0.8" stroke-opacity="0.40"/>
+        <text x="62" y="178" fill="#545960" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.10em">CLI</text>
+        <text x="140" y="206" fill="#1e2124" font-size="13" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">Ontos CLI</text>
+        <text x="140" y="224" fill="#5c6066" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">ontos · @ericbragas/ontos-cli</text>
+
+        <!-- Node: MCP Clients -->
+        <rect x="36" y="264" width="208" height="80" rx="6" fill="#fafaf7"/>
+        <rect x="36" y="264" width="208" height="80" rx="6" fill="#5c6066" stroke="#545960" stroke-width="1" fill-opacity="0.08"/>
+        <rect x="46" y="272" width="32" height="14" rx="2" fill="none" stroke="#545960" stroke-width="0.8" stroke-opacity="0.40"/>
+        <text x="62" y="282" fill="#545960" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.10em">MCP</text>
+        <text x="140" y="310" fill="#1e2124" font-size="13" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">MCP Clients</text>
+        <text x="140" y="328" fill="#5c6066" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">AI AGENTS · IDES · TOOLS</text>
+
+        <!-- Node: Ontos Service -->
+        <rect x="664" y="144" width="224" height="112" rx="6" fill="#fafaf7"/>
+        <rect x="664" y="144" width="224" height="112" rx="6" fill="#2b5945" stroke="#2b5945" stroke-width="1.2" fill-opacity="0.09"/>
+        <rect x="674" y="152" width="48" height="14" rx="2" fill="none" stroke="#2b5945" stroke-width="0.8" stroke-opacity="0.45"/>
+        <text x="698" y="162" fill="#2b5945" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.10em">SERVICE</text>
+        <text x="776" y="204" fill="#1e2124" font-size="15" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">Ontos Service</text>
+        <text x="776" y="224" fill="#5c6066" font-size="9.5" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">@ericbragas/ontos-service</text>
+
+        <!-- Node: PostgreSQL 17 -->
+        <rect x="964" y="160" width="212" height="80" rx="6" fill="#fafaf7"/>
+        <rect x="964" y="160" width="212" height="80" rx="6" fill="#1e2124" stroke="#5c6066" stroke-width="1" fill-opacity="0.05"/>
+        <rect x="974" y="168" width="40" height="14" rx="2" fill="none" stroke="#5c6066" stroke-width="0.8" stroke-opacity="0.45"/>
+        <text x="994" y="178" fill="#5c6066" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.10em">STORE</text>
+        <text x="1070" y="206" fill="#1e2124" font-size="13" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">PostgreSQL 17</text>
+        <text x="1070" y="224" fill="#5c6066" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">OBJECTS · LINKS · EDIT HISTORY</text>
+
+        <!-- Node: Identity Provider -->
+        <rect x="664" y="316" width="224" height="76" rx="6" fill="#fafaf7"/>
+        <rect x="664" y="316" width="224" height="76" rx="6" fill="#1e2124" stroke="#1e2124" stroke-width="1" stroke-dasharray="4,3" fill-opacity="0.02" stroke-opacity="0.34"/>
+        <rect x="674" y="324" width="36" height="14" rx="2" fill="none" stroke="#1e2124" stroke-width="0.8" stroke-opacity="0.28"/>
+        <text x="692" y="334" fill="#545960" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.10em">AUTH</text>
+        <text x="776" y="362" fill="#1e2124" font-size="13" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">Identity Provider</text>
+        <text x="776" y="380" fill="#5c6066" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">dev · oidc · workos</text>
+
+        <!-- Legend strip -->
+        <line x1="24" y1="416" x2="1176" y2="416" stroke="#1e2124" stroke-width="0.8" stroke-opacity="0.12"/>
+        <text x="24" y="432" fill="#5c6066" font-size="8" font-weight="500"
+              font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.16em">LEGEND</text>
+
+        <rect x="24" y="444" width="14" height="10" rx="2" fill="#2b5945" stroke="#2b5945" stroke-width="1" fill-opacity="0.09"/>
+        <text x="44" y="452" fill="#5c6066" font-size="9" font-family="'Geist', system-ui, sans-serif">Focal service</text>
+
+        <rect x="148" y="444" width="14" height="10" rx="2" fill="#ffffff" stroke="#1e2124" stroke-width="1"/>
+        <text x="168" y="452" fill="#5c6066" font-size="9" font-family="'Geist', system-ui, sans-serif">SDK client</text>
+
+        <rect x="260" y="444" width="14" height="10" rx="2" fill="#5c6066" stroke="#545960" stroke-width="1" fill-opacity="0.08"/>
+        <text x="280" y="452" fill="#5c6066" font-size="9" font-family="'Geist', system-ui, sans-serif">Caller</text>
+
+        <rect x="348" y="444" width="14" height="10" rx="2" fill="#1e2124" stroke="#5c6066" stroke-width="1" fill-opacity="0.05"/>
+        <text x="368" y="452" fill="#5c6066" font-size="9" font-family="'Geist', system-ui, sans-serif">Storage</text>
+
+        <rect x="444" y="444" width="14" height="10" rx="2" fill="#1e2124" stroke="#1e2124" stroke-width="1" stroke-dasharray="4,3" fill-opacity="0.02" stroke-opacity="0.34"/>
+        <text x="464" y="452" fill="#5c6066" font-size="9" font-family="'Geist', system-ui, sans-serif">Identity provider</text>
+
+        <line x1="592" y1="449" x2="620" y2="449" stroke="#1a66c9" stroke-width="1.2" marker-end="url(#ontos-architecture-light-arrow-link)"/>
+        <text x="628" y="452" fill="#5c6066" font-size="9" font-family="'Geist', system-ui, sans-serif">HTTP API / MCP</text>
+
+        <line x1="744" y1="449" x2="772" y2="449" stroke="#2b5945" stroke-width="1.4" marker-end="url(#ontos-architecture-light-arrow-accent)"/>
+        <text x="780" y="452" fill="#5c6066" font-size="9" font-family="'Geist', system-ui, sans-serif">SQL transaction</text>
+
+        <line x1="900" y1="449" x2="928" y2="449" stroke="#5c6066" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#ontos-architecture-light-arrow)"/>
+        <text x="936" y="452" fill="#5c6066" font-size="9" font-family="'Geist', system-ui, sans-serif">JWKS / tokens</text>
+      </svg>

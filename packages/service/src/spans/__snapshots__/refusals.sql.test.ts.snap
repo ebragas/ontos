@@ -1,0 +1,91 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`service/testing#local-service: the refusals on the test Postgres > a publish that exits with 0 and writes no role 1`] = `
+{
+  "answer": {
+    "message": "The grants file of probe has no role owner. Its roles: .",
+    "name": "Error",
+    "rejected": true,
+  },
+  "databases": [],
+  "fetchRestored": true,
+}
+`;
+
+exports[`service/testing#local-service: the refusals on the test Postgres > a publish that exits with a code other than 0 1`] = `
+{
+  "answer": {
+    "message": "ontos publish of probe failed: CANARY-out
+CANARY-err",
+    "name": "Error",
+    "rejected": true,
+  },
+  "databases": [],
+  "fetchRestored": true,
+}
+`;
+
+exports[`service/testing#local-service: the refusals on the test Postgres > a stop that succeeds 1`] = `
+{
+  "databases": [],
+  "first": {
+    "rejected": false,
+  },
+  "second": {
+    "rejected": false,
+  },
+}
+`;
+
+exports[`service/testing#local-service: the refusals on the test Postgres > a stop with 1 failed step, a second stop, and a call off this computer while the service runs 1`] = `
+{
+  "fetchRestored": true,
+  "first": {
+    "message": "role "<role>" cannot be dropped because some objects depend on it",
+    "name": "DatabaseError",
+    "rejected": true,
+  },
+  "offComputer": {
+    "message": "The local Ontology service refused a call off this computer: https://example.com/",
+    "name": "Error",
+    "rejected": true,
+  },
+  "second": {
+    "rejected": false,
+  },
+}
+`;
+
+exports[`service/testing#local-service: the refusals on the test Postgres > an engine change that fails, because the template database holds its schema 1`] = `
+{
+  "answer": {
+    "message": "schema "ontology_registry" already exists",
+    "name": "DatabaseError",
+    "rejected": true,
+  },
+  "databases": [],
+}
+`;
+
+exports[`service/testing#local-service: the refusals on the test Postgres > an install that the service refuses, because the published product is gone 1`] = `
+{
+  "answer": {
+    "message": "The install of twin gave HTTP 404: {"errorCode":"NOT_FOUND","errorName":"OntologyService:ProductNotFound","errorInstanceId":"<id>","parameters":{"product":"twin"}}",
+    "name": "Error",
+    "rejected": true,
+  },
+  "databases": [],
+  "fetchRestored": true,
+}
+`;
+
+exports[`service/testing#local-service: the refusals on the test Postgres > the twin app with a role that its grants file does not hold 1`] = `
+{
+  "answer": {
+    "message": "The grants file of twin has no role owner. Its roles: admin, member.",
+    "name": "Error",
+    "rejected": true,
+  },
+  "databases": [],
+}
+`;

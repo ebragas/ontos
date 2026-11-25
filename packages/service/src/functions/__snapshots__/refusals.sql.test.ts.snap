@@ -1,0 +1,1013 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`a Function that fails > a BigInt in an edit 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.cff6b199-fb7b-5d3a-bd16-c1e5de0c7aad",
+      "functionVersion": "1.0.0",
+      "message": "An edit holds a BigInt, which has no JSON form.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a Function that the bundle does not hold 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5c7da774-1817-5ad4-8bbb-06bcca1ca065",
+      "functionVersion": "1.0.0",
+      "message": "The Function bundle has no Function notInBundle.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a UserFacingError 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionEncounteredUserFacingError",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.aa03bc0f-bd8f-5d48-a7e9-2f0b83fbd3d3",
+      "functionVersion": "1.0.0",
+      "message": "a user-facing error",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a UserFacingError with a parameterId that names no parameter 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionEncounteredUserFacingError",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.3d34064f-163a-5e8d-a483-a5b6bb444c98",
+      "functionVersion": "1.0.0",
+      "message": "accountId must match",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a UserFacingError with the parameterId of a parameter 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionEncounteredUserFacingError",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.821a92fe-36f4-549a-a0c6-c64a87b6e1a2",
+      "functionVersion": "1.0.0",
+      "message": "accountId must match",
+      "parameterId": "accountId",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a call of fetch 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.ad3b93ad-8ed8-56ce-80c7-b75f555f2ce3",
+      "functionVersion": "1.0.0",
+      "message": "A V1 Function cannot call fetch.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a request of the client after the end of the call 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "operationId": "ri.actions.main.action.<uuid>",
+    "validation": {
+      "parameters": {},
+      "result": "VALID",
+      "submissionCriteria": [],
+    },
+  },
+  "contentType": "application/json",
+  "status": 200,
+}
+`;
+
+exports[`a Function that fails > a throw in a timer 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.966c895d-a7ed-5cb9-b77b-2f6b4e62b14d",
+      "functionVersion": "1.0.0",
+      "message": "a throw in a timer",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a thrown Error 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.83b3e286-0305-5ac2-a7e4-858816749f85",
+      "functionVersion": "1.0.0",
+      "message": "a plain error",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a thrown object 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.e2044e0a-274d-5acf-9913-abac75f15b6c",
+      "functionVersion": "1.0.0",
+      "message": "[object Object]",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > a thrown string 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.3940b88d-0409-5800-9a9d-4cda511a4e89",
+      "functionVersion": "1.0.0",
+      "message": "a thrown string",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a Function that fails > an Error that is named UserFacingError 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionEncounteredUserFacingError",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.ff1bf47f-ca08-5b91-93ae-7576023b3eb5",
+      "functionVersion": "1.0.0",
+      "message": "a named user-facing error",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`a request of the Function client that gets a 5xx > a failed read in the snapshot 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 500,
+}
+`;
+
+exports[`a request of the Function client that gets a 5xx > a failed read that the Function ignores 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INTERNAL",
+    "errorName": "Default:Internal",
+    "parameters": {},
+  },
+  "contentType": "application/json",
+  "status": 500,
+}
+`;
+
+exports[`the Object inputs > an Object input that does not exist 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5e455272-7133-549b-94dd-eaa78f22c6a5",
+      "functionVersion": "1.0.0",
+      "message": "Object not found",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the Object inputs > an Object list input with an Object that does not exist 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.1b89dc14-883f-54fa-bd47-2c0193b90f28",
+      "functionVersion": "1.0.0",
+      "message": "Object not found",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > 2 creates of 1 Object 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "The Action produced more than one conflicting edit for the same Object. Change the Action rules or Function to emit a single edit sequence per Object.",
+      "originalErrorName": "Ontos:UnsupportedEditSequence",
+      "userErrorMessage": "The Action could not apply because of an unsupported edit sequence.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a Link edit after a create and a delete of its Object 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "The Function edits com.example.twin.Account acc-new after it deletes it.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a Link edit of a Link Type that the Edits type does not name 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.834b3fe5-4ab9-578e-a561-a1891d7e0d8b",
+      "functionVersion": "1.0.0",
+      "message": "The Function edits the Link Type engagementSponsors, which its Edits type does not name.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a Link edit of a Link that is not many-to-many 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "A addLink edit names the Link engagements of com.example.twin.Account, which is not a side of a many-to-many Link Type.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a Link edit of a Link that the source does not have 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "A addLink edit names the Link sponsors, which com.example.twin.Account does not have.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a Link edit with a target of another Object Type 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "A addLink edit of the Link sponsoredEngagements names a target of com.example.twin.Account, not of com.example.twin.Engagement.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a Link edit with no source 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "An edit of the Function names the Object Type undefined, which the Ontology does not have.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a create after a delete 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "The Action produced more than one conflicting edit for the same Object. Change the Action rules or Function to emit a single edit sequence per Object.",
+      "originalErrorName": "Ontos:UnsupportedEditSequence",
+      "userErrorMessage": "The Action could not apply because of an unsupported edit sequence.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a create after an update 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "The Action produced more than one conflicting edit for the same Object. Change the Action rules or Function to emit a single edit sequence per Object.",
+      "originalErrorName": "Ontos:UnsupportedEditSequence",
+      "userErrorMessage": "The Action could not apply because of an unsupported edit sequence.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a create of an Object Type that the Edits type does not name 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.834b3fe5-4ab9-578e-a561-a1891d7e0d8b",
+      "functionVersion": "1.0.0",
+      "message": "The Function edits the Object Type com.example.twin.Engagement, which its Edits type does not name.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a create with a Property that the Object Type does not have 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "An edit of com.example.twin.Account names the Property nmae, which com.example.twin.Account does not have.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a create with no Object Type definition 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "An edit of the Function names the Object Type undefined, which the Ontology does not have.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a create with no String primary key 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "A createObject edit of com.example.twin.Account has no String primary key accountId.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a delete after a delete 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "The Function edits com.example.twin.Account acc-1 after it deletes it.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > a result that is no list 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "The Function returned no list of edits.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > an edit of an Interface 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "The Function returned a createObjectForInterface edit. V1 has no Interfaces.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > an edit of an unknown kind 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "The Function returned an edit of the unknown kind nope.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > an update after a create and a delete 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "The Function edits com.example.twin.Account acc-new after it deletes it.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > an update after a delete 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "ApplyActionFailed",
+    "parameters": {
+      "builderErrorMessage": "The Action produced more than one conflicting edit for the same Object. Change the Action rules or Function to emit a single edit sequence per Object.",
+      "originalErrorName": "Ontos:UnsupportedEditSequence",
+      "userErrorMessage": "The Action could not apply because of an unsupported edit sequence.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the edits of a Function > an update with no String $primaryKey 1`] = `
+{
+  "accounts": [
+    "acc-1",
+    "acc-2",
+    "acc-3",
+  ],
+  "body": {
+    "errorCode": "INVALID_ARGUMENT",
+    "errorName": "FunctionExecutionFailed",
+    "parameters": {
+      "functionRid": "ri.function-registry.main.function.5ed9a9c0-c06f-58c4-82a8-500c43db221f",
+      "functionVersion": "1.0.0",
+      "message": "An edit of the Function names an Object of com.example.twin.Account with no String $primaryKey.",
+    },
+  },
+  "contentType": "application/json",
+  "status": 400,
+}
+`;
+
+exports[`the spans of a Function run that fails > a BigInt in an edit 1`] = `
+{
+  "errorName": "FunctionExecutionFailed",
+  "spans": [
+    {
+      "errorType": "FunctionExecutionFailed",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": "RunFailure",
+      "name": "worker call",
+      "status": "ERROR",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the spans of a Function run that fails > a Function that runs 1`] = `
+{
+  "errorName": null,
+  "spans": [
+    {
+      "errorType": null,
+      "name": "function run",
+      "status": "UNSET",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": null,
+      "name": "worker call",
+      "status": "UNSET",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`the spans of a Function run that fails > a Function that the bundle does not hold 1`] = `
+{
+  "errorName": "FunctionExecutionFailed",
+  "spans": [
+    {
+      "errorType": "FunctionExecutionFailed",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": "RunFailure",
+      "name": "worker call",
+      "status": "ERROR",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the spans of a Function run that fails > a call of fetch 1`] = `
+{
+  "errorName": "FunctionExecutionFailed",
+  "spans": [
+    {
+      "errorType": "FunctionExecutionFailed",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": "RunFailure",
+      "name": "worker call",
+      "status": "ERROR",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the spans of a Function run that fails > a failed read in the snapshot 1`] = `
+{
+  "errorName": "Default:Internal",
+  "spans": [
+    {
+      "errorType": "Error",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": "RunFailure",
+      "name": "worker call",
+      "status": "ERROR",
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the spans of a Function run that fails > a failed read that the Function ignores 1`] = `
+{
+  "errorName": "Default:Internal",
+  "spans": [
+    {
+      "errorType": "Error",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": null,
+      "name": "worker call",
+      "status": "UNSET",
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`the spans of a Function run that fails > a request of the client after the end of the call 1`] = `
+{
+  "errorName": null,
+  "spans": [
+    {
+      "errorType": null,
+      "name": "function run",
+      "status": "UNSET",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": null,
+      "name": "worker call",
+      "status": "UNSET",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`the spans of a Function run that fails > a throw in a timer 1`] = `
+{
+  "errorName": "FunctionExecutionFailed",
+  "spans": [
+    {
+      "errorType": "FunctionExecutionFailed",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": "RunFailure",
+      "name": "worker call",
+      "status": "ERROR",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the spans of a Function run that fails > a thrown Error 1`] = `
+{
+  "errorName": "FunctionExecutionFailed",
+  "spans": [
+    {
+      "errorType": "FunctionExecutionFailed",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": "RunFailure",
+      "name": "worker call",
+      "status": "ERROR",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the spans of a Function run that fails > a thrown string 1`] = `
+{
+  "errorName": "FunctionExecutionFailed",
+  "spans": [
+    {
+      "errorType": "FunctionExecutionFailed",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": "RunFailure",
+      "name": "worker call",
+      "status": "ERROR",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`the spans of a Function run that fails > an Object input that does not exist 1`] = `
+{
+  "errorName": "FunctionExecutionFailed",
+  "spans": [
+    {
+      "errorType": "FunctionExecutionFailed",
+      "name": "function run",
+      "status": "ERROR",
+    },
+    {
+      "errorType": null,
+      "name": "worker wait",
+      "status": "UNSET",
+    },
+    {
+      "errorType": "RunFailure",
+      "name": "worker call",
+      "status": "ERROR",
+    },
+  ],
+  "status": 400,
+}
+`;

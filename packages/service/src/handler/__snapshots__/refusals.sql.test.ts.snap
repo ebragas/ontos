@@ -1,0 +1,588 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`service/code-layout#errors: the refusals of handle > a body that is not JSON 1`] = `
+{
+  "body": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > a converted route that yields its ApiError 1`] = `
+{
+  "body": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"field":"objectSet"}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "ontologyVersion": 1,
+      "parameters": {
+        "field": "objectSet",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > a converted route that yields its DbFailure 1`] = `
+{
+  "body": "{"errorCode":"INTERNAL","errorName":"Default:Internal","errorInstanceId":"?","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "message": "relation "ontology_1_objects.account" does not exist",
+      "ontologyVersion": 1,
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:Internal",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "error: relation "ontology_1_objects.account" does not exist",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 500,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > a publish by a person with no validateOnly 1`] = `
+{
+  "body": "{"errorCode":"PERMISSION_DENIED","errorName":"Default:PermissionDenied","errorInstanceId":"?","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:PermissionDenied",
+      "parameters": {},
+      "route": "POST /api/ontology-service/v1/publish",
+      "routeParams": {},
+      "stack": "ApiError: Default:PermissionDenied",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > a query parameter outside V1 1`] = `
+{
+  "body": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"feature":"branch"}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "parameters": {
+        "feature": "branch",
+      },
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > a token request with no client 1`] = `
+{
+  "body": "{"error":"invalid_client"}",
+  "faults": [],
+  "headers": {
+    "cache-control": "no-store",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+  },
+  "lines": [
+    {},
+  ],
+  "status": 401,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > a write of a request that the client aborted 1`] = `
+{
+  "body": "{"errorCode":"INVALID_ARGUMENT","errorName":"ActionRequestAborted","errorInstanceId":"?","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionRequestAborted",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.probe",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ActionRequestAborted",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > a write with no time left before its deadline 1`] = `
+{
+  "body": "{"errorCode":"INVALID_ARGUMENT","errorName":"ActionDeadlineExceeded","errorInstanceId":"?","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionDeadlineExceeded",
+      "ontologyVersion": 1,
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "com.example.twin.probe",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ActionDeadlineExceeded",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > an MCP request with no token 1`] = `
+{
+  "body": "{"errorCode":"UNAUTHORIZED","errorName":"MissingCredentials","errorInstanceId":"?","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+    "www-authenticate": "Bearer resource_metadata="http://localhost/api/oauth-protected-resource"",
+  },
+  "lines": [
+    {
+      "errorName": "MissingCredentials",
+      "parameters": {},
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: MissingCredentials",
+    },
+  ],
+  "status": 401,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handle > an MCP tool call whose route yields its ApiError 1`] = `
+{
+  "body": "{"result":{"content":[{"type":"text","text":"{\\"errorCode\\":\\"INVALID_ARGUMENT\\",\\"errorName\\":\\"Default:InvalidArgument\\",\\"errorInstanceId\\":\\"?\\",\\"parameters\\":{\\"field\\":\\"objectSet\\"}}"}],"structuredContent":{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"field":"objectSet"}},"isError":true},"jsonrpc":"2.0","id":1}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 1,
+      "parameters": {
+        "field": "objectSet",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handleTrusted > a body that is not JSON 1`] = `
+{
+  "body": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "errorName": "Default:InvalidArgument",
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handleTrusted > a converted route that yields its ApiError 1`] = `
+{
+  "body": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"field":"objectSet"}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "errorName": "Default:InvalidArgument",
+      "parameters": {
+        "field": "objectSet",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handleTrusted > a query parameter outside V1 1`] = `
+{
+  "body": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"feature":"scenarioRid"}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "errorName": "Default:InvalidArgument",
+      "parameters": {
+        "feature": "scenarioRid",
+      },
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+    },
+  ],
+  "status": 400,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handleTrusted > a route that is not an ontology route 1`] = `
+{
+  "body": "{"errorCode":"PERMISSION_DENIED","errorName":"Default:PermissionDenied","errorInstanceId":"?","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "errorName": "Default:PermissionDenied",
+      "parameters": {},
+      "route": "GET /api/v2/ontologies",
+      "routeParams": {},
+      "stack": "ApiError: Default:PermissionDenied",
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handleTrusted > a route with writes 1`] = `
+{
+  "body": "{"errorCode":"PERMISSION_DENIED","errorName":"Default:PermissionDenied","errorInstanceId":"?","parameters":{}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "errorName": "Default:PermissionDenied",
+      "parameters": {},
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "probe",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:PermissionDenied",
+    },
+  ],
+  "status": 403,
+}
+`;
+
+exports[`service/code-layout#errors: the refusals of handleTrusted > another Ontology 1`] = `
+{
+  "body": "{"errorCode":"NOT_FOUND","errorName":"OntologyNotFound","errorInstanceId":"?","parameters":{"ontologyRid":"ri.ontology.main.ontology.other"}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "errorName": "OntologyNotFound",
+      "parameters": {
+        "ontologyRid": "ri.ontology.main.ontology.other",
+      },
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.other",
+      },
+      "stack": "ApiError: OntologyNotFound",
+    },
+  ],
+  "status": 404,
+}
+`;
+
+exports[`service/releases#compatibility-with-earlier-releases: a stored version that this release does not support > an IR that does not compile, on an ontology route 1`] = `
+{
+  "body": "{"errorCode":"INTERNAL","errorName":"OntologyService:OntologyVersionNotSupported","errorInstanceId":"?","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:OntologyVersionNotSupported",
+      "message": "OntologyService:OntologyVersionNotSupported",
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:OntologyVersionNotSupported",
+      "parameters": {},
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.00000000-0000-4000-8000-000000000000",
+      },
+      "stack": "CompileError: The IR has the Interface com.example.crm.Asset. V1 has no Interfaces.",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`service/releases#compatibility-with-earlier-releases: a stored version that this release does not support > an IR that does not compile, on the permission catalog 1`] = `
+{
+  "body": "{"errorCode":"INTERNAL","errorName":"OntologyService:OntologyVersionNotSupported","errorInstanceId":"?","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:OntologyVersionNotSupported",
+      "message": "OntologyService:OntologyVersionNotSupported",
+      "route": "GET /api/ontology-service/v1/ontologies/{ontologyRid}/permissions",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:OntologyVersionNotSupported",
+      "parameters": {},
+      "route": "GET /api/ontology-service/v1/ontologies/{ontologyRid}/permissions",
+      "routeParams": {
+        "ontologyRid": "ri.ontology.main.ontology.00000000-0000-4000-8000-000000000000",
+      },
+      "stack": "CompileError: The IR has the Interface com.example.crm.Asset. V1 has no Interfaces.",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`service/releases#compatibility-with-earlier-releases: a stored version that this release does not support > an OSDK set that the release does not list, on an ontology route 1`] = `
+{
+  "body": "{"errorCode":"INTERNAL","errorName":"OntologyService:OntologyVersionNotSupported","errorInstanceId":"?","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:OntologyVersionNotSupported",
+      "message": "OntologyService:OntologyVersionNotSupported",
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:OntologyVersionNotSupported",
+      "parameters": {},
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.00000000-0000-4000-8000-000000000000",
+      },
+      "stack": "Error: This release does not list the OSDK set of version 1 of product test.",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`service/releases#compatibility-with-earlier-releases: a stored version that this release does not support > an Ontology that the Organization does not have, on the permission catalog 1`] = `
+{
+  "body": "{"errorCode":"NOT_FOUND","errorName":"OntologyNotFound","errorInstanceId":"?","parameters":{"ontologyRid":"ri.ontology.main.ontology.other"}}",
+  "faults": [],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyNotFound",
+      "parameters": {
+        "ontologyRid": "ri.ontology.main.ontology.other",
+      },
+      "route": "GET /api/ontology-service/v1/ontologies/{ontologyRid}/permissions",
+      "routeParams": {
+        "ontologyRid": "ri.ontology.main.ontology.other",
+      },
+      "stack": "ApiError: OntologyNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 404,
+}
+`;
+
+exports[`service/storage#engine-changes: a failed cold start > before an ontology route 1`] = `
+{
+  "body": "{"errorCode":"INTERNAL","errorName":"OntologyService:EngineChangesFailed","errorInstanceId":"?","parameters":{}}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:EngineChangesFailed",
+      "message": "connect ECONNREFUSED 127.0.0.1:1",
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:EngineChangesFailed",
+      "parameters": {},
+      "route": "GET /api/v2/ontologies/{ontology}/fullMetadata",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "Error: connect ECONNREFUSED 127.0.0.1:1",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 503,
+}
+`;
+
+exports[`service/storage#engine-changes: a failed cold start > in an MCP tool call 1`] = `
+{
+  "body": "{"result":{"content":[{"type":"text","text":"{\\"errorCode\\":\\"INTERNAL\\",\\"errorName\\":\\"OntologyService:EngineChangesFailed\\",\\"errorInstanceId\\":\\"?\\",\\"parameters\\":{}}"}],"structuredContent":{"errorCode":"INTERNAL","errorName":"OntologyService:EngineChangesFailed","errorInstanceId":"?","parameters":{}},"isError":true},"jsonrpc":"2.0","id":1}",
+  "faults": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:EngineChangesFailed",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "tool": "load_objects",
+      },
+      "message": "connect ECONNREFUSED 127.0.0.1:1",
+      "route": "POST /api/mcp",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "headers": {
+    "content-type": "application/json",
+  },
+  "lines": [
+    {
+      "callerKind": "person",
+      "errorName": "OntologyService:EngineChangesFailed",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "parameters": {},
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "Error: connect ECONNREFUSED 127.0.0.1:1",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;

@@ -1,0 +1,58 @@
+{
+  "permissions": {
+    "accounts:read": {
+      "description": "View accounts"
+    },
+    "accounts:write": {
+      "description": "Create and change accounts"
+    },
+    "accounts:close": {
+      "description": "Close accounts and copy their phase to engagements"
+    },
+    "engagements:read": {
+      "description": "View engagements"
+    },
+    "engagements:write": {
+      "description": "Create and change engagements"
+    },
+    "probes:read": {
+      "description": "View struct probes"
+    },
+    "probes:write": {
+      "description": "Create and change struct probes"
+    }
+  },
+  "objectTypes": {
+    "com.example.twin.Account": "accounts:read",
+    "com.example.twin.Engagement": "engagements:read",
+    "com.example.twin.StructProbe": "probes:read"
+  },
+  "actionTypes": {
+    "com.example.twin.create-account": "accounts:write",
+    "com.example.twin.create-engagement": "engagements:write",
+    "com.example.twin.set-engagement-status": "engagements:write",
+    "com.example.twin.delete-account": "accounts:write",
+    "com.example.twin.delete-engagement": "engagements:write",
+    "com.example.twin.close-account-action": "accounts:close",
+    "com.example.twin.set-account-phase": "accounts:write",
+    "com.example.twin.copy-account-phase": "accounts:close",
+    "com.example.twin.probe-version-check-action": "accounts:close",
+    "com.example.twin.create-struct-probe": "probes:write",
+    "com.example.twin.set-struct-probe-relationship": "probes:write",
+    "com.example.twin.set-relationship-action": "probes:write",
+    "com.example.twin.delete-struct-probe": "probes:write"
+  },
+  "defaultRoles": {
+    "admin": [
+      "ontology:install",
+      "accounts:read",
+      "accounts:write",
+      "accounts:close",
+      "engagements:read",
+      "engagements:write",
+      "probes:read",
+      "probes:write"
+    ],
+    "member": ["accounts:read", "accounts:write", "engagements:read", "probes:read"]
+  }
+}

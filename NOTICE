@@ -1,0 +1,70 @@
+Ontos
+Copyright 2026 Eric Bragas
+
+This product includes software developed by Eric Bragas (https://github.com/ebragas/ontos).
+Licensed under the Apache License, Version 2.0.
+
+Third-Party Notices
+===================
+
+This product incorporates or bundles the following third-party open-source software. Full license texts and copyright notices are included in THIRD_PARTY_NOTICES.md.
+
+1. @osdk/* packages (@osdk/aliases, @osdk/api, @osdk/client, @osdk/client.unstable,
+   @osdk/foundry.admin, @osdk/foundry.agents, @osdk/foundry.functions,
+   @osdk/foundry.mediasets, @osdk/foundry.ontologies, @osdk/functions,
+   @osdk/generator-converters, @osdk/shared.client, @osdk/shared.client.impl,
+   @osdk/shared.client2, @osdk/shared.net.errors, @osdk/shared.net.fetch,
+   @osdk/shared.net.platformapi)
+   Copyright Palantir Technologies, Inc.
+   Licensed under the Apache License, Version 2.0
+   Source: https://github.com/palantir/osdk-ts
+   Source: https://github.com/palantir/foundry-platform-typescript
+
+2. conjure-lite
+   Copyright Palantir Technologies, Inc.
+   Licensed under the Apache License, Version 2.0
+   (Includes ISC-licensed yargs-parser notices in its distribution; see THIRD_PARTY_NOTICES.md)
+
+3. yaml
+   Copyright Eemeli Aro <eemeli@gmail.com>
+   Licensed under the ISC License
+   Source: https://github.com/eemeli/yaml
+
+4. big.js
+   Copyright (c) 2018 Michael Mclaughlin
+   Licensed under the MIT License
+   Source: https://github.com/MikeMcl/big.js
+
+5. eventsource-parser
+   Copyright (c) 2026 Espen Hovlandsdal <espen@hovlandsdal.com>
+   Licensed under the MIT License
+   Source: https://github.com/rexxars/eventsource-parser
+
+6. fetch-retry
+   Copyright (c) 2016 Jon K. Bernhardsen
+   Licensed under the MIT License
+   Source: https://github.com/jonbern/fetch-retry
+
+7. isomorphic-ws
+   Copyright (c) 2018 Zejin Zhuang <heineiuo@gmail.com>
+   Licensed under the MIT License
+   Source: https://github.com/heineiuo/isomorphic-ws
+
+8. tiny-invariant
+   Copyright (c) 2019 Alexander Reardon
+   Licensed under the MIT License
+   Source: https://github.com/alexreardon/tiny-invariant
+
+9. ws
+   Copyright (c) 2011 Einar Otto Stangvik <einaros@gmail.com>
+   Copyright (c) 2013 Arnout Kazemier and contributors
+   Copyright (c) 2016 Luigi Pinca and contributors
+   Licensed under the MIT License
+   Source: https://github.com/websockets/ws
+
+10. anti-slop (tools/oxlint/anti-slop/)
+    Copyright (c) 2026 Dillon Mulroy
+    Licensed under the MIT License (full text in tools/oxlint/anti-slop/LICENSE)
+    Source: https://github.com/dmmulroy/anti-slop
+
+Ontos is an independent open-source project and is not affiliated with, endorsed by, or sponsored by Palantir Technologies, Inc.

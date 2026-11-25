@@ -1,0 +1,2986 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > aggregate_objects: a base of an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Nonesuch",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "aggregate_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/aggregate",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > aggregate_objects: a base of the short name of an Object Type that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Account"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Account",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "aggregate_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Account",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/aggregate",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > aggregate_objects: a subtract of a base of an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Nonesuch",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "aggregate_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/aggregate",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > apply_action: an unknown Action Type 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"no-such-action"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "no-such-action",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "no-such-action",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "apply_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "no-such-action",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "routeParams": {
+        "action": "no-such-action",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > execute_query: a Query Function that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"accountSummary"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "accountSummary",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "accountSummary",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "execute_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "accountSummary",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/queries/{queryApiName}/execute",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+        "queryApiName": "accountSummary",
+      },
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > execute_query: an unknown query 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"noSuchQuery"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "noSuchQuery",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "noSuchQuery",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "execute_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "noSuchQuery",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/queries/{queryApiName}/execute",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+        "queryApiName": "noSuchQuery",
+      },
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > get_edit_history: a name that is not a string 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"5"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "5",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "get_edit_history",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "5",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectTypes/{objectType}/editsHistory",
+      "routeParams": {
+        "objectType": "5",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > get_edit_history: an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Nonesuch",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "Nonesuch",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "get_edit_history",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectTypes/{objectType}/editsHistory",
+      "routeParams": {
+        "objectType": "Nonesuch",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > get_edit_history: the short name of an Object Type that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Account"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Account",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "Account",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "get_edit_history",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Account",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectTypes/{objectType}/editsHistory",
+      "routeParams": {
+        "objectType": "Account",
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a base of an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Nonesuch",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a base of an unknown name, in the revision 2026-07-28 1`] = `
+{
+  "contentType": "application/json",
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2026-07-28",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "result": {
+    "_meta": {
+      "io.modelcontextprotocol/serverInfo": {
+        "name": "ontology",
+        "version": "<service-version>",
+      },
+    },
+    "content": [
+      {
+        "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+        "type": "text",
+      },
+    ],
+    "isError": true,
+    "structuredContent": {
+      "errorCode": "NOT_FOUND",
+      "errorInstanceId": "?",
+      "errorName": "ObjectTypeNotFound",
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+    },
+  },
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a base of the short name of an Object Type that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Account"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Account",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Account",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a base that is not a string 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"field":"objectSet"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "INVALID_ARGUMENT",
+        "errorInstanceId": "?",
+        "errorName": "Default:InvalidArgument",
+        "parameters": {
+          "field": "objectSet",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "field": "objectSet",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a filter of a base of an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Nonesuch",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a searchAround of a base of an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Nonesuch",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a union of a base of an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Nonesuch",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a union with no list 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"field":"objectSet"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "INVALID_ARGUMENT",
+        "errorInstanceId": "?",
+        "errorName": "Default:InvalidArgument",
+        "parameters": {
+          "field": "objectSet",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "field": "objectSet",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a withProperties with a selection of an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"INVALID_ARGUMENT","errorName":"InvalidDerivedPropertyDefinition","errorInstanceId":"?","parameters":{"objectType":"com.example.twin.Engagement","derivedProperty":"n"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "INVALID_ARGUMENT",
+        "errorInstanceId": "?",
+        "errorName": "InvalidDerivedPropertyDefinition",
+        "parameters": {
+          "derivedProperty": "n",
+          "objectType": "com.example.twin.Engagement",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "InvalidDerivedPropertyDefinition",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "derivedProperty": "n",
+        "objectType": "com.example.twin.Engagement",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: InvalidDerivedPropertyDefinition",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: a withProperties with derived properties that are no object 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"field":"objectSet"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "INVALID_ARGUMENT",
+        "errorInstanceId": "?",
+        "errorName": "Default:InvalidArgument",
+        "parameters": {
+          "field": "objectSet",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "field": "objectSet",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: an Object Set that is a list 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"field":"objectSet"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "INVALID_ARGUMENT",
+        "errorInstanceId": "?",
+        "errorName": "Default:InvalidArgument",
+        "parameters": {
+          "field": "objectSet",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "field": "objectSet",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: a tool that takes a short name > load_objects: an Object Set that is not an object 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"INVALID_ARGUMENT","errorName":"Default:InvalidArgument","errorInstanceId":"?","parameters":{"field":"objectSet"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "INVALID_ARGUMENT",
+        "errorInstanceId": "?",
+        "errorName": "Default:InvalidArgument",
+        "parameters": {
+          "field": "objectSet",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "Default:InvalidArgument",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "load_objects",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "field": "objectSet",
+      },
+      "route": "POST /api/v2/ontologies/{ontology}/objectSets/loadObjects",
+      "routeParams": {
+        "ontology": "ri.ontology.main.ontology.22144f95-115e-4429-8bda-c69ce9a98a01",
+      },
+      "stack": "ApiError: Default:InvalidArgument",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: __proto__ 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"__proto__"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "__proto__",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "__proto__",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "__proto__",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: a number 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"5"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "5",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "5",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: an empty name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":""}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"no-such-action"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "no-such-action",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "no-such-action",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "no-such-action",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: an unknown name, in the revision 2026-07-28 1`] = `
+{
+  "contentType": "application/json",
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "no-such-action",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2026-07-28",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "no-such-action",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "result": {
+    "_meta": {
+      "io.modelcontextprotocol/serverInfo": {
+        "name": "ontology",
+        "version": "<service-version>",
+      },
+    },
+    "content": [
+      {
+        "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"no-such-action"}}",
+        "type": "text",
+      },
+    ],
+    "isError": true,
+    "structuredContent": {
+      "errorCode": "NOT_FOUND",
+      "errorInstanceId": "?",
+      "errorName": "ActionTypeNotFound",
+      "parameters": {
+        "actionType": "no-such-action",
+      },
+    },
+  },
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: constructor 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"constructor"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "constructor",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "constructor",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "constructor",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: null 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":""}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: the API name of an Action Type that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"com.example.twin.set-engagement-status"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "com.example.twin.set-engagement-status",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "com.example.twin.set-engagement-status",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "com.example.twin.set-engagement-status",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: the camelCase name of an Action Type 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"setEngagementStatus","publishedApiName":"com.example.twin.set-engagement-status"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "setEngagementStatus",
+          "publishedApiName": "com.example.twin.set-engagement-status",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "setEngagementStatus",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "setEngagementStatus",
+        "publishedApiName": "com.example.twin.set-engagement-status",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_action > describe_action: the camelCase name of an Action Type that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ActionTypeNotFound","errorInstanceId":"?","parameters":{"actionType":"setEngagementStatus"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ActionTypeNotFound",
+        "parameters": {
+          "actionType": "setEngagementStatus",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ActionTypeNotFound",
+      "mcp": {
+        "apiName": "setEngagementStatus",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_action",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "actionType": "setEngagementStatus",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ActionTypeNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: __proto__ 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"__proto__"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "__proto__",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "__proto__",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "__proto__",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: a Boolean 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"true"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "true",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "true",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: a list 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"[\\"Engagement\\"]"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "["Engagement"]",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "["Engagement"]",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: a number 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"5"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "5",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "5",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: a part of an API name with a dot 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"ontology.Engagement"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "ontology.Engagement",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "ontology.Engagement",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "ontology.Engagement",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: an empty name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":""}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: an object 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"{}"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "{}",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "{}",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: an unknown API name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"com.example.twin.Nosuchtype"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "com.example.twin.Nosuchtype",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "com.example.twin.Nosuchtype",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "com.example.twin.Nosuchtype",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Nonesuch",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "Nonesuch",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: an unknown name, in the revision 2026-07-28 1`] = `
+{
+  "contentType": "application/json",
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "Nonesuch",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2026-07-28",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "result": {
+    "_meta": {
+      "io.modelcontextprotocol/serverInfo": {
+        "name": "ontology",
+        "version": "<service-version>",
+      },
+    },
+    "content": [
+      {
+        "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Nonesuch"}}",
+        "type": "text",
+      },
+    ],
+    "isError": true,
+    "structuredContent": {
+      "errorCode": "NOT_FOUND",
+      "errorInstanceId": "?",
+      "errorName": "ObjectTypeNotFound",
+      "parameters": {
+        "objectType": "Nonesuch",
+      },
+    },
+  },
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: constructor 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"constructor"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "constructor",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "constructor",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "constructor",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: null 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":""}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: the API name of an Object Type that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"com.example.twin.Account"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "com.example.twin.Account",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "com.example.twin.Account",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "com.example.twin.Account",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: the short name of an Object Type that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"Account"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "Account",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "Account",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "Account",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_object_type > describe_object_type: toString 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"ObjectTypeNotFound","errorInstanceId":"?","parameters":{"objectType":"toString"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "ObjectTypeNotFound",
+        "parameters": {
+          "objectType": "toString",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "ObjectTypeNotFound",
+      "mcp": {
+        "apiName": "toString",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_object_type",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "objectType": "toString",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: ObjectTypeNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: __proto__ 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"__proto__"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "__proto__",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "__proto__",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "__proto__",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: a Query Function that the member cannot see 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"accountSummary"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "accountSummary",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "accountSummary",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "accountSummary",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01TEST00000000000000000001",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: a number 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"5"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "5",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "5",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: an edit Function 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"closeAccount"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "closeAccount",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "closeAccount",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "closeAccount",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: an empty name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":""}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: an unknown name 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"noSuchQuery"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "noSuchQuery",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "noSuchQuery",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "noSuchQuery",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: an unknown name, in the revision 2026-07-28 1`] = `
+{
+  "contentType": "application/json",
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "noSuchQuery",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2026-07-28",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "noSuchQuery",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "result": {
+    "_meta": {
+      "io.modelcontextprotocol/serverInfo": {
+        "name": "ontology",
+        "version": "<service-version>",
+      },
+    },
+    "content": [
+      {
+        "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"noSuchQuery"}}",
+        "type": "text",
+      },
+    ],
+    "isError": true,
+    "structuredContent": {
+      "errorCode": "NOT_FOUND",
+      "errorInstanceId": "?",
+      "errorName": "QueryNotFound",
+      "parameters": {
+        "query": "noSuchQuery",
+      },
+    },
+  },
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: constructor 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":"constructor"}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "constructor",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "apiName": "constructor",
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "constructor",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;
+
+exports[`service/ontology-mcp#errors: describe_query > describe_query: null 1`] = `
+{
+  "body": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+      "content": [
+        {
+          "text": "{"errorCode":"NOT_FOUND","errorName":"QueryNotFound","errorInstanceId":"?","parameters":{"query":""}}",
+          "type": "text",
+        },
+      ],
+      "isError": true,
+      "structuredContent": {
+        "errorCode": "NOT_FOUND",
+        "errorInstanceId": "?",
+        "errorName": "QueryNotFound",
+        "parameters": {
+          "query": "",
+        },
+      },
+    },
+  },
+  "headers": {
+    "connection": "keep-alive",
+    "content-type": "application/json",
+    "keep-alive": "timeout=5",
+    "transfer-encoding": "chunked",
+  },
+  "log": [
+    {
+      "callerKind": "person",
+      "errorName": "QueryNotFound",
+      "mcp": {
+        "clientId": "https://claude.ai/.well-known/oauth-client-metadata.json",
+        "method": "tools/call",
+        "protocolVersion": "2025-11-25",
+        "tool": "describe_query",
+      },
+      "ontologyVersion": 2,
+      "parameters": {
+        "query": "",
+      },
+      "route": "POST /api/mcp",
+      "routeParams": {},
+      "stack": "ApiError: QueryNotFound",
+      "userId": "user_01HR01E61646d696e",
+    },
+  ],
+  "status": 200,
+}
+`;

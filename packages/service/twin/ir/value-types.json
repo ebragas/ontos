@@ -1,0 +1,467 @@
+{
+  "ontology": {
+    "objectTypes": {
+      "com.example.twin.Task": {
+        "objectType": {
+          "displayMetadata": {
+            "displayName": "Task",
+            "icon": {
+              "type": "blueprint",
+              "blueprint": {
+                "locator": "cube",
+                "color": "#2D72D2"
+              }
+            },
+            "pluralDisplayName": "Tasks",
+            "visibility": "NORMAL"
+          },
+          "primaryKeys": ["taskId"],
+          "propertyTypes": {
+            "taskId": {
+              "apiName": "taskId",
+              "displayMetadata": {
+                "displayName": "Task ID",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              }
+            },
+            "status": {
+              "apiName": "status",
+              "displayMetadata": {
+                "displayName": "Status",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "string",
+                "string": {
+                  "isLongText": false,
+                  "supportsEfficientLeadingWildcard": false,
+                  "supportsExactMatching": true
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              },
+              "dataConstraints": {
+                "propertyTypeConstraints": [
+                  {
+                    "constraints": {
+                      "type": "string",
+                      "string": {
+                        "type": "oneOf",
+                        "oneOf": {
+                          "values": ["open", "done"],
+                          "useIgnoreCase": false
+                        }
+                      }
+                    },
+                    "failureMessage": {
+                      "message": "Use open or done."
+                    }
+                  }
+                ]
+              },
+              "valueType": {
+                "apiName": "taskStatus",
+                "version": "1.1.0",
+                "packageNamespace": "com.example.twin",
+                "displayMetadata": {
+                  "displayName": "Task status",
+                  "description": ""
+                }
+              }
+            },
+            "budget": {
+              "apiName": "budget",
+              "displayMetadata": {
+                "displayName": "Budget",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "decimal",
+                "decimal": {
+                  "precision": 12,
+                  "scale": 2
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              },
+              "dataConstraints": {
+                "propertyTypeConstraints": [
+                  {
+                    "constraints": {
+                      "type": "decimal",
+                      "decimal": {
+                        "type": "range",
+                        "range": {
+                          "min": "0",
+                          "max": "1000000.00"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "valueType": {
+                "apiName": "money",
+                "version": "1.0.0",
+                "packageNamespace": "com.example.twin",
+                "displayMetadata": {
+                  "displayName": "Money",
+                  "description": "An amount from 0 to 1000000."
+                }
+              }
+            },
+            "labels": {
+              "apiName": "labels",
+              "displayMetadata": {
+                "displayName": "Labels",
+                "visibility": "NORMAL"
+              },
+              "indexedForSearch": true,
+              "type": {
+                "type": "array",
+                "array": {
+                  "subtype": {
+                    "type": "string",
+                    "string": {
+                      "isLongText": false,
+                      "supportsEfficientLeadingWildcard": false,
+                      "supportsExactMatching": true
+                    }
+                  },
+                  "reducers": []
+                }
+              },
+              "typeClasses": [
+                {
+                  "kind": "render_hint",
+                  "name": "SELECTABLE"
+                },
+                {
+                  "kind": "render_hint",
+                  "name": "SORTABLE"
+                }
+              ],
+              "status": {
+                "type": "active",
+                "active": {}
+              },
+              "dataConstraints": {
+                "propertyTypeConstraints": [
+                  {
+                    "constraints": {
+                      "type": "array",
+                      "array": {
+                        "size": {
+                          "minSize": 1,
+                          "maxSize": 5
+                        },
+                        "elementsUnique": true,
+                        "elementsConstraint": {
+                          "type": "string",
+                          "string": {
+                            "type": "regex",
+                            "regex": {
+                              "regexPattern": "[a-z]+",
+                              "usePartialMatch": false
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "failureMessage": {
+                      "message": "Use 1 to 5 lowercase tags."
+                    }
+                  }
+                ]
+              },
+              "valueType": {
+                "apiName": "tags",
+                "version": "2.0.0",
+                "packageNamespace": "com.example.twin",
+                "displayMetadata": {
+                  "displayName": "Tags",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "titlePropertyTypeRid": "taskId",
+          "apiName": "com.example.twin.Task",
+          "status": {
+            "type": "active",
+            "active": {}
+          },
+          "redacted": false,
+          "implementsInterfaces2": [],
+          "allImplementsInterfaces": {}
+        },
+        "datasources": [
+          {
+            "datasourceName": "com.example.twin.Task",
+            "datasource": {
+              "type": "datasetV2",
+              "datasetV2": {
+                "datasetRid": "com.example.twin.Task",
+                "propertyMapping": {
+                  "taskId": {
+                    "type": "column",
+                    "column": "taskId"
+                  },
+                  "status": {
+                    "type": "column",
+                    "column": "status"
+                  },
+                  "budget": {
+                    "type": "column",
+                    "column": "budget"
+                  },
+                  "labels": {
+                    "type": "column",
+                    "column": "labels"
+                  }
+                }
+              }
+            },
+            "editsConfiguration": {
+              "onlyAllowPrivilegedEdits": false
+            },
+            "redacted": false
+          }
+        ],
+        "entityMetadata": {
+          "arePatchesEnabled": false,
+          "aliases": []
+        },
+        "propertySecurityGroupPackagingVersion": {
+          "type": "v2",
+          "v2": {}
+        }
+      }
+    },
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {},
+    "actionTypes": {},
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "importedOntology": {
+    "objectTypes": {},
+    "sharedPropertyTypes": {},
+    "interfaceTypes": {},
+    "linkTypes": {},
+    "actionTypes": {},
+    "blockPermissionInformation": {
+      "actionTypes": {},
+      "objectTypes": {},
+      "linkTypes": {},
+      "interfaceTypes": {},
+      "sharedPropertyTypes": {}
+    }
+  },
+  "valueTypes": {
+    "valueTypes": [
+      {
+        "metadata": {
+          "apiName": "taskStatus",
+          "packageNamespace": "com.example.twin",
+          "displayMetadata": {
+            "displayName": "Task status",
+            "description": ""
+          },
+          "status": {
+            "type": "active",
+            "active": {}
+          }
+        },
+        "versions": [
+          {
+            "version": "1.1.0",
+            "baseType": {
+              "type": "string",
+              "string": {}
+            },
+            "constraints": [
+              {
+                "constraint": {
+                  "constraint": {
+                    "type": "string",
+                    "string": {
+                      "type": "oneOf",
+                      "oneOf": {
+                        "values": ["open", "done"],
+                        "useIgnoreCase": false
+                      }
+                    }
+                  },
+                  "failureMessage": {
+                    "message": "Use open or done."
+                  }
+                }
+              }
+            ],
+            "exampleValues": []
+          }
+        ]
+      },
+      {
+        "metadata": {
+          "apiName": "money",
+          "packageNamespace": "com.example.twin",
+          "displayMetadata": {
+            "displayName": "Money",
+            "description": "An amount from 0 to 1000000."
+          },
+          "status": {
+            "type": "deprecated",
+            "deprecated": {
+              "message": "Use cost.",
+              "deadline": "2027-01-01"
+            }
+          }
+        },
+        "versions": [
+          {
+            "version": "1.0.0",
+            "baseType": {
+              "type": "decimal",
+              "decimal": {}
+            },
+            "constraints": [
+              {
+                "constraint": {
+                  "constraint": {
+                    "type": "decimal",
+                    "decimal": {
+                      "type": "range",
+                      "range": {
+                        "min": "0",
+                        "max": "1000000.00"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "exampleValues": []
+          }
+        ]
+      },
+      {
+        "metadata": {
+          "apiName": "tags",
+          "packageNamespace": "com.example.twin",
+          "displayMetadata": {
+            "displayName": "Tags",
+            "description": ""
+          },
+          "status": {
+            "type": "active",
+            "active": {}
+          }
+        },
+        "versions": [
+          {
+            "version": "2.0.0",
+            "baseType": {
+              "type": "array",
+              "array": {
+                "elementType": {
+                  "type": "string",
+                  "string": {}
+                }
+              }
+            },
+            "constraints": [
+              {
+                "constraint": {
+                  "constraint": {
+                    "type": "array",
+                    "array": {
+                      "size": {
+                        "minSize": 1,
+                        "maxSize": 5
+                      },
+                      "elementsUnique": true,
+                      "elementsConstraint": {
+                        "type": "string",
+                        "string": {
+                          "type": "regex",
+                          "regex": {
+                            "regexPattern": "[a-z]+",
+                            "usePartialMatch": false
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "failureMessage": {
+                    "message": "Use 1 to 5 lowercase tags."
+                  }
+                }
+              }
+            ],
+            "exampleValues": []
+          }
+        ]
+      }
+    ]
+  },
+  "importedValueTypes": {
+    "valueTypes": []
+  }
+}

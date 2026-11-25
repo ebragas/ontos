@@ -1,0 +1,60 @@
+{
+  "discovered": [
+    {
+      "locator": {
+        "type": "typescript",
+        "typescript": {
+          "functionName": "closeAccount"
+        }
+      },
+      "inputs": [
+        {
+          "name": "client",
+          "dataType": {
+            "type": "client",
+            "client": {}
+          }
+        },
+        {
+          "name": "account",
+          "dataType": {
+            "type": "object",
+            "object": {
+              "objectTypeId": "com.example.twin.Account"
+            }
+          }
+        },
+        {
+          "name": "reason",
+          "dataType": {
+            "type": "string",
+            "string": {}
+          },
+          "required": false
+        }
+      ],
+      "output": {
+        "single": {
+          "dataType": {
+            "type": "list",
+            "list": {
+              "elementsType": {
+                "type": "ontologyEdit",
+                "ontologyEdit": {}
+              }
+            }
+          }
+        }
+      },
+      "customTypes": {},
+      "ontologyProvenance": {
+        "editedObjects": {
+          "com.example.twin.Account": {},
+          "com.example.twin.Engagement": {}
+        },
+        "editedLinks": {},
+        "editedInterfaces": {}
+      }
+    }
+  ]
+}
