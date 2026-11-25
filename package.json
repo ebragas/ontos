@@ -30,7 +30,8 @@
     "test:changed": "vitest run --changed origin/main --project unit --project mcp --project sql --testTimeout=30000 --hookTimeout=30000 --exclude 'tools/ops/restore-ontology-*.sql.test.ts'",
     "check": "bun run format:check && bun run lint && bun run typecheck && bun run lint:dropped && bun run knip && bun run test:unit",
     "check:pkg": "publint packages/service && publint packages/cli && attw --pack --profile esm-only packages/service && attw --pack --profile esm-only packages/cli",
-    "build": "bun run --cwd packages/service build && bun run --cwd packages/cli build"
+    "build": "bun run --cwd packages/service build && bun run --cwd packages/cli build",
+    "release": "changeset version && bun install --lockfile-only && bun fmt"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
