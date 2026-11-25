@@ -57,7 +57,7 @@
     "@opentelemetry/sdk-trace": "3.1.1",
     "@sentry/node": "11.16.0",
     "@vercel/functions": "3.11.3",
-    "big.js": "5.2.2",
+    "big.js": "7.0.1",
     "jose": "6.2.18",
     "pg": "8.23.1",
     "pg-query-stream": "4.17.1",
@@ -75,10 +75,10 @@
     "@osdk/functions": "1.30.0",
     "@osdk/generator": "2.92.0",
     "@testcontainers/postgresql": "12.2.2",
-    "@types/big.js": "4.0.5",
+    "@types/big.js": "7.0.0",
     "@types/pg": "8.23.1",
     "esbuild": "0.28.2",
     "fast-check": "4.11.0",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
