@@ -63,8 +63,8 @@ Testing proves that the [Ontology service](./ontology-service.md) and the [CLI](
 ### Test rules
 
 - `bun run lint` runs 32 of 34 rules of the `@interfere/landmines` Oxlint plugin as errors with zero allowlist debt, alongside `anti-slop` and `fallible` checks. See [Linting and static checks](../linting.md) for the complete rule list and rationale. Our rule.
-- `strict-msw` requires `onUnhandledRequest: 'error'` on each MSW server of a test. Answer each request to a host outside the repo with MSW, and let any other request fail the test. Our rule.
-- The repo pins `msw` at exactly 2.15.0. MSW 3 renames `onUnhandledRequest` to `onUnhandledFrame`, and the old key then only warns, so `strict-msw` would pass while a request reaches the real network. Move to MSW 3 only with the new key. Our rule.
+- `strict-msw` requires `onUnhandledFrame: 'error'` on each MSW v3 server of a test. Answer each request to a host outside the repo with MSW, and let any other request fail the test. Our rule.
+- The repo pins `msw` at 3.0.7. MSW 3 enforces `onUnhandledFrame: 'error'` and routes Node `fetch` calls through real Undici sockets. Our rule.
 - `no-fixed-sleep` refuses a fixed real-time sleep in a test, a hook, or a callback that runs while the test waits. Await the event, or use fake timers. Our rule.
 - `no-flake-masking` refuses a test retry and a raised timeout in a test. Await the event, or move slow shared setup into `beforeAll`. Our rule.
 - `no-unsignaled-poll` refuses `vi.waitFor` and `expect.poll` on a spy or a request log. Await a promise that the event resolves. Our rule.
@@ -81,7 +81,7 @@ Testing proves that the [Ontology service](./ontology-service.md) and the [CLI](
 - The `sql` job runs `bun run test:sql` against PostgreSQL 17 in Docker and validates its spec sections with `tools/docs/spec-sections.ts`. Our rule.
 - The `gitleaks` job runs `gitleaks` against the repository, and the `docker` job builds the `Dockerfile` image. Our rule.
 - Every workflow job that needs `node_modules` restores Bun and `node_modules` caches through `.github/actions/deps` and runs `bun install --frozen-lockfile` on a cache miss. Our rule.
-- Dependabot opens weekly npm and GitHub Actions updates targeting `main`, grouping `@opentelemetry/*`, major updates (`other-major`), and minor/patch updates (`other`) separately. Our rule.
+- Dependabot opens weekly Bun, Docker, and GitHub Actions updates targeting `main`, grouping `@opentelemetry/*` and minor/patch updates (`other`) separately while letting each major update open its own pull request. Our rule.
 - Every Vitest run checks the running Node major version against `.nvmrc` in `vitest.config.ts` before any worker or Postgres container starts. Our rule.
 - [Releases](./releases.md#release-checks) specifies how releases are checked and published.
 

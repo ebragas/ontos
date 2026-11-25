@@ -208,7 +208,7 @@ const membership = defineObject({
 - A value of a Property with a value type also gets the value type check, after these rules, as [Checks on write](./value-types.md#checks-on-write) specifies.
 - [HTTP API](../../service/http-api.md#errors) gives the error for a value of an edit Function.
 - A Decimal value that does not fit gets the error of a value that breaks a rule: 400 `ApplyActionFailed` with `originalErrorName: "Ontos:InvalidActionPropertyFormat"`, as [HTTP API](../../service/http-api.md#errors) specifies. This holds for a rule-backed Action and for a Function edit. The Action writes nothing. Our rule.
-- Code that computes a Decimal rounds its result 1 time, to the scale of its Property, half away from zero. So `0.015` on scale 2 gives `0.02`, and `-0.015` gives `-0.02`. A write is never rounded. In Postgres, the rounding is `round(value, scale)`. In `big.js`, it is `round(scale, 1)`, where rounding mode 1 is `roundHalfUp`. Sources: [Mathematical functions](https://www.postgresql.org/docs/17/functions-math.html) (`round`: "Ties are broken by rounding away from zero"), `big.js` 5.2.2 (rounding mode 1). Our rule.
+- Code that computes a Decimal rounds its result 1 time, to the scale of its Property, half away from zero. So `0.015` on scale 2 gives `0.02`, and `-0.015` gives `-0.02`. A write is never rounded. In Postgres, the rounding is `round(value, scale)`. In `big.js`, it is `round(scale, 1)`, where rounding mode 1 is `roundHalfUp`. Sources: [Mathematical functions](https://www.postgresql.org/docs/17/functions-math.html) (`round`: "Ties are broken by rounding away from zero"), `big.js` 7.0.1 (rounding mode 1). Our rule.
 
 ## Out of scope
 

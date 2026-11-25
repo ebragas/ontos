@@ -97,7 +97,7 @@ afterAll(async () => {
   await service?.stop();
 });
 
-type Answer = (client: AbortController) => Response | Promise<Response>;
+type Answer = (client: AbortController, responseDone: Promise<undefined>) => Response | Promise<Response>;
 
 const otherShape: Answer = () => HttpResponse.json({ data: 'no list' });
 
@@ -111,10 +111,16 @@ const failed =
   () =>
     HttpResponse.json({ message: 'WorkOS fault' }, { status });
 
-const answersAfterAbort: Answer = async (client) => {
+const answersAfterAbort: Answer = (client) => {
   client.abort();
 
-  await new Promise((resolve) => setTimeout(resolve, 10));
+  return HttpResponse.json({ data: [], list_metadata: { after: null } });
+};
+
+const answersAfterResponse: Answer = async (client, responseDone) => {
+  client.abort();
+
+  await responseDone;
 
   return HttpResponse.json({ data: [], list_metadata: { after: null } });
 };
@@ -138,8 +144,11 @@ async function seen(
   answer: Answer,
 ): Promise<unknown> {
   const client = new AbortController();
+  const responseDone = Promise.withResolvers<undefined>();
 
-  network.use(http.get(`${WORKOS_API}/user_management/organization_memberships`, () => answer(client)));
+  network.use(
+    http.get(`${WORKOS_API}/user_management/organization_memberships`, () => answer(client, responseDone.promise)),
+  );
 
   const faults: unknown[] = [];
 
@@ -165,6 +174,8 @@ async function seen(
 
     const body = (await response.text()).replace(UUID, '<uuid>');
 
+    responseDone.resolve(undefined);
+
     await vi.waitFor(() => expect(recorder.open()).toEqual([]));
 
     const lines = log.mock.calls.map(([line]) => stable(JSON.parse(String(line)) as Record<string, unknown>));
@@ -177,6 +188,8 @@ async function seen(
 
     return { status: response.status, headers, body, lines, faults, spans, accounts };
   } finally {
+    responseDone.resolve(undefined);
+
     log.mockRestore();
   }
 }
@@ -247,7 +260,7 @@ const recorded = (name: string, run: () => Promise<unknown>): Case => ({ name, r
 const STUBS = [
   ['a plain Error', otherShape],
   ['a 503 ApiError with retry-after', rateLimited('7')],
-  ['a wait until the client aborts the request', answersAfterAbort],
+  ['a wait until the client aborts the request', answersAfterResponse],
 ] as const;
 
 const SENDS = [
@@ -258,7 +271,7 @@ const SENDS = [
 
 const CASES: readonly Case[] = [
   ...STUBS.flatMap(([stub, answer]) =>
-    SENDS.filter(([route]) => !(answer === answersAfterAbort && route === 'the MCP tool apply_action')).map(
+    SENDS.filter(([route]) => !(answer === answersAfterResponse && route === 'the MCP tool apply_action')).map(
       ([route, send]) => recorded(`${route}: the member check gets ${stub}`, () => seen(send, answer)),
     ),
   ),

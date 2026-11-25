@@ -1072,7 +1072,7 @@ describe('the token route', () => {
 
                   controller.enqueue(new TextEncoder().encode('{'));
                 } else {
-                  await new Promise((resolve) => setTimeout(resolve, 10));
+                  await new Promise<void>((resolve) => setImmediate(resolve));
 
                   controller.error(new TypeError('terminated'));
                 }
