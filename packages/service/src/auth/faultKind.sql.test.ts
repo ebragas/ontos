@@ -78,7 +78,7 @@ let recorder: SpanRecorder;
 const network = setupServer();
 
 beforeAll(async () => {
-  network.listen({ onUnhandledRequest: 'error' });
+  network.listen({ onUnhandledFrame: 'error' });
 
   service = await startActions(ir, twinFunctions('0.6.3'));
 
@@ -97,7 +97,7 @@ afterAll(async () => {
   await service?.stop();
 });
 
-type Answer = (client: AbortController) => Response;
+type Answer = (client: AbortController) => Response | Promise<Response>;
 
 const otherShape: Answer = () => HttpResponse.json({ data: 'no list' });
 
@@ -111,8 +111,10 @@ const failed =
   () =>
     HttpResponse.json({ message: 'WorkOS fault' }, { status });
 
-const answersAfterAbort: Answer = (client) => {
+const answersAfterAbort: Answer = async (client) => {
   client.abort();
+
+  await new Promise((resolve) => setTimeout(resolve, 10));
 
   return HttpResponse.json({ data: [], list_metadata: { after: null } });
 };

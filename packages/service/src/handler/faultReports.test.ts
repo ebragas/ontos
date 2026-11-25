@@ -112,7 +112,7 @@ beforeAll(async () => {
 
   sentryDsn = `http://0000000000000000000000000000088a@127.0.0.1:${port}/888`;
 
-  network.listen({ onUnhandledRequest: 'error' });
+  network.listen({ onUnhandledFrame: 'error' });
 
   syncBuiltinESMExports();
 });

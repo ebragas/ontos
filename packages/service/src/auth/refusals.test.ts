@@ -979,7 +979,7 @@ describe('the token route', () => {
   const unstubbed = globalThis.fetch;
   const network = setupServer();
 
-  beforeAll(() => network.listen({ onUnhandledRequest: 'error' }));
+  beforeAll(() => network.listen({ onUnhandledFrame: 'error' }));
 
   afterAll(() => network.close());
 
@@ -1061,13 +1061,26 @@ describe('the token route', () => {
     [
       'a WorkOS answer with a body that fails',
       () =>
-        post(
-          grant,
-          () =>
-            new Response(new ReadableStream({ start: (controller) => controller.error(new TypeError('terminated')) }), {
-              status: 200,
+        post(grant, () => {
+          let sent = false;
+
+          return new Response(
+            new ReadableStream({
+              async pull(controller) {
+                if (!sent) {
+                  sent = true;
+
+                  controller.enqueue(new TextEncoder().encode('{'));
+                } else {
+                  await new Promise((resolve) => setTimeout(resolve, 10));
+
+                  controller.error(new TypeError('terminated'));
+                }
+              },
             }),
-        ),
+            { status: 200, headers: { 'content-length': '100' } },
+          );
+        }),
     ],
   ]);
 

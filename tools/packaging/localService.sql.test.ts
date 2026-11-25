@@ -73,11 +73,7 @@ describe('the packed service file', () => {
 
     writeFileSync(join(app, 'package.json'), '{"name":"app","private":true}\n');
 
-    await run(
-      'npm',
-      ['install', '--prefer-offline', '--ignore-scripts', '--no-audit', '--no-fund', serviceFile, cli.file],
-      app,
-    );
+    await run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', serviceFile, cli.file], app);
 
     writeFileSync(join(app, 'local.mjs'), SCRIPT);
 

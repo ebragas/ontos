@@ -77,7 +77,7 @@ const network = setupServer(
 );
 
 beforeAll(async () => {
-  network.listen({ onUnhandledRequest: 'error' });
+  network.listen({ onUnhandledFrame: 'error' });
 
   postgres = await startPostgres();
 

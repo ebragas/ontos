@@ -8,7 +8,7 @@ export type WorkosAnswer = (request: Request) => Response | Promise<Response>;
 export function workosServer(): (answer: WorkosAnswer) => void {
   const server = setupServer();
 
-  beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+  beforeAll(() => server.listen({ onUnhandledFrame: 'error' }));
 
   afterEach(() => server.resetHandlers());
 

@@ -38,7 +38,7 @@ export async function installCli(file: string): Promise<string> {
 
   writeFileSync(join(folder, 'package.json'), '{"name":"app","private":true}\n');
 
-  await run('npm', ['install', '--prefer-offline', '--ignore-scripts', '--no-audit', '--no-fund', file], folder);
+  await run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', file], folder);
 
   return folder;
 }

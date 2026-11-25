@@ -41,7 +41,7 @@ beforeAll(async () => {
 
   url = `${local}/multipass/api/oauth2/token`;
 
-  network.listen({ onUnhandledRequest: 'error' });
+  network.listen({ onUnhandledFrame: 'error' });
 });
 
 afterAll(async () => {
@@ -468,9 +468,22 @@ describe('the token route', () => {
   });
 
   it('service/authentication#the-token-route: follows no redirect of WorkOS, so no other URL gets the client secret, and answers 503 temporarily_unavailable', async () => {
+    const targets = ['https://test-app.authkit.app/oauth2/other', 'https://other.example/steal'];
+    const redirected: string[] = [];
+
+    network.use(
+      ...targets.map((target) =>
+        http.all(target, ({ request }) => {
+          redirected.push(request.url);
+
+          return Response.json({ access_token: 'redirect-target-token', token_type: 'Bearer', expires_in: 3600 });
+        }),
+      ),
+    );
+
     const answers = [];
 
-    for (const location of ['https://test-app.authkit.app/oauth2/other', 'https://other.example/steal']) {
+    for (const location of targets) {
       stub.answer = () => new Response(null, { status: 307, headers: { location } });
 
       answers.push(
@@ -486,7 +499,7 @@ describe('the token route', () => {
     ]);
 
     expect(stub.calls).toHaveLength(2);
-    expect(stub.redirected).toEqual([]);
+    expect(redirected).toEqual([]);
 
     expect(faults.map(([, fields]) => fields.errorName)).toEqual([
       'OntologyService:WorkosUnavailable',
