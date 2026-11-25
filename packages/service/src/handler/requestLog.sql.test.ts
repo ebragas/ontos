@@ -724,7 +724,7 @@ describe('the fault reports', () => {
       }),
     );
 
-    network.listen({ onUnhandledRequest: 'error' });
+    network.listen({ onUnhandledFrame: 'error' });
 
     try {
       const errorInstanceId = await reported(post('/objectSets/loadObjects', { objectSet: ENGAGEMENTS }), 503, {

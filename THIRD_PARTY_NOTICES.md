@@ -58,14 +58,14 @@ THIS SOFTWARE.
 
 ---
 
-## big.js (5.2.2) - MIT License
+## big.js (7.0.1) - MIT License
 
 Source: https://github.com/MikeMcl/big.js
 
 ```text
-The MIT Licence (Expat).
+The MIT License (MIT)
 
-Copyright (c) 2018 Michael Mclaughlin
+Copyright (c) 2025 Michael Mclaughlin
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

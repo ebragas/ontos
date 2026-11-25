@@ -193,7 +193,7 @@ beforeAll(async () => {
 
   env['SENTRY_DSN'] = `http://${SENTRY_KEY}@127.0.0.1:${port}/157`;
 
-  network.listen({ onUnhandledRequest: 'error' });
+  network.listen({ onUnhandledFrame: 'error' });
 
   syncBuiltinESMExports();
 });

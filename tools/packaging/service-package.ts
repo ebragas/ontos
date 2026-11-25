@@ -40,11 +40,10 @@ function lockfile(pkg: Json, folder: string): void {
   try {
     writeJson(join(work, 'package.json'), pkg);
 
-    execFileSync(
-      'npm',
-      ['install', '--package-lock-only', '--prefer-offline', '--ignore-scripts', '--no-audit', '--no-fund'],
-      { cwd: work, stdio: 'pipe' },
-    );
+    execFileSync('npm', ['install', '--package-lock-only', '--ignore-scripts', '--no-audit', '--no-fund'], {
+      cwd: work,
+      stdio: 'pipe',
+    });
 
     renameSync(join(work, 'package-lock.json'), join(folder, 'npm-shrinkwrap.json'));
   } finally {

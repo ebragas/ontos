@@ -14,21 +14,19 @@ updates:
     commit-message:
       prefix: chore(deps)
     # The OSDK set moves on purpose, as 1 set of exact versions, when a feature needs it (Releases "OSDK sets").
+    # TypeScript 7.0 removed the JavaScript programmatic compiler API that build.ts, CLI SDK/function discovery, and tools/fallible call.
+    # Ignore 7.0.x only so Dependabot opens a pull request when TypeScript 7.1.0 ships with typescript/sync and typescript/ast.
     ignore:
       - dependency-name: '@osdk/*'
+      - dependency-name: typescript
+        versions:
+          - '7.0.x'
     groups:
       opentelemetry:
         patterns:
           - '@opentelemetry/*'
-      # Dependabot puts each update in the first group that matches, so other-major comes before other.
-      # A person decides on each major update, and a major update never holds back a minor or patch update.
-      other-major:
-        patterns:
-          - '*'
-        exclude-patterns:
-          - '@opentelemetry/*'
-        update-types:
-          - major
+      # Group weekly minor and patch updates, and let each major update open its own pull request.
+      # One blocked major upgrade must not hold back or fail unrelated major updates.
       other:
         patterns:
           - '*'

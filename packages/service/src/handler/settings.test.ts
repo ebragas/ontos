@@ -166,7 +166,7 @@ describe('inputFromEnv', () => {
     ),
   );
 
-  beforeAll(() => network.listen({ onUnhandledRequest: 'error' }));
+  beforeAll(() => network.listen({ onUnhandledFrame: 'error' }));
 
   afterAll(() => network.close());
 

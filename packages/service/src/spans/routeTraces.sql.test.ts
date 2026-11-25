@@ -78,7 +78,7 @@ const network = setupServer();
 beforeAll(async () => {
   network.resetHandlers(stubAuthkitToken().handler);
 
-  network.listen({ onUnhandledRequest: 'error' });
+  network.listen({ onUnhandledFrame: 'error' });
 
   service = await startActions(twinIr('0.6.3'), twinFunctions('0.6.3'));
 

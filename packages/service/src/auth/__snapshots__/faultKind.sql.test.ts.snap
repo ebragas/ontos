@@ -697,17 +697,6 @@ exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_AND_EXE
     },
     {
       "attributes": {
-        "http.status_code": 200,
-        "sentry.op": "http.client",
-        "workos.read": "members page",
-      },
-      "name": "workos read",
-      "status": {
-        "code": 0,
-      },
-    },
-    {
-      "attributes": {
         "sentry.op": "http.server",
       },
       "name": "response.body",
@@ -727,6 +716,17 @@ exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_AND_EXE
         "user.id": "user_01TEST00000000000000000001",
       },
       "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
       "status": {
         "code": 0,
       },
@@ -1038,17 +1038,6 @@ exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_ONLY: t
     },
     {
       "attributes": {
-        "http.status_code": 200,
-        "sentry.op": "http.client",
-        "workos.read": "members page",
-      },
-      "name": "workos read",
-      "status": {
-        "code": 0,
-      },
-    },
-    {
-      "attributes": {
         "sentry.op": "http.server",
       },
       "name": "response.body",
@@ -1068,6 +1057,17 @@ exports[`a WorkOS fault in the member check of an apply > apply VALIDATE_ONLY: t
         "user.id": "user_01TEST00000000000000000001",
       },
       "name": "POST /api/v2/ontologies/{ontology}/actions/{action}/apply",
+      "status": {
+        "code": 0,
+      },
+    },
+    {
+      "attributes": {
+        "http.status_code": 200,
+        "sentry.op": "http.client",
+        "workos.read": "members page",
+      },
+      "name": "workos read",
       "status": {
         "code": 0,
       },
