@@ -1,6 +1,6 @@
 {
   "name": "@ericbragas/ontos-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Ontos CLI: sign in, read, apply, and publish against an Ontology service deployment.",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -39,7 +39,7 @@
     "typescript": "6.0.3"
   },
   "optionalDependencies": {
-    "@ericbragas/ontos-service": "1.0.0"
+    "@ericbragas/ontos-service": "1.0.1"
   },
   "devDependencies": {
     "@osdk/client": "2.92.0",
